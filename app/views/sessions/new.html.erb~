@@ -1,0 +1,28 @@
+<% flash.each do |message_type, message| %>
+	<div class = "alert alert-<%= message_type %>"><%= message %>
+	</div>
+<div class = "row">
+	<div class = "col-md-4 col-md-offset-4">
+		<h1>Log in</h1>
+		
+		<%= form_for(:session ,url: login_path) do |f| %>
+			
+			<%= f.label :email %>
+			<%= f.email_field :email, class: 'form-control', placeholder: 'enter your email' %>
+			
+			<%= f.label :password %>
+			<%= f.password_field :password, class: 'form-control' %>
+			
+			<%= f.label :remember_me,class: 'checkbox inline' do %>
+				<%= f.check_box :remember_me %>
+				<span>Remember me on this computer</span>
+			<% end %>
+		<%= f.submit "Log in", class: 'btn btn-primary' %>
+		<% end %>
+		
+	</div>
+</div>	
+		
+		
+		
+

@@ -1,0 +1,33 @@
+<ul id = "menu">
+</ul>
+<div class= "col-md-8 col-md-offset-2">
+<% @feed.each do |feed| %>
+	<div class = "center jumbotron">
+	<%= label(:domain, "#{feed.domain.name}") %>
+	</br>
+	<h3><%= feed.title.html_safe %></h3>
+	<% if feed.class == Article %>
+		<p><%= feed.body.html_safe %></p>
+	</br>
+	<% else %>
+	<p><%= feed.description.html_safe %></p>
+	</br>
+		<% if !current_user?(feed.user) %>
+			<% session[:question] = feed.id %>
+			<%= link_to "Answer", new_answer_path %>
+		</br>
+		<% end %>
+		<% if feed.answers.any? %>
+		</br>
+			Answers(<%= feed.answers.count %>)
+		<ul class = "answers list-group">
+			<%= render feed.answers %>
+		</ul>
+				
+		<% end %>
+	<% end %>
+	
+	</div>
+<% end %>
+</div>
+

@@ -1,0 +1,50 @@
+process of implementation and creation.
+
+edit and send it as you please or send suggestion in another document.
+
+# create a user login system so that person can login by just entering password and username.
+# adding the option to login through facebook and google(might add it later)
+# create the upper title bar with all the options such as read, answer , explore ,notifications etc.  
+# customize the search bar to show it in the whole title bar on clicking it along with check boxes for articles, questions
+# adding a modal window to sign in from any page
+# adding fields into user table such as people's college education etc.
+# create a database for domains and seed it with domain names on our own.
+# making join between domains and users.(allowing people to follow some domain), between domain and question and domain and article
+# making separate tables for answers,questions and articles.
+# marking the options of a question and an article to belong to either of domain or a group
+# creating  four joins between answers and questions ,  answers and answering user, question and questioning user, article and user
+# give people option to write answers, questions and articles in domains.
+# showing question, articles on a user timeline in ascendnig order of the time of creation(question related with him only)
+# allowing people to question answer within their interested domains.
+# option for people to search though questions, articles ,users and domains separately.
+# adding picture adding option for people and domains
+# adding bootstrap on the article to border it.
+# adding option for people to follow each other.
+# create pages to show users follower and following
+# creating table for groups
+# allow people to create groups
+# create joins between group and users, groups and questions, groups and articles
+# create webpages for showing a particular group
+# allow members of group to add other users(only those people who follow him)
+# making an option for the user to leave the group
+# adding like option in all answers and articles.
+# creating a table reply for storing replies 
+# adding the option to reply back an answer(might need to add it ealier)
+# showing the replies in ascending order of time of creation
+# adding created_at option and other kind of options.
+# populate notification bar
+# allow clicking on notification bar to navigate to specific question,article,answer or user
+# adding seen all notification button
+# adding option to hide and expand questions, articles etc.
+# adding bookmarks option for each question and article(not for bookmarking answer)
+# adding colors to different page.
+# enhancing modal windows.
+# adding anonymous option for any user answering something
+# adding field in user to allow people to tell about themselves
+# create masthead and adding help page
+# enhancing the database by creating materialized view or other ways as you see fit
+# creating ajax calls on some of the pages
+# adding link on right hand side for  user for the questions they might be interested in.(by giving the link of the highest liked questions of their interest domains)
+# adding account activation methods through which people get mail for creation of their user account.( will need some external application to send mails)
+# adding password reset method
+# making an amazons3 account and uploading(i think it's the best but need more experience and advice)

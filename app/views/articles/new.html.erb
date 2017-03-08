@@ -1,0 +1,28 @@
+<div class = "col-md-6 col-md-offset-2">
+
+		 <%= form_for @article do |f|%>
+			<%= render 'common/error_messages', object: f.object %>
+		<ul class = "dropdown">
+				<% @domains.each do |g| %>
+					<li><%= radio_button_tag :domain, "#{g.name}" %><%= g.name %></li>
+				<% end %>
+		</ul>
+		
+		 <div>
+    <%= f.label :title %>
+  </div>
+  <div>
+    <%= f.text_field :title %>
+  </div>
+  <div>
+    <%= f.label :body %>
+  </div>
+  <div>
+    <%= f.cktext_area :body, rows: 5,:ckeditor =>{:toolbar => 'body'}%>
+  </div>
+  <div>
+    <%= f.submit %>
+  </div>
+  <% end %>
+  </div>
+ 

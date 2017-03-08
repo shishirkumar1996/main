@@ -1,0 +1,40 @@
+
+
+1. how to define a drop down list in desktop and the same thing with a modal window in mobile.
+2. how to change the title bar when search bar is activated.
+3. customizing explore option to add more data  and idea in it.
+4. customizing extras to add settings, feedback etc.
+5. creating a custom input field to input both text and pictures in the same area.
+6. how to add bold italics and other option in custom input field.
+7. adding an html mode in custom input field so that people can use small html tags to input
+	superscripts , subscripts, fonts etc.
+8. how to create arrays of ids of different things in a table.
+9. cusotmize the tables.
+10. writing reversible migrations for everything so that we can always rollback the migrations
+11. creating an effective join of the tables and customize it.
+12. signing up people through facebook and google
+13. adding sharing features through which people can share any public question on facebook, twitter
+	etc.
+14. creating materialized of question, answer and article tables as every  answer inside a question will go
+	together always
+15. how to create notifications.
+	
+	further prospects
+	
+16. customizing feedback options and privacy options.
+17. customizing group features.
+18. customizing update profile pic to add features as to what a person is currently doing 
+	and the time period in years (means from beginning to end) in a university, college, school,
+	or company.
+
+extras which i was not able to add
+
+* allowing people to create a domain(each domain should be a unique means its letters should not coincide
+with other domain)
+* handling articles and questions answers together(means if we want to show them mingled in a list)
+* sending notifications through email
+* keeping track of number of likes of an answer.
+* managing comments of any answer
+* how to report any answer or any question
+* how to use glyphicons to represent some buttons( important either we can create or use others)
+* on enhancing the tables

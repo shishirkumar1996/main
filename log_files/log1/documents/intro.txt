@@ -1,0 +1,85 @@
+1. this is what the home page on desktop will look like. the detailed view of title bar is given in figure 3.
+   the circle is where the profile pic will be. detailed view of question or article is given in figure 22.
+   article is something where a person can define a title on his own and write about it.
+
+2. the view of home page on mobile. the read write explore notifications buttons will come down. left padding
+ wont' be there. detailed view of title bar is given in figure 4.
+ 
+ 
+3 and 4. 
+
+
+
+5.this is what will happen on activating the search bar. the title bar will transform into this.
+	there will be option whether people want to search for question article people or domain.
+
+6. same as 5. but we will have to do a customization of drop down list
+
+7. this is what will happen on clicking read button on title bar. In desktop there will be drop down 
+	list . In mobile there will be a new modal window.
+
+8. same as 7
+
+9. this is what will happen on clicking on notification button on title bar. on mobile it will be new
+	modal window. in desktop it will be in drop down list. blue bar for seen notification, white bar
+	for unseen.
+
+10. on clicking explore. all the domains sorted according to popularity will be listed along with description.
+	we need to customize it even more.
+
+11. on clicking on my profile window if not signed in. a drop down list in desktop and a modal window
+	in mobile.
+	
+12. same as 11 but it will appear when signed in. needed to customize it even more.
+
+13 and 14.  easy enough except we need to see other webistes to enhance this page.
+
+15 and 16. easy enough but we need to think about how to access system folder by clicking browser or 
+	insert image from phone.
+	
+17 and 18. this is how a user page will look like. the questions answered and articles wrote in will
+ be ascending order according to date.
+ 
+ 19. this will be same looking as figure 17 and 18.
+ 
+ 20. this is what will happen on clicking extras . this needs to be customized.
+ 
+ 21. on clicking on reading answers will be same as figure 1 and 2.
+ 
+ 22. on click on sign up. a new modal window will appear both on desktop and on mobile.
+     if user clicks on sign in but , same thing will appear except that there will be a "sign in through"
+	 button. if a person clicks "sign in through" button but he doesn't have an account, his account
+	 will be created.
+	 
+23. detailed view of question or an article.
+
+24. everything about that question will be expanded on the same page on clicking more.
+
+25.  this is how one of the groups will look. a group will be a group of people where they can just 
+	ask and answer question to the people of their own group. any outside person will not be able 
+	to look what is happening inside the group. every member will be able to add a new member. there 
+	will be an option for a person to remove himself from the group.
+	
+26. there will be an arrow button on top right of each question or article. this view will appear
+	on clicking that.
+	
+27. there will be two input areas . one for text field and one for content. needed to be more customized.
+
+28.same as figure 27 but there will be only one input field either for writing question or writing answer.
+
+	TABLES
+
+29 . this table defines a users table
+
+30. this table defines a question table
+31. this table defines answer table. needed to be customized.
+32.this table defines article table.
+33. this table defines a group table.
+34. defines a domain table
+
+
+
+extra things which i forgot to add but are quite easy
+
+follow button for every person
+a link to view each person's profile

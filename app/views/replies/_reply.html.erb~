@@ -1,0 +1,6 @@
+<li>
+<h6>
+	<%= reply.body.html_safe %>
+	<%= reply.created_at %>
+</h6>
+</li>

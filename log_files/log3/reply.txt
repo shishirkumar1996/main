@@ -1,0 +1,12 @@
+you are right about limiting the domain. we can easily limit them. means its not a big deal.
+on tablet ,there are two ways people can see the website, one is vertically and other is horizontally,
+so maybe we can force the website to show it just vertically(it works).
+
+
+ok initially we wont give an option to people to create domains.
+
+as you are saying about multiple domains, i am already letting people enter their question and 
+then  choose all the domains to it which pertain to. there will be a thing callled domain tag 
+on the top of every question of article which will allow people to know that this question belongs 
+to these domains. we just have to improve the look and feel of the domain tags bar as i have already shown
+in the pictures.

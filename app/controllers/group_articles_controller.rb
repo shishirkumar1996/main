@@ -1,0 +1,2 @@
+class GroupArticlesController < ApplicationController
+end

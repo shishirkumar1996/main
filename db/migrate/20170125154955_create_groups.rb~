@@ -1,0 +1,13 @@
+class CreateGroups < ActiveRecord::Migration[5.0]
+  def up
+    create_table :groups do |t|
+    	t.string :name
+		end
+      t.timestamps
+   end
+    
+   def down
+   	drop_table :groups
+   end
+    
+end

@@ -1,0 +1,9 @@
+<%= render :partial=>'layouts/header' %>
+
+<h1><%= @user.name %></h1>
+</br>
+<h2><%= @user.email %></h2>
+</br>
+<% if @user==current_user %>
+<%= link_to 'Edit' edit_user_path(@user) %>
+<% end  %>

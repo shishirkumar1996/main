@@ -1,0 +1,3 @@
+<%= @tokens.each do |token| %>
+<%= User.find(token).name %>
+<% end %>

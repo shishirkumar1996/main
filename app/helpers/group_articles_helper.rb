@@ -1,0 +1,2 @@
+module GroupArticlesHelper
+end

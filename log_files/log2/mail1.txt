@@ -1,0 +1,33 @@
+/*
+Author: R.Abhinav
+December 26 2016
+To: Shishir
+*/
+
+I have a few doubts:
+
+1) How will the website display on a tablet? Same as mobile or same as desktop ??
+
+2) I still have a few doubts about the domains idea :
+
+  i) Check out guruquest.net and Yahoo Answers. They also have the domains idea.
+     Domains cannot cover every topic on earth. If users can add their own domains,
+     it becomes messy as seen in the above websites. When people post questions, u said
+     that they have to choose a domain. What if the domain list is huge? Won't it be
+     irritating as seen in the above website which have a lot of domains ??
+     
+  ii) Just a suggestion: What if we limit the domains initially and add more if 
+  	  necessary later on. We can limit the domains to about 10 areas in Engineering 
+  	  (as an example) or any other thing. So, we will be targeting specific people and
+  	  they will be forced to use our website because ours will be the only one related
+  	  to their topic. That way we can retain the domain idea and we can also avoid 
+  	  competing with sites like quora and yahoo which focus on all topics.
+  	  
+  iii) Even if we implement the domain idea, there are topics that belong to multiple
+       domains and there will be overlap. What if the person asking the question 
+       gets confused ?
+  	  
+These are just suggestions. It's up to you. So, what do u say ?? If u feel that your
+domain idea will work perfectly fine, can u explain to me what your idea is(briefly) ?
+
+----------------------------------------------------------------------------------------- 

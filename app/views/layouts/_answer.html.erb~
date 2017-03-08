@@ -1,0 +1,23 @@
+<li>
+				</br>
+				<%= answer.body.html_safe %>
+				<% if answer.replies.any? %>
+					<ul class = "replies">
+						<%= render @replies %>
+					</ul>
+				<% end %>
+				<% if current_user?(feed.user)|| current_user?(answer.user) %>
+					</br>
+					<%= link_to "Reply",new_reply_path,remote: true %>
+				<% end %>
+				</br>
+				<div id = "answer_<%= answer.id %>" >
+				</div>
+				
+			<% if !current_user?(feed.user) %>
+		<%= link_to "Like",'#' %>
+	<% end %>	
+			</div>
+			
+	</li>
+	

@@ -1,0 +1,27 @@
+<div class = "col-md-6 col-md-offset-2">
+
+	<%= form_for @question do |f| %>
+		<%= render 'common/error_messages', object: f.object %>
+	<div>
+		<%= select_tag 'domain',options_for_select( @domains.collect{|g| [g.name, g.id]}) %>
+		<%= f.collection_select :domain, Domain.order(:name),:id,:name %>
+	</div>
+	<%= f.label :title %>
+	<div>
+	<%= f.text_field :title %>
+	</div>
+	<%= f.label :description %>
+	<div>
+		<%= f.cktext_area :description, rows: 5,:ckeditor =>{:toolbar =>'body'}%>
+	</div>
+	<div>
+		<%= f.check_box :anonymous %> Anonymous
+	</div>
+	
+	<div>
+		<%= f.submit %>
+	</div>
+	<% end %>
+	</div>
+	
+	

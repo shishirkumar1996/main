@@ -1,0 +1,33 @@
+Suppose you have a paragraph with id ‘para’ and you want to hide it when a text box is clicked.
+
+Paragraph(example):
+<p id=“para”>
+.
+.
+.
+</p>
+
+Form(example):
+
+<%= form_for(@user) do |f| %>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+<% end %>
+
+will produce HTML as follows
+
+<label for="user_name">Name</label>
+<input id="user_name" name="user[name]" type="text" />
+
+So, the jquery code will be
+
+$(document).ready(function() {
+
+  $(‘#user_name’).click(function() {
+   $(‘#para’).hide();
+   });
+ });
+
+// This code will hide the paragraph when text box is clicked but it will not show it again when you click somewhere else. It will stay hidden. This is what you asked. Right ??
+
+// If you want something else, ask.

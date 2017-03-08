@@ -1,0 +1,64 @@
+creation of new application 'main' with the following command
+
+rails new -d postgresql main
+
+create new account 'postgres' through this command
+
+psql postgres
+
+
+create new user and password through this command 
+
+CREATE USER <username> PASSWORD '<password>';
+
+for now let the username be main
+password be main
+
+make these changes then in the config/database.yml by adding
+these lines in all three environments
+
+username: main
+password: main
+
+make sure while adding the given lines that there is no indentation using tabs.
+
+also in order to grant priviliges use this command inside postgres server
+
+alter role main  with createdb;
+
+run this command to create databases for all the environment
+
+rails db:create
+
+install bower by adding this gem
+
+gem 'bower-rails'
+
+Create a new document file name 'Bowerfile'
+add this line
+
+
+asset 'bootstrap-sass-official'
+
+run this command
+
+rails bower:install
+
+can download many things using above command 
+
+IN app/assets/stylesheets/application.css
+
+add
+
+*= require 'bootstrap-sass-official'
+
+
+IN app/assets/javascript/application.js add
+
+//= require bootstrap/modal
+
+
+run this command 
+
+rails db:setup
+rails db:migrate

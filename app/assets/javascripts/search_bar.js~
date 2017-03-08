@@ -1,0 +1,13 @@
+$(document).on('turbolinks:load', function() {
+  $("#search").click(function() {
+  	$(this).hide();
+  	$("#search_bar").focus();
+  });
+
+  $("#search_bar").on("focus", function() {
+  	$("#search").hide();
+  });
+  $("#search_bar").on("blur", function() {
+  	setTimeout(function(){$('#search').show();}, 400);
+  });
+});

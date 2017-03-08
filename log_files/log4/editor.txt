@@ -1,0 +1,14 @@
+a little bit enhancement of plans
+
+
+we are going to use  wysiwyg editor for inputting answers, questions and articles.
+
+so we will be using ckeditor. it is integrable with rails.
+ 
+an important website to configure the options to change the look and feel of editor and its components.
+
+docs.cksource.com/ckeditor_api/symbols/CKEDITOR.config.html
+
+
+and we won't be using arrays inside any tables of databases. we will be using one-many or many-many
+or one-one relationship

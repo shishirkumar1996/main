@@ -1,0 +1,33 @@
+
+<div class = "modal-dialog">
+	<div class = "modal-content">
+
+<div class = "modal-header">
+	<button type = "button class = "col-md-1 col-md-offset-11 close btn btn-primary btn-lg" data-dismiss="modal" aria-hidden="true">x</button>
+</div>
+<div class = "modal-body">
+		<%= form_for(@article) do |f| %>
+			<%= render 'common/error_messages', object: f.object %>
+			<div >
+				<%= f.label :title %>
+			</div>
+			<div>
+				<%= f.text_field :title %>
+			</div>
+			<div>
+				<%= f.label :body %>
+			</div>
+			<div>
+				<%= f.ctext_area :body, rows: 10, :ckeditor=>{:toolbar => 'body' } %>
+			</div>
+			<div>
+				<%= f.submit %>
+			</div>
+		<% end %>
+				
+			
+</div>
+
+
+	</div>
+	</div>

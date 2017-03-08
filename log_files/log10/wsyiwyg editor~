@@ -1,0 +1,10 @@
+along with carrierwave and mini_magick gem
+
+use this command
+
+rails generate ckeditor:install --orm=active_record --backend=carrierwave
+
+this url can be beneficial
+
+http://apidock.com/rails/v4.0.2/ActiveRecord/QueryMethods/select
+http://apidock.com/rails/ActionView/Helpers/FormBuilder/fields_for

@@ -1,0 +1,11 @@
+class AddGroupQuestionFeature < ActiveRecord::Migration[5.0]
+  def up
+  	add_column :questions, :group_question, :boolean, default: false
+  	add_column :articles, :group_article, :boolean, default: false
+ 	end
+ 	
+ 	def down
+ 		remove_column :questions, :group_question
+ 		remove_column :articles, :group_article
+ 	end
+end

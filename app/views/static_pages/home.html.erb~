@@ -1,0 +1,25 @@
+<% if logged_in? %>
+
+	<%= render :partial=>'layouts/header' %>
+	<%= text_field_tag 'test_bar' %>
+	<%= render :partial=>'layouts/body' %>		
+<% else %>
+
+<div class = "row">
+	<div class = "col-md-4 col-md-offset-4">
+		<h1> Welcome to this app</h1>
+		
+		</br>
+		<%= link_to "Sign in through email", login_path,class: 'btn btn-primary' %>
+		</br>
+		Or<br>
+		<%= link_to "Continue through facebook","/auth/facebook", class: "btn btn-lg btn-primary", id: "sign_in" %>
+		<br>Or<br>
+		<%= link_to "Continue through google", url: '#', class: 'btn btn-primary' %>
+		
+		<br>Or<br>
+		<%= link_to "sign up by creating account", signup_path, class: 'btn btn-primary' %>	
+	</div>
+</div>		
+			
+<% end %>

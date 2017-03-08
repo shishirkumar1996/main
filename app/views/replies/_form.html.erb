@@ -1,0 +1,13 @@
+<%= form_for(reply) do |f| %>
+  <%= render 'common/error_messages', object: f.object %>
+	<div>
+ 	 <%= f.label :title %>
+  </div>
+  
+  <div>
+  	<%= f.cktext_area :body, rows: 3, :ckeditor =>{:toolbar => 'body'}%>
+  </div> 
+  
+  <%= f.submit %>
+  
+<% end %>

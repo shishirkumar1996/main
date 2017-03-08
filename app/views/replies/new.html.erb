@@ -1,0 +1,25 @@
+<div class = "row-md-6 row-md-offset-3"
+	<% @ques = Answer.find(session[:answer]).question %>
+	<%= label(:domain, "#{@ques.domain.name}") %>
+	</br>
+	<h3><%= @ques.title.html_safe %></h3>
+	</br>
+	<p><%= @ques.description.html_safe %></p>
+	</br>
+	<%= Answer.find(session[:answer]).body %>
+	<% if answer.replies.any? %>
+		<ul class = "replies">
+			<%= render answer.replies %>
+		</ul>
+	</br>
+	<%= form_for @reply do |f| %>
+		<%= render 'common/error_messages', object: f.object %>
+			<div>
+			</br>
+			<%= f.cktext_area :body, rows: 5, :ckeditor=>{:toolbar => 'body'} %>
+			</div>
+			<div>
+			<%= f.submit %>
+			</div>
+	<% end %>
+	

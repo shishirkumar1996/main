@@ -1,0 +1,25 @@
+Further prospects
+
+we can add reply options to all the answers on which only the person who has asked the question can
+reply. Only the person who has answered can reply back. means it will be an end to end kind of
+communication in order to avoid any external unnecessary comments.
+
+we can add mark as duplicate scheme so that a question which has already been asked can not be repeated
+or if it is repeated , people will get to know that such kind of question has already been asked.
+
+editing options for any answer is easy, we might think of options for deleting options so that person
+can delete some part of their answers.
+
+right now we are not going to add trending topics option as it requires more resources.
+
+notifications bar is easy to implement but more knowledge is needed about it.
+
+we need to think more about deploying this website on server.
+
+
+resources
+
+link :- https://www.railstutorial.org/book/beginning
+
+
+no need to go through whole book. just need to go through the things which we need.

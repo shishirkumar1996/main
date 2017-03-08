@@ -1,0 +1,70 @@
+new current problems
+
+
+integrating ajax and javascript with rails 
+working with login through facebook and google+ and emails
+updating notifications
+creating the methods to reply to an answer
+reading through various source codes of rails to know its exact functionality
+creating methods to like articles, answers etc.
+creating methods to bookmark articles, questions etc.
+
+
+important links: 
+ 
+guides.rubyonrails.orb/configuring.html
+railsapps.github.io/rails-environment-variables.html
+guides.beanstalkapp.com/deployments/deploy-with-capistrano.html
+www.tutorialspoint.com/ruby-on-rails/rails-database-setup.htm
+jacopretorius.net/2014/02/all-rails-db-rake-tasks-and-what-they-do.html
+makandracards.com/sandheep/15815-abstract-classes-in-rails
+api.rubyonrails.org/classes/ActionDispatch/Routing.html
+api.rubyonrails.org/classes/ActionController/Redirecting.html#method-i-redirect_to
+apidock.com/rails/ActiveRecord/Base/default_scope/class
+guides.rubyonrails.org/association_basics.html
+stackoverflow.com/questions/6885990/rails-params-explained
+api.rubyonrailsorg/classes/ActiveRecord/Scoping/Named/ClassMethods.html#method-i-scope
+stackoverflow.com/questions/24756784/how-does-rails-4-generate-url-and-path-helpers
+guides.rubyonrails.org/routing.html
+stackoverflow.com/questions/31221527/understanding-books-book-all-page-paramspage-in-ruby-on-rails
+api.rubyonrails.org/classes/ActionView/Helpers/CaptureHelper.html
+www.w3schools.com/tags/att_global_data.asp
+apidock.com/rails/ActionView/Helpers/RoutingUrlFor/url_for
+apidock.com/rails/ActionView/Helpers/UrlHelper/link_to
+api.rubyonrails.org/classes/ActionDispatch/Routing/Mapper/Scoping.html
+blog.makandra.com/2014/12/organizing-large-rails-projects-with-namespaces/
+apidock.com/rails/ActionController/Base/url_for
+apidock.com/rails/ActionView/Helpers/FormHelper/form_for
+www.w3schools.com/tags/att_input_name.asp
+guides.rubyonrails.org/form_helpers.html
+www.restapitutorial.com/lessons/httpmethods.html
+api.rubyonrails.org/classes/ActionView/Helpers/FormTagHelper.html
+apidock.com/rails/ActionView/Helpers/FormHelper/hidden_field
+apidock.com/rails/ActionView/Helpers/FormTagHelper/hidden_field_tag
+https://railsforum.com/topic/936-difference-between-text-field-tag-and-text-field/
+stackoverflow.com/questions/23886147/how-to-write-the-match-keyword-in-routes-rb
+apidock.com/rails/ActionController/MimeResponds/InstanceMethods/respond_to
+guides.rubyonrails.org/layouts_and_rendering.html
+railscasts.com/episodes.com/360-facebook-authentication
+https://github.com/arsduo/koala
+https://github.com/mkdynamic/omniauth-facebook
+https://github.com/zquestz/omniauth-google-oauth2
+https://richonrails.com/articles/getting-started-with-ckeditor  download the source code
+https://github.com/publify/publify
+https://coderwall.com/p/ej0mhg/open-a-rails-form-with-twitter-bootstrap-modals
+api.rubyonrails.org/classes/ActionView/Helpers/JavaScriptHelper.html
+apidock.com/ruby/Module/alias_method
+apidock.com/rails/ActionController/MimeResponds/InstanceMethods/respond_to
+guides.rubyonrails.org/layouts_and_rendering.html
+apidock.com/rails/ActionController/Caching/Sweeping
+https://ruby-doc.org/core-2.1.1/Proc.html
+apidock.com/rails/ActionController/Caching/Pages/ClassMethods/caches_page
+apidock.com/rails/v4.2.1/ActionView/Helpers/CaptureHelper/content_for
+api.rubyonrails.org/classes/ActiveRecord/AttributeMethods/Serialization/ClassMethods.html
+stackoverflow.com/questions/3724487/rails-root-directory-path
+https://ruby-doc.org/core-2.2.0/File.html
+https://ruby-doc.org/core-2.2.0/Dir.html
+api.rubyonrails.org/classes/ActionView/PartialRenderer.html
+edgeguides.rubyonrails.org/layouts_and_rendering.html
+apidock.com/rails/ActionView/Helpers/OutputSafetyHelper/raw
+https://docs.ruby-lang.org/en/2.1.0/URI.html
