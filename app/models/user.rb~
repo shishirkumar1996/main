@@ -13,12 +13,12 @@ class User < ApplicationRecord
 	has_many :questions, dependent: :destroy
 	has_many :answers, dependent: :destroy
 	has_many :replies ,dependent: :destroy
-	has_and_belongs_to_many :groups
+	has_and_belongs_to_many :groups   , dependent: :nullify
 	has_many :interests, foreign_key: "interested_id",
 											 dependent: :destroy
 											 
 	has_many :relations, through: :interests,source: :domain
-	has_many :academics, foriegn_key: "student_id", dependent: :destroy
+	has_many :academics, foreign_key: "student_id", dependent: :destroy
 	has_many :universities, through: :academics, source: :domain										 
 		
 	def User.digest(string)

@@ -18,7 +18,7 @@ class User < ApplicationRecord
 											 dependent: :destroy
 											 
 	has_many :relations, through: :interests,source: :domain
-	has_many :academics, foriegn_key: "student_id", dependent: :destroy
+	has_many :academics, foreign_key: "student_id", dependent: :destroy
 	has_many :universities, through: :academics, source: :domain										 
 		
 	def User.digest(string)
