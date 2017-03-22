@@ -4,6 +4,32 @@
 </br>
 <h2><%= @user.email %></h2>
 </br>
+<% if logged_in? &&  current_user != @user %>
+	<div id = "follow_form">
+	<% if current_user.following?(@user) %>
+		<%= render 'follow' %>
+	<% else %>
+		<%= render 'unfollow' %>
+	<% end %>
+	</div>
+<% end %>
+
+<h4>Interests</h4>
 <% if @user==current_user %>
-<%= link_to 'Edit' edit_user_path(@user) %>
+<%= link_to 'Edit',interest_user_path(@user)%>
 <% end  %>
+</br>
+<% @user.relations.each do |relation| %>
+<%= label(:interest,"#{relation.name}") %>
+<% end %>
+
+
+<h4>Education</h4>
+<%if @user==current_user %>
+<%= link_to 'Edit',academic_user_path(current_user) %>
+<% end %>
+</br>
+<% @user.universities.each do |academic| %>
+	<%= label(:academic,"#{academic.name}") %>
+<% end %>
+

@@ -1,0 +1,2 @@
+class DomainsQuestionsController < ApplicationController
+end

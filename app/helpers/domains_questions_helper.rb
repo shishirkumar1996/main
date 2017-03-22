@@ -1,0 +1,2 @@
+module DomainsQuestionsHelper
+end

@@ -13,6 +13,16 @@ class GroupsController < ApplicationController
   	@group = Group.find(params[:id])
   end
 
+	def prepopulate
+		@group = Group.find(params[:id])
+		@users = @group.users.map{|user| {:id=>user.id,:text =>user.name}}
+		
+		respond_to do |format|
+			format.json{
+			render :json => @users
+			}
+			end
+	end
   # GET /groups/new
   def new
     @group = Group.new

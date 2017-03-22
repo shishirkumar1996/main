@@ -4,11 +4,15 @@ class DomainsController < ApplicationController
   # GET /domains
   # GET /domains.json
   def index
-    @domains = Domain.all
+    @domains = Domain.where("name ILIKE ?", "%#{params[:term]}%").map{|domain| {:id =>domain.id, :text =>domain.name }}
+    
+    respond_to do |format|
+    	format.json {
+    	render :json => @domains
+    }
+   	end
   end
 
-  # GET /domains/1
-  # GET /domains/1.json
   def show
   end
 

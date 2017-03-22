@@ -4,7 +4,8 @@
 		<%= render 'common/error_messages', object: f.object %>
 	<div>
 		<%# select_tag 'domain',options_for_select( @domains.collect{|g| [g.name, g.id]}) %>
-		<%= f.collection_select :domain, Domain.order(:name),:id,:name %>
+		<%# f.collection_select :domain, Domain.order(:name),:id,:name %>
+		<%= text_field_tag :domain_tokens,nil,data: {:url =>domains_path(:format=>:json)}, :style=>"width: 30%" %>
 	</div>
 	<%= f.label :title %>
 	<div>
@@ -24,4 +25,6 @@
 	<% end %>
 	</div>
 	
-	
+<script type = "text/javascript">
+	window.onload = domain_token_function;
+</script>

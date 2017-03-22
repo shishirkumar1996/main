@@ -1,15 +1,18 @@
 class DomainsController < ApplicationController
  before_action :admin_user,only: [:create,:new]
- layout :application
 
   # GET /domains
   # GET /domains.json
   def index
-    @domains = Domain.all
+    @domains = Domain.where("name ILIKE ?", "%#{params[:term]}%").map{|domain| {:id =>domain.id, :text =>domain.name }}
+    
+    respond_to do |format|
+    	format.json {
+    	render :json =>Domain.all
+    }
+   	end
   end
 
-  # GET /domains/1
-  # GET /domains/1.json
   def show
   end
 

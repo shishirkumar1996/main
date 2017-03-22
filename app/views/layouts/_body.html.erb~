@@ -1,9 +1,12 @@
 <ul id = "menu">
-</ul
+</ul>
 <div class= "col-md-8 col-md-offset-2">
 <% @feed.each do |feed| %>
-	<div class = "center jumbotron">
-	<%= label(:domain, "#{feed.domain.name}") %>
+	<div >
+	<%# label(:domain, "#{feed.domain.name}") %>
+	<% feed.domains.each do |domain| %>
+		<%= label(:domain,"#{domain.name}") %>
+	<% end %>
 	</br>
 	<h3><%= feed.title.html_safe %></h3>
 	<% if feed.class == Article %>

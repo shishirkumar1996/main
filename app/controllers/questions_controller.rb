@@ -1,32 +1,38 @@
 class QuestionsController < ApplicationController
   before_action :logged_in_user, only: [:create,:new]
 
-  # GET /questions
-  # GET /questions.json
   def index
     @questions = Question.all
   end
 
-  # GET /questions/1
-  # GET /questions/1.json
   def show
   end
 
-  # GET /questions/new
   def new
     @question = Question.new
     @domains = Domain.all
   end
 
-  # GET /questions/1/edit
   def edit
   end
 
-  # POST /questions
-  # POST /questions.json
   def create
 		@question = current_user.questions.build(question_params)
-		@question.domain = Domain.find(params[:domain])
+		@tokens = params[:domain_tokens]
+		@tokens = @tokens.split(',')
+		@tokens.each do |token|
+			if(!Domain.order(:id).map{|domain| "#{domain.id}"}.include?(token))
+				@domain = Domain.new
+		#		token = token[0..-4]
+				@domain.name = token[3..-4]
+				@domain.save!
+				token = @domain.id
+			end
+			d = Domain.find(token);
+			d.questions << @question
+		end
+			
+		
 		if @question.save
 			flash[:success] = "question submitted"
 			redirect_to root_url
@@ -37,8 +43,6 @@ class QuestionsController < ApplicationController
    
   end
 
-  # PATCH/PUT /questions/1
-  # PATCH/PUT /questions/1.json
   def update
     respond_to do |format|
       if @question.update(question_params)
@@ -51,8 +55,6 @@ class QuestionsController < ApplicationController
     end
   end
 
-  # DELETE /questions/1
-  # DELETE /questions/1.json
   def destroy
     @question.destroy
     respond_to do |format|
@@ -69,6 +71,6 @@ class QuestionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def question_params
-      params.require(:question).permit(:title,:description,:anonymous)
+      params.require(:question).permit(:title,:description,:anonymous,:domain_tokens)
     end
 end

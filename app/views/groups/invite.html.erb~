@@ -1,14 +1,15 @@
+<%= render :partial => 'layouts/header' %>
 <%= form_tag add_group_path, :method=>:post do %>
 <div class = "row row-offset-2 row-md-4">
 	<%= hidden_field_tag :group,@group.id %>
 	<%= label_tag :user_tokens,"type the name of the users" %>
-	<%= text_field_tag :user_tokens,nil,class: 'something',:multiple=> "multiple",:"data-url" => users_path(:format =>  :json),:style=> "width: 30%",data: {:load => @group.users.map{|user| "#{user.id}+#{user.name}"}} %>
+	<%= text_field_tag :user_tokens,nil,class: 'something',:multiple=> "multiple","data-url" => users_path(:format =>  :json),:style=> "width: 30%","data-prepopulate" => prepopulate_group_path(@group,:format=>:json),data: {:load => @group.users.map{|user| "#{user.id}+#{user.name}"}} %>
 </div>
 <div>
 <%= submit_tag 'Add members' %>
 </div>
 <% end %>
 <script type = "text/javascript">
-	window.onload = token_function;
+	window.onload = user_token_function;
 </script>
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170308111410) do
+ActiveRecord::Schema.define(version: 20170321104756) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -112,13 +112,13 @@ ActiveRecord::Schema.define(version: 20170308111410) do
   end
 
   create_table "interests", force: :cascade do |t|
-    t.integer  "interest_id"
+    t.integer  "person_id"
     t.integer  "interested_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
-    t.index ["interest_id", "interested_id"], name: "index_interests_on_interest_id_and_interested_id", unique: true, using: :btree
-    t.index ["interest_id"], name: "index_interests_on_interest_id", using: :btree
     t.index ["interested_id"], name: "index_interests_on_interested_id", using: :btree
+    t.index ["person_id", "interested_id"], name: "index_interests_on_person_id_and_interested_id", unique: true, using: :btree
+    t.index ["person_id"], name: "index_interests_on_person_id", using: :btree
   end
 
   create_table "questions", force: :cascade do |t|
@@ -131,6 +131,16 @@ ActiveRecord::Schema.define(version: 20170308111410) do
     t.integer  "domain_id"
     t.index ["domain_id"], name: "index_questions_on_domain_id", using: :btree
     t.index ["user_id"], name: "index_questions_on_user_id", using: :btree
+  end
+
+  create_table "relationships", force: :cascade do |t|
+    t.integer  "follower_id"
+    t.integer  "followed_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["followed_id"], name: "index_relationships_on_followed_id", using: :btree
+    t.index ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true, using: :btree
+    t.index ["follower_id"], name: "index_relationships_on_follower_id", using: :btree
   end
 
   create_table "replies", force: :cascade do |t|
@@ -158,7 +168,7 @@ ActiveRecord::Schema.define(version: 20170308111410) do
     t.string   "provider"
     t.string   "oauth_token"
     t.datetime "oauth_expires_at"
-    t.integer  "uid"
+    t.string   "uid"
     t.string   "remember_digest"
     t.boolean  "admin",            default: false
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree

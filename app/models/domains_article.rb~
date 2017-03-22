@@ -1,0 +1,2 @@
+class DomainsArticle < ApplicationRecord
+end

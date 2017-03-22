@@ -7,8 +7,6 @@ class ArticlesController < ApplicationController
     @articles = Article.all
   end
 
-  # GET /articles/1
-  # GET /articles/1.json
   def show
   end
 
@@ -29,12 +27,24 @@ class ArticlesController < ApplicationController
   def create
   	
     @article = current_user.articles.build(article_params)
-    @article.domain = Domain.find_by(name: params[:domain])	
+    @tokens = params[:domain_tokens]
+    @tokens = @tokens.split(',')
+    @tokens.each do |token|
+    	if(!Domain.order(:id).map{|domain| "#{domain.id}"}.include?(token))
+    		@domain = Domain.new
+    		@domain.name = token[3..-4]
+    		@domain.save!
+    		token = @domain.id
+    	end
+    	d = Domain.find(token);
+    	d.articles << @article
+    	end
+    	
     if @article.save
 		flash[:success] = "article created!"
 		redirect_to root_url
 		else
-			flash[:success] = "some error occured!"
+			flash[:danger] = "some error occured!"
 			render 'new'
 		end
 		
@@ -58,6 +68,6 @@ class ArticlesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def article_params
-      params.require(:article).permit(:title,:body)
+      params.require(:article).permit(:title,:body,:domain_tokens)
     end
 end
