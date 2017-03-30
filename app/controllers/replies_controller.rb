@@ -29,8 +29,8 @@ class RepliesController < ApplicationController
   # POST /replies
   # POST /replies.json
   def create
-    @reply = Reply.new(reply_params)
-		@reply.answer = Answer.find(params[:answer_id])
+		@answer = Answer.find(params[:answer_id])
+		@reply = @answer.replies.build(reply_params)
 		@reply.user = current_user
 		@id = "replies_#{params[:answer_id]}"
 		@field = "field_#{params[:answer_id]}"

@@ -15,18 +15,30 @@ class AnswersController < ApplicationController
   # GET /answers/new
   def new
     @answer = Answer.new
+    @question  = Question.find(params[:question_id])
   end
 
   # GET /answers/1/edit
   def edit
   end
 
+	def collection
+		@answer = Answer.find(params[:id])
+		@replies = @answer.replies.map{|reply| {:id=> reply.id,:body=>reply.body}}
+		respond_to do |format|
+			format.json {
+			render :json => @replies }
+			format.html
+		end
+	end		
+	
+	
   # POST /answers
   # POST /answers.json
   def create
-    @answer = Answer.new(answer_params)
-		@answer.question = Question.find(session[:question])
-		
+		@question = Question.find(params[:question_id])
+		@answer = @question.answers.build(answer_params)
+		@answer.user = current_user
 		if @answer.save
 			flash[:success] = "answer submitted"
 			redirect_to root_url

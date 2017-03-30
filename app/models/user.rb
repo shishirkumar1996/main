@@ -1,6 +1,8 @@
 class User < ApplicationRecord
 
+	searchkick
 	has_secure_password
+	mount_uploader :image,ImageUploader
 	validates :name,presence: true,length: {maximum: 50}
 		VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, length: { maximum: 255 },
@@ -10,6 +12,7 @@ class User < ApplicationRecord
   
   attr_accessor :remember_token
   before_save :downcase_email
+  has_many :notifications, dependent: :destroy
 	has_many :articles,dependent: :destroy
 	has_many :questions, dependent: :destroy
 	has_many :answers, dependent: :destroy
@@ -58,6 +61,7 @@ class User < ApplicationRecord
 	
 	def follow(other_user)
 		following<< other_user
+		@notification = Notification.new
 	end
 	
 	def unfollow(other_user)

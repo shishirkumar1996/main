@@ -2,7 +2,7 @@
 </ul>
 <div class= "col-md-8 col-md-offset-2">
 <% @feed.each do |feed| %>
-	<div >
+	<div class = "center jumbotron">
 	<%# label(:domain, "#{feed.domain.name}") %>
 	<% feed.domains.each do |domain| %>
 		<%= label(:domain,"#{domain.name}") %>
@@ -16,8 +16,8 @@
 	<p><%= feed.description.html_safe %></p>
 	</br>
 		<% if !current_user?(feed.user) %>
-			<% session[:question] = feed.id %>
-			<%= link_to "Answer", new_answer_path %>
+			<%= hidden_field_tag :question, feed.id %>
+			<%= link_to "Answer", new_question_answer_path(feed) %>
 		</br>
 		<% end %>
 		<% if feed.answers.any? %>

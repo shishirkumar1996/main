@@ -17,7 +17,7 @@ class GroupsController < ApplicationController
 		@group = Group.find(params[:id])
 		@users = @group.users.map{|user| {:id=>user.id,:text =>user.name}}
 		
-		resond_to do |format|
+		respond_to do |format|
 			format.json{
 			render :json => @users
 			}
@@ -58,6 +58,11 @@ class GroupsController < ApplicationController
 		@user = User.find(token)
 		if(!@user.groups.include?(@group))
 		@user.groups << @group
+		@notification = Notification.new
+		@notification.message = "#{current_user} added you to  group #{@group}"
+		@notification.link = "#{group_path(@group)}"
+		@user.notifications<< @notification
+		@notification.save!	
 		end
 	end
 	redirect_to @group

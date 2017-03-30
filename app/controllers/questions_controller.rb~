@@ -26,7 +26,7 @@ class QuestionsController < ApplicationController
 		#		token = token[0..-4]
 				@domain.name = token[3..-4]
 				@domain.save!
-				token = @domain.id;
+				token = @domain.id
 			end
 			d = Domain.find(token);
 			d.questions << @question

@@ -8,6 +8,7 @@ class ArticlesController < ApplicationController
   end
 
   def show
+  	@question = Question.find(params[:id])
   end
 
   # GET /articles/new
@@ -30,7 +31,7 @@ class ArticlesController < ApplicationController
     @tokens = params[:domain_tokens]
     @tokens = @tokens.split(',')
     @tokens.each do |token|
-    	if(!Domain.order(:id).map{|domain| "#{domain.id}"}.include?(token))
+    	if(@id[0..2]=="<<<")
     		@domain = Domain.new
     		@domain.name = token[3..-4]
     		@domain.save!

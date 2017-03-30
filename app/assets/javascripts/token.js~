@@ -31,7 +31,7 @@ async: false
 });
 $.getJSON(address,function(data){
 	$.each(data,function(index,element){
-	alert(element.text);
+	//alert(element.text);
 	dat.push({id: element.id, text: element.text});
 	});
 	}); 

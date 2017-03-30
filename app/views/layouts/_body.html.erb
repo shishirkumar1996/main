@@ -16,8 +16,7 @@
 	<p><%= feed.description.html_safe %></p>
 	</br>
 		<% if !current_user?(feed.user) %>
-			<% session[:question] = feed.id %>
-			<%= link_to "Answer", new_answer_path %>
+			<%= link_to "Answer", new_question_answer_path(feed) %>
 		</br>
 		<% end %>
 		<% if feed.answers.any? %>

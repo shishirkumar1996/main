@@ -85,6 +85,12 @@ class UsersController < ApplicationController
 		current_user.relations.delete(@interest)
 	end
 	
+	def image
+		current_user.image = params[:image]
+		current_user.save!
+		redirect_to current_user
+	end
+	
 	def following
 		@title = "Following"
 		@user = User.find(params[:id])

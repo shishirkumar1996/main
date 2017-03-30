@@ -19,20 +19,28 @@
 			<%= link_to "Domain creation", new_domain_path %>
 			<% end %>
 			</li>
+		<li><%= link_to "Home", root_url %></li>
 		<li><%= link_to  "Read" %></li>
 		<li><%= link_to "Ask",new_question_path,id: 'ask' %></li>
 		<li><%= link_to "Write",new_article_path, id: 'write' %></li>
 		<li class = "dropdown">
 			<a href = "#", class = dropdown-toggle" data-toggle = "dropdown">Notification</a>
 			<ul class = "dropdown-menu">
-			<li>	Here we will dynamically create all the things needed</li>
+			<% if current_user.notifications.any? %>
+			<% current_user.notifications.each do |notification| %>
+				<li><%= link_to notification.message,  notification.link %></li>
+			<% end %>
+			<% else %>
+			<li>No notifications</li>
+			<% end %>
 			</ul>
 		</li>
+		
 		<li class = "dropdown">
 			<a href = "#" class = dropdown-toggle" data-toggle= "dropdown">
 			Account</a>
 			<ul class = "dropdown-menu">
-				<li><%= link_to "my account" %></li>
+				<li><%= link_to "my account",user_path(current_user) %></li>
 				<li><%= link_to "my groups", your_groups_path %></li>
 				<li><%= link_to "create new group",new_group_path %></li>
 				<li><%= link_to "Help" %></li>
@@ -43,6 +51,13 @@
 				</li>
 			</ul>
 		</li>	
+		<% if current_user.image? %>
+		<li><%= link_to(image_tag(current_user.image.thumb.url),user_path(current_user))%></li>
+		<% elsif !current_user.provider.nil? %>
+		<%= link_to(image_tag("http://graph.facebook.com/#{current_user.uid}/picture?type=square"),user_path(current_user)) %>
+		<% else %>
+		<li><%= link_to "no profile pic",user_path(current_user) %><li>
+		<% end %>
 	</ul>	
 	<% end %>
 	</div>

@@ -1,5 +1,6 @@
 class Question < ApplicationRecord
 	
+	searchkick	
 	belongs_to :user
 	has_many :domains_questions, foreign_key: "question_id", dependent: :destroy
 	has_many :domains, through: :domains_questions

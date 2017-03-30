@@ -58,6 +58,11 @@ class GroupsController < ApplicationController
 		@user = User.find(token)
 		if(!@user.groups.include?(@group))
 		@user.groups << @group
+		@notification = Notification.new
+		@notification.message = "#{current_user.name} added you to  group #{@group.name}"
+		@notification.link = "#{group_path(@group)}"
+		@user.notifications<< @notification
+		@notification.save!	
 		end
 	end
 	redirect_to @group

@@ -3,6 +3,7 @@ along with carrierwave and mini_magick gem
 use this command
 
 rails generate ckeditor:install --orm=active_record --backend=carrierwave
+download and install ImageMagick for proper running of mini_magick gem
 
 this url can be beneficial
 

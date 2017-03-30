@@ -85,6 +85,11 @@ class UsersController < ApplicationController
 		current_user.relations.delete(@interest)
 	end
 	
+	def image
+		current_user.image = params[:image]
+		redirect_to current_user
+	end
+	
 	def following
 		@title = "Following"
 		@user = User.find(params[:id])
@@ -97,7 +102,8 @@ class UsersController < ApplicationController
 		@user = User.find(params[:id])
 		@users = @user.followers.all
 		render 'show_follow'
-		
+	end
+	
 	def index_group
 		@groups = current_user.groups
 	end

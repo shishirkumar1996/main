@@ -1,5 +1,19 @@
 <%= render :partial=>'layouts/header' %>
 
+<% if @user.image? %>
+		<%= link_to(image_tag(@user.image.profile.url),user_path(@user),:class => "profile_pic" )%>
+		<% elsif !@user.provider.nil? %>
+		<%= link_to(image_tag("http://graph.facebook.com/#{@user.uid}/picture?type=normal")) %>
+		<% else %>
+		<%= link_to "no profile pic",user_path(@user) %>
+		<% end %>
+		<% if @user==current_user %>
+<%= form_tag image_user_path(current_user), multipart: true do %>
+<%= file_field_tag :image, accept: 'image/jpeg , image/gif, image/png' %>
+<%= submit_tag %>
+<% end %>
+<% end %>
+
 <h1><%= @user.name %></h1>
 </br>
 <h2><%= @user.email %></h2>
@@ -7,9 +21,9 @@
 <% if logged_in? &&  current_user != @user %>
 	<div id = "follow_form">
 	<% if current_user.following?(@user) %>
-		<%= render 'follow' %>
-	<% else %>
 		<%= render 'unfollow' %>
+	<% else %>
+		<%= render 'follow' %>
 	<% end %>
 	</div>
 <% end %>

@@ -1,0 +1,4 @@
+install elastic search -- prerequisite is java
+add gemfile 'searchkick'
+
+https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-elasticsearch-on-ubuntu-14-04

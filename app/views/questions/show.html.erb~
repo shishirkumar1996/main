@@ -1,0 +1,24 @@
+<div class= "col-md-8 col-md-offset-2">
+	<div class = "center jumbotron">
+	<%# label(:domain, "#{feed.domain.name}") %>
+	<% @question.domains.each do |domain| %>
+		<%= label(:domain,"#{domain.name}") %>
+	<% end %>
+	</br>
+	<h3><%= @question.title.html_safe %></h3>
+	</br>
+	<p><%= @question.description.html_safe %></p>
+	</br>
+		<% if !current_user?(@question.user) %>
+			<%= link_to "Answer", new_question_answer_path(@question) %>
+		</br>
+		<% end %>
+		<% if @question.answers.any? %>
+		</br>
+			Answers(<%= @question.answers.count %>)
+		<ul class = "answers list-group">
+			<%= render @question.answers %>
+		</ul>
+				
+	<% end %>
+	

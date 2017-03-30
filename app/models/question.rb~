@@ -6,7 +6,7 @@ class Question < ApplicationRecord
 	has_many :answers  , dependent: :destroy
 	validates :title, presence: true
 	
-	def group_tokens=(tokens)
+	def domain_tokens=(tokens)
 		self.group_ids = Domain.ids_from_tokens(tokens)
 	end
 	

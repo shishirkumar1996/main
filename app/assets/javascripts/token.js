@@ -24,6 +24,7 @@ return data;
 
 function other_function(item,address)
 {
+alert(address);
 var dat = [];
 var x;
 $.ajaxSetup({

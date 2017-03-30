@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170321104756) do
+ActiveRecord::Schema.define(version: 20170323132307) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -121,6 +121,15 @@ ActiveRecord::Schema.define(version: 20170321104756) do
     t.index ["person_id"], name: "index_interests_on_person_id", using: :btree
   end
 
+  create_table "notifications", force: :cascade do |t|
+    t.string   "message"
+    t.string   "link"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "user_id"
+    t.index ["user_id"], name: "index_notifications_on_user_id", using: :btree
+  end
+
   create_table "questions", force: :cascade do |t|
     t.string   "title"
     t.text     "description"
@@ -171,6 +180,7 @@ ActiveRecord::Schema.define(version: 20170321104756) do
     t.string   "uid"
     t.string   "remember_digest"
     t.boolean  "admin",            default: false
+    t.string   "image"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
   end
 
@@ -180,6 +190,7 @@ ActiveRecord::Schema.define(version: 20170321104756) do
   add_foreign_key "articles", "users"
   add_foreign_key "group_questions", "groups"
   add_foreign_key "group_questions", "users"
+  add_foreign_key "notifications", "users"
   add_foreign_key "questions", "domains"
   add_foreign_key "questions", "users"
   add_foreign_key "replies", "answers"

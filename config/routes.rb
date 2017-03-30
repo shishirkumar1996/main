@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :notifications
   resources :relationships , only: [:create,:destroy]
   resources :domains_articles
   resources :domains_questions
@@ -37,6 +38,7 @@ resources :domains, only: [:create,:new]
  
  resources :users do
 	member do
+		post :image
 		get :prepopulateinterest
 		post :addinterest
 		post :removeinterest
@@ -49,7 +51,13 @@ resources :domains, only: [:create,:new]
 	end
  end 	
  resources :articles, only: [:create,:new]
- resources :questions
- resources :answers
+ resources :questions do
+	 resources :answers do
+	 		member do
+	 			get :collection
+	 		end
+	 		resources :replies
+	 end
+ end
  resources :domains
 end
