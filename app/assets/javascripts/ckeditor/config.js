@@ -8,7 +8,8 @@ CKEDITOR.editorConfig = function( config ) {
 
 	config.filebrowserImageBrowseUrl = '/ckeditor/pictures';
 	config.filebrowserImageUploadUrl = '/ckeditor/pictures';
-	config.image_previewText = 'preview will be shown here';
+	//config.image_previewText = 'preview will be shown here';
+	config.image_previewText = '     ';
 	};
 	
 CKEDITOR.on( 'dialogDefinition', function( ev )
@@ -49,7 +50,7 @@ CKEDITOR.on( 'dialogDefinition', function( ev )
          
            // dialog.hidePage( 'Link' ); 
             //dialog.hidePage( 'advanced' ); 
-           // dialog.hidePage( 'info' ); // works now (CKEditor v3.6.4) 
+           //dialog.hidePage( 'info' ); // works now (CKEditor v3.6.4) 
             this.selectPage('Upload'); 
              
             var uploadTab = dialogDefinition.getContents('Upload'); 
@@ -57,8 +58,8 @@ CKEDITOR.on( 'dialogDefinition', function( ev )
             uploadButton['filebrowser']['onSelect'] = function( fileUrl, errorMessage ) { 
                 //$("input.cke_dialog_ui_input_text").val(fileUrl); 
                 dialog.getContentElement('info', 'txtUrl').setValue(fileUrl); 
-                dialog.getContentElement('info','Height').setValue('200');
-                //$(".cke_dialog_ui_button_ok span").click(); 
+               // dialog.getContentElement('info','Height').setValue('200');
+                $("input.cke_dialog_ui_button_ok span").click(); 
             } 
         }; 
       
