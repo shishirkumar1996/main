@@ -6,7 +6,7 @@ CKEDITOR.config.height = 300;
 		
 CKEDITOR.editorConfig = function( config ) {
 
-	config.filebrowserImageBrowseUrl = '/ckeditor/pictures';
+	config.filebrowserImageBrowseUrl = '';
 	config.filebrowserImageUploadUrl = '/ckeditor/pictures';
 	//config.image_previewText = 'preview will be shown here';
 	config.image_previewText = '     ';
@@ -20,7 +20,6 @@ CKEDITOR.on( 'dialogDefinition', function( ev )
       
       
 /*      if ( dialogName == 'link' )
-
       {
          var infoTab = dialogDefinition.getContents( 'info' );
          infoTab.remove( 'protocol' );
@@ -37,7 +36,7 @@ CKEDITOR.on( 'dialogDefinition', function( ev )
          infoTab.remove( 'txtHSpace' );
          infoTab.remove( 'txtVSpace' );
          infoTab.remove( 'cmbAlign' );
-				                   
+		 infoTab.remove( 'txtUrl' );	                   
       }
       
       dialogDefinition.onLoad = function () { 
