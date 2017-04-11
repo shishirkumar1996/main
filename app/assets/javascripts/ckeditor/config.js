@@ -6,7 +6,7 @@ CKEDITOR.config.height = 300;
 
 CKEDITOR.editorConfig = function( config ) {
 
-	config.filebrowserImageBrowseUrl = '';
+	config.filebrowserImageBrowseUrl = '/ckeditor/pictures';
 	config.filebrowserImageUploadUrl = '/ckeditor/pictures';
 	//config.image_previewText = 'preview will be shown here';
 	config.image_previewText = '     ';
@@ -36,7 +36,7 @@ CKEDITOR.on( 'dialogDefinition', function( ev )
          infoTab.remove( 'txtHSpace' );
          infoTab.remove( 'txtVSpace' );
          infoTab.remove( 'cmbAlign' );
-		 	 	 infoTab.remove( 'txtUrl' );	                   
+	//	 	 	 infoTab.remove( 'txtUrl' );	  causes a problem, resolve it later                 
       }
 
       dialogDefinition.onLoad = function () {
