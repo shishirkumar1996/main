@@ -6,7 +6,7 @@ CKEDITOR.config.height = 300;
 
 CKEDITOR.editorConfig = function( config ) {
 
-	config.filebrowserImageBrowseUrl = '/ckeditor/pictures';
+	config.filebrowserImageBrowseUrl = '';
 	config.filebrowserImageUploadUrl = '/ckeditor/pictures';
 	//config.image_previewText = 'preview will be shown here';
 	config.image_previewText = '     ';
@@ -32,11 +32,15 @@ CKEDITOR.on( 'dialogDefinition', function( ev )
 		   dialogDefinition.removeContents( 'Link' );
          dialogDefinition.removeContents( 'advanced' );
          var infoTab = dialogDefinition.getContents( 'info' );
+				 var uploadTab = dialogDefinition.getContents('Upload');
          infoTab.remove( 'txtBorder' );
          infoTab.remove( 'txtHSpace' );
          infoTab.remove( 'txtVSpace' );
          infoTab.remove( 'cmbAlign' );
-	//	 	 	 infoTab.remove( 'txtUrl' );	  causes a problem, resolve it later                 
+				 var urlField = infoTab.get( 'txtUrl' );
+				 urlField[ 'style' ] = 'display:none; width:0;';
+				 var uploadButton = uploadTab.get('uploadButton');
+				 uploadButton[ 'label' ] = 'Upload';
       }
 
       dialogDefinition.onLoad = function () {
