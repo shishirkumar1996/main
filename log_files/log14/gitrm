@@ -1,0 +1,40 @@
+1) First of all, disable backup files in gedit. Go to the menu. Edit->Preferences. Select Editor tab. Then, uncheck the option Create a backup copy of files before saving.
+
+2) Make sure u have completed all ur work. Then run git pull so that
+   u get my changes which I made some time back.
+
+3) Now, run the following exactly. Make sure u r in the main directory and not in
+   any other subdirectory.
+
+4) git rm -r --cached tmp
+
+5) git rm -r --cached log
+
+6) git rm -r --cached public/uploads
+
+7) These will remove from the git repo but not from ur working directory.
+
+8) Now, don't run any other command. Immediately create a .gitignore file
+   (touch .gitignore). This will be hidden. U can't see it. So, type
+   gedit .gitignore to open it.
+
+9) Type the following in it exactly, only one name per line.
+
+.DS_Store
+tmp/
+log/
+public/uploads/
+
+10) Save the .gitignore file. Now run git add -A from the terminal. It will add all untracked files including our .gitignore files. Don't worry. It is clever enough to look at the .gitignore file and won't add these things again to the git repo.
+
+11) Next git commit -am "..."
+
+12) git push
+
+13) Don't make any changes after this and just inform me. Because I will remove
+    backups and push. Then, u can pull. I am saying because in the meantime if u make  changes, u will get conflicts.
+
+14) If at any time we want to add these files back again to our repo, it is quite easy.
+    Just remove the names from .gitignore and run git add -A
+
+15) If anything happens, just send a message or call.
