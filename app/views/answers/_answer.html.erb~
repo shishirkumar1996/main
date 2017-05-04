@@ -1,12 +1,12 @@
 <li class= 'list-group-item'>
  	<%= answer.body.html_safe %>
  	<br>
- 	<%= link_to "Replies", class: 'reply_button', id: "answer_#{answer.id}",remote: true,"data-questionid"=> answer.question.id %>
+ 	<%= link_to "Replies",'#', class: 'reply_button', id: "answer_#{answer.id}",remote: true,"data-questionid"=> answer.question.id %>
  	<br>
  	<section class='reply' id= "reply_<%= answer.id %>">
 	<% if answer.replies.any? %>
   	<ul  class = "replies list-group" id = "replies_<%= answer.id %>">
- 			<%# render answer.replies %>
+ 			<%= render answer.replies %>
 		</ul>			
 	<% end %>
 		</br>
@@ -19,9 +19,8 @@
 	<% end %>
 	</section>
 	</br>
-	<% if !current_user?(answer.question.user) %>
-		<%= link_to "Like",'#' %>
-	<% end %>	
+		<%= link_to 'Upvote','#' %>
+		<%= link_to 'Downvote','#' %>
 			
 </li>
 	

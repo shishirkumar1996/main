@@ -19,9 +19,8 @@
 	<% end %>
 	</section>
 	</br>
-	<% if !current_user?(answer.question.user) %>
-		<%= link_to "Like",'#' %>
-	<% end %>	
+		<%= link_to 'Upvote','#' %>
+		<%= link_to 'Downvote','#' %>
 			
 </li>
 	

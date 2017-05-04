@@ -1,0 +1,2 @@
+class Articlereply < ApplicationRecord
+end

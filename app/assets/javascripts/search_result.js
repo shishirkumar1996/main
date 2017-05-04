@@ -1,7 +1,23 @@
 $(document).on('turbolinks:load', function() {
-	$("#search_bar").autocomplete({
+var e = document.getElementById("options");
+	$("#term").autocomplete({
 	//source: ['foo','food','for','something']
-	source: "/search_products",
+	//source: "/search_products",      this is the earlier function
+	
+	
+	source: function(request,response){
+		$.ajax({
+			url: '/search_products',
+			dataType: 'json',
+			data: {
+				term: request.term,
+				options: e.options[e.selectedIndex].text
+	},
+	success: function(data){
+		response(data);
+	}
+	});
+	},
 	select: function(event,ui){
 		var x='',y='',i = 0;
 	//	alert(ui.item.id);
@@ -17,6 +33,8 @@ y = ui.item.text;
 		if(ui.item.type == 'user')
 		x= "/users/"+x;
 		else
+		if(ui.item.type=='domain')
+			x = '/domains/'+x;
 		if(ui.item.type == 'article')
 		x = '/articles/'+x;
 		else

@@ -1,0 +1,10 @@
+<div class = "col-md-6 col-md-offset-2">
+
+Academics
+</br>
+<%= text_field_tag :academic_tokens,nil,'data-url'=>domains_path(:format=>:json),"data-add"=>addacademic_user_path(:format=>:json),"data-remove"=>removeacademic_user_path(:format=>:json),"data-prepopulate"=>prepopulateacademic_user_path(current_user,:format=>:json),:style=>"width: 60%" %>
+<%= link_to 'Done',user_path(current_user) %>
+
+<script type = "text/javascript">
+	window.onload = academic_token_function;
+</script>

@@ -1,3 +1,4 @@
 #select2-drop{
 	width: 30%;
+	position: fixed;
 	}

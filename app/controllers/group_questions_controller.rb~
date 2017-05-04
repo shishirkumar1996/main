@@ -21,7 +21,7 @@ class GroupQuestionsController < ApplicationController
 		@question = @group.group_questions.build(group_question_params)
 		if @question.save
 			flash[:success] = "question submitted"
-			redirect_to root_url
+			redirect_to @group
 		else
 			flash[:danger] = "some error occured"
 			render 'new'

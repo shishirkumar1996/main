@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Groupanswers</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @groupanswers.each do |groupanswer| %>
+      <tr>
+        <td><%= link_to 'Show', groupanswer %></td>
+        <td><%= link_to 'Edit', edit_groupanswer_path(groupanswer) %></td>
+        <td><%= link_to 'Destroy', groupanswer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Groupanswer', new_groupanswer_path %>

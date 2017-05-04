@@ -1,0 +1,1 @@
+json.array! @associated_sets, partial: 'associated_sets/associated_set', as: :associated_set

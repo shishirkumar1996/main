@@ -5,7 +5,7 @@ class Group < ApplicationRecord
 	
 	attr_reader :user_tokens
 	
-	def user_tokens=(ids)
+	def user_tokens=(tokens)
 		self.user_ids = User.ids_from_tokens(tokens)
 	end
 	

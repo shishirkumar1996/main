@@ -17,5 +17,6 @@
 //= require bootstrap
 //= require select2
 //= require ckeditor/init
+//= require social-share-button
 //= require_tree .
 

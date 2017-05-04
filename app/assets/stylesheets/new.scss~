@@ -24,7 +24,6 @@ body{
 		
 	.modal-dialog{
 		overflow-y: initial;
-		z-index: 500;
 		}
 		
 	.modal-body{

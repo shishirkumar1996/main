@@ -1,0 +1,1 @@
+json.partial! "groupquestionreplies/groupquestionreply", groupquestionreply: @groupquestionreply

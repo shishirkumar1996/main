@@ -7,7 +7,7 @@ class CreateReplies < ActiveRecord::Migration[5.0]
   end
   
   def down
-  	drop_table :answers
+  	drop_table :replies
   end
   
 end

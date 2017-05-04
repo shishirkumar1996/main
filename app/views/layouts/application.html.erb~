@@ -10,7 +10,7 @@
   </head>
 	
   <body>
-  	<%= text_field_tag 'test_bar' %>
     <%= yield %>
+     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </body>
 </html>

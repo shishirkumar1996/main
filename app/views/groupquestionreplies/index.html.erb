@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Groupquestionreplies</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @groupquestionreplies.each do |groupquestionreply| %>
+      <tr>
+        <td><%= link_to 'Show', groupquestionreply %></td>
+        <td><%= link_to 'Edit', edit_groupquestionreply_path(groupquestionreply) %></td>
+        <td><%= link_to 'Destroy', groupquestionreply, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Groupquestionreply', new_groupquestionreply_path %>

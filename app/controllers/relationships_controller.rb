@@ -6,7 +6,7 @@ class RelationshipsController < ApplicationController
 		@user = User.find(params[:followed_id])
 		current_user.follow(@user)
 		@notification = Notification.new
-		@path = user_path(current_user)
+		#@path = user_path(current_user)
 		@notification.message = "#{current_user.name} follows you now"
 		@notification.link = "#{user_path(current_user)}"
 		@user.notifications << @notification

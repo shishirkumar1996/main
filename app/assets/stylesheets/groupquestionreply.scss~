@@ -1,0 +1,8 @@
+.groupanswerreply{
+display: none;
+}
+
+.groupanswerreplies{
+	height: 300px;
+	overflow-y: auto;
+}

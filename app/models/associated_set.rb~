@@ -1,0 +1,6 @@
+class AssociatedSet < ApplicationRecord
+	belongs_to :superset,class_name: "Domain"
+	belongs_to :subset,class_name: "Domain"
+	validates :superset_id, presence: true
+	validates :subset_id, presence: true
+end

@@ -15,6 +15,7 @@
  *= require_self
  *= require jquery-ui
  *= require 'bootstrap-sass-official'
+ *= require select2
  *= require select2-bootstrap
  *= require new
  *= require_tree .
