@@ -14,6 +14,8 @@ class DomainsController < ApplicationController
   end
 
   def show
+   @domain = Domain.find(params[:id])
+   @feed = (@domain.articles+@domain.questions).sort_by(&:created_at).reverse
   end
 
   # GET /domains/new
@@ -63,7 +65,83 @@ class DomainsController < ApplicationController
       format.json { head :no_content }
     end
   end
+	
+	def manage
+		@domain = Domain.find(params[:id])
+	end
+	
+	def manage_subset
+		@domain = Domain.find(params[:id])
+	end
+	
+	def prepopulatesubset
+		@domain = Domain.find(params[:id])
+		@subsets = @domain.subsets.map{|set| {:id => set.id,
+		:text=>set.name}}
+		respond_to do |format|
+			format.json{
+				render :json => @subsets
+			}
+		end
+	end
+	
+	def addsubset
+		@domain = Domain.find(params[:id])
+		@id = params[:subset]
+		@subset = Domain.find(@id)
+		if(@domain!=@subset&&!@domain.supersets.include?(@subset))
+		@domain.subsets << @subset
+		@subset.supersets << @domain
+		end
+		respond_to do |format|
+			format.json
+			format.html
+		end
+	end
+	
+	def removesubset
+		@domain= Domain.find(params[:id])
+		@subset = Domain.find(params[:subset])
+		@domain.subsets.delete(@subset)
+		@subset.supersets.delete(@domain)
+	end
+	
+	def manage_superset
+		@domain = Domain.find(params[:id])
+	end
+	
+	def prepopulatesuperset
+		@domain = Domain.find(params[:id])
+		@superset = @domain.supersets.map{|superset| { :id => superset.id, :text => superset.name }}
+		respond_to do |format|
+			format.json{
+				render :json => @superset
+			}
+		end
+	end
 
+	def addsuperset
+		@domain = Domain.find(params[:id])
+		@id = params[:superset]
+		@superset = Domain.find(@id)
+		if(@domain!=@superset && !@domain.subsets.include?(@superset))
+		@domain.supersets << @superset
+		@superset.subsets << @domains
+		end
+		respond_to do |format|
+			format.json
+			format.html
+		end
+	end
+	
+	def removesuperset
+		@domain= Domain.find(params[:id])
+		@superset = Domain.find(params[:superset])
+		@domain.supersets.delete(@superset)
+		@superset.subsets.delete(@domain)
+	end
+	
+	
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_domain

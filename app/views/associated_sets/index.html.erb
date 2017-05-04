@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Associated Sets</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @associated_sets.each do |associated_set| %>
+      <tr>
+        <td><%= link_to 'Show', associated_set %></td>
+        <td><%= link_to 'Edit', edit_associated_set_path(associated_set) %></td>
+        <td><%= link_to 'Destroy', associated_set, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Associated Set', new_associated_set_path %>

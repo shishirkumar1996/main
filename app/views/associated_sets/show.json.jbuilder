@@ -1,0 +1,1 @@
+json.partial! "associated_sets/associated_set", associated_set: @associated_set

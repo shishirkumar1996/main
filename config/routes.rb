@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
 
+  resources :groupanswers
+  resources :groupquestionreplies
+  resources :grouparticlereplies
   resources :notifications
   resources :relationships , only: [:create,:destroy]
+  resources :interests, only: [:create,:destroy]
   resources :domains_articles
   resources :domains_questions
   resources :groups do
@@ -11,8 +15,21 @@ Rails.application.routes.draw do
   		post :add
   		get :member
   	end
-  	resources :group_articles
-  	resources	:group_questions
+  	resources :group_articles do
+  		member do 
+  			get :collection
+  		end
+  		resources :grouparticlereplies
+  	end
+  	
+  	resources	:group_questions do
+	 resources :group_answers do
+	 		member do
+	 			get :collection
+	 		end
+	 		resources :groupquestionreplies
+	 end
+ end
   end
   resources :search_products
   resources :replies
@@ -34,7 +51,20 @@ Rails.application.routes.draw do
  get '/write', to: "users#write"
  
  	
-resources :domains, only: [:create,:new]
+resources :domains do
+	member do
+		get :manage
+		get :manage_subset
+		get :manage_superset
+		get :prepopulatesubset
+		post :addsubset
+		post :removesubset
+		get :prepopulatesuperset
+		post :addsuperset
+		post :removesuperset
+		get :move
+	end
+end
  
  resources :users do
 	member do
@@ -50,7 +80,14 @@ resources :domains, only: [:create,:new]
 		get :following,:followers
 	end
  end 	
- resources :articles, only: [:create,:new]
+ resources :articles do
+ 	member do
+ 		get :collection
+ 		end
+ 		resource :articlereplies
+ 	end
+ 
+ 		
  resources :questions do
 	 resources :answers do
 	 		member do
@@ -59,5 +96,4 @@ resources :domains, only: [:create,:new]
 	 		resources :replies
 	 end
  end
- resources :domains
 end

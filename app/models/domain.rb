@@ -1,9 +1,14 @@
 class Domain < ApplicationRecord
 
-validates :name, presence: :true, uniqueness: true, uniqueness: {case_sensitive: false}
+searchkick
+validates :name, presence: :true, uniqueness: {case_sensitive: false}
 
 has_many :articles
 has_many :questions
+has_many :bigger_sets, class_name: "AssociatedSet",foreign_key: "subset_id", dependent: :destroy
+has_many :supersets,through: :bigger_sets,source: :superset
+has_many :smaller_sets, class_name: "AssociatedSet",foreign_key: "superset_id",dependent: :destroy
+has_many :subsets, through: :smaller_sets,source: :subset
 has_many :interests, foreign_key: "interested_id",
 										 dependent: :destroy
 has_many :followers, through: :interests, source: :user

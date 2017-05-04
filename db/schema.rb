@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170323132307) do
+ActiveRecord::Schema.define(version: 20170504101043) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,16 @@ ActiveRecord::Schema.define(version: 20170323132307) do
     t.index ["user_id"], name: "index_answers_on_user_id", using: :btree
   end
 
+  create_table "articlereplies", force: :cascade do |t|
+    t.text     "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "user_id"
+    t.integer  "article_id"
+    t.index ["article_id"], name: "index_articlereplies_on_article_id", using: :btree
+    t.index ["user_id"], name: "index_articlereplies_on_user_id", using: :btree
+  end
+
   create_table "articles", force: :cascade do |t|
     t.string   "title"
     t.text     "body"
@@ -44,6 +54,16 @@ ActiveRecord::Schema.define(version: 20170323132307) do
     t.integer  "domain_id"
     t.index ["domain_id"], name: "index_articles_on_domain_id", using: :btree
     t.index ["user_id"], name: "index_articles_on_user_id", using: :btree
+  end
+
+  create_table "associated_sets", force: :cascade do |t|
+    t.integer  "superset_id"
+    t.integer  "subset_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["subset_id"], name: "index_associated_sets_on_subset_id", using: :btree
+    t.index ["superset_id", "subset_id"], name: "index_associated_sets_on_superset_id_and_subset_id", unique: true, using: :btree
+    t.index ["superset_id"], name: "index_associated_sets_on_superset_id", using: :btree
   end
 
   create_table "ckeditor_assets", force: :cascade do |t|
@@ -60,8 +80,10 @@ ActiveRecord::Schema.define(version: 20170323132307) do
 
   create_table "domains", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.boolean  "available",  default: true
+    t.boolean  "locked",     default: false
   end
 
   create_table "domains_articles", force: :cascade do |t|
@@ -96,6 +118,36 @@ ActiveRecord::Schema.define(version: 20170323132307) do
     t.integer  "group_id"
     t.index ["group_id"], name: "index_group_questions_on_group_id", using: :btree
     t.index ["user_id"], name: "index_group_questions_on_user_id", using: :btree
+  end
+
+  create_table "groupanswers", force: :cascade do |t|
+    t.text     "body"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.integer  "user_id"
+    t.integer  "group_question_id"
+    t.index ["group_question_id"], name: "index_groupanswers_on_group_question_id", using: :btree
+    t.index ["user_id"], name: "index_groupanswers_on_user_id", using: :btree
+  end
+
+  create_table "grouparticlereplies", force: :cascade do |t|
+    t.text     "body"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.integer  "user_id"
+    t.integer  "group_article_id"
+    t.index ["group_article_id"], name: "index_grouparticlereplies_on_group_article_id", using: :btree
+    t.index ["user_id"], name: "index_grouparticlereplies_on_user_id", using: :btree
+  end
+
+  create_table "groupquestionreplies", force: :cascade do |t|
+    t.text     "body"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.integer  "user_id"
+    t.integer  "groupanswer_id"
+    t.index ["groupanswer_id"], name: "index_groupquestionreplies_on_groupanswer_id", using: :btree
+    t.index ["user_id"], name: "index_groupquestionreplies_on_user_id", using: :btree
   end
 
   create_table "groups", force: :cascade do |t|
@@ -186,10 +238,18 @@ ActiveRecord::Schema.define(version: 20170323132307) do
 
   add_foreign_key "answers", "questions"
   add_foreign_key "answers", "users"
+  add_foreign_key "articlereplies", "articles"
+  add_foreign_key "articlereplies", "users"
   add_foreign_key "articles", "domains"
   add_foreign_key "articles", "users"
   add_foreign_key "group_questions", "groups"
   add_foreign_key "group_questions", "users"
+  add_foreign_key "groupanswers", "group_questions"
+  add_foreign_key "groupanswers", "users"
+  add_foreign_key "grouparticlereplies", "group_articles"
+  add_foreign_key "grouparticlereplies", "users"
+  add_foreign_key "groupquestionreplies", "groupanswers"
+  add_foreign_key "groupquestionreplies", "users"
   add_foreign_key "notifications", "users"
   add_foreign_key "questions", "domains"
   add_foreign_key "questions", "users"

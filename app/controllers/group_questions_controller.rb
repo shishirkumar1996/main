@@ -9,7 +9,7 @@ class GroupQuestionsController < ApplicationController
 
   def new
   	@group = Group.find(params[:group_id])
-    @question = GroupQuestion.new
+    @groupquestion = GroupQuestion.new
     
   end
 

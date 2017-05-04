@@ -31,7 +31,7 @@ class ArticlesController < ApplicationController
     @tokens = params[:domain_tokens]
     @tokens = @tokens.split(',')
     @tokens.each do |token|
-    	if(@id[0..2]=="<<<")
+    	if(token[0..2]=="<<<")
     		@domain = Domain.new
     		@domain.name = token[3..-4]
     		@domain.save!
@@ -59,6 +59,17 @@ class ArticlesController < ApplicationController
       format.html { redirect_to articles_url, notice: 'Article was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+  
+  def collection
+  	@article = Article.find(params[:id])
+  	@articlereplies = @article.articlereplies.map{|reply| {:id => reply.id,
+  	:body=>reply.body,:created_at=>reply.created_at}}
+  		respond_to do |format|
+  			format.json{
+  				render :json => @articlereplies }
+  			format.html
+  		end
   end
 
   private

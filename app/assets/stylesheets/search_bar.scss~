@@ -1,4 +1,4 @@
-#search_bar{
+#term{
     width: 500px;
     box-sizing: border-box;
     border: 2px solid #ccc;
@@ -12,6 +12,6 @@
     transition: width 0.4s ease-in-out; // very important
 }
 
-#search_bar:focus {
-    width: 900px; // very important
+#term:focus {
+    width: 200%; // very important
 }

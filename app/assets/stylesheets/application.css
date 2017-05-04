@@ -17,6 +17,7 @@
  *= require 'bootstrap-sass-official'
  *= require select2
  *= require select2-bootstrap
+ *= require social-share-button
  *= require new
  *= require_tree .
  

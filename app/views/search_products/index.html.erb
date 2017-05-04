@@ -1,0 +1,26 @@
+<%= render :partial=> 'layouts/header' %>
+
+<div class = "row">
+	<div class = "col-md-4 col-md-offset-4">
+	
+In <%= @option %>, Results of the search '<%= params[:term] %>' 
+<br>
+
+<% @value.each do |value| %>
+
+	<% if(@option == "users") %>
+		<%= link_to value[:text],user_path(value[:id]) %>
+	<% elsif(@option == "domains") %>
+		<%= link_to value[:text], domain_path(value[:id]) %>
+	<% elsif(@option == "questions") %>
+		<%= link_to value[:text], question_path(value[:id]) %>
+	<% elsif(@option == "articles") %>
+		<%= link_to value[:text], article_path(value[:id]) %>
+	<% end %>
+	<br>
+
+<% end %>
+
+
+	</div>
+</div>

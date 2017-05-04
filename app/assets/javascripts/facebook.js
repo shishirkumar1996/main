@@ -6,7 +6,6 @@ jQuery(function() {
     cache: true
   });
 });
-​
 window.fbAsyncInit = function() {
   FB.init({
     appId: '<%= ENV["FACEBOOK_APP_ID"] %>',
@@ -29,4 +28,3 @@ window.fbAsyncInit = function() {
     return true;
   });
 };
-​

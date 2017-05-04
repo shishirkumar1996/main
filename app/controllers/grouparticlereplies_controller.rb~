@@ -1,0 +1,74 @@
+class GrouparticlerepliesController < ApplicationController
+  before_action :set_grouparticlereply, only: [:show, :edit, :update, :destroy]
+
+  # GET /grouparticlereplies
+  # GET /grouparticlereplies.json
+  def index
+    @grouparticlereplies = Grouparticlereply.all
+  end
+
+  # GET /grouparticlereplies/1
+  # GET /grouparticlereplies/1.json
+  def show
+  end
+
+  # GET /grouparticlereplies/new
+  def new
+    @grouparticlereply = Grouparticlereply.new
+  end
+
+  # GET /grouparticlereplies/1/edit
+  def edit
+  end
+
+  # POST /grouparticlereplies
+  # POST /grouparticlereplies.json
+  def create
+    @grouparticlereply = Grouparticlereply.new(grouparticlereply_params)
+
+    respond_to do |format|
+      if @grouparticlereply.save
+        format.html { redirect_to @grouparticlereply, notice: 'Grouparticlereply was successfully created.' }
+        format.json { render :show, status: :created, location: @grouparticlereply }
+      else
+        format.html { render :new }
+        format.json { render json: @grouparticlereply.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # PATCH/PUT /grouparticlereplies/1
+  # PATCH/PUT /grouparticlereplies/1.json
+  def update
+    respond_to do |format|
+      if @grouparticlereply.update(grouparticlereply_params)
+        format.html { redirect_to @grouparticlereply, notice: 'Grouparticlereply was successfully updated.' }
+        format.json { render :show, status: :ok, location: @grouparticlereply }
+      else
+        format.html { render :edit }
+        format.json { render json: @grouparticlereply.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # DELETE /grouparticlereplies/1
+  # DELETE /grouparticlereplies/1.json
+  def destroy
+    @grouparticlereply.destroy
+    respond_to do |format|
+      format.html { redirect_to grouparticlereplies_url, notice: 'Grouparticlereply was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+  end
+
+  private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_grouparticlereply
+      @grouparticlereply = Grouparticlereply.find(params[:id])
+    end
+
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def grouparticlereply_params
+      params.fetch(:grouparticlereply, {})
+    end
+end

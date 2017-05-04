@@ -35,13 +35,14 @@ class UsersController < ApplicationController
 		end
 		@academic = Domain.find(@id)
 		current_user.universities<< @academic
+		current_user.relations<< @academic
 		respond_to do |format|
 			format.json
 			format.html
 		end
 	end
 	
-	def removeinterest
+	def removeacademic
 		@academic = Domain.find(params[:academic])
 		current_user.universities.delete(@academic)
 	end
@@ -128,7 +129,9 @@ class UsersController < ApplicationController
 	end
 	
 	def show
-		@user = User.find(params[:id])
+		@user = User.find(params[:id])   
+		#answers of different questions to be added in the feed
+		@feed = (@user.articles).sort_by(&:created_at).reverse
 	end
 	
 	def update

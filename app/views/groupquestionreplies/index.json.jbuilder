@@ -1,0 +1,1 @@
+json.array! @groupquestionreplies, partial: 'groupquestionreplies/groupquestionreply', as: :groupquestionreply

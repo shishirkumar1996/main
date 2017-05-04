@@ -1,0 +1,31 @@
+<%= render :partial=>'layouts/header' %>
+
+<h1><%= @domain.name %></h1>
+	<%= @domain.questions.count %> questions
+	<%= @domain.articles.count %> articles</h3>
+	
+	<strong id = "followers">
+		<%= @domain.followers.count %>
+	</strong> Followers
+	
+	<% if logged_in? %>
+<div id = "follow_form">
+	<% if current_user.has_relations(@domain) %>
+		<%= render 'unfollow' %>
+	<% else %>
+		<%= render 'follow' %>
+	<% end %>
+</div>
+<div class = "dropdown">
+	<a href = "#" class = "dropdown-toggle" data-toggle = "dropdown">Options</a>
+<ul class = "dropdown-menu">
+	<li><%= link_to "Manage", '#' %></li>
+</ul>	
+</div>
+<% end %>
+
+<div class = "col-md-8 col-md-offset-2">
+	
+	<%= render :partial=>'layouts/feed' %>
+	
+</div>

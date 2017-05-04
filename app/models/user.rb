@@ -17,6 +17,7 @@ class User < ApplicationRecord
 	has_many :questions, dependent: :destroy
 	has_many :answers, dependent: :destroy
 	has_many :replies ,dependent: :destroy
+	has_many :articlereplies, dependent: :destroy
 	has_and_belongs_to_many :groups   , dependent: :nullify
 	has_many :interests, foreign_key: :person_id,dependent: :destroy
 											 
@@ -57,6 +58,10 @@ class User < ApplicationRecord
 			user.email = auth.info.email
 			user.save!	
 		end
+	end
+	
+	def has_relations(domain)
+		relations.include?(domain)
 	end
 	
 	def follow(other_user)

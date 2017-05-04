@@ -22,7 +22,7 @@ class QuestionsController < ApplicationController
 		@tokens = params[:domain_tokens]
 		@tokens = @tokens.split(',')
 		@tokens.each do |token|
-			if(!Domain.order(:id).map{|domain| "#{domain.id}"}.include?(token))
+			if(token[0..2]=="<<<")
 				@domain = Domain.new
 		#		token = token[0..-4]
 				@domain.name = token[3..-4]

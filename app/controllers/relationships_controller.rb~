@@ -20,7 +20,7 @@ class RelationshipsController < ApplicationController
 	def destroy
 		@user = Relationship.find(params[:id]).followed
 		current_user.unfollow(@user)
-		@notification = @user.notifications.find_by(message: "#{current_user} follows you now")
+		@notification = @user.notifications.find_by(message: "#{current_user.name} follows you now")
 		@user.notifications.delete(@notification)
 		respond_to do |format|
 			format.html {redirect_to @user}
