@@ -1,5 +1,18 @@
-<h1>New Groupanswer</h1>
-
-<%= render 'form', groupanswer: @groupanswer %>
-
-<%= link_to 'Back', groupanswers_path %>
+<div class = "row-md-6 row-md-offset-3">
+	
+	<h3><%= @groupquestion.title.html_safe %></h3>
+		</br>
+	<p> <%= @groupquestion.description.html_safe %></p>
+	</br>
+	<%= form_for([@group,@groupquestion,@groupanswer]) do |f| %>
+	<%= render 'common/error_messages', object: f.object %>
+	<div>
+		<%= f.label "write your answer here" %>
+		</br>
+		<%= f.cktext_area :body, rows: 5,:ckeditor=>{:toolbar =>'body' }%>
+		</div>
+		<div>
+			<%= f.submit "answer" %>
+		</div>
+	<% end %>
+</div>

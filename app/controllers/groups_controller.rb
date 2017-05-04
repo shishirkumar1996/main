@@ -11,6 +11,7 @@ class GroupsController < ApplicationController
   # GET /groups/1.json
   def show
   	@group = Group.find(params[:id])
+  	@groupfeed = (@group.group_questions+@group.group_articles).sort_by(&:created_at).reverse
   end
 
 	def prepopulate

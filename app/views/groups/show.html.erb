@@ -1,6 +1,6 @@
 <%= render :partial=>'layouts/header' %>
 <div class = "row">
-<div class = "col-md-4 col-md-offset-4">
+<div class = "col-md-8 col-md-offset-2">
 
 <h1><%= @group.name %></h1>
 <h4><%= link_to 'Add members', invite_group_path(@group) %></h4>
@@ -9,6 +9,9 @@
 </br>
 <%= link_to 'Ask Question',new_group_group_question_path(@group) %>
 <%= link_to 'Write Article',new_group_group_article_path(@group) %>
+</br>
+
+<%= render :partial=> 'layouts/groupfeed' %>
 </div>
 </div>
 

@@ -19,6 +19,7 @@ class GroupQuestionsController < ApplicationController
   def create
   	@group  = Group.find(params[:group_id])
 		@question = @group.group_questions.build(group_question_params)
+		@question.user=  current_user
 		if @question.save
 			flash[:success] = "question submitted"
 			redirect_to @group

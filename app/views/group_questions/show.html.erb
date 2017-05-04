@@ -1,0 +1,19 @@
+<div class = "col-md-8 col-md-offset-2">
+	<div class = "center jumbotron">
+	<h3><%= @groupquestion.title.html_safe %></h3>
+	</br>
+	<p><%= @groupquestion.description.html_safe %></p>
+	</br>
+	<% if !current_user?(@question.user) %>
+		<%= link_to "Answer", new_group_question_groupanswer_path(@groupquestion) %>
+	</br>
+	<% end %>
+	<if @groupquestion.groupanswers.any? %>
+		</br>
+	Answers(<%= @groupquestion.groupanswers.count %>)
+	<ul class = "groupanswers list-group">
+		<%= render @groupquestion.groupanswers %>
+	</ul>
+	<% end %>
+</div>
+</div>
