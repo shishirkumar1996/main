@@ -1,0 +1,25 @@
+<li class = 'list-group-item'>
+	<%=  groupanswer.body.html_safe %>
+	</br>
+	<%= link_to "Replies", '#', class: 'groupanswerreply_button', id: "groupanswer_#{groupanswer.id}",remote: true, 'data-questionid'=> groupanswer.group_question.id,'data-groupid'=>groupanswer.group_question.group.id %>
+		<br>
+		<section class = 'groupanswerreply' id = 'groupanswerreply_<%= groupanswer.id %>'>
+		<% if groupanswer.groupquestionreplies.any? %>
+			<ul class= "groupanswerreplies list-group" id = "groupanswerreplies_<%= groupanswer.id %>">
+			</ul>
+		<% end %>
+		</br>
+		
+		<%= form_for([groupanswer.group_question.group,groupanswer.group_question,
+		groupanswer,
+		groupanswer.groupquestionreplies.build],remote: true) do |f| %>
+			<%= f.cktext_area :body, id: "groupanswerfield_#{groupanswer.id}", rows: 3, :ckeditor => {:toolbar => 'body'}%>
+			<div>
+				<%= f.submit 'Reply' %>
+			</div>
+		<% end %>
+	</section>
+	</br>
+	<%= link_to 'Upvote','#' %>
+	<%= link_to 'Downvote','#' %>
+</li>

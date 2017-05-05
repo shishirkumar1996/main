@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
 
-  resources :groupanswers
-  resources :groupquestionreplies
-  resources :grouparticlereplies
   resources :notifications
   resources :relationships , only: [:create,:destroy]
   resources :interests, only: [:create,:destroy]
@@ -23,7 +20,7 @@ Rails.application.routes.draw do
   	end
   	
   	resources	:group_questions do
-	 resources :group_answers do
+	 resources :groupanswers do
 	 		member do
 	 			get :collection
 	 		end

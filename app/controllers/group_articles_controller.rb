@@ -13,20 +13,22 @@ before_action :logged_in_user,only: [:create,:new]
 	
 	def new
 		@grouparticle = GroupArticle.new
-		@domain = Domain.find(params[:id])
+		@group = Group.find(params[:group_id])
 	end
 	
 	def create
-		@grouparticle = current_user.grouparticles.build(group_article_params)
+		@group = Group.find(params[:group_id])
+		@grouparticle = @group.group_articles.build(group_article_params)
 		
 		if @grouparticle.save
 			flash[:success] = "article created"
-			redirect_to @domain
+			redirect_to @group
 		else
 			flash[:danger] = "some error occured!"
 			render 'new'
 		end
-		
+	end	
+			
 		def collection
 			@grouparticle = GroupArticle.find(params[:id])
 			@grouparticlereplies = @grouparticle.grouparticlereplies.map{|reply| {:id => reply.id,:body=>reply.body,:created_at=>reply.created_at}}

@@ -56,6 +56,6 @@ class GrouparticlerepliesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def grouparticlereply_params
-      params.fetch(:grouparticlereply, {})
+     params.require(:grouparticlereply).permit(:body)
     end
 end

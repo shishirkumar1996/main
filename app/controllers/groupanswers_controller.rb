@@ -14,6 +14,7 @@ class GroupanswersController < ApplicationController
 
   # GET /groupanswers/new
   def new
+  	@group = Group.find(params[:group_id])
     @groupanswer = Groupanswer.new
 		@groupquestion = GroupQuestion.find(params[:group_question_id])
   end
@@ -26,7 +27,7 @@ class GroupanswersController < ApplicationController
   # POST /groupanswers.json
   def create
 	@groupquestion = GroupQuestion.find(params[:group_question_id])
-	@groupanswer = @groupquestion.groupanswers.build(answer_params)
+	@groupanswer = @groupquestion.groupanswers.build(groupanswer_params)
 	@groupanswer.user = current_user
 		if @groupanswer.save
 			flash[:success] = "answer submitted"
@@ -63,7 +64,8 @@ class GroupanswersController < ApplicationController
   end
   
   def collection
-  	@groupanswer = GroupAnswer.find(params[:id])
+
+  	@groupanswer = Groupanswer.find(params[:id])
   	@groupreplies = @groupanswer.groupquestionreplies.map{|reply|
   	{:id=> reply.id,:body=>reply.body,:created_at=>reply.created_at }}
   		respond_to do |format|

@@ -1,0 +1,43 @@
+<%= @groupfeed.each do |feed| %>
+	<div class = "center  jumbotron">
+	</br>
+	<h3><%= feed.title.html_safe %></h3>
+	<% if feed.class == GroupArticle %>
+		<p><%= feed.body.html_safe %></p>
+		<%= link_to 'Replies','#',class: 'grouparticlereply_button',id: "grouparticle_#{feed.id}",remote: true,'data-groupid'=>feed.group.id %>
+		</br>
+		<section class = 'grouparticlereply' id = 'grouparticlereply_<%= feed.id %>'>
+			<% if feed.grouparticlereplies.any? %>
+				<ul class = "grouparticlereplies list-group" id = "grouparticlereplies_<%= feed.id %>" >
+					<%= render feed.grouparticlereplies %>
+				</ul>
+			<% end %>
+			<%= form_for([feed.group,feed,feed.grouparticlereplies.build],remote: true) do |f| %>
+				<%= f.cktext_area :body, id: "grouparticlefield_#{feed.id}",rows: 3,:ckeditor => {:toolbar =>'body'} %>
+				<div>
+					<%= f.submit 'Reply' %>
+				</div>
+			<% end %>
+		</section>
+		</br>
+		<%= link_to 'Upvote', '#' %>
+		<%= link_to 'Downvote','#' %>
+		<% else %>
+			<p><%= feed.description.html_safe %></p>
+			</br>
+			<% if !current_user?(feed.user) %>
+				<%= link_to 'Answer', new_group_group_question_groupanswer_path(@group,feed) %>
+				</br>
+			<% end %>
+			<% if feed.groupanswers.any? %>
+			</br>
+				Answers(<%= feed.groupanswers.count %>)
+				<ul class = "groupanswers list-group">
+					<%= render feed.groupanswers %>
+				</ul>
+			<% end %>
+		<% end %>
+	</div>
+<% end %>
+			
+				

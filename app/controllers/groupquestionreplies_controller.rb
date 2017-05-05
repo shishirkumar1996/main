@@ -17,11 +17,11 @@ class GroupquestionrepliesController < ApplicationController
   end
 
   def create
-		@groupanswer = GroupAnswer.find(params[:group_answer_id])
+		@groupanswer = Groupanswer.find(params[:groupanswer_id])
 		@groupanswerreply = @groupanswer.groupquestionreplies.build(groupquestionreply_params)
 		@groupanswerreply.user = current_user
-		@id = "groupanswerreplies_#{params[:group_answer_id]}"
-		@field = "groupanswerfield_#{params[:group_answer_id]}"
+		@id = "groupanswerreplies_#{params[:groupanswer_id]}"
+		@field = "groupanswerfield_#{params[:groupanswer_id]}"
 		@groupanswerreply.save!
 		respond_to do |format|
 			format.html
@@ -62,6 +62,6 @@ class GroupquestionrepliesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def groupquestionreply_params
-			params.require(:gropuquestionreply).permit(:body)
+			params.require(:groupquestionreply).permit(:body)
     end
 end
