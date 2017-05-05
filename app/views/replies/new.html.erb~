@@ -1,6 +1,0 @@
-<div class = "row-md-6 row-md-offset-3"
-	<% @ans = Answer.find(session[:answer]) %>
-	<%= label(:domain, "#{Answer.find(session[:answer]).question.domain.name}") %>
-	</br>
-	<h3><%= Answer.find(session[:answer]).question.title.html_safe %></h3>
-	

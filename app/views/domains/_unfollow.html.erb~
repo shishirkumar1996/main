@@ -1,3 +1,0 @@
-<%= form_for(current_user.interests.find_by(interested_id :@domain.id), html: {method: :delete},remote: true) do |f| %>
-	<%= f.submit "Unfollow",class: 'btn' %>
-<% end %>
