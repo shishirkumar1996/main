@@ -1,3 +1,5 @@
+<%= link_to 'Back', root_url %>
+<br>
 <div class = "col-md-6 col-md-offset-2">
 
 		 <%= form_for @article do |f|%>
@@ -19,7 +21,7 @@
     <%= f.cktext_area :body, rows: 5,:ckeditor =>{:toolbar => 'body'}%>
   </div>
   <div>
-    <%= f.submit %>
+    <%= f.submit 'Post' %>
   </div>
   <% end %>
   </div>

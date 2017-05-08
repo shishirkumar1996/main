@@ -21,10 +21,9 @@ class ArticlesController < ApplicationController
 
   # GET /articles/1/edit
   def edit
+		@article = Article.find(params[:id])
   end
 
-  # POST /articles
-  # POST /articles.json
   def create
   	
     @article = current_user.articles.build(article_params)
@@ -50,6 +49,19 @@ class ArticlesController < ApplicationController
 		end
 		
   end
+  
+  def update
+  	@article = Article.find(params[:id])
+  	if @article.update_attributes(article_params)
+  	flash[:success] = "article updated"
+  		redirect_to root_url	
+  	else
+  		flash[:danger] = "some error occured"
+  		render action: 'edit'
+  	end	
+  end
+  
+  
 
   # DELETE /articles/1
   # DELETE /articles/1.json

@@ -1,12 +1,16 @@
 <%= render :partial=>'layouts/header' %>
 
+<div id = "interestmodal-window" class = "modal fade" role = "dialog"  aria-labelledby = myModalLabel" aria-hidden= "true"></div>
+
+<div id = "academicmodal-window" class = "modal fade" role = "dialog"
+aria-labelledby  = "myModalLabel" aria-hidden= "true"></div>
 
 <% if @user.image? %>
 		<%= link_to(image_tag(@user.image.profile.url),user_path(@user),:class => "profile_pic" )%>
 		<% elsif !@user.provider.nil? %>
 		<%= link_to(image_tag("http://graph.facebook.com/#{@user.uid}/picture?type=large")) %>
 		<% else %>
-		<%= link_to "no profile pic",user_path(@user) %>
+		<%= link_to(image_tag('dummies/medium.png'),user_path(@user)) %>
 		<% end %>
 		<% if @user==current_user %>
 <%= form_tag image_user_path(current_user), multipart: true do %>
@@ -32,24 +36,24 @@
 
 <h4>Interests</h4>
 <% if @user==current_user %>
-<%= link_to 'Edit',interest_user_path(@user)%>
+<%= link_to "Edit",interest_user_path(@user),{remote: true,'data-toggle'=> "modal", 'data-target'=> '#interestmodal-window'} %>
 <% end  %>
 </br>
 <% @user.relations.each do |relation| %>
-<%= label(:interest,"#{relation.name}") %>
+<%= relation.name %>
 <% end %>
 
 
 <h4>Education</h4>
 <%if @user==current_user %>
-<%= link_to 'Edit',academic_user_path(current_user) %>
+<%= link_to 'Edit',academic_user_path(current_user),{remote: true, 'data-toggle'=>"modal",'data-target'=>'#academicmodal-window'} %>
 <% end %>
 </br>
 <% @user.universities.each do |academic| %>
 	<%= label(:academic,"#{academic.name}") %>
 <% end %>
 <div class = "row">
-	<div class = "col-md-4 col-md-offset-4">
+	<div class = "col-md-8 col-md-offset-2">
 	<%= render :partial=>'layouts/feed' %>
 	</div>
 </div>

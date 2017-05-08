@@ -1,0 +1,2 @@
+module GrouparticlerelationsHelper
+end

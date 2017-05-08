@@ -14,7 +14,9 @@ return dat;
 }
 
 
-function interest_token_function(){
+//function interest_token_function(){
+$(document).on('turbolinks:load',function(){	
+$('#interestmodal-window').on('show.bs.modal',function(){
 	$("#interest_tokens").select2({
 		multiple: true,
 		placeholder: "select your interests",
@@ -59,4 +61,5 @@ var value = e.choice.id;
 $.post(address,{interest: value});
 })
 .select2('val',[]);
-		}
+		});
+		});

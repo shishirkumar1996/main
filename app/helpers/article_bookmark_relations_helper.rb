@@ -1,0 +1,2 @@
+module ArticleBookmarkRelationsHelper
+end

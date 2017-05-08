@@ -1,0 +1,14 @@
+<div class = "modal-dialog">
+<div class = "modal-content">
+<div class = "modal-header">
+<button type = "button" class = "close" data-dismiss = "modal" aria-hidden= "true>x</button>
+</div>
+
+<div class = "modal-body">
+Interests
+</br>
+<%= text_field_tag :interest_tokens, nil,'data-url'=>domains_path(:format=>:json),"data-add" => addinterest_user_path(:format=>:json),"data-remove" => removeinterest_user_path(:format=>:json),"data-prepopulate" => prepopulateinterest_user_path(current_user,:format=>:json), :style => "width: 30%" %>
+<button type = "button" class = "close" data-dismiss = "modal" aria-hidden= "true>Done</button>
+</div>
+</div>
+</div>

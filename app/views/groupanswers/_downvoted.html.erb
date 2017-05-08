@@ -1,0 +1,3 @@
+<%= form_for(current_user.badgroupanswerrelations.find_by(group_answer_id: groupanswer.id),html: {method: :delete},remote: true) do |f| %>
+	<%= f.submit "Downvoted", class: "btn" %>
+<% end %>

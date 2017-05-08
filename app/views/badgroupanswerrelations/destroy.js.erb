@@ -1,0 +1,1 @@
+$('#downvoteanswer_<%= @answer.id %>').html('<%= escape_javascript(render(:partial=>'groupanswers/downvote',:object=> @answer,:as=>:groupanswer)) %>');

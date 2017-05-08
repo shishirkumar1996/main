@@ -1,0 +1,2 @@
+module QuestionBookmarkRelationsHelper
+end

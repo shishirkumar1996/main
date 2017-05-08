@@ -18,7 +18,10 @@
  *= require select2
  *= require select2-bootstrap
  *= require social-share-button
+ *= require font-awesome
  *= require new
  *= require_tree .
  
  */
+ 
+ @import "font-awesome";

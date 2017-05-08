@@ -1,0 +1,26 @@
+<%= render :partial=>'layouts/header' %>
+
+<h1>Editing</h1> 
+
+
+<div class = "col-md-6 col-md-offset-2">
+		<br><br>Title<br>
+		<h1><%= @grouparticle.title %></h1>
+
+	
+	<%= form_for([@group,@grouparticle]) do |f| %>
+		<%= render 'common/error_messages', object: f.object %>
+		
+		<div>
+			<%= f.label :body %>
+		</div>
+		<div>
+			<%= f.cktext_area :body, rows: 5,:ckeditor =>{:toolbar => 'body' } %>
+		</div>
+	<div>
+		<%= f.submit 'Edit' %>
+	</div>
+	<% end %>
+</div>
+	
+			

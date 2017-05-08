@@ -1,4 +1,5 @@
 $(document).on('turbolinks:load', function() {
+$("#term").on("focus", function() {
 var e = document.getElementById("options");
 	$("#term").autocomplete({
 	//source: ['foo','food','for','something']
@@ -58,6 +59,6 @@ y = item.text;
     .append(y)
     .appendTo(ul);
 };
-
+});
 });
  

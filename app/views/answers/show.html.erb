@@ -1,4 +1,48 @@
-<p id="notice"><%= notice %></p>
-
-<%= link_to 'Edit', edit_answer_path(@answer) %> |
-<%= link_to 'Back', answers_path %>
+<%= @answer.question.title.html_safe %>
+<br>
+<%= @answer.question.body.html_safe %>
+<br>
+<%= @answer.body.html_safe %>
+ 	<br>
+	<% if current_user!=@answer.user %>
+		<div id = "upvoteanswer_<%= @answer.id %>" > 
+		<% if current_user.like_answer?(@answer) %>
+			<%= render :partial=>'answers/upvoted',:locals=>{:answer => @answer} %>
+		<% else %>
+			<%= render :partial=>'answers/upvote',:locals=>{:answer => @answer} %>
+		<% end %>
+		</div>
+		<div id = "downvoteanswer_<%= @answer.id %>" >
+			<% if current_user.dislike_answer?(@answer) %>
+				<%= render :partial=>'answers/downvoted',:locals=>{:answer => @answer } %>
+			<% else %>
+				<%= render :partial=>'answers/downvote',:locals=>{:answer => @answer } %>
+			<% end %>
+		</div>
+		<%= social_share_button_tag(@answer.question.title) %>
+	<% else %>		
+		<%= link_to "Edit", edit_question_answer_path(@answer.question,@answer) %>
+	<% end %>
+	<br>
+ 	<%= link_to "Replies",'#', class: 'reply_button', id: "answer_#{@answer.id}",remote: true,"data-questionid"=> @answer.question.id %>
+ 	<br>
+ 	<section class='reply' id= "reply_<%= @answer.id %>">
+	<% if @answer.replies.any? %>
+  	<ul  class = "replies list-group" id = "replies_<%= answer.id %>">
+ 			<%# render @answer.replies %>
+		</ul>			
+	<% end %>
+		</br>
+		
+		<%= form_for([@answer.question,@answer,@answer.replies.build],remote: true) do |f| %>
+			<%= f.cktext_area :body,id: "field_#{@answer.id}", rows: 3,:ckeditor =>{:toolbar => 'body'}%>
+			<div><%# hidden_field_tag :answer_id, @answer.id %></div>
+			<div>
+			<%= f.submit 'Reply'  %>
+			</div>
+	<% end %>
+	</section>
+	</br>
+	
+	
+	

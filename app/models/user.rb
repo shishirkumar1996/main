@@ -12,6 +12,54 @@ class User < ApplicationRecord
   
   attr_accessor :remember_token
   before_save :downcase_email
+  
+has_many :question_bookmark_relations,foreign_key: :user_id,
+dependent: :destroy
+has_many :bookmarked_questions,through: :question_bookmark_relations,
+source: :question
+
+has_many :article_bookmark_relations,foreign_key: :user_id,
+dependent: :destroy
+has_many :bookmarked_articles,through: :article_bookmark_relations,
+source: :article
+
+	     has_many :articlerelations,foreign_key: :user_id,dependent: :destroy
+has_many :likedarticles,through: :articlerelations,source: :article
+
+has_many :badarticlerelations,foreign_key: :user_id,
+dependent: :destroy
+has_many :dislikedarticles,through: :badarticlerelations,
+source: :article
+
+has_many :grouparticlerelations, foreign_key: :user_id,dependent: :destroy
+has_many :likedgrouparticles, through: :grouparticlerelations,source: :group_article
+
+has_many :badgrouparticlerelations,foreign_key: :user_id,
+dependent: :destroy
+has_many :dislikedgrouparticles,through: :badgrouparticlerelations,
+source: :group_article
+
+has_many :answerrelations,foreign_key: :user_id,dependent: :destroy
+has_many :likedanswers,through: :answerrelations,source: :answer
+
+has_many :badanswerrelations,foreign_key: :user_id,dependent: :destroy
+has_many :dislikedanswers,through: :badanswerrelations,
+source: :answer
+
+
+has_many :groupanswerrelations, foreign_key: :user_id,dependent: :destroy
+has_many :likedgroupanswers,through: :groupanswerrelations,
+source: :groupanswer
+
+
+has_many :badgroupanswerrelations,foreign_key: :user_id,
+dependent: :destroy
+has_many :dislikedgroupanswers,through: :badgroupanswerrelations,
+source: :groupanswer
+
+  
+  
+  
   has_many :notifications, dependent: :destroy
 	has_many :articles,dependent: :destroy
 	has_many :questions, dependent: :destroy
@@ -76,6 +124,56 @@ class User < ApplicationRecord
 	def following?(other_user)
 		following.include?(other_user)
 	end
+	
+	def bookmark_question?(question)
+		bookmarked_questions.include?(question)
+	end
+	
+	def bookmark_article?(article)
+		bookmarked_articles.include?(article)
+	end
+	
+	def like_answer?(answer)
+		likedanswers.include?(answer)
+	end
+		
+	def dislike_answer?(answer)
+		dislikedanswers.include?(answer)
+	end
+		
+	def like_groupanswer?(answer)
+		likedgroupanswers.include?(answer)
+	end
+	
+	def dislike_groupanswer?(answer)
+		dislikedgroupanswers.include?(answer)
+	end
+	
+	def like_article?(article)
+		likedarticles.include?(article)
+	end
+	
+	def dislike_article?(article)
+		dislikedarticles.include?(article)
+	end
+	
+	def like_grouparticle?(article)
+		likedgrouparticles.include?(article)
+	end
+	
+	def dislike_grouparticle?(article)
+		dislikedgrouparticles.include?(article)
+	end
+	
+	def answered?(question)
+		question.answers.each do |answer|
+			if(answers.include?(answer))
+				return true
+			end
+		end
+		return false
+	end
+	
 	
 	def User.new_token
 		SecureRandom.urlsafe_base64

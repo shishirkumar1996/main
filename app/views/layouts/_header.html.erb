@@ -1,8 +1,8 @@
 <header class = "navbar navbar-fixed-top navbar-inverse">
-	<div class = "container">
+	<div class = "container header_container">
 	<nav>
-	<ul class = "nav navbar-nav navbar-left">
-		<li><%= form_tag search_products_path, method: 'get' do %>
+	<ul class = "nav navbar-nav navbar-left header_left">
+		<li><%= form_tag search_products_path, method: 'get',id: 'header_form' do %>
 			<%= select_tag "options","<option>users</option>
 			<option>domains</option>
 			<option>questions</option>
@@ -23,12 +23,29 @@
 			<%= link_to "Domain creation", new_domain_path %>
 			<% end %>
 			</li>
-		<li><%= link_to "Home", root_url %></li>
-		<li><%= link_to  "Read" %></li>
-		<li><%= link_to "Ask",new_question_path,id: 'ask' %></li>
-		<li><%= link_to "Write",new_article_path, id: 'write' %></li>
+			<a class = 'thumb_image' >
+		<%# if current_user.image? %>
+		<%# link_to(image_tag(current_user.image.thumb.url),user_path(current_user))%>
+		<%# elsif !current_user.provider.nil? %>
+		<%# link_to(image_tag("http://graph.facebook.com/#{current_user.uid}/picture?type=square"),user_path(current_user)) %>
+		<%# else %>
+		<%# link_to(image_tag('dummies/small.png'),user_path(current_user)) %>
+		<%# end %>
+	</a>
+		<li><%# link_to "Home", root_url %>
+			<a href = '<%= root_url %>' ><span class = "glyphicon glyphicon-home"></span>Home</a>
+		</li>
+		<li><%# link_to  "Read" %></li>
+		<li>
+		<%= link_to "Ask",check_existing_question_path,{remote: true,'data-toggle'=>"modal",'data-target'=>'#modal-window'} %>
+		<%# link_to "Ask",new_question_path,id: 'ask' %></li>
+		<li><%# link_to "Write",new_article_path, id: 'write' %>
+			<a href = '<%= new_article_path %>' id = 'write'>
+				<span class = "glyphicon glyphicon-pencil"></span>
+				Write</a>
+		</li>
 		<li class = "dropdown">
-			<a href = "#", class = dropdown-toggle" data-toggle = "dropdown">Notification</a>
+			<a href = "#" class = "dropdown-toggle" data-toggle = "dropdown"><span class = "glyphicon glyphicon-envelope"></span>Notification</a>
 			<ul class = "dropdown-menu">
 			<% if current_user.notifications.any? %>
 			<% current_user.notifications.each do |notification| %>
@@ -42,7 +59,7 @@
 		
 		<li class = "dropdown">
 			<a href = "#" class = "dropdown-toggle" data-toggle= "dropdown">
-			Account</a>
+			<span class="glyphicon glyphicon-user"></span>Account</a>
 			<ul class = "dropdown-menu">
 				<li><%= link_to "my account",user_path(current_user) %></li>
 				<li><%= link_to "my groups", your_groups_path %></li>
@@ -55,16 +72,12 @@
 				</li>
 			</ul>
 		</li>	
-		<% if current_user.image? %>
-		<li><%= link_to(image_tag(current_user.image.thumb.url),user_path(current_user))%></li>
-		<% elsif !current_user.provider.nil? %>
-		<%= link_to(image_tag("http://graph.facebook.com/#{current_user.uid}/picture?type=square"),user_path(current_user)) %>
-		<% else %>
-		<li><%= link_to "no profile pic",user_path(current_user) %><li>
-		<% end %>
+	
 	</ul>	
 	<% end %>
 	</div>
 	</nav>
 	</div>
 </header>
+
+	<%= render :partial => 'static_pages/modalcheck' %>

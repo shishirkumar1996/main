@@ -1,0 +1,2 @@
+module BadgrouparticlerelationsHelper
+end

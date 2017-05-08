@@ -1,0 +1,54 @@
+<li class = 'list-group-item'>
+
+<p><%= article.body.html_safe %></p>
+	<% if current_user != article.user %>
+	<br>
+		<div id = "article_bookmark_<%= article.id %>">
+					<% if current_user.bookmark_article?(article) %>
+						<%= render(:partial=>'articles/unbookmark',:locals=>{
+						:article => article}) %>
+					<% else %>
+						<%= render(:partial=>'articles/bookmark',:locals=>
+						{:article => article}) %>
+					<% end %>
+		</div>
+					</br>	
+		<div id = "upvotearticle_<%= article.id %>" > 
+		<% if(current_user.like_article?(article)) %>
+			<%= render :partial=>'articles/upvoted',:locals=>{:article => article} %>
+		<% else %>
+			<%= render :partial=>'articles/upvote',:locals=>{:article => article} %>
+		<% end %>
+		</div>
+		<div id = "downvotearticle_<%= article.id %>" >
+			<% if(current_user.dislike_article?(article)) %>
+				<%= render :partial=>'articles/downvoted',:locals=>{:article => article} %>
+			<% else %>
+				<%= render :partial=>'articles/downvote',:locals=>{:article => article} %>
+			<% end %>
+		</div>
+	<% else %>			
+	<%= link_to "Edit", edit_article_path(article) %>
+	<% end %>
+	<br>
+
+		<%= link_to "Replies", '#', class: 'articlereply_button',id: "article_#{article.id}",remote: true %>
+		</br>
+		<section class = 'articlereply' id = "articlereply_<%= article.id %>">
+		<% if article.articlereplies.any? %>
+			<ul class = "articlereplies list-group" id = "articlereplies_<%= article.id %>">
+				<%= render article.articlereplies %>
+			</ul>
+		<% end %>
+		<%= form_for([article,article.articlereplies.build],remote: true) do |f| %>
+			<%= f.cktext_area :body,id: "articlefield_#{article.id}",rows: 3,:ckeditor =>{:toolbar=>'body'} %>
+			<div>
+				<%= f.submit 'Reply' %>
+			</div>
+		<% end %>
+		</section>
+	</br>
+	
+</li>
+	
+		

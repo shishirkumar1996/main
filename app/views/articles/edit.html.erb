@@ -1,6 +1,24 @@
+<%= render :partial=>'layouts/header' %>
 <h1>Editing Article</h1>
 
-<%= render 'form', article: @article %>
-
-<%= link_to 'Show', @article %> |
-<%= link_to 'Back', articles_path %>
+<%= link_to 'Back', root_url %>
+<br>
+<div class = "col-md-6 col-md-offset-2">
+		<% @article.domains.each do |domain| %>
+		<strong><%= domain.name %></strong>
+		<% end %>
+		<br><br>Title<br>
+		<h1><%= @article.title %></h1>
+		 <%= form_for @article do |f|%>
+			<%= render 'common/error_messages', object: f.object %>
+  <div>
+    <%= f.label :body %>
+  </div>
+  <div>
+    <%= f.cktext_area :body, rows: 5,:ckeditor =>{:toolbar => 'body'}%>
+  </div>
+  <div>
+    <%= f.submit 'Edit' %>
+  </div>
+  <% end %>
+  </div>

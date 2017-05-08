@@ -1,0 +1,2 @@
+$('#upvoteanswer_<%= @answer.id %>').html('<%= escape_javascript(render(:partial=>'groupanswers/upvoted',:object=> @answer,:as=>:groupanswer)) %>');
+$('#downvoteanswer_<%= @answer.id %>').html('<%= escape_javascript(render(:partial=>'groupanswers/downvote',:object=> @answer,:as=>:groupanswer)) %>');

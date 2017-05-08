@@ -4,6 +4,7 @@
 
 header{
 position: relative;
+background: aqua;
 }
 
 body{
@@ -12,11 +13,19 @@ body{
 	}
 	
 	#modal-window{
-		position :relative;
+		position: relative;
+	}
+	
+	#interestmodal-window{
+		position: relative;
+	}
+	
+	#academicmodal-window{
+		position: relative;
 	}
 	
 	.modal{
-		display: block;
+	/*	display: block;   */
 		}
 		
 	.modal-dialog{

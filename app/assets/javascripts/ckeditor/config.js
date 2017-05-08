@@ -1,9 +1,8 @@
 CKEDITOR.config.toolbar_body = [
 		{ name: 'document', items: ['Source','Templates', 'NewPage', 'Image', '-','Bold', 'Italic', '-', 'Subscript' , 'Superscript'] } ];
-
-
-CKEDITOR.config.height = 300;
-
+		
+CKEDITOR.config.height = 300;		
+CKEDITOR.config.autoParagraph  = false;		
 CKEDITOR.editorConfig = function( config ) {
 
 	config.filebrowserImageBrowseUrl = '';

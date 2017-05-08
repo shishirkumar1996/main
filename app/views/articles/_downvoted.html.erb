@@ -1,0 +1,3 @@
+<%= form_for(current_user.badarticlerelations.find_by(article_id: article.id),html: {method: :delete},remote: true) do |f| %>
+	<%= f.submit "Downvoted", class: "btn" %>
+<% end %>

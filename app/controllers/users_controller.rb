@@ -13,6 +13,9 @@ class UsersController < ApplicationController
 	end
 	def academic
 		@user = User.find(params[:id])
+		respond_to do |format|
+			format.js{render :layout=>false,content_type: 'text/javascript'}
+		end
 	end
 	
 	def prepopulateacademic
@@ -50,6 +53,9 @@ class UsersController < ApplicationController
 	
 	def interest
 		@user = User.find(params[:id])
+		respond_to do |format|
+			format.js{render :layout=>false,content_type: 'text/javascript'}
+		end
 	end
 	
 	
@@ -122,7 +128,7 @@ class UsersController < ApplicationController
 		@user = User.new(user_params)
 		if @user.save
 			log_in @user
-			redirect_to root_url
+			redirect_to user_path(@user)
 			else
 			render 'new'
 		end

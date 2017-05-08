@@ -21,6 +21,9 @@ class GroupanswersController < ApplicationController
 
   # GET /groupanswers/1/edit
   def edit
+  	@groupanswer = Groupanswer.find(params[:id])
+  	@groupquestion = @groupanswer.question
+  	@group = @groupquestion.group
   end
 
   # POST /groupanswers
@@ -42,15 +45,15 @@ class GroupanswersController < ApplicationController
   # PATCH/PUT /groupanswers/1
   # PATCH/PUT /groupanswers/1.json
   def update
-    respond_to do |format|
-      if @groupanswer.update(groupanswer_params)
-        format.html { redirect_to @groupanswer, notice: 'Groupanswer was successfully updated.' }
-        format.json { render :show, status: :ok, location: @groupanswer }
-      else
-        format.html { render :edit }
-        format.json { render json: @groupanswer.errors, status: :unprocessable_entity }
-      end
-    end
+	@groupanswer = Groupanswer.find(params[:id])
+	if @groupanswer.update_attributes(groupanswer_params)
+		flash[:success] = "answer updated"
+		redirect_to @groupanswer.group_question.group
+	else
+		flash[:danger] = "some error occured"
+		render action: "edit"
+	end
+
   end
 
   # DELETE /groupanswers/1

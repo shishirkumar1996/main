@@ -1,0 +1,16 @@
+<div class = "modal-dialog">
+<div class = "modal-content">
+<div class="modal-header">
+<button type = "button" class = "close" data-dismiss="modal" aria-hidden = "true">x</button>
+</div>
+
+<div class = "modal-body">
+	Search whether your question is already present or not	
+	</br>
+	<%= form_tag new_question_path,method: 'get' do %>
+	<%= text_field_tag :questionterm %>
+	<%= submit_tag 'Ask',id: 'ask',class: 'btn btn-primary' %>
+	<% end %>
+</div>
+</div>
+</div>

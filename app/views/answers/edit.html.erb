@@ -1,6 +1,23 @@
 <h1>Editing Answer</h1>
 
-<%= render 'form', answer: @answer %>
-
-<%= link_to 'Show', @answer %> |
-<%= link_to 'Back', answers_path %>
+<div class = "row-md-6 row-md-offset-3" >
+	<% @question.domains.each do |domain| %>
+		<%= domain.name %>
+	<% end %>
+	</br>
+	<h3><%= @question.title.html_safe %></h3>
+		</br>
+		<p>	<%= @question.description.html_safe %></p>
+		</br>
+	<%= form_for([@question,@answer]) do |f| %>
+	<%= render 'common/error_messages' , object: f.object %>
+		<div>
+			<%= f.label "Write your answer here" %>
+			</br>
+			<%= f.cktext_area :body, rows: 5,:ckeditor =>{:toolbar => 'body'}%>
+		</div>
+		<div>
+			<%= f.submit 'Answer' %>
+		</div>
+	<% end %>
+</div>

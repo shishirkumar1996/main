@@ -1,0 +1,2 @@
+$('#upvotearticle_<%= @article.id %>').html('<%= escape_javascript(render(:partial=>'group_articles/upvoted',:object=> @article,:as=>:group_article)) %>');
+$('#downvotearticle_<%= @article.id %>').html('<%= escape_javascript(render(:partial=>'group_articles/downvote',:object=> @article,:as=>:group_article)) %>');

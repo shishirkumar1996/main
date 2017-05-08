@@ -1,6 +1,26 @@
 <li class = 'list-group-item'>
 	<%=  groupanswer.body.html_safe %>
 	</br>
+	<% if(current_user!=groupanswer.user) %>
+	<div id = "upvoteanswer_<%= groupanswer.id %>" > 
+		<% if current_user.like_groupanswer?(groupanswer) %>
+			<%= render :partial=>'groupanswers/upvoted',:locals=>{:groupanswer => groupanswer} %>
+		<% else %>
+			<%= render :partial=>'groupanswers/upvote',:locals=>{:groupanswer => groupanswer} %>
+		<% end %>
+		</div>
+		<div id = "downvoteanswer_<%= groupanswer.id %>" >
+			<% if current_user.dislike_groupanswer?(groupanswer) %>
+				<%= render :partial=>'groupanswers/downvoted',:locals=>{:groupanswer => groupanswer} %>
+			<% else %>
+				<%= render :partial=>'groupanswers/downvote',:locals=>{:groupanswer => groupanswer} %>
+			<% end %>
+		</div>
+	<% else %>
+		<%= link_to 'Edit', edit_group_group_question_groupanswer_path(groupanswer.group_question.group,groupanswer.group_question,
+		groupanswer) %>
+	<% end %>		
+	
 	<%= link_to "Replies", '#', class: 'groupanswerreply_button', id: "groupanswer_#{groupanswer.id}",remote: true, 'data-questionid'=> groupanswer.group_question.id,'data-groupid'=>groupanswer.group_question.group.id %>
 		<br>
 		<section class = 'groupanswerreply' id = 'groupanswerreply_<%= groupanswer.id %>'>
@@ -20,6 +40,6 @@
 		<% end %>
 	</section>
 	</br>
-	<%= link_to 'Upvote','#' %>
-	<%= link_to 'Downvote','#' %>
+	
+	
 </li>

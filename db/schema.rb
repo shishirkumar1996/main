@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170504140547) do
+ActiveRecord::Schema.define(version: 20170506105433) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,16 @@ ActiveRecord::Schema.define(version: 20170504140547) do
     t.index ["university_id"], name: "index_academics_on_university_id", using: :btree
   end
 
+  create_table "answerrelations", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "answer_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["answer_id"], name: "index_answerrelations_on_answer_id", using: :btree
+    t.index ["user_id", "answer_id"], name: "index_answerrelations_on_user_id_and_answer_id", unique: true, using: :btree
+    t.index ["user_id"], name: "index_answerrelations_on_user_id", using: :btree
+  end
+
   create_table "answers", force: :cascade do |t|
     t.text     "body"
     t.datetime "created_at",  null: false
@@ -33,6 +43,26 @@ ActiveRecord::Schema.define(version: 20170504140547) do
     t.integer  "question_id"
     t.index ["question_id"], name: "index_answers_on_question_id", using: :btree
     t.index ["user_id"], name: "index_answers_on_user_id", using: :btree
+  end
+
+  create_table "article_bookmark_relations", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "article_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["article_id"], name: "index_article_bookmark_relations_on_article_id", using: :btree
+    t.index ["user_id", "article_id"], name: "index_article_bookmark_relations_on_user_id_and_article_id", unique: true, using: :btree
+    t.index ["user_id"], name: "index_article_bookmark_relations_on_user_id", using: :btree
+  end
+
+  create_table "articlerelations", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "article_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["article_id", "user_id"], name: "index_articlerelations_on_article_id_and_user_id", unique: true, using: :btree
+    t.index ["article_id"], name: "index_articlerelations_on_article_id", using: :btree
+    t.index ["user_id"], name: "index_articlerelations_on_user_id", using: :btree
   end
 
   create_table "articlereplies", force: :cascade do |t|
@@ -64,6 +94,46 @@ ActiveRecord::Schema.define(version: 20170504140547) do
     t.index ["subset_id"], name: "index_associated_sets_on_subset_id", using: :btree
     t.index ["superset_id", "subset_id"], name: "index_associated_sets_on_superset_id_and_subset_id", unique: true, using: :btree
     t.index ["superset_id"], name: "index_associated_sets_on_superset_id", using: :btree
+  end
+
+  create_table "badanswerrelations", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "answer_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["answer_id"], name: "index_badanswerrelations_on_answer_id", using: :btree
+    t.index ["user_id", "answer_id"], name: "index_badanswerrelations_on_user_id_and_answer_id", unique: true, using: :btree
+    t.index ["user_id"], name: "index_badanswerrelations_on_user_id", using: :btree
+  end
+
+  create_table "badarticlerelations", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "article_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["article_id", "user_id"], name: "index_badarticlerelations_on_article_id_and_user_id", unique: true, using: :btree
+    t.index ["article_id"], name: "index_badarticlerelations_on_article_id", using: :btree
+    t.index ["user_id"], name: "index_badarticlerelations_on_user_id", using: :btree
+  end
+
+  create_table "badgroupanswerrelations", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "group_answer_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["group_answer_id"], name: "index_badgroupanswerrelations_on_group_answer_id", using: :btree
+    t.index ["user_id", "group_answer_id"], name: "index_badgroupanswerrelations_on_user_id_and_group_answer_id", unique: true, using: :btree
+    t.index ["user_id"], name: "index_badgroupanswerrelations_on_user_id", using: :btree
+  end
+
+  create_table "badgrouparticlerelations", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "group_article_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.index ["group_article_id"], name: "index_badgrouparticlerelations_on_group_article_id", using: :btree
+    t.index ["user_id", "group_article_id"], name: "index_badgrouparticlerelations_on_user_id_and_group_article_id", unique: true, using: :btree
+    t.index ["user_id"], name: "index_badgrouparticlerelations_on_user_id", using: :btree
   end
 
   create_table "ckeditor_assets", force: :cascade do |t|
@@ -124,6 +194,16 @@ ActiveRecord::Schema.define(version: 20170504140547) do
     t.index ["user_id"], name: "index_group_questions_on_user_id", using: :btree
   end
 
+  create_table "groupanswerrelations", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "group_answer_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["group_answer_id"], name: "index_groupanswerrelations_on_group_answer_id", using: :btree
+    t.index ["user_id", "group_answer_id"], name: "index_groupanswerrelations_on_user_id_and_group_answer_id", unique: true, using: :btree
+    t.index ["user_id"], name: "index_groupanswerrelations_on_user_id", using: :btree
+  end
+
   create_table "groupanswers", force: :cascade do |t|
     t.text     "body"
     t.datetime "created_at",        null: false
@@ -132,6 +212,16 @@ ActiveRecord::Schema.define(version: 20170504140547) do
     t.integer  "group_question_id"
     t.index ["group_question_id"], name: "index_groupanswers_on_group_question_id", using: :btree
     t.index ["user_id"], name: "index_groupanswers_on_user_id", using: :btree
+  end
+
+  create_table "grouparticlerelations", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "group_article_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.index ["group_article_id"], name: "index_grouparticlerelations_on_group_article_id", using: :btree
+    t.index ["user_id", "group_article_id"], name: "index_grouparticlerelations_on_user_id_and_group_article_id", unique: true, using: :btree
+    t.index ["user_id"], name: "index_grouparticlerelations_on_user_id", using: :btree
   end
 
   create_table "grouparticlereplies", force: :cascade do |t|
@@ -184,6 +274,16 @@ ActiveRecord::Schema.define(version: 20170504140547) do
     t.datetime "updated_at", null: false
     t.integer  "user_id"
     t.index ["user_id"], name: "index_notifications_on_user_id", using: :btree
+  end
+
+  create_table "question_bookmark_relations", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "question_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["question_id"], name: "index_question_bookmark_relations_on_question_id", using: :btree
+    t.index ["user_id", "question_id"], name: "index_question_bookmark_relations_on_user_id_and_question_id", unique: true, using: :btree
+    t.index ["user_id"], name: "index_question_bookmark_relations_on_user_id", using: :btree
   end
 
   create_table "questions", force: :cascade do |t|

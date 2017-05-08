@@ -1,11 +1,21 @@
 Rails.application.routes.draw do
 
-  resources :notifications
+  resources :question_bookmark_relations ,only: [:create,:destroy]
+  resources :article_bookmark_relations ,only: [:create,:destroy]
+  resources :badanswerrelations  ,only: [:create,:destroy]
+  resources :answerrelations ,only: [:create,:destroy]
+  resources :badgrouparticlerelations  ,only: [:create,:destroy]
+  resources :grouparticlerelations  ,only: [:create,:destroy]
+  resources :badgroupanswerrelations ,only: [:create,:destroy]
+  resources :groupanswerrelations ,only: [:create,:destroy]
+  resources :badarticlerelations ,only: [:create,:destroy]
+  resources :articlerelations ,only: [:create,:destroy]
+  #resources :notifications
   resources :relationships , only: [:create,:destroy]
   resources :interests, only: [:create,:destroy]
-  resources :domains_articles
-  resources :domains_questions
-  resources :groups do
+  #resources :domains_articles
+  #resources :domains_questions
+  resources :groups,only: [:show,:new,:create] do
   	member do
   		get :prepopulate
   		get :invite
@@ -19,7 +29,7 @@ Rails.application.routes.draw do
   		resources :grouparticlereplies
   	end
   	
-  	resources	:group_questions do
+  	resources	:group_questions,only: [:new,:create] do
 	 resources :groupanswers do
 	 		member do
 	 			get :collection
@@ -28,10 +38,12 @@ Rails.application.routes.draw do
 	 end
  end
   end
-  resources :search_products
+  resources :search_products,only: [:index]
   resources :replies
   mount Ckeditor::Engine => '/ckeditor'
  root 'static_pages#home' 
+ get '/check_existing_question', to: 'static_pages#check_existing'
+ get '/search_question',to: 'static_pages#search_question'
  get '/your_groups', to: 'users#index_group'
  get '/login', to: 'sessions#new'
  post '/login', to: 'sessions#create'

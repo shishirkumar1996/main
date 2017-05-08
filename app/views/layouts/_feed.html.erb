@@ -1,39 +1,49 @@
 <% @feed.each do |feed| %>
-	<div class = "center jumbotron">
+	<div class = "feed_container">
+	<div class = "domain_container">
+	<strong>Related domains: </strong>
 	<%# label(:domain, "#{feed.domain.name}") %>
 	<% feed.domains.each do |domain| %>
-		<%= link_to domain.name,domain_path(domain.id) %>
+		<em><%= link_to domain.name,domain_path(domain.id) %></em>
 	<% end %>
-	</br>
-	<%= social_share_button_tag(feed.title) %>
-	<h3><%= feed.title.html_safe %></h3>
-	<% if feed.class == Article %>
-		<p><%= feed.body.html_safe %></p>
-		<%= link_to "Replies", '#', class: 'articlereply_button',id: "article_#{feed.id}",remote: true %>
+	</div>
+	<div class = "title_container">
 		</br>
-		<section class = 'articlereply' id = "articlereply_<%= feed.id %>">
-		<% if feed.articlereplies.any? %>
-			<ul class = "articlereplies list-group" id = "articlereplies_<%= feed.id %>">
-				<%= render feed.articlereplies %>
-			</ul>
-		<% end %>
-		<%= form_for([feed,feed.articlereplies.build],remote: true) do |f| %>
-			<%= f.cktext_area :body,id: "articlefield_#{feed.id}",rows: 3,:ckeditor =>{:toolbar=>'body'} %>
-			<div>
-				<%= f.submit 'Reply' %>
-			</div>
-		<% end %>
-		</section>
+	<strong><%= feed.title.html_safe %></strong>
+	<div class = "asked_container">
 	</br>
-		<%= link_to "Upvote",'#' %>
-		<%= link_to "Downvote", '#' %>
+	<%= feed.created_at.strftime("%d %b. %Y") %>
+	</div>
+	<br>
+	</div>
+	<% if feed.class == Article %>
+		<%= render feed %>
 	<% else %>
-	<p><%= feed.description.html_safe %></p>
+		
+		<div class = "description_container"> 
+			Description:
+	<%= feed.description.html_safe %>
+	</div>
 	</br>
 		<% if !current_user?(feed.user) %>
-			<%= link_to "Answer", new_question_answer_path(feed) %>
-		</br>
+			</br>
+				<div id = "question_bookmark_<%= feed.id %>">
+					<% if current_user.bookmark_question?(feed) %>
+						<%= render(:partial=>'questions/unbookmark',:locals=>{
+						:question => feed}) %>
+					<% else %>
+						<%= render(:partial=>'questions/bookmark',:locals=>
+						{:question=> feed}) %>
+					<% end %>				
+				</div>
+				<br>
 		<% end %>
+		<%if current_user?(feed.user)||current_user.answered?(feed) %>
+		<label>Answer</label>
+		<% else %>
+			<%= link_to "Answer", new_question_answer_path(feed) %>
+		<% end %>
+		</br>
 		<% if feed.answers.any? %>
 		</br>
 			Answers(<%= feed.answers.count %>)
@@ -43,6 +53,6 @@
 				
 		<% end %>
 	<% end %>
-	
+	</br>	
 	</div>
 <% end %>

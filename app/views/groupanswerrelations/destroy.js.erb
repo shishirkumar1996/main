@@ -1,0 +1,1 @@
+$('#upvoteanswer_<%= @answer.id %>').html('<%= escape_javascript(render(:partial=>'groupanswers/upvote',:object=> @answer,:as=>:groupanswer)) %>');

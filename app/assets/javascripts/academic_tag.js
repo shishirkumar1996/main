@@ -14,7 +14,9 @@ return dat;
 }
 
 
-function academic_token_function(){
+//function academic_token_function(){
+$(document).on('turbolinks:load',function(){	
+$('#academicmodal-window').on('show.bs.modal',function(){
 	$("#academic_tokens").select2({
 		multiple: true,
 		placeholder: "select your academics",
@@ -59,4 +61,5 @@ var value = e.choice.id;
 $.post(address,{academic: value});
 })
 .select2('val',[]);
-		}
+		});
+	});
