@@ -7,8 +7,6 @@ aria-labelledby  = "myModalLabel" aria-hidden= "true"></div>
 
 <% if @user.image? %>
 		<%= link_to(image_tag(@user.image.profile.url),user_path(@user),:class => "profile_pic" )%>
-		<% elsif !@user.provider.nil? %>
-		<%= link_to(image_tag("http://graph.facebook.com/#{@user.uid}/picture?type=large")) %>
 		<% else %>
 		<%= link_to(image_tag('dummies/medium.png'),user_path(@user)) %>
 		<% end %>

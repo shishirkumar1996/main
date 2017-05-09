@@ -7,10 +7,15 @@ padding: 1%;
 
 .feed_container{
 	border-top: 1px solid;
+	padding-left: 2%;
+	padding-right: 2%;
+	font-weight: lighter;
 }
 .domain_container
 {
 font-size: 16px;
+background-color: antiquewhite;
+font-weight: lighter;
 }
 
 .title_container{
@@ -21,13 +26,19 @@ font-size: 16px;
 .description_container{
 	font-size: 16px;
 	width: 100%;
-	padding: 0%;
+	border-bottom: 1px groove;
+	color: grey;
+	padding-left: 1%;
+	padding-right: 1%;
+	padding-bottom: 2%;
+	padding-top: 2%;
+	font-weight: lighter;
 }
 
 
-.asked_container{
+.feed_created_at{
 font-size: 12px;
-
+font-weight: lighter;
 }
 
 #group_name{
@@ -38,4 +49,49 @@ border-bottom: 1px solid;
 .group_names{
 
 font-size: 14px;
+}
+.answer_tag{
+color: darkslategrey;
+}
+
+.answers_tag{
+
+border-top: 1px groove;
+}
+
+.answer_container{
+border-top: 1px groove;
+padding-left: 2%;
+padding-right: 2%;
+}
+.answer_created_at{
+color: grey;
+}
+
+.answer_body{
+padding-left: 3%;
+padding-right: 3%;
+font-family: arial;
+/* font-weight: lighter;  */
+font-size: 14px;
+}
+
+.article_body_container{
+
+font-size: 14px;
+}
+
+.downvote_answer{
+
+}
+
+.upvote_answer{
+}
+
+
+.social_share_tag{
+padding-top: 1%;
+}
+.category{
+padding-bottom: 1%;
 }

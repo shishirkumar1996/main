@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :answer_bookmark_relations
   resources :question_bookmark_relations ,only: [:create,:destroy]
   resources :article_bookmark_relations ,only: [:create,:destroy]
   resources :badanswerrelations  ,only: [:create,:destroy]
@@ -54,7 +55,8 @@ Rails.application.routes.draw do
  post '/signup', to: 'users#create'
  delete '/logout', to: 'sessions#destroy'
  
- get 'auth/:provider/callback', to: 'sessions#create_facebook'
+ get 'auth/facebook/callback', to: 'sessions#create_facebook'
+ get 'auth/google_oauth2/callback',to: 'sessions#create_google'
  get 'auth/failure', to: redirect('/')
  
  get '/write', to: "users#write"

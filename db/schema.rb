@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170506105433) do
+ActiveRecord::Schema.define(version: 20170509112844) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,16 @@ ActiveRecord::Schema.define(version: 20170506105433) do
     t.index ["student_id"], name: "index_academics_on_student_id", using: :btree
     t.index ["university_id", "student_id"], name: "index_academics_on_university_id_and_student_id", unique: true, using: :btree
     t.index ["university_id"], name: "index_academics_on_university_id", using: :btree
+  end
+
+  create_table "answer_bookmark_relations", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "answer_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["answer_id"], name: "index_answer_bookmark_relations_on_answer_id", using: :btree
+    t.index ["user_id", "answer_id"], name: "index_answer_bookmark_relations_on_user_id_and_answer_id", unique: true, using: :btree
+    t.index ["user_id"], name: "index_answer_bookmark_relations_on_user_id", using: :btree
   end
 
   create_table "answerrelations", force: :cascade do |t|

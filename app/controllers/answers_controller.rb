@@ -26,7 +26,7 @@ class AnswersController < ApplicationController
 
 	def collection
 		@answer = Answer.find(params[:id])
-		@replies = @answer.replies.map{|reply| {:id=> reply.id,:body=>reply.body,:created_at=>reply.created_at}}
+		@replies = @answer.replies.map{|reply| {:id=> reply.id,:body=>reply.body,:created_at=>reply.created_at.strftime("%d %b,%Y")}}
 		respond_to do |format|
 			format.json {
 			render :json => @replies }

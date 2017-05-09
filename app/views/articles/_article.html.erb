@@ -1,9 +1,32 @@
+<%= link_to(image_tag(article.user.image.mini.url),user_path(article.user) )%>
+<%= link_to article.user.name,user_path(article.user) %>
+<br>
 <li class = 'list-group-item'>
 
-<p><%= article.body.html_safe %></p>
+<div class = "article_body_container">
+<%= article.body.html_safe %>
+</div>
+<br>
 	<% if current_user != article.user %>
-	<br>
-		<div id = "article_bookmark_<%= article.id %>">
+	<div class= "row">
+		<div id = "upvotearticle_<%= article.id %>" class = "col-md-2" > 
+		<% if(current_user.like_article?(article)) %>
+			<%= render :partial=>'articles/upvoted',:locals=>{:article => article} %>
+		<% else %>
+			<%= render :partial=>'articles/upvote',:locals=>{:article => article} %>
+		<% end %>
+		</div>
+		<div id = "downvotearticle_<%= article.id %>" class = "col-md-2" >
+			<% if(current_user.dislike_article?(article)) %>
+				<%= render :partial=>'articles/downvoted',:locals=>{:article => article} %>
+			<% else %>
+				<%= render :partial=>'articles/downvote',:locals=>{:article => article} %>
+			<% end %>
+		</div>
+		<div class = "col-md-4 social_share_tag">
+			<%= social_share_button_tag(article.title) %>
+		</div>
+		<div id = "article_bookmark_<%= article.id %>" class = "col-md-2">
 					<% if current_user.bookmark_article?(article) %>
 						<%= render(:partial=>'articles/unbookmark',:locals=>{
 						:article => article}) %>
@@ -12,20 +35,6 @@
 						{:article => article}) %>
 					<% end %>
 		</div>
-					</br>	
-		<div id = "upvotearticle_<%= article.id %>" > 
-		<% if(current_user.like_article?(article)) %>
-			<%= render :partial=>'articles/upvoted',:locals=>{:article => article} %>
-		<% else %>
-			<%= render :partial=>'articles/upvote',:locals=>{:article => article} %>
-		<% end %>
-		</div>
-		<div id = "downvotearticle_<%= article.id %>" >
-			<% if(current_user.dislike_article?(article)) %>
-				<%= render :partial=>'articles/downvoted',:locals=>{:article => article} %>
-			<% else %>
-				<%= render :partial=>'articles/downvote',:locals=>{:article => article} %>
-			<% end %>
 		</div>
 	<% else %>			
 	<%= link_to "Edit", edit_article_path(article) %>
@@ -37,7 +46,7 @@
 		<section class = 'articlereply' id = "articlereply_<%= article.id %>">
 		<% if article.articlereplies.any? %>
 			<ul class = "articlereplies list-group" id = "articlereplies_<%= article.id %>">
-				<%= render article.articlereplies %>
+				<%# render article.articlereplies %>
 			</ul>
 		<% end %>
 		<%= form_for([article,article.articlereplies.build],remote: true) do |f| %>

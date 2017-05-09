@@ -76,7 +76,7 @@ class ArticlesController < ApplicationController
   def collection
   	@article = Article.find(params[:id])
   	@articlereplies = @article.articlereplies.map{|reply| {:id => reply.id,
-  	:body=>reply.body,:created_at=>reply.created_at}}
+  	:body=>reply.body,:created_at=>reply.created_at.strftime("%d %b,%Y")}}
   		respond_to do |format|
   			format.json{
   				render :json => @articlereplies }

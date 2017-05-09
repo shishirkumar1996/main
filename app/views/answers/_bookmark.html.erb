@@ -1,0 +1,6 @@
+<%= form_for(current_user.answer_bookmark_relations.build,remote: true) do |f| %>
+	<div><%= hidden_field_tag :answer_id,answer.id %></div>
+	<%# f.submit "Bookmark",class: 'btn btn-primary' %>
+	<button type = "submit" class = "btn btn-primary">
+		<span class = "glyphicon glyphicon-bookmark"></span>Bookmark</button>
+<% end %>

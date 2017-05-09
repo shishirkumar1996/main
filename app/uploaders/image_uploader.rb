@@ -8,6 +8,10 @@ class ImageUploader < CarrierWave::Uploader::Base
   storage :file
   # storage :fog
 	
+	version :mini do
+		process :resize_to_fill =>[24,24]
+	end	
+		
 	version :thumb do
 		process :resize_to_fill =>[40,40]
 	end

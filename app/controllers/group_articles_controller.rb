@@ -48,7 +48,7 @@ before_action :logged_in_user,only: [:create,:new]
 			
 		def collection
 			@grouparticle = GroupArticle.find(params[:id])
-			@grouparticlereplies = @grouparticle.grouparticlereplies.map{|reply| {:id => reply.id,:body=>reply.body,:created_at=>reply.created_at}}
+			@grouparticlereplies = @grouparticle.grouparticlereplies.map{|reply| {:id => reply.id,:body=>reply.body,:created_at=>reply.created_at.strftime("%d %b,%Y")}}
 			respond_to do |format|
 				format.json{
 					render :json => @grouparticlereplies }

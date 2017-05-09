@@ -1,22 +1,43 @@
-<li class= 'list-group-item'>
+<div class = "answer_container list-group-item">
+	<div class = "answer_user_name">
+	<%= answer.user.name %>
+	</div>
+	<div class = "answer_created_at">
+	<%= answer.created_at.strftime("%d %b,%Y") %>
+	</div>
+	<br>
+	<br>
+	<div class = "answer_body">
  	<%= answer.body.html_safe %>
- 	<br>
+ 	</div>
+ 	<br><br><br>
 	<% if current_user!=answer.user %>
-		<div id = "upvoteanswer_<%= answer.id %>" > 
+		<div class = "row">
+		<div id = "upvoteanswer_<%= answer.id %>" class = "col-md-2 upvote_answer" > 
 		<% if current_user.like_answer?(answer) %>
 			<%= render :partial=>'answers/upvoted',:locals=>{:answer => answer} %>
 		<% else %>
 			<%= render :partial=>'answers/upvote',:locals=>{:answer => answer} %>
 		<% end %>
 		</div>
-		<div id = "downvoteanswer_<%= answer.id %>" >
+		<div id = "downvoteanswer_<%= answer.id %>" class = "col-md-2 downvote_answer" >
 			<% if current_user.dislike_answer?(answer) %>
 				<%= render :partial=>'answers/downvoted',:locals=>{:answer => answer } %>
 			<% else %>
 				<%= render :partial=>'answers/downvote',:locals=>{:answer => answer } %>
 			<% end %>
 		</div>
+		<div class = "col-md-4 social_share_tag">
 		<%= social_share_button_tag(answer.question.title) %>
+		</div>
+		<div  id = "answer_bookmark_<%= answer.id %>" class = "col-md-2">
+			<% if current_user.bookmark_answer?(answer) %>
+				<%= render(:partial=>'answers/unbookmark',:locals=>{:answer=> answer}) %>
+			<% else %>
+				<%= render(:partial=>'answers/bookmark',:locals=>{:answer=> answer}) %>
+			<% end %>
+		</div>
+		</div>
 	<% else %>		
 		<%= link_to "Edit", edit_question_answer_path(answer.question,answer) %>
 	<% end %>
@@ -41,5 +62,5 @@
 	</br>
 	
 	
-</li>
+</div>
 	
