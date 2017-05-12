@@ -2,7 +2,7 @@
 <div class = "col-md-2">
 	<div id = "group_name">My groups</div><br>
 	<% current_user.groups.each do |group| %>
-		<strong class = "group_names"><%= link_to group.name ,group_path(group.id) %><strong>
+		<strong class = "group_names"><%= link_to group.name ,group_path(group.id) %></strong>
 		</br>
 		<br>
 	<% end %>
@@ -11,4 +11,6 @@
 	
 	<%= render :partial=>'layouts/feed' %>
 </div>
-
+<script type="text/javascript">
+		CKEDITOR.config.height = '50px';
+</script>

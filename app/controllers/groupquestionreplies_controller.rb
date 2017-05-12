@@ -23,6 +23,7 @@ class GroupquestionrepliesController < ApplicationController
 		@id = "groupanswerreplies_#{params[:groupanswer_id]}"
 		@field = "groupanswerfield_#{params[:groupanswer_id]}"
 		@groupanswerreply.save!
+		@value = "<li>"+ @groupanswerreply.body+"<br>"+@groupanswerreply.created_at.strftime("%d %b,%Y")+"</li>"+"<br>"
 		respond_to do |format|
 			format.html
 			format.js

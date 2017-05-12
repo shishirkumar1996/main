@@ -1,4 +1,4 @@
-<li class = "list-group-item">
-	<%= reply.body.html_safe %>
-	<%= reply.created_at %>
+<li>
+	<%= reply.body.html_safe %><br>
+	<%= reply.created_at.strftime("%d %b,%Y") %>
 </li>

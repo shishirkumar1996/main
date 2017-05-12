@@ -124,7 +124,7 @@ class DomainsController < ApplicationController
 		@domain = Domain.find(params[:id])
 		@id = params[:superset]
 		@superset = Domain.find(@id)
-		if(@domain!=@superset && !@domain.subsets.include?(@superset))
+		if(!(@domain==@superset)&& !@domain.subsets.include?(@superset))
 		@domain.supersets << @superset
 		@superset.subsets << @domains
 		end

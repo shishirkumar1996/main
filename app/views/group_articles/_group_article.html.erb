@@ -24,12 +24,11 @@
 		<%= link_to 'Replies','#',class: 'grouparticlereply_button',id: "grouparticle_#{group_article.id}",remote: true,'data-groupid'=>group_article.group.id %>
 		</br>
 		<section class = 'grouparticlereply' id = 'grouparticlereply_<%= group_article.id %>'>
-			<% if group_article.grouparticlereplies.any? %>
-				<ul class = "grouparticlereplies list-group" id = "grouparticlereplies_<%= group_article.id %>" >
+				<ul class = "replies_area grouparticlereplies list-group" id = "grouparticlereplies_<%= group_article.id %>" >
 					<%= render group_article.grouparticlereplies %>
 				</ul>
-			<% end %>
-			<%= form_for([group_article.group,group_article,group_article.grouparticlereplies.build],remote: true) do |f| %>
+			<%= form_for([group_article.group,group_article,
+			group_article.grouparticlereplies.build],remote: true) do |f| %>
 				<%= f.cktext_area :body, id: "grouparticlefield_#{group_article.id}",rows: 3,:ckeditor => {:toolbar =>'body'} %>
 				<div>
 					<%= f.submit 'Reply' %>

@@ -1,5 +1,10 @@
 <div class = "answer_container list-group-item">
 	<div class = "answer_user_name">
+	<% if answer.user.image? %>
+		<%= link_to(image_tag(answer.user.image.mini.url),user_path(answer.user),:class => "profile_pic" )%>
+		<% else %>
+		<%= link_to(image_tag('dummies/mini.png'),user_path(answer.user)) %>
+<% end %>
 	<%= answer.user.name %>
 	</div>
 	<div class = "answer_created_at">
@@ -45,19 +50,17 @@
  	<%= link_to "Replies",'#', class: 'reply_button', id: "answer_#{answer.id}",remote: true,"data-questionid"=> answer.question.id %>
  	<br>
  	<section class='reply' id= "reply_<%= answer.id %>">
-	<% if answer.replies.any? %>
-  	<ul  class = "replies list-group" id = "replies_<%= answer.id %>">
+  	<ul  class = "replies_area replies list-group" id = "replies_<%= answer.id %>">
  			<%# render answer.replies %>
 		</ul>			
-	<% end %>
 		</br>
 		<%= form_for([answer.question,answer,answer.replies.build],remote: true) do |f| %>
-			<%= f.cktext_area :body,id: "field_#{answer.id}", rows: 3,:ckeditor =>{:toolbar => 'body'}%>
+			<%= f.cktext_area :body,class: "reply_field",id: "field_#{answer.id}",rows: 1,:ckeditor =>{:toolbar => 'body'}%>
 			<div><%# hidden_field_tag :answer_id, answer.id %></div>
 			<div>
 			<%= f.submit 'Reply'  %>
-			</div>
 	<% end %>
+	</div>
 	</section>
 	</br>
 	

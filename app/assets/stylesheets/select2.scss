@@ -1,4 +1,101 @@
-#select2-drop{
-	width: 60%;
-	position: fixed;
+.select2-container{
+	width: 50%;
+	position: relative;
+	z-index: 1000000;
+}
+.select2_test{
+position: absolute;
+z-index: 1;
+width: 100%;
+}
+
+.select2-choices{
+	list-style-type: none;
+	margin-bottom: 0%;
+	
 	}
+
+.select2-results{
+visibility: hidden;
+background-color: white;
+list-style-type: none;
+padding-left: 0%;
+padding-right: 0%;
+padding-top: 1%;
+position: relative;
+	z-index: 99999;
+	position-top: 200px;  
+}
+
+.select2-hidden-accessible{
+visibility: hidden;
+display: none;
+}
+
+.select2-selected{
+visibility: hidden;
+display: none;
+}
+.select2-result{
+border: 1px lightgrey solid;
+}
+
+.select2-input{
+/*width: 100% !important; */
+outline: none !important;
+border-color: transparent !important;
+}
+
+.select2-offscreen{
+border: 0 !important;
+clip: rect(0 0 0 0) !important;
+height: 0 !important;
+margin: 0 !important;
+overflow: hidden;
+padding: 0 !important;
+absolute: 0 !important;
+width: 0 !important;
+}
+
+.select2-search-choice>div{
+float: left;
+}
+.select2-result-label{
+}
+
+.select2-search-field{
+	border: 1px solid;
+	min-height: 60px;
+}
+
+.select2-search-choice{
+margin: 0  !important;
+display: inline-block;
+float: left;
+border: 1px grey solid;
+position: relative;
+margin-left: 4px !important;
+margin-top: 6px !important;
+}
+.select2-input:focus{
+online: none;
+}
+
+
+.select2-search-choice-close {
+		float: left;  
+    display: list-item;
+    width: 12px;
+    height: 13px;
+    position: relative;
+		margin-top: 0 !important; 
+    font-size: 2px;
+    background: url('select2.png') right top no-repeat;
+}
+
+.select2-container{
+float: left;
+margin-right: 2%;
+}
+
+ 

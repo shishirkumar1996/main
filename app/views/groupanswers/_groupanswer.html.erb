@@ -24,10 +24,8 @@
 	<%= link_to "Replies", '#', class: 'groupanswerreply_button', id: "groupanswer_#{groupanswer.id}",remote: true, 'data-questionid'=> groupanswer.group_question.id,'data-groupid'=>groupanswer.group_question.group.id %>
 		<br>
 		<section class = 'groupanswerreply' id = 'groupanswerreply_<%= groupanswer.id %>'>
-		<% if groupanswer.groupquestionreplies.any? %>
-			<ul class= "groupanswerreplies list-group" id = "groupanswerreplies_<%= groupanswer.id %>">
+			<ul class= "replies_area groupanswerreplies list-group" id = "groupanswerreplies_<%= groupanswer.id %>">
 			</ul>
-		<% end %>
 		</br>
 		
 		<%= form_for([groupanswer.group_question.group,groupanswer.group_question,

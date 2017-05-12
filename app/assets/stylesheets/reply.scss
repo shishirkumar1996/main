@@ -1,8 +1,22 @@
 .reply{
+display:  none;
+}
+
+.articlereply{
+display: none;
+
+}
+
+
+.groupanswerreply{
 display: none;
 }
 
-.replies{
-	height: 300px;
-	overflow-y: auto;
+.grouparticlereply{
+display: none;
+}
+
+.replies_area{
+max-height: 200px;
+overflow-y: auto;
 }

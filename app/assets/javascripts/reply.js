@@ -12,10 +12,10 @@ $(document).on('turbolinks:load',function(){
 		if(!$('#'+reply_id).is(":visible"))
 		{
 			$('#'+reply_id).show();
-		var replies_id = 'replies_'+id;
+			var replies_id = 'replies_'+id;
 			$.getJSON(address,function(data){
 			$.each(data,function(index,element){
-				$("#"+replies_id).append("<li>"+element.body+" "+element.created_at+"</li>");
+				$("#"+replies_id).append("<li>"+element.body+" "+'<br>'+element.created_at+"</li>");
 	});
 	});
 		}

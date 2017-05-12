@@ -1,12 +1,14 @@
-<div class = "col-md-6 col-md-offset-2">
+<div>
 
 	<%= form_for @question do |f| %>
 		<%= render 'common/error_messages', object: f.object %>
 	<div>
 		<%# select_tag 'domain',options_for_select( @domains.collect{|g| [g.name, g.id]}) %>
 		<%# f.collection_select :domain, Domain.order(:name),:id,:name %>
-		<%= text_field_tag :domain_tokens,nil,data: {:url =>domains_path(:format=>:json)}, :style=>"width: 30%" %>
+		<%= hidden_field_tag :domain_tokens,nil,data: {:url =>domains_path(:format=>:json)}, :style=>"width: 100%" %>
 	</div>
+		<div class="select2_test">
+		<br><br><br><br>
 	<%= f.label :title %>
 	<div>
 	<%= f.text_field :title %>
@@ -22,9 +24,64 @@
 	<div>
 		<%= f.submit %>
 	</div>
+	</div>
 	<% end %>
 	</div>
 	
 <script type = "text/javascript">
-	window.onload = domain_token_function;
+	//window.onload = domain_token_function;
+	$('body').css('min-height','700px');
+	
+	$('body').on('click',function(){
+		$('.select2-results').css('visibility','hidden');
+	});
+ 	
+ 	$("#domain_tokens").select2({
+		multiple: true,
+		placeholder: "select the domains",
+		ajax:{
+			data: function(term,page){
+				return{
+					term: term,
+					page: page
+				};
+			},
+			dataType: "json",
+			quietMillis: 100,
+			results: function(data,page){
+				return {results: data
+			}
+			},
+			url: $("#domain_tokens").data('url')
+			},
+			 initSelection: function(item,callback){
+  		return;
+  	//var id,text;
+  	//id = item.val();
+  	//text = item.data('prepopulate');
+  	//alert(id);
+  	//alert(text);
+  //	var address  = $(item).attr('data-prepopulate');
+  //	var data = other_function(item,address);
+  		//		return callback(data);
+  				},
+			createSearchChoice: function(term,data){
+				if ($(data).filter(function(){
+					return this.text.localeCompare(term)===0;
+					}).length===0){
+					//return false;//
+					return {
+				 id: "<<<" + term+ ">>>",
+				 text: term
+			  };
+				}
+			}
+		})
+		.on('select2-focus',function(e){
+$('.select2-results').css('visibility','visible');
+})
+		.select2('val',[]);
+			
+
+
 </script>

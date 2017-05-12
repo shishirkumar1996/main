@@ -1,15 +1,80 @@
 <%= render :partial => 'layouts/header' %>
+	<%= label_tag :try,"type the name of the users" %>
+		
+<div class = "according_to_select2">
 <%= form_tag add_group_path, :method=>:post do %>
-<div class = "row row-offset-2 row-md-4">
 	<%= hidden_field_tag :group,@group.id %>
-	<%= label_tag :user_tokens,"type the name of the users" %>
-	<%= text_field_tag :user_tokens,nil,class: 'something',:multiple=> "multiple","data-url" => users_path(:format =>  :json),:style=> "width: 30%","data-prepopulate" => prepopulate_group_path(@group,:format=>:json) %>
-</div>
-<div>
-<%= submit_tag 'Add members' %>
-</div>
+	<%= hidden_field_tag :user_tokens,nil,class: 'something select2 ajax ',:multiple=> "multiple","data-url" => users_path(:format =>  :json),:style=> "width: 60%","data-prepopulate" => prepopulate_group_path(@group,:format=>:json) %>
+<%= submit_tag 'Add members',id: 'submit' %>
 <% end %>
-<script type = "text/javascript">
-	window.onload = user_token_function;
+
+</div>
+
+<script  async type = "text/javascript">
+	//function user_token_function(){
+	$('body').css('min-height','700px');
+	
+	$('body').on('click',function(){
+		$('.select2-results').css('visibility','hidden');
+	});
+	
+
+$("#user_tokens").select2({
+  multiple: true,
+  tags: true,
+  dropdownCssClass: "bigdrop",
+  placeholder: "select an option",
+  //dataAdapter: CustomData,
+ 	ajax:{
+  data: function(term,page){
+  	return{
+  			term: term,
+  			page: page
+  		};
+  },
+  dataType: "json",
+  quietMillis: 100,
+  results: function(data,page) {
+  	return {results: data
+  }
+  },
+  url: $("#user_tokens").data('url')
+  },
+  initSelection: function(item,callback){
+  		return;
+  	//var id,text;
+  	//id = item.val();
+  	//text = item.data('prepopulate');
+  	//alert(id);
+  	//alert(text);
+  //	var address  = $(item).attr('data-prepopulate');
+  //	var data = other_function(item,address);
+  		//		return callback(data);
+  				},
+  createSearchChoice: function(term, data) {
+    if ($(data).filter(function() {
+      return this.text.localeCompare(term) === 0;
+    }).length === 0) {
+      return false;//{
+     
+     //   id: "<<<" + term + ">>>",
+       // text: term
+     // };
+    }
+  }
+})
+//.on('select2-selecting',function(e){
+//alert(e.choice.text);
+//alert(e.val);
+//})
+.on('select2-focus',function(e){
+$('.select2-results').css('visibility','visible');
+})
+.select2('val',[]);
+
+
+//}
+//});
+
 </script>
 

@@ -24,6 +24,7 @@ class SessionsController < ApplicationController
 			redirect_to root_url
 		else
 			log_in(user)
+			remember(user)
 			redirect_to root_url
 		end
 	end
@@ -37,6 +38,7 @@ class SessionsController < ApplicationController
 		else
 	#	session[:user_id] = user.id
 			log_in(user)
+			remember(user)
 			redirect_to root_url
 		end
 	end

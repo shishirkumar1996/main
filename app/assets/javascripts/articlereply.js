@@ -12,9 +12,16 @@ $(document).on('turbolinks:load',function(){
 				$('#'+reply_id).show();
 				var replies_id = 'articlereplies_'+id;
 				$.getJSON(address,function(data){
+					if(data.length==0)
+						{
+//						$('#'+replies_id).append("no replies");
+						}
+					else
+					{
 					$.each(data,function(index,element){
-						$('#'+replies_id).append('<li>'+element.body+' '+element.created_at+'</li>');
+						$('#'+replies_id).append('<li>'+element.body+' '+'<br>'+element.created_at+'</li>');
 						});
+						}
 						});
 					}
 				});
