@@ -1,2 +1,3 @@
 asset 'bootstrap-sass-official'
 asset 'select2','~>3.5.2'
+asset 'jquery-migrate'

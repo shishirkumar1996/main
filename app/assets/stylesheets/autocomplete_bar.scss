@@ -4,6 +4,8 @@ z-index: 10000;
 white-space: nowrap;
 text-align: left;
 overflow-x: hidden;
+max-height: 400px;
+overflow-y: auto;
 }
 .ui-menu-item{
 border: 1px solid lightgrey;
