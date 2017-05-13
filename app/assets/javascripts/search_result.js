@@ -1,10 +1,10 @@
 $(document).on('turbolinks:load', function() {
 $("#term").on("focus", function() {
 var e = document.getElementById("options");
+	
 	$("#term").autocomplete({
 	//source: ['foo','food','for','something']
 	//source: "/search_products",      this is the earlier function
-	
 	
 	source: function(request,response){
 		$.ajax({

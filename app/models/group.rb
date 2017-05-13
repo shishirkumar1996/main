@@ -1,4 +1,6 @@
 class Group < ApplicationRecord
+
+	mount_uploader :image, GroupimageUploader
 	has_and_belongs_to_many :users
 	has_many :group_articles,dependent: :destroy
 	has_many  :group_questions,dependent: :destroy

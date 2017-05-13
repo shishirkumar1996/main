@@ -1,6 +1,7 @@
 class Domain < ApplicationRecord
 
 searchkick
+mount_uploader :image, DomainimageUploader
 validates :name, presence: :true, uniqueness: {case_sensitive: false}
 
 has_many :articles

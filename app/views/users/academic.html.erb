@@ -1,0 +1,70 @@
+<%= render :partial=>'layouts/header' %>
+
+<button onclick = "goback()">Back</button>
+
+<div>
+Academics
+</br>
+<%= hidden_field_tag :academic_tokens,nil,'data-url'=>domains_path(:format=>:json),"data-add"=>addacademic_user_path(:format=>:json),"data-remove"=>removeacademic_user_path(:format=>:json),"data-prepopulate"=>prepopulateacademic_user_path(current_user,:format=>:json),:style=>"width: 60%" %>
+
+	<%= link_to 'Done',user_path(current_user) %>
+</div>
+
+
+<script>
+	$('body').css('min-height','700px');
+	
+	$('body').on('click',function(){
+		$('.select2-results').css('visibility','hidden');
+	});
+
+
+	$("#academic_tokens").select2({
+		multiple: true,
+		placeholder: "select your academics",
+		ajax: {
+		data: function(term,page){
+			return{
+				term: term,
+				page: page
+			};
+		},
+		dataType: "json",
+		quietMillis: 100,
+		results: function(data,page){
+			return{results: data
+		}
+		},
+		url: $("#academic_tokens").data('url')
+		},
+		initSelection: function(item,callback){
+  	var address  = $(item).attr('data-prepopulate');
+  	var data = other_function2(item,address);
+  				return callback(data);
+  				},
+		createSearchChoice: function(term,data){
+			if($(data).filter(function(){
+			return this.text.localeCompare(term)===0;
+			}).length===0){
+					//return false;//
+					return {
+				 id: "<<<" + term+ ">>>",
+				 text: term
+			  };
+				}
+			}
+		}).on('select2-selecting',function(e){
+var address  = $('#academic_tokens').attr('data-add');
+var value = e.choice.id;
+$.post(address,{academic: value});
+}).on('select2-removing',function(e){
+var address  = $('#academic_tokens').attr('data-remove');
+var value = e.choice.id;
+$.post(address,{academic: value});
+})
+.on('select2-focus',function(e){
+$('.select2-results').css('visibility','visible');
+})
+.select2('val',[]);
+
+</script>

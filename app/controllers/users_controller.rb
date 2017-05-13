@@ -11,10 +11,13 @@ class UsersController < ApplicationController
 			}
 		end
 	end
+	
+	
 	def academic
 		@user = User.find(params[:id])
 		respond_to do |format|
-			format.js{render :layout=>false,content_type: 'text/javascript'}
+#			format.js{render :layout=>false,content_type: 'text/javascript'}
+			format.html
 		end
 	end
 	
@@ -54,7 +57,8 @@ class UsersController < ApplicationController
 	def interest
 		@user = User.find(params[:id])
 		respond_to do |format|
-			format.js{render :layout=>false,content_type: 'text/javascript'}
+#			format.js{render :layout=>false,content_type: 'text/javascript'}
+			format.html
 		end
 	end
 	
@@ -92,10 +96,14 @@ class UsersController < ApplicationController
 		current_user.relations.delete(@interest)
 	end
 	
+	def edit_image
+	end
+	
+	
 	def image
 		current_user.image = params[:image]
 		current_user.save!
-		redirect_to current_user
+		redirect_to edit_image_user_path(current_user)
 	end
 	
 	def following

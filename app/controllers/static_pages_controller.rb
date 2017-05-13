@@ -9,7 +9,7 @@ class StaticPagesController < ApplicationController
 	
 	def check_existing
 		respond_to do |format|
-		format.js {render :layout=> false,content_type: 'text/javascript'}
+		#format.js {render :layout=> false,content_type: 'text/javascript'}
 		format.html
 		end
 	end

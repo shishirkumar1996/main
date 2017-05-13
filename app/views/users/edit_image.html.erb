@@ -1,0 +1,17 @@
+<%= render :partial=> 'layouts/header' %>
+
+<div class="col-md-4">
+<%= link_to 'Back',user_path(current_user) %>
+</div>
+<div class = "col-md-4">
+<% if current_user.image? %>
+		<%= image_tag current_user.image.profile.url , class: "profile_pic" %>
+		<% else %>
+		<%= image_tag 'dummies/medium.png',:class=> "profile_pic" %>
+<% end %>
+
+<%= form_tag image_user_path(current_user), multipart: true do %>
+<%= file_field_tag :image, accept: 'image/jpeg , image/gif, image/png' %>
+<%= submit_tag %>
+<% end %>
+</div>

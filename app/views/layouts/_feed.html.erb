@@ -13,7 +13,7 @@
 	</div>
 	<div class = "title_container">
 		</br>
-	<strong><%= feed.title.html_safe %></strong>
+	<strong><%= link_to feed.title.html_safe,feed.class == Article ?article_path(feed) : question_path(feed),target: '_blank' %></strong>
 	<div class = "feed_created_at">
 	</br>
 	<%= feed.created_at.strftime("%d %b. %Y") %>

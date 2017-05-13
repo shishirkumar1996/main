@@ -37,8 +37,8 @@
 		</li>
 		<li><%# link_to  "Read" %></li>
 		<li>
-		<%= link_to "Ask",check_existing_question_path,{remote: true,'data-toggle'=>"modal",'data-target'=>'#modal-window'} %>
-		<%# link_to "Ask",new_question_path,id: 'ask' %></li>
+		<%# link_to "Ask",check_existing_question_path,{remote: true,'data-toggle'=>"modal",'data-target'=>'#modal-window'} %>
+		<%= link_to "Ask",check_existing_question_path,id: 'ask' %></li>
 		<li><%# link_to "Write",new_article_path, id: 'write' %>
 			<a href = '<%= new_article_path %>' id = 'write'>
 				<span class = "glyphicon glyphicon-pencil"></span>
@@ -80,4 +80,5 @@
 	</div>
 </header>
 
-	<%= render :partial => 'static_pages/modalcheck' %>
+
+	<%# render :partial => 'static_pages/modalcheck' %>

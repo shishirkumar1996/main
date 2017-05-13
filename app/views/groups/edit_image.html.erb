@@ -1,0 +1,17 @@
+<%= render :partial=> 'layouts/header' %>
+
+<div class="col-md-4">
+<%= link_to 'Back',group_path(@group) %>
+</div>
+<div class = "col-md-4">
+<% if @group.image? %>
+		<%= image_tag @group.image.profile.url , class: "profile_pic" %>
+		<% else %>
+		<%= image_tag 'dummies/medium.png',:class=> "profile_pic" %>
+<% end %>
+
+<%= form_tag image_group_path(@group), multipart: true do %>
+<%= file_field_tag :image, accept: 'image/jpeg , image/gif, image/png' %>
+<%= submit_tag %>
+<% end %>
+</div>

@@ -1,0 +1,128 @@
+EVALUATION : Stage 1
+(Checking entities, relationships, normalization, Codd's rules,
+general db design)
+___________________
+
+1) We have 36 tables as of this version(commit no. 20 on 12th May 2017).
+
+2) Academics must have a many-to-many relation with users.
+   It is basically a list of schools/universities.
+   Domains and academics have a one-to-one relation.
+   Users and academics have a many-to-many relation. Make this change.
+
+3) answer_bookmark_relations table is fine.
+
+4) answers table is fine.
+
+5) article_bookmark_relations table is fine.
+
+6) answerrelations table is fine.
+
+7) articlerelations table is fine.
+
+8) domains table is fine.
+
+9) replies table is fine.
+
+10) groups table is fine.
+
+11) groups_users table is fine.
+
+12) notifications table is fine.
+
+13) articles table is fine except a domain_id column which must be removed.
+
+14) relationships table is fine.
+
+15) question_bookmark_relations table is fine.
+
+16) interests table : fine for now(might change in the future like academics).
+
+17) questions table: fine except for domain_id column(must be deleted).
+
+18) badanswerrelations table is fine.
+
+19) badarticlerelations table is fine.
+
+20) badgroupanswerrelations table is fine.
+
+21) badgrouparticlerelations table is fine.
+
+22) groupquestionreplies table is fine.
+
+23) grouparticlereplies table is fine.
+
+24) domains_articles table is fine.
+
+25) domains_questions table is fine.
+
+26) groups_articles table is fine.
+
+27) groups_questions table is fine.
+
+28) users : everything fine, we just have to implement activation and
+    add those corresponding columns.
+
+29) I personally feel that the db has been normalized to 3rd normal form.
+    It may also satisfy higher normal form conditions although that is
+    irrelevant for now.
+
+30) The following models have been verified and are fine:
+    notification, interest, answer_bookmark_relation, answerrelation,
+    articlerelation, grouparticlerelation, relationship, badanswerrelation
+    question_bookmark_relation, article_bookmark_relation, articlereply,
+    reply, grouparticlereply, articlereply, groupquestionreply, badarticlerelation,
+    groupanswerrelation, badgroupanswerrelation, badgrouparticlerelation,
+    group, groupanswer, group_article, article, answer, question, domain,
+    domains_article, domains_question, associated_set, user.
+
+31) Almost everything is fine as of now. This is what I feel. If we encounter
+    errors, we can fix on the spot although I believe the design is perfect,
+    except for some very minor things as listed below. There is a lot of code,
+    so I may have missed some errors/mistakes but we can test everything
+    rigorously using unit/model tests later on.
+
+Suggestions:
+____________
+
+1) Academics must have a many-to-many relation with users.
+   It is basically a list of schools/universities which can also be searched.
+   Domains and academics have a one-to-one relation.
+   Users and academics have a many-to-many relation.
+   This can be accomplished using has_many through.
+   So, we have to rollback the existing migration/design.
+   Then, we delete the existing relations in the User and Domain models
+   ONLY WITH RESPECT TO Academic. Then, we implement a new has_many through
+   between Academic and User models and also a one-to-one relation between
+   Academic and Domain models. Basically, Academic belongs_to Domain.
+   Domain has_one Academic (Verify this pls).
+
+2) articles table is fine except a domain_id column which must be removed.
+
+3) questions table is fine except a domain_id column which must be removed.
+
+4) There exists only one has_and_belongs_to_many association.
+   This is between users and groups. I feel it must be changed to has_many
+   through.
+
+5) Model class names must be in camelcase, so that the corresponding
+   file names have proper underscores.
+
+6) groupquestionreply must be groupanswerreply.
+
+
+Next stage:
+____________
+
+1) Checking for constraints and validations.
+
+2) Checking indices.
+
+3) Few of the files have no originals. They must be checked. They might have
+   already influenced the migrations.
+
+4) Generally checking all the migrations to ensure everything is fine
+   and all the required attributes are there and that there are no other
+   attributes.
+
+5) More to follow.

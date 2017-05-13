@@ -142,6 +142,19 @@ class DomainsController < ApplicationController
 	end
 	
 	
+	def edit_image
+		@domain = Domain.find(params[:id])
+	end
+	
+	
+	def image
+		@domain = Domain.find(params[:id])
+		@domain.image = params[:image]
+		@domain.save!
+		redirect_to edit_image_domain_path(@domain)
+	end
+	
+	
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_domain

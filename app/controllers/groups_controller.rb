@@ -86,12 +86,20 @@ class GroupsController < ApplicationController
   # DELETE /groups/1
   # DELETE /groups/1.json
   def destroy
-    @group.destroy
-    respond_to do |format|
-      format.html { redirect_to groups_url, notice: 'Group was successfully destroyed.' }
-      format.json { head :no_content }
-    end
   end
+
+	def edit_image
+		@group = Group.find(params[:id])
+	end
+	
+	
+	def image
+		@group = Group.find(params[:id])
+		@group.image = params[:image]
+		@group.save!
+		redirect_to edit_image_group_path(@group)
+	end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

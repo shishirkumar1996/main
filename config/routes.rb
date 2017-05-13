@@ -18,6 +18,8 @@ Rails.application.routes.draw do
   #resources :domains_questions
   resources :groups,only: [:show,:new,:create] do
   	member do
+  		get :edit_image
+			post :image
   		get :prepopulate
   		get :invite
   		post :add
@@ -64,6 +66,8 @@ Rails.application.routes.draw do
  	
 resources :domains do
 	member do
+		get :edit_image
+		post :image
 		get :manage
 		get :manage_subset
 		get :manage_superset
@@ -79,6 +83,7 @@ end
  
  resources :users do
 	member do
+		get :edit_image
 		post :image
 		get :prepopulateinterest
 		post :addinterest

@@ -1,0 +1,17 @@
+<%= render :partial=> 'layouts/header' %>
+
+<div class="col-md-4">
+<%= link_to 'Back',domain_path(@domain) %>
+</div>
+<div class = "col-md-4">
+<% if @domain.image? %>
+		<%= image_tag @domain.image.profile.url , class: "profile_pic" %>
+		<% else %>
+		<%= image_tag 'dummies/medium.png',:class=> "profile_pic" %>
+<% end %>
+
+<%= form_tag image_domain_path(@domain), multipart: true do %>
+<%= file_field_tag :image, accept: 'image/jpeg , image/gif, image/png' %>
+<%= submit_tag %>
+<% end %>
+</div>

@@ -1,21 +1,14 @@
 <%= render :partial=>'layouts/header' %>
 
-<div id = "interestmodal-window" class = "modal fade" role = "dialog"  aria-labelledby = myModalLabel" aria-hidden= "true"></div>
-
-<div id = "academicmodal-window" class = "modal fade" role = "dialog"
-aria-labelledby  = "myModalLabel" aria-hidden= "true"></div>
-
 <% if @user.image? %>
 		<%= link_to(image_tag(@user.image.profile.url),user_path(@user),:class => "profile_pic" )%>
-		<% else %>
+<% else %>
 		<%= link_to(image_tag('dummies/medium.png'),user_path(@user)) %>
-		<% end %>
+<% end %>
 		<% if @user==current_user %>
-<%= form_tag image_user_path(current_user), multipart: true do %>
-<%= file_field_tag :image, accept: 'image/jpeg , image/gif, image/png' %>
-<%= submit_tag %>
-<% end %>
-<% end %>
+		<br>
+			<%= link_to 'Edit', edit_image_user_path(current_user) %>
+	<% end %>
 
 
 <h1><%= @user.name %></h1>
@@ -34,7 +27,8 @@ aria-labelledby  = "myModalLabel" aria-hidden= "true"></div>
 
 <h4>Interests</h4>
 <% if @user==current_user %>
-<%= link_to "Edit",interest_user_path(@user),{remote: true,'data-toggle'=> "modal", 'data-target'=> '#interestmodal-window'} %>
+<%# link_to "Edit",interest_user_path(@user),{remote: true,'data-toggle'=> "modal", 'data-target'=> '#interestmodal-window'} %>
+<%= link_to "Edit",interest_user_path(@user) %>
 <% end  %>
 </br>
 <% @user.relations.each do |relation| %>
@@ -44,7 +38,8 @@ aria-labelledby  = "myModalLabel" aria-hidden= "true"></div>
 
 <h4>Education</h4>
 <%if @user==current_user %>
-<%= link_to 'Edit',academic_user_path(current_user),{remote: true, 'data-toggle'=>"modal",'data-target'=>'#academicmodal-window'} %>
+<%# link_to 'Edit',academic_user_path(current_user),{remote: true, 'data-toggle'=>"modal",'data-target'=>'#academicmodal-window'} %>
+<%= link_to 'Edit',academic_user_path(current_user) %>
 <% end %>
 </br>
 <% @user.universities.each do |academic| %>

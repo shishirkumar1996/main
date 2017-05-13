@@ -1,5 +1,14 @@
 <%= render :partial=>'layouts/header' %>
 
+<% if @domain.image? %>
+		<%= link_to(image_tag(@domain.image.profile.url),group_path(@domain),:class => "profile_pic" )%>
+<% else %>
+		<%= link_to(image_tag('dummies/medium.png'),domain_path(@domain)) %>
+<% end %>
+	<br>
+	<%= link_to 'Edit', edit_image_domain_path(@domain) %>
+
+
 <h1><%= @domain.name %></h1>
 	<%= @domain.questions.count %> questions
 	<%= @domain.articles.count %> articles</h3>
