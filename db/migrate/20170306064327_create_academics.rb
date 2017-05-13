@@ -7,7 +7,7 @@ class CreateAcademics < ActiveRecord::Migration[5.0]
     end
     add_index :academics, :institute_id
     add_index :academics, :student_id
-    add_index :academics, [:university_id, :student_id],unique: true
+    add_index :academics, [:institute_id, :student_id],unique: true
    end
 
   def down

@@ -10,19 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170513143118) do
+ActiveRecord::Schema.define(version: 20170513150512) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "academics", force: :cascade do |t|
-    t.integer  "university_id"
+    t.integer  "institute_id"
     t.integer  "student_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["institute_id", "student_id"], name: "index_academics_on_institute_id_and_student_id", unique: true, using: :btree
+    t.index ["institute_id"], name: "index_academics_on_institute_id", using: :btree
     t.index ["student_id"], name: "index_academics_on_student_id", using: :btree
-    t.index ["university_id", "student_id"], name: "index_academics_on_university_id_and_student_id", unique: true, using: :btree
-    t.index ["university_id"], name: "index_academics_on_university_id", using: :btree
   end
 
   create_table "answer_bookmark_relations", force: :cascade do |t|
@@ -267,6 +267,15 @@ ActiveRecord::Schema.define(version: 20170513143118) do
     t.index ["user_id"], name: "index_groups_users_on_user_id", using: :btree
   end
 
+  create_table "institutes", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "domain_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["domain_id"], name: "index_institutes_on_domain_id", using: :btree
+    t.index ["name"], name: "index_institutes_on_name", using: :btree
+  end
+
   create_table "interests", force: :cascade do |t|
     t.integer  "person_id"
     t.integer  "interested_id"
@@ -363,6 +372,7 @@ ActiveRecord::Schema.define(version: 20170513143118) do
   add_foreign_key "grouparticlereplies", "users"
   add_foreign_key "groupquestionreplies", "groupanswers"
   add_foreign_key "groupquestionreplies", "users"
+  add_foreign_key "institutes", "domains"
   add_foreign_key "notifications", "users"
   add_foreign_key "questions", "users"
   add_foreign_key "replies", "answers"
