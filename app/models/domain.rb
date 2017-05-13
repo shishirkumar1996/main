@@ -4,6 +4,7 @@ searchkick
 mount_uploader :image, DomainimageUploader
 validates :name, presence: :true, uniqueness: {case_sensitive: false}
 
+has_one :institute
 has_many :articles
 has_many :questions
 has_many :bigger_sets, class_name: "AssociatedSet",foreign_key: "subset_id", dependent: :destroy
@@ -13,9 +14,6 @@ has_many :subsets, through: :smaller_sets,source: :subset
 has_many :interests, foreign_key: "interested_id",
 										 dependent: :destroy
 has_many :followers, through: :interests, source: :user
-has_many :academics, foreign_key: "university_id",
-											dependent: :destroy
-has_many :students, through: :academics, source: :user
 has_many :domains_questions, foreign_key: "domain_id",
 dependent: :destroy
 has_many :questions, through: :domains_questions
