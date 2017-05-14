@@ -260,11 +260,11 @@ ActiveRecord::Schema.define(version: 20170513150512) do
     t.string   "image"
   end
 
-  create_table "groups_users", id: false, force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "group_id"
-    t.index ["group_id"], name: "index_groups_users_on_group_id", using: :btree
-    t.index ["user_id"], name: "index_groups_users_on_user_id", using: :btree
+  create_table "groups_users", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "group_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "institutes", force: :cascade do |t|

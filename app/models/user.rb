@@ -72,12 +72,13 @@ source: :groupanswer
 	has_many :answers, dependent: :destroy
 	has_many :replies ,dependent: :destroy
 	has_many :articlereplies, dependent: :destroy
-	has_and_belongs_to_many :groups   , dependent: :nullify
 	has_many :interests, foreign_key: :person_id,dependent: :destroy
 
 	has_many :relations, through: :interests,source: :domain
 	has_many :academics, foreign_key: "student_id", dependent: :destroy
 	has_many :institutes, through: :academics, source: :institute
+	has_many :groups_users, foreign_key: :user_id, dependent: :destroy
+	has_many :groups, through: :groups_users, source: :group
 	has_many :active_relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
 	has_many :passive_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
 
