@@ -16,7 +16,12 @@ $(document).on('turbolinks:load',function(){
 			var replies_id= 'groupanswerreplies_'+id;
 			$.getJSON(address,function(data){
 				$.each(data,function(index,element){
-					$('#'+replies_id).append('<li>'+element.body+' '+element.created_at+'</li>');
+					$('#'+replies_id).append('<li><a class = \"profile_pic\"'+
+						"href = "+element.redirect_address+">"
+						+"<img src = "+element.image_address+"></a>"
+//			+"sadfsdfa</a>"
+						+"<strong>"+element.username+"</strong><br>"
+					+element.body+' '+'<br>'+element.created_at+'</li>');
 				});
 			});
 		}

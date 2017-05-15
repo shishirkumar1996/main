@@ -1,11 +1,13 @@
 <div class = "answer_container list-group-item">
 	<div class = "answer_user_name">
-	<% if answer.user.image? %>
-		<%= link_to(image_tag(answer.user.image.mini.url),user_path(answer.user),:class => "profile_pic" )%>
-		<% else %>
-		<%= link_to(image_tag('dummies/mini.png'),user_path(answer.user)) %>
+<% if answer.anonymous? %>
+		<%= link_to(image_tag('dummies/mini.png'),:class => "profile_pic") %>
+		Anonymous
+	<% else %>
+		<%= render(:partial => 'common/mini_pic_loader',:object=> answer.user,:as => :entity )%>
+		<%= answer.user.name %>	
 <% end %>
-	<%= answer.user.name %>
+	
 	</div>
 	<div class = "answer_created_at">
 	<%= answer.created_at.strftime("%d %b,%Y") %>

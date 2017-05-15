@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :institutes,only: [:index,:create,:destroy]
   resources :answer_bookmark_relations
   resources :question_bookmark_relations ,only: [:create,:destroy]
   resources :article_bookmark_relations ,only: [:create,:destroy]

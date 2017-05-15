@@ -12,7 +12,6 @@
 //
 //= require jquery
 //= require jquery-ui
-//= require turbolinks
 //= require jquery_ujs
 //= require jquery-migrate
 //= require bootstrap

@@ -5,13 +5,20 @@
 <div>
 Academics
 </br>
-<%= hidden_field_tag :academic_tokens,nil,'data-url'=>domains_path(:format=>:json),"data-add"=>addacademic_user_path(:format=>:json),"data-remove"=>removeacademic_user_path(:format=>:json),"data-prepopulate"=>prepopulateacademic_user_path(current_user,:format=>:json),:style=>"width: 60%" %>
+<%= hidden_field_tag :academic_tokens,nil,'data-url'=>institutes_path(:format=>:json),"data-add"=>addacademic_user_path(:format=>:json),"data-remove"=>removeacademic_user_path(:format=>:json),"data-prepopulate"=>prepopulateacademic_user_path(current_user,:format=>:json),:style=>"width: 60%" %>
 
 	<%= link_to 'Done',user_path(current_user) %>
 </div>
 
 
 <script>
+
+	function goback(){
+			window.history.back();
+	}
+	
+
+
 	$('body').css('min-height','700px');
 	
 	$('body').on('click',function(){
@@ -21,7 +28,7 @@ Academics
 
 	$("#academic_tokens").select2({
 		multiple: true,
-		placeholder: "select your academics",
+		placeholder: "select your institutes",
 		ajax: {
 		data: function(term,page){
 			return{

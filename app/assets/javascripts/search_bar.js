@@ -1,4 +1,4 @@
-$(document).on('turbolinks:load', function() {
+/*$(document).on('turbolinks:load', function() {
 
   $("#term").on("focus", function() {
   	$("#headerright").hide();
@@ -7,3 +7,4 @@ $(document).on('turbolinks:load', function() {
   	setTimeout(function(){$('#headerright').show();}, 400);
   });
 });
+*/

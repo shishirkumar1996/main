@@ -1,5 +1,5 @@
 class QuestionsController < ApplicationController
-  before_action :logged_in_user, only: [:create,:new]
+  before_action :logged_in_user, except: [:show]
 
   def index
     @questions = Question.all
@@ -12,6 +12,7 @@ class QuestionsController < ApplicationController
   def new
     @question = Question.new
     @domains = Domain.all
+    @questionterm = params[:questionterm]
   end
 
   def edit
@@ -58,6 +59,6 @@ class QuestionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def question_params
-      params.require(:question).permit(:title,:description,:anonymous,:domain_tokens)
+      params.require(:question).permit(:title,:description,:anonymous,:domain_tokens,:anonymous)
     end
 end

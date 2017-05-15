@@ -1,5 +1,5 @@
 class DomainsController < ApplicationController
- before_action :admin_user,only: [:create,:new]
+ before_action :logged_in_user,except: [:show]
 
   # GET /domains
   # GET /domains.json

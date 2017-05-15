@@ -1,5 +1,7 @@
 class ArticlerepliesController < ApplicationController
   before_action :set_articlereply, only: [:show, :edit, :update, :destroy]
+  
+  before_action :logged_in_user
 
   def index
     @articlereplies = Articlereply.all

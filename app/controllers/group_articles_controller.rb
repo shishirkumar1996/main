@@ -1,5 +1,5 @@
 class GroupArticlesController < ApplicationController
-before_action :logged_in_user,only: [:create,:new]
+before_action :logged_in_user
 
 	def index
 		@grouparticles = GroupArticle.all
@@ -48,7 +48,8 @@ before_action :logged_in_user,only: [:create,:new]
 			
 		def collection
 			@grouparticle = GroupArticle.find(params[:id])
-			@grouparticlereplies = @grouparticle.grouparticlereplies.map{|reply| {:id => reply.id,:body=>reply.body,:created_at=>reply.created_at.strftime("%d %b,%Y")}}
+			@grouparticlereplies = @grouparticle.grouparticlereplies.map{|reply| {:id => reply.id,
+  	:body=>reply.body,:created_at=>reply.created_at.strftime("%d %b,%Y"),:image_address => reply.user.image? ? reply.user.image.mini.url : 'dummies/mini.png',:username => reply.user.name,:redirect_address => user_path(reply.user)}}
 			respond_to do |format|
 				format.json{
 					render :json => @grouparticlereplies }

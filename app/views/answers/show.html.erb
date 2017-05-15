@@ -1,3 +1,11 @@
+<% if @answer.anonymous? %>
+		<%= link_to(image_tag('dummies/small.png'),:class => "profile_pic") %>
+		Anonymous
+	<% else %>
+		<%= render(:partial => 'common/thumb_pic_loader',:object=> @answer.user,:as => :entity )%>
+		<%= @answer.user.name %>	
+<% end %>
+
 <%= @answer.question.title.html_safe %>
 <br>
 <%= @answer.question.body.html_safe %>

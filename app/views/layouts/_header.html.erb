@@ -1,29 +1,33 @@
 <header class = "navbar navbar-fixed-top navbar-inverse">
 	<div class = "container header_container">
-	<nav>
-	<ul class = "nav navbar-nav navbar-left header_left">
+	<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#headerright"> 
+	<span class="icon-bar"></span>
+	<span class = "icon-bar"></span>
+	<span class = "icon-bar"></span>
+	</button>
+	<ul class = "nav navbar-nav  navbar-left header_left">
+	<% if logged_in? %>
 		<li><%= form_tag search_products_path, method: 'get',id: 'header_form' do %>
 			<%= select_tag "options","<option>users</option>
 			<option>domains</option>
 			<option>questions</option>
 			<option>articles</option>".html_safe %>
 			<%= text_field_tag :term %>
-			<%= submit_tag "Search",id: 'search', name: nil %>
+			<%# submit_tag "Search",id: 'search', name: nil %>
+				<button type = "submit"><span class = "glyphicon glyphicon-search"></span></button>
 		<% end %>
 		</li>
+	<% end %>
 	</ul>
-	<div id = "headerright">
+	<div id = "headerright" class = "navbar-collapse collapse">
 	<% if !logged_in? %>
 	<ul class = "nav navbar-nav navbar-right">
 		<li><%= link_to "Sign in", login_path %></li>
 	</ul>
 	<% else %>
 	<ul class = "nav navbar-nav navbar-right" >
-		<li><% if current_user.admin? %>
-			<%= link_to "Domain creation", new_domain_path %>
-			<% end %>
-			</li>
-			<a class = 'thumb_image' >
+		
+			<a >
 		<%# if current_user.image? %>
 		<%# link_to(image_tag(current_user.image.thumb.url),user_path(current_user))%>
 		<%# elsif !current_user.provider.nil? %>
@@ -76,7 +80,6 @@
 	</ul>	
 	<% end %>
 	</div>
-	</nav>
 	</div>
 </header>
 

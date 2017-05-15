@@ -1,10 +1,6 @@
 <%= render :partial=>'layouts/header' %>
 
-<% if @user.image? %>
-		<%= link_to(image_tag(@user.image.profile.url),user_path(@user),:class => "profile_pic" )%>
-<% else %>
-		<%= link_to(image_tag('dummies/medium.png'),user_path(@user)) %>
-<% end %>
+<%=	render(:partial=>'common/profile_pic_loader',:object=> @user,:as=>:entity) %>
 		<% if @user==current_user %>
 		<br>
 			<%= link_to 'Edit', edit_image_user_path(current_user) %>
@@ -42,8 +38,8 @@
 <%= link_to 'Edit',academic_user_path(current_user) %>
 <% end %>
 </br>
-<% @user.universities.each do |academic| %>
-	<%= label(:academic,"#{academic.name}") %>
+<% @user.institutes.each do |institute| %>
+	<%= label(:academic,"#{institute.name}") %>
 <% end %>
 <div class = "row">
 	<div class = "col-md-8 col-md-offset-2">

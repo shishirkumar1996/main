@@ -1,6 +1,8 @@
 class GroupquestionrepliesController < ApplicationController
   before_action :set_groupquestionreply, only: [:show, :edit, :update, :destroy]
-
+	
+	before_action :logged_in_user
+ 
   def index
     @groupquestionreplies = Groupquestionreply.all
   end

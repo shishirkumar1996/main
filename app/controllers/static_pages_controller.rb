@@ -1,10 +1,13 @@
 class StaticPagesController < ApplicationController
-
+	before_action :logged_in_user	,except: [:home]
+	
+	
 	def home
-	@articles = Article.all
-	@questions = Question.all
-	@feed = (@articles+@questions).sort_by(&:created_at).reverse
-# @feed = Article.all.order('created_at')
+		if logged_in?
+			@articles = Article.all
+			@questions = Question.all
+			@feed = (@articles+@questions).sort_by(&:created_at).reverse
+		end
 	end
 	
 	def check_existing

@@ -11,7 +11,7 @@
 		<br><br><br><br>
 	<%= f.label :title %>
 	<div>
-	<%= f.text_field :title %>
+	<%= f.text_field :title,:value => @questionterm, :readonly => true %>
 	</div>
 	<%= f.label :description %>
 	<div>

@@ -1,4 +1,7 @@
 <li>
+	<%= render(:partial=> 'common/mini_pic_loader',:object=>articlereply.user ,:as => :entity) %>	
+	<strong><%= articlereply.user.name %></strong>
+	<br>
 	<%= articlereply.body.html_safe %><br>
 	<%= articlereply.created_at.strftime("%d %b,%Y") %>
 </li>

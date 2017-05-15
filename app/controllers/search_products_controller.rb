@@ -1,7 +1,8 @@
 class SearchProductsController < ApplicationController
 
 # the value is passed as params[:term]
-
+	before_action :logged_in_user	
+	
 	def index
 	@option = params[:options];
 	@value;

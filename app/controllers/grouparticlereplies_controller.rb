@@ -1,6 +1,7 @@
 class GrouparticlerepliesController < ApplicationController
   before_action :set_grouparticlereply, only: [:show, :edit, :update, :destroy]
-
+	
+	before_action :logged_in_user
   def index
     @grouparticlereplies = Grouparticlereply.all
   end

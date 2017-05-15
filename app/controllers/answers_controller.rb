@@ -1,6 +1,6 @@
 class AnswersController < ApplicationController
   before_action :set_answer, only: [:show, :edit, :update, :destroy]
-
+	before_action :logged_in_user,except: [:show]
   # GET /answers
   # GET /answers.json
   def index
@@ -26,7 +26,8 @@ class AnswersController < ApplicationController
 
 	def collection
 		@answer = Answer.find(params[:id])
-		@replies = @answer.replies.map{|reply| {:id=> reply.id,:body=>reply.body,:created_at=>reply.created_at.strftime("%d %b,%Y")}}
+		@replies = @answer.replies.map{|reply| {:id => reply.id,
+  	:body=>reply.body,:created_at=>reply.created_at.strftime("%d %b,%Y"),:image_address => reply.user.image? ? reply.user.image.mini.url : 'dummies/mini.png',:username => reply.user.name,:redirect_address => user_path(reply.user)}}
 		respond_to do |format|
 			format.json {
 			render :json => @replies }
@@ -81,6 +82,6 @@ class AnswersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def answer_params
-      params.require(:answer).permit(:body)
+      params.require(:answer).permit(:body,:anonymous)
     end
 end

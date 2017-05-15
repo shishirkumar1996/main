@@ -1,0 +1,21 @@
+Rollback fully and migrate again. Some migrations have been edited.
+
+1) Institutes table has been created. Academics is now the join table between
+users and institutes. One-to-one between domain and institute has been created.
+What's left is to check the validations, constraints(unique, dependent: :destroy),
+indices, etc. dependent: :destroy must be checked and must be used carefully.
+Also, the issue of an institute existing in the domains table but not in the
+institutes table must be addressed later.
+
+2) has_many through has been implemented between users and groups, replacing
+has_and_belongs_to_many. The join table name is groups_users and model name
+is GroupsUser. Same things as listed above like validations, etc have to be
+checked and implemented.
+
+3) Names of models have not been changes as that is a huge task.
+
+4) domain_id column of articles and questions tables has been removed.
+
+5) Suggestion: Maybe migrate from integer to bigint. Problem faced by Twitter.
+
+6) Suggestion: Default foreign key id names must not be changed.

@@ -1,5 +1,6 @@
 class GroupanswersController < ApplicationController
   before_action :set_groupanswer, only: [:show, :edit, :update, :destroy]
+	before_action :logged_in_user
 
   # GET /groupanswers
   # GET /groupanswers.json
@@ -69,8 +70,8 @@ class GroupanswersController < ApplicationController
   def collection
 
   	@groupanswer = Groupanswer.find(params[:id])
-  	@groupreplies = @groupanswer.groupquestionreplies.map{|reply|
-  	{:id=> reply.id,:body=>reply.body,:created_at=>reply.created_at.strftime("%d %b,%Y") }}
+  	@groupreplies = @groupanswer.groupquestionreplies.map{|reply| {:id => reply.id,
+  	:body=>reply.body,:created_at=>reply.created_at.strftime("%d %b,%Y"),:image_address => reply.user.image? ? reply.user.image.mini.url : 'dummies/mini.png',:username => reply.user.name,:redirect_address => user_path(reply.user)}}
   		respond_to do |format|
   			format.json {
   				render :json => @groupreplies }

@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
 
-	before_action :logged_in_user, only:
-	[:update, :destroy]
+	before_action :logged_in_user,except: [:show,:index]
 	def index
 	@users = User.where("name ILIKE ?","%#{params[:term]}%").map{|user| {:id=>user.id,:text =>user.name}}
 	
@@ -12,7 +11,6 @@ class UsersController < ApplicationController
 		end
 	end
 	
-	
 	def academic
 		@user = User.find(params[:id])
 		respond_to do |format|
@@ -22,7 +20,7 @@ class UsersController < ApplicationController
 	end
 	
 	def prepopulateacademic
-		@academics = current_user.universities.map{|university| { :id => university.id, :text => university.name}}
+		@academics = current_user.institutes.map{|institute| { :id => institute.id, :text => institute.name}}
 		respond_to do |format|
 			format.json{
 				render :json => @academics
@@ -34,14 +32,22 @@ class UsersController < ApplicationController
 	def addacademic
 		@id = params[:academic]
 		if(@id[0..2] == "<<<")
-			@domain = Domain.new
-			@domain.name = params[:academic][3..-4]
-			@domain.save!
-			@id = @domain.id
+			@institute = Institute.new
+			@institute.name = params[:academic][3..-4]
+			@institute.save!
+			@id = @institute.id
 		end
-		@academic = Domain.find(@id)
-		current_user.universities<< @academic
-		current_user.relations<< @academic
+		@academic = Institute.find(@id)
+		current_user.institutes<< @academic
+		if(Domain.exists?(:name => @academic.name))
+			@domain = Domain.find(@id)
+			@academic.domain  = @domain
+		else
+			@domain = Domain.new
+			@domain.name  = @academic.name
+			@academic.domain = @domain
+			@domain.save!
+		end
 		respond_to do |format|
 			format.json
 			format.html
@@ -49,9 +55,11 @@ class UsersController < ApplicationController
 	end
 	
 	def removeacademic
-		@academic = Domain.find(params[:academic])
+		@academic = Institute.find(params[:academic])
 		current_user.universities.delete(@academic)
 	end
+	
+	
 	
 	
 	def interest
