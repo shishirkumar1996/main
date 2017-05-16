@@ -1,8 +1,8 @@
 CKEDITOR.config.toolbar_body = [
 		{ name: 'document', items: ['Source','Templates', 'NewPage', 'Image', '-','Bold', 'Italic', '-', 'Subscript' , 'Superscript'] } ];
-		
-//CKEDITOR.config.height = 300;		
-CKEDITOR.config.autoParagraph  = false;		
+
+//CKEDITOR.config.height = 300;
+CKEDITOR.config.autoParagraph  = false;
 CKEDITOR.editorConfig = function( config ) {
 
 	config.filebrowserImageBrowseUrl = '';
@@ -40,6 +40,8 @@ CKEDITOR.on( 'dialogDefinition', function( ev )
 				 urlField[ 'style' ] = 'display:none; width:0;';
 				 var uploadButton = uploadTab.get('uploadButton');
 				 uploadButton[ 'label' ] = 'Upload';
+				 var fileChooseButton = uploadTab.get('upload');
+				 fileChooseButton[ 'label' ] = '';
       }
 
       dialogDefinition.onLoad = function () {
