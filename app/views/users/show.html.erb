@@ -1,3 +1,7 @@
+<% flash.each do |message_type, message| %>
+	<div class = "alert alert-<%= message_type %>"><%= message %>
+	</div>
+<% end %>
 <%= render :partial=>'layouts/header' %>
 
 <%=	render(:partial=>'common/profile_pic_loader',:object=> @user,:as=>:entity) %>
@@ -42,7 +46,10 @@
 	<%= label(:academic,"#{institute.name}") %>
 <% end %>
 <div class = "row">
-	<div class = "col-md-8 col-md-offset-2">
-	<%= render :partial=>'layouts/feed' %>
+	<div class = "col-md-8 col-md-offset-2" id = "feed-posts">
+	<%= render @feed %>
+	</div>
+	<div id = "infinite-scrolling">
+		<%= will_paginate @feed %>
 	</div>
 </div>

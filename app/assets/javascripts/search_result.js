@@ -1,4 +1,4 @@
-$(document).on('turbolinks:load', function() {
+$(function() {
 $("#term").on("focus", function() {
 var e = document.getElementById("options");
 	

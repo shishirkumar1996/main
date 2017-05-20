@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  before_action :logged_in_user, except: [:show]
+  before_action :logged_in_user, except: [:show,:collection]
 
   # GET /articles
   # GET /articles.json
@@ -76,7 +76,7 @@ class ArticlesController < ApplicationController
   def collection
   	@article = Article.find(params[:id])
   	@articlereplies = @article.articlereplies.map{|reply| {:id => reply.id,
-  	:body=>reply.body,:created_at=>reply.created_at.strftime("%d %b,%Y"),:image_address => reply.user.image? ? reply.user.image.mini.url : 'dummies/mini.png',:username => reply.user.name,:redirect_address => user_path(reply.user)}}
+  	:body=>reply.body,:created_at=>reply.created_at.strftime("%d %b,%Y"),:image_address => reply.user.image? ? reply.user.image.mini.url : '/assets/dummies/mini.png',:username => reply.user.name,:redirect_address => user_path(reply.user)}}
   		respond_to do |format|
   			format.json{
   				render :json => @articlereplies }

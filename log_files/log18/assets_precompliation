@@ -1,0 +1,41 @@
+config.assets.debug = false
+
+was done in order to load complex assets without preprocessing
+
+other way is to add :debug => false in javascript_include_tag
+
+but we have to segregrate 3rd party js or css files and our own js or css files
+
+therefore 3rd party js or css files might be put inside vendor folder
+
+
+for addition of new environment we need to precompile the assets for that through this command
+
+RAILS_ENV=<environment_name> rake assets:clean assets:precompile
+This command can also be run
+RAILS_ENV=<environment_name> bundle exec rake assets:precompile RAILS_RELATIVE_URL_ROOT = /sub_url
+
+
+In order to create an analysis html file in tmp/performance, 
+just add ?profile_request=true at the end of the web address
+
+Report will be added in tmp/performance folder
+
+Also had to change *html to * html  in vendor/assets/javascripts/ckeditor/plugins/uicolor/yui/assets/yui.css
+
+Had to add gem "non-stupid-digest-assets" in order to make ckeditor to work in profile environment
+AFter this precompile the assets
+
+I had to make changes in assets.rb, initializers/ckeditor.rb
+
+
+Added the line config.assets.prefix = "/assets_dev" in order to avoid precompile assets being served in development environment
+
+
+
+
+
+added Rails.application.config.assets.precompile += %w( ckeditor/*)
+in config/intializers/assets.rb and commented it
+
+Commenting it solved the issue of all loaded plugins

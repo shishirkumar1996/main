@@ -2,6 +2,7 @@ class GroupquestionrepliesController < ApplicationController
   before_action :set_groupquestionreply, only: [:show, :edit, :update, :destroy]
 	
 	before_action :logged_in_user
+	before_action :same_group_user
  
   def index
     @groupquestionreplies = Groupquestionreply.all
@@ -67,4 +68,13 @@ class GroupquestionrepliesController < ApplicationController
     def groupquestionreply_params
 			params.require(:groupquestionreply).permit(:body)
     end
+    
+    def same_group_user
+    	if logged_in?
+				unless Group.find(params[:group_id]).members.exists?(current_user)
+			redirect_to root_url
+				end
+			end
+		end
+    
 end

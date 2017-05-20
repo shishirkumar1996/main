@@ -1,6 +1,8 @@
 class GroupsController < ApplicationController
   before_action :set_group, only: [:show, :edit, :update, :destroy]
 	before_action :logged_in_user
+	before_action :same_group_user,except: [:new,:create]
+		
   # GET /groups
   # GET /groups.json
   def index
@@ -10,8 +12,13 @@ class GroupsController < ApplicationController
   # GET /groups/1
   # GET /groups/1.json
   def show
+  	require 'will_paginate/array'
   	@group = Group.find(params[:id])
-  	@groupfeed = (@group.group_questions+@group.group_articles).sort_by(&:created_at).reverse
+  	@feed = (@group.group_questions+@group.group_articles).sort_by(&:created_at).reverse.paginate(page: params[:page],per_page: 2)
+  		respond_to do |format|
+  			format.js{render :layout=>false,content_type: 'text/javascript'}
+  			format.html
+  		end
   end
 
 	def prepopulate
@@ -111,4 +118,13 @@ class GroupsController < ApplicationController
     def group_params
       params.require(:group).permit(:name,:user_tokens)
     end
+    
+    def same_group_user
+    	if logged_in?
+				unless Group.find(params[:id]).members.exists?(current_user)
+			redirect_to root_url
+				end
+			end
+		end
+    
 end

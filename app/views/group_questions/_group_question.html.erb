@@ -1,0 +1,41 @@
+	
+	<div class = "feed_container">
+		<div class = "category">
+			Category: <%= group_question.class %>
+		</div>
+	
+	<div class = "title_container">
+		</br>
+	<strong><%= link_to group_question.title.html_safe,group_group_question_path(group_question),target: '_blank' %></strong>
+	<div class = "feed_created_at">
+	</br>
+	<%= group_question.created_at.strftime("%d %b. %Y") %>
+	</div>
+	<br>
+	</div>
+			Description:<br>
+		<div class = "description_container"> 
+			
+	<%= group_question.description.html_safe %>
+	</div>
+	</br>
+		
+		<%if current_user?(group_question.user)||current_user.group_answered?(group_question) %>
+		<a class = "answer_tag">Answer</a>
+		<% else %>
+			<%= link_to "Answer", new_group_group_question_groupanswer_path(group_question.group,group_question),class: 'answer_tag' %>
+		<% end %>
+		</br>
+		<% if group_question.groupanswers.any? %>
+		</br>
+		<div class = "answers_tag">
+			Answers(<%= group_question.groupanswers.count %>)
+		</div>
+		<br>
+		<ul class = "answers list-group">
+			<%= render group_question.groupanswers %>
+		</ul>
+				
+		<% end %>
+	</br>	
+	</div>

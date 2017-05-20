@@ -1,6 +1,6 @@
 class Domain < ApplicationRecord
 
-searchkick
+searchkick word_start: [:name]
 mount_uploader :image, DomainimageUploader
 validates :name, presence: :true, uniqueness: {case_sensitive: false}
 

@@ -1,3 +1,24 @@
+<div class = "feed_container">
+		<div class = "category">
+			Category: <%= article.class %>
+		</div>
+	<div class = "domain_container">
+		Related domains:
+	<%# label(:domain, "#{article.domain.name}") %>
+	<% article.domains.each do |domain| %>
+		<em><%= link_to domain.name,domain_path(domain.id) %></em>
+	<% end %>
+	</div>
+	<div class = "title_container">
+		</br>
+	<strong><%= link_to article.title.html_safe,article_path(article),target: '_blank' %></strong>
+	<div class = "feed_created_at">
+	</br>
+	<%= article.created_at.strftime("%d %b. %Y") %>
+	</div>
+	<br>
+	</div>
+
 <% if article.user.image? %>
 		<%= link_to(image_tag(article.user.image.mini.url),user_path(article.user),:class => "profile_pic" )%>
 		<% else %>
@@ -48,7 +69,8 @@
 	<% end %>
 	<br>
 
-		<%= link_to "Replies", '#', class: 'articlereply_button',id: "article_#{article.id}",remote: true %>
+		<%= link_to "Replies", nowhere_path, class: 'articlereply_button',id: "article_#{article.id}",remote: true,
+		data: {disable_with: 'Replies'} %>
 		</br>
 		<section class = 'articlereply' id = "articlereply_<%= article.id %>">
 			<ul class = "replies_area articlereplies list-group" id = "articlereplies_<%= article.id %>">
@@ -64,5 +86,5 @@
 	</br>
 	
 </li>
-	
-		
+	<br>
+</div>		

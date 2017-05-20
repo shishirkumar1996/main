@@ -1,6 +1,6 @@
 class AnswersController < ApplicationController
   before_action :set_answer, only: [:show, :edit, :update, :destroy]
-	before_action :logged_in_user,except: [:show]
+	before_action :logged_in_user,except: [:show,:collection]
   # GET /answers
   # GET /answers.json
   def index
@@ -27,7 +27,7 @@ class AnswersController < ApplicationController
 	def collection
 		@answer = Answer.find(params[:id])
 		@replies = @answer.replies.map{|reply| {:id => reply.id,
-  	:body=>reply.body,:created_at=>reply.created_at.strftime("%d %b,%Y"),:image_address => reply.user.image? ? reply.user.image.mini.url : 'dummies/mini.png',:username => reply.user.name,:redirect_address => user_path(reply.user)}}
+  	:body=>reply.body,:created_at=>reply.created_at.strftime("%d %b,%Y"),:image_address => reply.user.image? ? reply.user.image.mini.url : '/assets/dummies/mini.png',:username => reply.user.name,:redirect_address => user_path(reply.user)}}
 		respond_to do |format|
 			format.json {
 			render :json => @replies }

@@ -1,6 +1,7 @@
 class BadgrouparticlerelationsController < ApplicationController
 
 before_action :logged_in_user
+
 	def create
 		@article = GroupArticle.find(params[:article_id])
 		if current_user.like_grouparticle?(@article)
@@ -13,6 +14,9 @@ before_action :logged_in_user
 		@article = Badgrouparticlerelation.find(params[:id]).group_article
 		current_user.dislikedgrouparticles.delete(@article)
 	end
+
+	private
+	
 
 
 end

@@ -1,5 +1,6 @@
 class GroupArticlesController < ApplicationController
 before_action :logged_in_user
+before_action :same_group_user
 
 	def index
 		@grouparticles = GroupArticle.all
@@ -49,7 +50,7 @@ before_action :logged_in_user
 		def collection
 			@grouparticle = GroupArticle.find(params[:id])
 			@grouparticlereplies = @grouparticle.grouparticlereplies.map{|reply| {:id => reply.id,
-  	:body=>reply.body,:created_at=>reply.created_at.strftime("%d %b,%Y"),:image_address => reply.user.image? ? reply.user.image.mini.url : 'dummies/mini.png',:username => reply.user.name,:redirect_address => user_path(reply.user)}}
+  	:body=>reply.body,:created_at=>reply.created_at.strftime("%d %b,%Y"),:image_address => reply.user.image? ? reply.user.image.mini.url : '/assets/dummies/mini.png',:username => reply.user.name,:redirect_address => user_path(reply.user)}}
 			respond_to do |format|
 				format.json{
 					render :json => @grouparticlereplies }
@@ -66,6 +67,14 @@ before_action :logged_in_user
 		def group_article_params
 			params.require(:group_article).permit(:title,:body)
 		end		
+		
+		def same_group_user
+    	if logged_in?
+				unless Group.find(params[:group_id]).members.exists?(current_user)
+			redirect_to root_url
+				end
+			end
+		end
 			
 		
 end

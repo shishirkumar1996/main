@@ -1,6 +1,6 @@
 class User < ApplicationRecord
 
-	searchkick
+	searchkick word_start: [:name]
 	has_secure_password
 	mount_uploader :image,ImageUploader
 	validates :name,presence: true,length: {maximum: 50}
@@ -202,6 +202,16 @@ source: :groupanswer
 	def answered?(question)
 		question.answers.each do |answer|
 			if(answers.include?(answer))
+				return true
+			end
+		end
+		return false
+	end
+	
+	
+	def group_answered?(question)
+		question.groupanswers.each do |answer|
+			if(groupanswers.include?(answer))
 				return true
 			end
 		end

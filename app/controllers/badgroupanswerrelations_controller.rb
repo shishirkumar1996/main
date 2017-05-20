@@ -1,6 +1,7 @@
 class BadgroupanswerrelationsController < ApplicationController
 
 	before_action :logged_in_user
+	
 	def create
 		@answer = Groupanswer.find(params[:answer_id])
 		if current_user.like_groupanswer?(@answer)
@@ -14,6 +15,8 @@ class BadgroupanswerrelationsController < ApplicationController
 		current_user.dislikedgroupanswers.delete(@answer)
 	end
 
+	private
+	
 
 
 end

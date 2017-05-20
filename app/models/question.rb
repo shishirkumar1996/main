@@ -1,6 +1,6 @@
 class Question < ApplicationRecord
 	
-	searchkick	
+	searchkick word_start: [:title]
 
 	has_many :question_bookmark_relations,foreign_key: :question_id,
 	dependent: :destroy

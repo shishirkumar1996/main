@@ -1,0 +1,59 @@
+	
+	<div class = "feed_container">
+		<div class = "category">
+			Category: <%= question.class %>
+		</div>
+	<div class = "domain_container">
+		Related domains:
+	<%# label(:domain, "#{question.domain.name}") %>
+	<% question.domains.each do |domain| %>
+		<em><%= link_to domain.name,domain_path(domain.id) %></em>
+	<% end %>
+	</div>
+	<div class = "title_container">
+		</br>
+	<strong><%= link_to question.title.html_safe,question_path(question),target: '_blank' %></strong>
+	<div class = "feed_created_at">
+	</br>
+	<%= question.created_at.strftime("%d %b. %Y") %>
+	</div>
+	<br>
+	</div>
+			Description:<br>
+		<div class = "description_container"> 
+			
+	<%= question.description.html_safe %>
+	</div>
+	</br>
+		<% if !current_user?(question.user) %>
+			</br>
+				<div id = "question_bookmark_<%= question.id %>" class = "question_bookmark">
+					<% if current_user.bookmark_question?(question) %>
+						<%= render(:partial=>'questions/unbookmark',:locals=>{
+						:question => question}) %>
+					<% else %>
+						<%= render(:partial=>'questions/bookmark',:locals=>
+						{:question=> question}) %>
+					<% end %>				
+				</div>
+				
+		<% end %>
+		<%if current_user?(question.user)||current_user.answered?(question) %>
+		<a class = "answer_tag">Answer</a>
+		<% else %>
+			<%= link_to "Answer", new_question_answer_path(question),class: 'answer_tag' %>
+		<% end %>
+		</br>
+		<% if question.answers.any? %>
+		</br>
+		<div class = "answers_tag">
+			Answers(<%= question.answers.count %>)
+		</div>
+		<br>
+		<ul class = "answers list-group">
+			<%= render question.answers %>
+		</ul>
+				
+		<% end %>
+	</br>	
+	</div>

@@ -1,5 +1,5 @@
-$(document).on('turbolinks:load',function(){
-	$('.reply_button').click(event,function(){
+$(function(){
+	$(document).on('click','.reply_button',function(){
 		//alert('clicked');
 		event.preventDefault();
 		var id = $(this).attr('id');

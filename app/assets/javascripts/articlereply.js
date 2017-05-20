@@ -1,6 +1,7 @@
-$(document).on('turbolinks:load',function(){
-	$('.articlereply_button').click(event,function(){
+$(function(){
+	$(document).on('click','.articlereply_button',function(){
 		event.preventDefault();
+		//$(this).prop("disabled","disabled");
 		var id = $(this).attr('id');
 		var articleid = id;
 		id = id.substr(8);				//removing the 'article' from id 

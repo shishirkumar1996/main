@@ -15,4 +15,9 @@ before_action :logged_in_user
 		current_user.likedgroupanswers.delete(@answer)
 	end
 	
+	private
+	
+	
+	
+	
 end

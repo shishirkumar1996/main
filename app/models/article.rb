@@ -1,6 +1,6 @@
 class Article < ApplicationRecord
 
-searchkick
+searchkick word_start: [:title]
 belongs_to :user
 
 has_many :article_bookmark_relations,foreign_key: :article_id,

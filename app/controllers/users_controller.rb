@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-	before_action :logged_in_user,except: [:show,:index]
+	before_action :logged_in_user,except: [:show,:index,:new,:create]
 	def index
 	@users = User.where("name ILIKE ?","%#{params[:term]}%").map{|user| {:id=>user.id,:text =>user.name}}
 	
@@ -144,16 +144,25 @@ class UsersController < ApplicationController
 		@user = User.new(user_params)
 		if @user.save
 			log_in @user
-			redirect_to user_path(@user)
+			redirect_to root_url
 			else
 			render 'new'
 		end
 	end
 	
 	def show
-		@user = User.find(params[:id])   
+		require 'will_paginate/array'
+		@user = User.find(params[:id])
+		@useranswer = []
+		@user.answers.each do |answer|
+			@useranswer << answer.question
+		end   
 		#answers of different questions to be added in the feed
-		@feed = (@user.articles).sort_by(&:created_at).reverse
+		@feed = (@user.articles+@useranswer).sort_by(&:created_at).reverse.paginate(page: params[:page],per_page: 2)
+		respond_to do |format|
+			format.html
+			format.js
+		end
 	end
 	
 	def update

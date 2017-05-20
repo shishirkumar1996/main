@@ -1,5 +1,5 @@
-$(document).on('turbolinks:load',function(){
-	$('.grouparticlereply_button').click(event,function(){
+$(function(){
+	$(document).on('click','.grouparticlereply_button',function(){
 		event.preventDefault();
 		var id = $(this).attr('id');
 		var articleid = id;

@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-
+	
   resources :institutes,only: [:index,:create,:destroy]
   resources :answer_bookmark_relations
   resources :question_bookmark_relations ,only: [:create,:destroy]
@@ -33,7 +33,7 @@ Rails.application.routes.draw do
   		resources :grouparticlereplies
   	end
   	
-  	resources	:group_questions,only: [:new,:create] do
+  	resources	:group_questions,only: [:new,:create,:show] do
 	 resources :groupanswers do
 	 		member do
 	 			get :collection
@@ -48,6 +48,7 @@ Rails.application.routes.draw do
  root 'static_pages#home' 
  get '/check_existing_question', to: 'static_pages#check_existing'
  get '/search_question',to: 'static_pages#search_question'
+ get '/nowhere', to: 'static_pages#dummy'
  get '/your_groups', to: 'users#index_group'
  get '/login', to: 'sessions#new'
  post '/login', to: 'sessions#create'
