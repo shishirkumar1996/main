@@ -84,7 +84,11 @@ resources :domains do
 end
  
  resources :users do
-	 resources :notifications
+	resources :notifications do
+	 	collection do
+	 		get :mark
+	 	end
+	 	end
 	member do
 		get :edit_image
 		post :image

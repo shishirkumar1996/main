@@ -1,0 +1,8 @@
+var notification_container = $('#notification-container').length;
+if(notification_container > 0)
+{
+	$('#notification-container').html('<%= escape_javascript(render @notifications) %>');
+}
+//	alert('<%= @notifications.count %>');
+	
+	$('#notification_count').html('<%=( @notifications.count > 0 ? @notifications.count :  "" ) %>');
