@@ -49,9 +49,10 @@ before_action :same_group_user
 			
 		def collection
 			@grouparticle = GroupArticle.find(params[:id])
-			@grouparticlereplies = @grouparticle.grouparticlereplies.map{|reply| {:id => reply.id,
-  	:body=>reply.body,:created_at=>reply.created_at.strftime("%d %b,%Y"),:image_address => reply.user.image? ? reply.user.image.mini.url : '/assets/dummies/mini.png',:username => reply.user.name,:redirect_address => user_path(reply.user)}}
+			@replies = @grouparticle.grouparticlereplies
+			@replies_id = params[:replies_id]
 			respond_to do |format|
+				format.js {render :layout=>false,content_type: 'text/javascript' }
 				format.json{
 					render :json => @grouparticlereplies }
 				format.html

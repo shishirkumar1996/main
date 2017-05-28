@@ -75,12 +75,15 @@ class ArticlesController < ApplicationController
   
   def collection
   	@article = Article.find(params[:id])
-  	@articlereplies = @article.articlereplies.map{|reply| {:id => reply.id,
-  	:body=>reply.body,:created_at=>reply.created_at.strftime("%d %b,%Y"),:image_address => reply.user.image? ? reply.user.image.mini.url : '/assets/dummies/mini.png',:username => reply.user.name,:redirect_address => user_path(reply.user)}}
+  	#if(param[:last]
+  	@replies_id = params[:replies_id]
+  	@replies = @article.articlereplies
+  	#.map{|reply| {:id => reply.id,
+  #	:body=>reply.body,:created_at=>reply.created_at.strftime("%d %b,%Y"),:image_address => reply.user.image? ? reply.user.image.mini.url : '/assets/dummies/mini.png',:username => reply.user.name,:redirect_address => user_path(reply.user)}}
   		respond_to do |format|
-  			format.json{
-  				render :json => @articlereplies }
-  			format.html
+ 				format.html
+  			format.js {render :layout=>false,content_type: 'text/javascript'}
+  			
   		end
   end
 

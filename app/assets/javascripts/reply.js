@@ -8,21 +8,21 @@ $(function(){
 		var reply_id = 'reply_'+id;								//adding the 'reply' into id
 		//alert(id);
 		var question_id = $("#"+answerid).attr('data-questionid');
-		var address = '/questions/'+question_id+'/answers/'+id+'/collection.json';
+		var address = '/questions/'+question_id+'/answers/'+id+'/collection';
 		if(!$('#'+reply_id).is(":visible"))
 		{
-			$('#'+reply_id).show();
 			var replies_id = 'replies_'+id;
-			$.getJSON(address,function(data){
-			$.each(data,function(index,element){
-				$("#"+replies_id).append('<li><a class = \"profile_pic\"'+
-						"href = "+element.redirect_address+">"
-						+"<img src = "+element.image_address+"></a>"
-//			+"sadfsdfa</a>"
-						+"<strong>"+element.username+"</strong><br>"
-					+element.body+' '+'<br>'+element.created_at+'</li>');
-	});
-	});
+			$.ajax({
+				url: address,
+				type: 'GET',
+				dataType: 'script',
+				data: {
+					replies_id: replies_id
+				},
+				success: function(data){
+					$('#'+reply_id).show();
+				}
+			});
 		}
 	});
 });

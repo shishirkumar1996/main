@@ -26,9 +26,10 @@ class AnswersController < ApplicationController
 
 	def collection
 		@answer = Answer.find(params[:id])
-		@replies = @answer.replies.map{|reply| {:id => reply.id,
-  	:body=>reply.body,:created_at=>reply.created_at.strftime("%d %b,%Y"),:image_address => reply.user.image? ? reply.user.image.mini.url : '/assets/dummies/mini.png',:username => reply.user.name,:redirect_address => user_path(reply.user)}}
+		@replies = @answer.replies
+		@replies_id = params[:replies_id]
 		respond_to do |format|
+			format.js {render :layout=>false, content_type:  'text/javascript'}
 			format.json {
 			render :json => @replies }
 			format.html

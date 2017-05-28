@@ -1,4 +1,37 @@
 $(function(){
+/*	$(document).on('click''.articlereply_loadmore',function(){
+		event.preventDefault();
+		var id = $(this).attr('id');
+			var id = $(this).attr('id');
+			$(this).hide();
+		var articleid = id;
+		id = id.substr(22);				
+		var reply_id = 'articlereply_'+id;
+		var individual_reply_id = 'individual_articlereply_'+id;
+		var last_id = $('.'+individual_reply_id).last().attr('data-id');
+		var address = '/articles/'+id+'/collection.json';		
+		
+				var replies_id = 'articlereplies_'+id;
+				
+				$.ajax({
+					url: address,
+					type: 'GET',
+					dataType: 'script',
+					data: {
+						last: last_id,
+						replies_id: replies_id
+						
+					},
+				
+					success: function(data){
+						$(this).show();	
+						
+						}
+			
+	});
+	});
+*/
+	
 	$(document).on('click','.articlereply_button',function(){
 		event.preventDefault();
 		//$(this).prop("disabled","disabled");
@@ -7,28 +40,21 @@ $(function(){
 		id = id.substr(8);				//removing the 'article' from id 
 		var reply_id = 'articlereply_'+id; // adding the 'article reply'
 		
-		var address = '/articles/'+id+'/collection.json';
+		var address = '/articles/'+id+'/collection';
 		if(!$('#'+reply_id).is(':visible'))
 			{
-				$('#'+reply_id).show();
 				var replies_id = 'articlereplies_'+id;
-				$.getJSON(address,function(data){
-					if(data.length==0)
-						{
-//						$('#'+replies_id).append("no replies");
+				$.ajax({
+					url: address,
+					type: 'GET',
+					dataType: "script",
+					data: {
+						replies_id: replies_id						
+					},
+					success: function(data){
+							$('#'+reply_id).show();		
 						}
-					else
-					{
-					$.each(data,function(index,element){
-						$('#'+replies_id).append('<li><a class = \"profile_pic\"'+
-						"href = "+element.redirect_address+">"
-						+"<img src = "+element.image_address+"></a>"
-//			+"sadfsdfa</a>"
-						+"<strong>"+element.username+"</strong><br>"
-					+element.body+' '+'<br>'+element.created_at+'</li>');
-						});
-						}
-						});
-					}
+				});
+				}
 				});
 			});
