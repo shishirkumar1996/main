@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   resources :groupanswerrelations ,only: [:create,:destroy]
   resources :badarticlerelations ,only: [:create,:destroy]
   resources :articlerelations ,only: [:create,:destroy]
-  #resources :notifications
+ 
   resources :relationships , only: [:create,:destroy]
   resources :interests, only: [:create,:destroy]
   #resources :domains_articles
@@ -84,6 +84,7 @@ resources :domains do
 end
  
  resources :users do
+	 resources :notifications
 	member do
 		get :edit_image
 		post :image
