@@ -4,6 +4,11 @@ git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
   "https://github.com/#{repo_name}.git"
 end
+
+group :development,:test,:profile do
+	gem 'rspec-rails','~> 3.5'
+end
+	
 	gem 'non-stupid-digest-assets'
 group :profile do
 	gem 'ruby-prof'
