@@ -15,7 +15,7 @@ $(document).on('click','.mark_as_read',function(){
 	if(notifications >0)
 		setInterval(function() {
   return notif();
-},10000);
+},30000);
 
 		function notif()
 		{
