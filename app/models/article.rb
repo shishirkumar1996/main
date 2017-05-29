@@ -22,8 +22,12 @@ has_many :dislikes, through: :badarticlerelations,source: :user
 
 
 validates :title,presence: true
+VALID_BODY_REGEX = /\A(?!(&nbsp;|<p>|<\/p>|\s)*\z).+/
+
+validates :body,presence: true,format: {with: VALID_BODY_REGEX}
 
 def domain_tokens=(tokens)
 	self.group_ids = Domain.ids_from_tokens(tokens)
 end
+
 end

@@ -34,10 +34,15 @@ class RepliesController < ApplicationController
 		@reply.user = current_user
 		@id = "replies_#{params[:answer_id]}"
 		@field = "field_#{params[:answer_id]}"
-		@reply.save!
+		
 		respond_to do |format|
-			format.html
-			format.js
+			if @reply.save!
+			
+				format.html
+				format.js { render :layout=>false,content_type: 'text/javascript'}
+			else
+				format.json {render :json=> @reply.errors,:status=> :unprocessable_entity}
+			end
 		end
     
   end

@@ -27,6 +27,7 @@ class ArticlesController < ApplicationController
   def create
   	
     @article = current_user.articles.build(article_params)
+    if @article.save
     @tokens = params[:domain_tokens]
     @tokens = @tokens.split(',')
     @tokens.each do |token|
@@ -40,7 +41,6 @@ class ArticlesController < ApplicationController
     	d.articles << @article
     	end
     	
-    if @article.save
 		flash[:success] = "article created!"
 		redirect_to root_url
 		else

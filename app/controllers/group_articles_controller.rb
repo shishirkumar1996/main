@@ -20,8 +20,9 @@ before_action :same_group_user
 	def create
 		@group = Group.find(params[:group_id])
 		@grouparticle = @group.group_articles.build(group_article_params)
-		@grouparticle.user = current_user
+		
 		if @grouparticle.save
+			@grouparticle.user = current_user
 			flash[:success] = "article created"
 			redirect_to @group
 		else

@@ -24,10 +24,13 @@ class GrouparticlerepliesController < ApplicationController
   	@grouparticlereply.user = current_user
   	@id = "grouparticlereplies_#{params[:group_article_id]}"
   	@field = "grouparticlefield_#{params[:group_article_id]}"
-  	@grouparticlereply.save!
   		respond_to do |format|
-  			format.html
-  			format.js
+  			if @grouparticlereply.save!
+  				format.html
+  				format.js {render :layout=>false,content_type: 'text/javascript' }
+  			else
+  				format.json {render :json=> @grouparticlereply.errors,:status => unprocessable_entity}
+  			end
   		end
   end
 

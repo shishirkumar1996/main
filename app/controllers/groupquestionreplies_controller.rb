@@ -25,11 +25,14 @@ class GroupquestionrepliesController < ApplicationController
 		@groupanswerreply.user = current_user
 		@id = "groupanswerreplies_#{params[:groupanswer_id]}"
 		@field = "groupanswerfield_#{params[:groupanswer_id]}"
-		@groupanswerreply.save!
-		@value = "<li>"+ @groupanswerreply.body+"<br>"+@groupanswerreply.created_at.strftime("%d %b,%Y")+"</li>"+"<br>"
+		
 		respond_to do |format|
-			format.html
-			format.js
+			if @groupanswerreply.save!
+				format.html
+				format.js {render :layout=>false,content_type: 'text/javascript'}
+			else
+				format.json {render :json=> @groupanswerreply.errors,:status=>:unprocessable_entity}
+			end
 		end
 		
   end

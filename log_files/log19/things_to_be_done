@@ -18,5 +18,7 @@
 * removing the link on title on question and articles when opened in
 	new tab
 * integrating capistrano gem
+* adding validations for different fields at database level
+* sanitizing replies,answers,questions
 * turbolinks issue with ckeditor
 * turbolinks issue with cached page
