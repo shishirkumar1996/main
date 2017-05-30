@@ -10,24 +10,29 @@ $(function(){
     editor.on('focus', function(e) {
 //      alert('The editor named ' + e.editor.name + ' is now focused');
   
- /* 
-  	e.editor.on('keydown',function(evt){
-  		alert('sdkfjjk');
-  	});
-  	e.editor.on('keyup',function(evt){
-			alert('sdjkf');
-			if(data=='')
-			{
-				
+ 		e.editor.on('change',function(evt){
+ 			var data = editor.getData();
+ 				if(data=='')
 				$('#button_'+editor.name).attr('disabled',true);
-			}
 		else
 				$('#button_'+editor.name).attr('disabled',false);		
+ 			
+ 		});
+ 		
+ 		
+  	e.editor.on('key',function(evt){
+				var data = editor.getData();
+ 				if(data==''){
+ //				alert(evt.data.keyCode);
+					if(evt.data.keyCode===32||evt.data.keyCode===13)
+					{
+					return false;
+					}
+					}
 		});
-	*/
+	
   
     });
 });
-
 
 });

@@ -6,9 +6,9 @@
 			<%= f.text_field :title %>
 		</div>
 		<%= f.label :description %>
-		<%= f.cktext_area :description, rows: 5, :ckeditor =>{:toolbar => 'body' }%>
+		<%= f.cktext_area :description,id: "question_field", rows: 5, :ckeditor =>{:toolbar => 'body' }%>
 		<div>
-		<%= f.submit %>
+		<%= f.submit 'Ask',id: "button_question_field" %>
 		</div>
 	<% end %>
 </div>

@@ -63,7 +63,7 @@
 			group_article.grouparticlereplies.build],remote: true) do |f| %>
 				<%= f.cktext_area :body, id: "grouparticlefield_#{group_article.id}",rows: 3,:ckeditor => {:toolbar =>'body'} %>
 				<div>
-					<%= f.submit 'Reply' %>
+					<%= f.submit 'Reply',id: "button_grouparticlereply_loadmore_#{group_article}" %>
 				</div>
 			<% end %>
 		</section>

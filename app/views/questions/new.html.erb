@@ -15,14 +15,14 @@
 	</div>
 	<%= f.label :description %>
 	<div>
-		<%= f.cktext_area :description, rows: 5,:ckeditor =>{:toolbar =>'body'}%>
+		<%= f.cktext_area :description,id: 'question_field',  rows: 5,:ckeditor =>{:toolbar =>'body'}%>
 	</div>
 	<div>
 		<%= f.check_box :anonymous %> Anonymous
 	</div>
 	
 	<div>
-		<%= f.submit %>
+		<%= f.submit 'Submit',id: "button_question_field" %>
 	</div>
 	</div>
 	<% end %>
