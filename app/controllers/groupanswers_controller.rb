@@ -71,8 +71,14 @@ class GroupanswersController < ApplicationController
   def collection
 
   	@groupanswer = Groupanswer.find(params[:id])
-  	@replies = @groupanswer.groupquestionreplies
+  	@replies
   	@replies_id = params[:replies_id]	
+  		if(params[:last])
+  			@lastreply = Groupquestionreply.find(params[:last])
+  			@replies = @groupanswer.groupquestionreplies.order(created_at: :desc).where('created_at < ?',@lastreply.created_at).limit(5)
+  		else
+  			@replies = @groupanswer.groupquestionreplies.order(created_at: :desc).limit(5)
+  		end
   		respond_to do |format|
   			format.js {render :layout=>false, content_type: 'text/javascript'}
   			format.json {

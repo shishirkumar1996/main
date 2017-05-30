@@ -56,8 +56,9 @@
 		</br>
 		<section class = 'grouparticlereply' id = 'grouparticlereply_<%= group_article.id %>'>
 				<ul class = "replies_area grouparticlereplies list-group" id = "grouparticlereplies_<%= group_article.id %>" >
-					<%= render group_article.grouparticlereplies %>
+					<%# render group_article.grouparticlereplies %>
 				</ul>
+				<%= link_to "load more",nowhere_path,class: "grouparticlereply_loadmore",id: "grouparticlereply_loadmore_#{group_article}",remote: true,'data-groupid'=>group_article.group.id %>
 			<%= form_for([group_article.group,group_article,
 			group_article.grouparticlereplies.build],remote: true) do |f| %>
 				<%= f.cktext_area :body, id: "grouparticlefield_#{group_article.id}",rows: 3,:ckeditor => {:toolbar =>'body'} %>

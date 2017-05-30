@@ -36,6 +36,8 @@
 			</ul>
 		</br>
 		
+		<%= link_to "load more",nowhere_path,class: "groupanswerreply_loadmore",id: "groupanswerreply_loadmore_#{article.id}",remote: true,'data-questionid'=> groupanswer.group_question.id,'data-groupid'=>groupanswer.group_question.group.id  %>
+		
 		<%= form_for([groupanswer.group_question.group,groupanswer.group_question,
 		groupanswer,
 		groupanswer.groupquestionreplies.build],remote: true) do |f| %>

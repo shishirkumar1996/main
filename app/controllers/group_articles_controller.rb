@@ -50,8 +50,14 @@ before_action :same_group_user
 			
 		def collection
 			@grouparticle = GroupArticle.find(params[:id])
-			@replies = @grouparticle.grouparticlereplies
+			@replies
 			@replies_id = params[:replies_id]
+			if(params[:last])
+				@lastreply = Grouparticlereply.find(params[:last])
+				@replies = @grouparticle.grouparticlereplies.order(created_at: :desc).where('created_at < ?',@lastreply.created_at).limit(5)
+			else
+				@replies = @grouparticle.grouparticlereplies.order(created_at: :desc).limit(5)
+			end
 			respond_to do |format|
 				format.js {render :layout=>false,content_type: 'text/javascript' }
 				format.json{

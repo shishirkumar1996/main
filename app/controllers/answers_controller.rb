@@ -28,6 +28,13 @@ class AnswersController < ApplicationController
 		@answer = Answer.find(params[:id])
 		@replies = @answer.replies
 		@replies_id = params[:replies_id]
+		if(params[:last])
+			@lastreply = Reply.find(params[:last])
+			@replies = @answer.replies.order(created_at: :desc).where('created_at < ?',@lastreply.created_at).limit(5)
+		else
+			@replies = @answer.replies.order(created_at: :desc).order(created_at: :desc).limit(5)
+			end
+		
 		respond_to do |format|
 			format.js {render :layout=>false, content_type:  'text/javascript'}
 			format.json {

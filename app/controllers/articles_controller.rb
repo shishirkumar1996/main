@@ -75,7 +75,6 @@ class ArticlesController < ApplicationController
   
   def collection
   	@article = Article.find(params[:id])
-  	#if(param[:last]
   	@replies_id = params[:replies_id]
   	@replies
   		if(params[:last])

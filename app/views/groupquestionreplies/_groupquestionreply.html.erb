@@ -1,4 +1,4 @@
-<li class = 'individual_reply_#{groupanswer.id}' data-id='<%= groupquestionreply.id %>' >
+<li class = 'individual_groupanswerreply_<%= @groupanswer.id %>' data-id='<%= groupquestionreply.id %>' >
 		<%= render(:partial=> 'common/mini_pic_loader',:object=>groupquestionreply.user ,:as => :entity) %>	
 	<strong><%= groupquestionreply.user.name %></strong>
 	<%= groupquestionreply.body.html_safe %><br>
