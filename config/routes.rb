@@ -90,6 +90,10 @@ end
 	 	end
 	 	end
 	member do
+		get :edit_password
+		get :edit_name
+		post :update_password
+		post :update_name
 		get :edit_image
 		post :image
 		get :prepopulateinterest

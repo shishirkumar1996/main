@@ -8,6 +8,7 @@
 		<% if @user==current_user %>
 		<br>
 			<%= link_to 'Edit', edit_image_user_path(current_user) %>
+			<%= link_to 'Edit credentials',edit_user_path(current_user) %>
 	<% end %>
 
 

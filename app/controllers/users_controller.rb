@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
 	before_action :logged_in_user,except: [:show,:index,:new,:create]
+	before_action :same_user, only: [:edit_image,:edit_password,:edit_name,:update_name,:update_password]
 	def index
 	@users = User.where("name ILIKE ?","%#{params[:term]}%").map{|user| {:id=>user.id,:text =>user.name}}
 	
@@ -136,6 +137,41 @@ class UsersController < ApplicationController
 		@user = User.find(params[:id])
 	end	
 	
+	def edit_name
+		@user= User.find(params[:id])
+			respond_to do |format|
+				format.js { render :layout=>false,content_type: 'text/javascript' }
+				format.html
+			end
+	end
+	
+	def edit_password
+		@user = User.find(params[:id])
+	end
+	
+	def update_name
+		@user = User.find(params[:id])	
+		
+		 if @user.update_attributes(user_params)
+		 	flash[:success] = "name updated"
+		else
+			flash[:danger] = "some error occured"
+		end
+		redirect_to edit_user_path(@user)
+	end
+	
+	def update_password
+		@user = User.find(params[:id])
+		if(@user.authenticate(params[:user][:old_password]) && @user.update_attributes(user_params))
+			flash[:success] = "password updated"
+			redirect_to user_path(@user)
+		else
+		flash[:danger] = "some error occured"
+		redirect_to edit_password_user_path(@user)
+		end
+	end
+	
+	
 	def new
 		@user = User.new
 	end
@@ -181,5 +217,12 @@ private
 	def user_params
 		params.require(:user).permit(:name,:email,:password,:password_confirmation,:remote_image_url)
 	end
-
+	
+	def same_user
+		unless(current_user == User.find(params[:id]))
+			redirect_to root_url
+		end
+	end
+	
+	
 end

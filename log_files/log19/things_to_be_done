@@ -1,9 +1,8 @@
-* installing rpsec gem
-* writing tests with rspec
+* installing rpsec gem           
+* writing tests with rspec       
 * solving precompiling issue for dev environment(assets.precompile)
-* loading more option for replies(all replies)
-* seeing read notifications options
-* loading read notifications options
+* loading more option for replies(all replies)     X
+* seeing read notifications options           
 * check on the issue of load more answers
 * giving update name option to user
 * learning to read request_profiler analysis reports
