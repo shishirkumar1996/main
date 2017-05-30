@@ -1,16 +1,15 @@
 $(function(){
-/*	$(document).on('click''.articlereply_loadmore',function(){
+	$(document).on('click','.articlereply_loadmore',function(){
 		event.preventDefault();
 		var id = $(this).attr('id');
-			var id = $(this).attr('id');
 			$(this).hide();
 		var articleid = id;
 		id = id.substr(22);				
 		var reply_id = 'articlereply_'+id;
 		var individual_reply_id = 'individual_articlereply_'+id;
 		var last_id = $('.'+individual_reply_id).last().attr('data-id');
-		var address = '/articles/'+id+'/collection.json';		
-		
+		var address = '/articles/'+id+'/collection';		
+	//	alert(last_id);		
 				var replies_id = 'articlereplies_'+id;
 				
 				$.ajax({
@@ -24,13 +23,11 @@ $(function(){
 					},
 				
 					success: function(data){
-						$(this).show();	
-						
+						$('#'+articleid).show();	
 						}
 			
 	});
 	});
-*/
 	
 	$(document).on('click','.articlereply_button',function(){
 		event.preventDefault();

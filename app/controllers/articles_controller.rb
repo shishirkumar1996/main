@@ -77,7 +77,13 @@ class ArticlesController < ApplicationController
   	@article = Article.find(params[:id])
   	#if(param[:last]
   	@replies_id = params[:replies_id]
-  	@replies = @article.articlereplies
+  	@replies
+  		if(params[:last])
+  			@lastreply = Articlereply.find(params[:last])
+  			@replies = @article.articlereplies.order(created_at: :desc).where('created_at < ?',@lastreply.created_at).limit(5)
+  		else
+  			@replies = @article.articlereplies.order(created_at: :desc).limit(5)
+  		end
   	#.map{|reply| {:id => reply.id,
   #	:body=>reply.body,:created_at=>reply.created_at.strftime("%d %b,%Y"),:image_address => reply.user.image? ? reply.user.image.mini.url : '/assets/dummies/mini.png',:username => reply.user.name,:redirect_address => user_path(reply.user)}}
   		respond_to do |format|
