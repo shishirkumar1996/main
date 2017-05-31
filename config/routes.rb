@@ -87,6 +87,7 @@ end
 	resources :notifications do
 	 	collection do
 	 		get :mark
+	 		get :old_notifications
 	 	end
 	 	end
 	member do

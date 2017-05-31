@@ -19,6 +19,11 @@ class NotificationsController < ApplicationController
 		current_user.notifications.unread.update_all(read_at: Time.zone.now)
 		end
 	
+	def old_notifications
+		@notifications = current_user.notifications
+	end
+	
+	
 	private
 	
 	def same_user

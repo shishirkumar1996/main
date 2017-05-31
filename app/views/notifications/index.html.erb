@@ -1,6 +1,6 @@
 <%= render :partial=> 'layouts/header' %>
 
-<%= link_to 'Back',:back %>
+<%= link_to 'Back',root_url %>
 <%= link_to "Mark all as read",mark_user_notifications_path(current_user),remote: true,class: 'mark_as_read' %>
 
 <div class = "row">
@@ -12,6 +12,9 @@
 				<li>No new notifications</li>
 			<% end %>
 			</ul>
+			
+			
+	<%= link_to "load all notifications",old_notifications_user_notifications_path(current_user) %>		
 			
 </div>
 </div>
