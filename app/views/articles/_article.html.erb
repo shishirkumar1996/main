@@ -14,7 +14,7 @@
 	<strong><%= link_to article.title.html_safe,article_path(article),target: '_blank' %></strong>
 	<div class = "feed_created_at">
 	</br>
-	<%= article.created_at.strftime("%d %b. %Y") %>
+	<%= article.created_at.strftime("%d %b. %Y %H:%M") %>
 	</div>
 	<br>
 	</div>

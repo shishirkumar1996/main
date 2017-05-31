@@ -15,7 +15,7 @@
 	<strong><%= link_to question.title.html_safe,question_path(question),target: '_blank' %></strong>
 	<div class = "feed_created_at">
 	</br>
-	<%= question.created_at.strftime("%d %b. %Y") %>
+	<%= question.created_at.strftime("%d %b. %Y %H:%M") %>
 	</div>
 	<br>
 	</div>

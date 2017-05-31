@@ -4,6 +4,10 @@
 		<%= groupanswer.user.name %>	
 	</div>
 	
+	<div class = "answer_created_at">
+	<%= groupanswer.created_at.strftime("%d %b,%Y %H:%M") %>
+	</div>
+	</br>
 	
 	<%=  groupanswer.body.html_safe %>
 	</br>
