@@ -2,7 +2,7 @@
 * writing tests with rspec       
 * solving precompiling issue for dev environment(assets.precompile)
 * loading more option for replies(all replies)     X
-* seeing read notifications options              
+* seeing read notifications options              	 X
 * check on the issue of load more answers      
 * giving update name option to user                X
 * learning to read request_profiler analysis reports

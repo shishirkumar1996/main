@@ -35,6 +35,16 @@
 
 <div class = "col-md-8 col-md-offset-2">
 	
-	<%= render :partial=>'layouts/feed' %>
+	<div id = "feed-posts">
+		<%= render @feed %>
+	</div>
+	
+	<div id = "infinite-scrolling">
+		<%= will_paginate @feed %>
+	</div>
 	
 </div>
+
+<script type = "text/javascript">
+	CKEDITOR.config.height = '50px';
+</script>
