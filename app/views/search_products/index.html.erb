@@ -9,8 +9,12 @@ In <%= @option %>, Results of the search '<%= params[:term] %>'
 <% @value.each do |value| %>
 
 	<% if(@option == "users") %>
+		<img src = "<%= value[:image_address] %>" >
+		<%# this seems like a bit of hack to me which i will
+		definitely want to change %>
 		<%= link_to value[:text],user_path(value[:id]) %>
 	<% elsif(@option == "domains") %>
+		<img src = "<%= value[:image_address] %>" >
 		<%= link_to value[:text], domain_path(value[:id]) %>
 	<% elsif(@option == "questions") %>
 		<%= link_to value[:text], question_path(value[:id]) %>

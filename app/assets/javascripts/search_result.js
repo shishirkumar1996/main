@@ -54,10 +54,22 @@ var x='',y='',i = 0;
 //	y = item.label.substr(i+1);
 x = item.id;
 y = item.text;
+if(item.type=='user'||item.type=='domain')
+{
+		return $( "<li></li>" )
+    .attr( "data-value", item.id )
+    .append("<img src = "+item.image_address+">")
+    .append(y)
+    .appendTo(ul);
+}
+else
+ {
   return $( "<li></li>" )
     .attr( "data-value", item.id )
     .append(y)
     .appendTo(ul);
+	}
+
 };
 });
 });
