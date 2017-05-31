@@ -12,7 +12,7 @@ Ckeditor.setup do |config|
   # config.image_file_types = %w(jpg jpeg png gif tiff)
 
   config.assets_languages = ['en', 'fr']
-  config.assets_plugins = ['image', 'smiley','scayt','wsc','autoembed']
+  config.assets_plugins = ['image', 'smiley','scayt','wsc','autoembed','image2']
 
   # Allowed flash file types for upload.
   # Set to nil or [] (empty array) for all file types

@@ -4,7 +4,6 @@ CKEDITOR.config.toolbar_body = [
 //CKEDITOR.config.height = 300;
 CKEDITOR.config.autoParagraph  = false;
 CKEDITOR.editorConfig = function( config ) {
-
 	config.filebrowserImageBrowseUrl = '';
 	config.filebrowserImageUploadUrl = '/ckeditor/pictures';
 	//config.image_previewText = 'preview will be shown here';
