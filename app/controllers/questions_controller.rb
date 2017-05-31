@@ -6,7 +6,9 @@ class QuestionsController < ApplicationController
   end
 
   def show
+  	require 'will_paginate/array'
   	@question = Question.find(params[:id])
+ 		@answers = @question.answers.sort_by(&:created_at).reverse.paginate(page: params[:page],per_page: 2)
   end
 
   def new

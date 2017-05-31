@@ -16,9 +16,15 @@
 		<% if @question.answers.any? %>
 		</br>
 			Answers(<%= @question.answers.count %>)
-		<ul class = "answers list-group">
-			<%= render @question.answers %>
-		</ul>
+			
+			<div id = "feed-posts">
+				<%= render @answers %>
+			</div>
+			
+			<div id = "infinite-scrolling">
+				<%= will_paginate @answers %>
+			</div>
+
 				
 	<% end %>
 </div>
