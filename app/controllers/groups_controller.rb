@@ -68,6 +68,7 @@ class GroupsController < ApplicationController
 		@user.groups << @group
 		@notification = Notification.new
 		@notification.message = "#{current_user.name} added you to  group #{@group.name}"
+		@notification.actor = current_user
 		@notification.link = "#{group_path(@group)}"
 		@user.notifications<< @notification
 		@notification.save!	

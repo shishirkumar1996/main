@@ -13,6 +13,9 @@ class User < ApplicationRecord
   attr_accessor :remember_token
   before_save :downcase_email
 
+
+has_many :created_notifications,class_name: "Notification"
+
 has_many :answer_bookmark_relations,foreign_key: :user_id,
 dependent: :destroy
 has_many :bookmarked_answers,through: :answer_bookmark_relations,

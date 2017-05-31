@@ -3,7 +3,7 @@
 * solving precompiling issue for dev environment(assets.precompile)
 * loading more option for replies(all replies)     X
 * seeing read notifications options              	 X
-* check on the issue of load more answers      
+* check on the issue of load more answers      		 X
 * giving update name option to user                X
 * learning to read request_profiler analysis reports
 * solve overlapping select2 search bar and header issue
