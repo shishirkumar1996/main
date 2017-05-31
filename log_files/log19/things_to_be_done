@@ -12,7 +12,7 @@
 * time and date issue for replies,answers,questions etc.  X
 * see into the issue of ruby-prof(again)
 * moving the sign in field on header to rightmost
-* checking into issue of profile pic on header(again)
+* checking into issue of profile pic on header(again) X
 * removing the link on title on question and articles when opened in
 	new tab                           X
 * integrating capistrano gem
