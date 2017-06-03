@@ -49,10 +49,7 @@
 
 }
 
-@media screen and (max-width: 760px) {
-.navbar-collapse{font: white;}
 
-}
 
 .navbar-right{
 	width: 30%;
@@ -79,33 +76,4 @@ font-size: 10px;
 font-weight: lighter;
 }
 
-.navbar-collapse{
-background-color: aqua;
-margin-top: -7px;
-}
 
-.cke_dialog{
-position: absolute;
-z-index: 1000000 !important;
-
-}
-
-@media screen and (min-width: 400px) and (max-width: 500px) { 
-.ImagePreviewBox{
-	max-width: 200px !important;
-	max-height: 150px !important;
-}
- }
- 
-@media screen and (max-width: 400px) { 
-.ImagePreviewBox{
-	max-width: 160px !important;
-	max-height: 150px !important;
-}
-
- }
- 
- 
- #cke_dialog_contents_40{
-		height: 320px !important;
-}  

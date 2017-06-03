@@ -1,11 +1,19 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+shishir1:
+  name: shishir1
+  email: shishir1@example.com
+  password_digest: <%= User.digest('password') %>
+  admin: true
+  
+ 
+shishir2:
+  name: shishir2
+  email: shishir2@example.com
+  password_digest: <%= User.digest('password') %>
+  admin: false
 
-# This model initially had no columns defined. If you add columns to the
-# model remove the '{}' from the fixture names and add the columns immediately
-# below each fixture, per the syntax in the comments below
-#
-one: {}
-# column: value
-#
-two: {}
-# column: value
+shishir3:
+  name: shishir3
+  email: shishir3@example.com
+  password_digest: <%= User.digest('password') %>
+  admin: false
+  

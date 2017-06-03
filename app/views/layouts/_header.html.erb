@@ -21,7 +21,7 @@
 	</ul>
 	<div id = "headerright" class = "navbar-collapse collapse">
 	<% if !logged_in? %>
-	<ul class = "nav navbar-nav navbar-right">
+	<ul class = "nav navbar-nav navbar-right" id = "sign_in_header">
 		<li><%= link_to "Sign in", root_url %></li>
 	</ul>
 	<% else %>

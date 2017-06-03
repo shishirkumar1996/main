@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
 
 	before_action :logged_in_user,except: [:show,:index,:new,:create]
-	before_action :same_user, only: [:edit_image,:edit_password,:edit_name,:update_name,:update_password]
+	before_action :same_user, only: [:edit_image,:edit_password,:edit_name,:update_name,:update_password,
+	:edit]
 	def index
 	@users = User.where("name ILIKE ?","%#{params[:term]}%").map{|user| {:id=>user.id,:text =>user.name}}
 	
