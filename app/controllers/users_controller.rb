@@ -155,18 +155,21 @@ class UsersController < ApplicationController
 		
 		 if @user.update_attributes(user_params)
 		 	flash[:success] = "name updated"
+			redirect_to user_path(@user)
 		else
 			flash[:danger] = "some error occured"
+				redirect_to edit_user_path(@user)
 		end
-		redirect_to edit_user_path(@user)
+	
 	end
 	
 	def update_password
 		@user = User.find(params[:id])
-		if(@user.authenticate(params[:user][:old_password]) && @user.update_attributes(user_params))
-			flash[:success] = "password updated"
-			redirect_to user_path(@user)
-		else
+		if @user.authenticate(params[:user][:old_password]) &&
+ @user.update_attributes(user_params) && !params[:user][:password].empty?
+				flash[:success] = "password updated"
+				redirect_to user_path(@user)
+			else
 		flash[:danger] = "some error occured"
 		redirect_to edit_password_user_path(@user)
 		end

@@ -6,6 +6,7 @@ git_source(:github) do |repo_name|
 end
 
 	
+	gem 'rails-controller-testing'
 	gem 'non-stupid-digest-assets'
 group :profile do
 	gem 'ruby-prof'

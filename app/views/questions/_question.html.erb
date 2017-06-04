@@ -12,7 +12,7 @@
 	</div>
 	<div class = "title_container">
 		</br>
-	<strong><%= link_to question.title.html_safe,question_path(question),target: '_blank' %></strong>
+	<strong><%= link_to question.title.to_s.html_safe,question_path(question),target: '_blank' %></strong>
 	<div class = "feed_created_at">
 	</br>
 	<%= question.created_at.strftime("%d %b. %Y %H:%M") %>
@@ -22,7 +22,7 @@
 			Description:<br>
 		<div class = "description_container"> 
 			
-	<%= question.description.html_safe %>
+	<%= question.description.to_s.html_safe %>
 	</div>
 	</br>
 		<% if !current_user?(question.user) %>
