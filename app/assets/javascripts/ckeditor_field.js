@@ -1,4 +1,14 @@
-$(function(){
+//$(function(){
+$(document).on('turbolinks:visit',function(){
+		for(name in CKEDITOR.instances)
+	{	
+		CKEDITOR.instances[name].destroy(true);
+	}
+	
+})
+
+$(document).on('turbolinks:load',function(){
+	
 
 	CKEDITOR.on('instanceReady', function(evt) {
     var editor = evt.editor;

@@ -1,4 +1,5 @@
-$(function() {
+//$(function() {
+$(document).on('turbolinks:load',function(){
 $(document).on('focus','#questionterm',function(event){
 //	alert('high');
 	$("#questionterm").autocomplete({

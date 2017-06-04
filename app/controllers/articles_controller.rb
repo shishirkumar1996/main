@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
   before_action :logged_in_user, except: [:show,:collection]
-
+	before_action :admin_user,only: [:index]
   # GET /articles
   # GET /articles.json
   def index

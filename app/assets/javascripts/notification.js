@@ -1,5 +1,5 @@
-$(function(){
-
+//$(function(){
+$(document).on('turbolinks:load',function(){
 $(document).on('click','.mark_as_read',function(){
 	$('#notification-container').html('<li>No new notifications</li>');
 

@@ -1,6 +1,7 @@
 class AnswersController < ApplicationController
   before_action :set_answer, only: [:show, :edit, :update, :destroy]
 	before_action :logged_in_user,except: [:show,:collection]
+	before_action :admin_user,only: [:index]
   # GET /answers
   # GET /answers.json
   def index

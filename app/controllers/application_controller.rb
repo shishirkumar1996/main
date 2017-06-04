@@ -17,6 +17,12 @@ class ApplicationController < ActionController::Base
   		redirect_to root_url
   	end
   end
+ 
+ def admin_user
+ 	unless current_user.admin?
+ 		redirect_to root_url
+ 	end
+ end
   
   private
   # not removing it because it might be fruitful in future

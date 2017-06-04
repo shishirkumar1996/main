@@ -1,4 +1,5 @@
-$(function(){
+//$(function(){
+$(document).on('turbolinks:load',function(){
 	$(document).on('click','.answerreply_loadmore',function(){
 		//alert('clicked');
 		event.preventDefault();

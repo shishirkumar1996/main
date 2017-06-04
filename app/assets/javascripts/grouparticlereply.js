@@ -1,4 +1,5 @@
-$(function(){
+//$(function(){
+$(document).on('turbolinks:load',function(){	
 	$(document).on('click','.grouparticlereply_loadmore',function(){
 		event.preventDefault();
 		var id = $(this).attr('id');

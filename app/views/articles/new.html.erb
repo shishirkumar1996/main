@@ -22,10 +22,10 @@
     <%= f.label :body %>
   </div>
   <div>
-    <%= f.cktext_area :body, rows: 5,:ckeditor =>{:toolbar => 'body'}%>
+    <%= f.cktext_area :body,id: 'article_body', rows: 5,:ckeditor =>{:toolbar => 'body'}%>
   </div>
   <div>
-    <%= f.submit 'Post' %>
+    <%= f.submit 'Post',id: 'button_article_body' %>
   </div>
   </div>
   <% end %>

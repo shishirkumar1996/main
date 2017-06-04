@@ -4,11 +4,35 @@
 <div class = "col-md-6 col-md-offset-2">
 	Search whether your question is already present or not	
 	</br>
-	<%= form_tag new_question_path,method: 'get' do %>
+	<%= form_tag new_question_path,method: :get do %>
 	<%= text_field_tag :questionterm %>
-	<%= submit_tag 'Ask',id: 'ask',class: 'btn btn-primary' %>
+	<%= submit_tag 'Ask', id: 'ask_button',class: 'btn btn-primary' %>
 	<% end %>
 </div>
 
+<script>
 
+	$('#ask_button').attr('disabled',true);
+
+	$('#questionterm').on('focus',function(){
+	$(document).on('keydown',function(evt){
+		if(evt.keyCode==32 && $('#questionterm').val()=='')
+		{
+			return false;
+		}
+		});
+		
+	$(document).on('keyup',function(evt){
+		if($('#questionterm').val()=='')
+			$('#ask_button').attr('disabled',true);
+		else
+			$('#ask_button').attr('disabled',false);
+		});	
+		
+	});
+	
+		
+
+
+</script>
 

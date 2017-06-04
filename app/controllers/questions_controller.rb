@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
   before_action :logged_in_user, except: [:show]
-
+	before_action :admin_user,only: [:index]
   def index
     @questions = Question.all
   end
@@ -19,6 +19,7 @@ class QuestionsController < ApplicationController
 
   def edit
   end
+  
 
   def create
 		@question = current_user.questions.build(question_params)

@@ -1,5 +1,5 @@
-$(function(){
-
+//$(function(){
+$(document).on('turbolinks:load',function(){
   var more_posts_url;
   if ($('#infinite-scrolling').length > 0) {
     $(window).on('scroll', function() {
