@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170531091421) do
+ActiveRecord::Schema.define(version: 20170605111724) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -357,7 +357,9 @@ ActiveRecord::Schema.define(version: 20170531091421) do
     t.string   "remember_digest"
     t.boolean  "admin",            default: false
     t.string   "image"
+    t.string   "slug"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["slug"], name: "index_users_on_slug", unique: true, using: :btree
   end
 
   add_foreign_key "answers", "questions"
