@@ -1,9 +1,8 @@
-* gaping between domain names in article or question description
-* make articles/show in the same way as the feed
-* make questions/show in the same way as in the feed
-* adding headers in above two files
-* changing the color of the body
-* changing the color of article  so that it appears separated from the body or appears to on top of it
+* gaping between domain names in article or question description  X
+* make articles/show in the same way as the feed                  X
+* make questions/show in the same way as in the feed              X
+* adding headers in above two files                               X
+* changing the color of article  so that it appears separated from the body or appears to on top of it                               X
 * making font of time shown smaller
 * making border around replies
 * changing color of reply button

@@ -2,20 +2,35 @@
 
 /*border-top: 2px solid; */
 padding: 1%;
-
 }
 
 .feed_container{
-	border-top: 1px solid;
+	border: 1px solid #bfbfbf;
 	padding-left: 2%;
 	padding-right: 2%;
 	font-weight: lighter;
+	box-shadow: 10px 10px 2px #888888;
 }
 .domain_container
 {
 font-size: 16px;
-background-color: antiquewhite;
 font-weight: lighter;
+}
+.domain_container>em{
+	background: #ff9966;
+	border-radius: 10px;
+	padding-left: 4px;
+	padding-right: 4px;
+	color: white;
+	font-size: 15px;
+	@media(max-width: 400px)
+		{
+			font-size: 13px;
+		}
+	:hover{
+		background: #cc6699;
+		color: white;
+	}
 }
 
 .title_container{
