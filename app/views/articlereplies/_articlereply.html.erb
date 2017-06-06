@@ -1,4 +1,4 @@
-<li class = 'individual_articlereply_<%= @article.id %>' data-id= '<%= articlereply.id %>'>
+<li class = 'individual_reply individual_articlereply_<%= @article.id %>' data-id= '<%= articlereply.id %>'>
 	<%= render(:partial=> 'common/mini_pic_loader',:object=>articlereply.user ,:as => :entity) %>	
 	<%= link_to articlereply.user.name,user_path(articlereply.user) %>
 	<br>

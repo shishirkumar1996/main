@@ -1,15 +1,21 @@
 header{
 z-index: 999999 !important;
-background: aqua;
-height: 42px;
+height: 43px;
 }
 
 
 .header_container{
 position: absolute;
 width: 100%;
-background: aqua;
+border: 0px;
 height: 100%;
+padding-left: 1% !important;
+padding-right: 0% !important;
+@media(max-width: 500px)
+{
+	padding-left: 5% !important;
+	padding-right: 1% !important;
+}
 }
 
 #sign_in_header>li:last-child{
@@ -17,3 +23,27 @@ height: 100%;
 	padding-right: 15px;
 	padding-left: 0px;
 }
+.account_dropdown:focus
+{
+		background-color: #809fff !important;
+	
+}
+.account_dropdown:visited
+{
+		background-color: #809fff !important;
+	
+}
+
+#headerright > ul > li>a{
+	color: #ff0000;
+	
+}
+
+#headerright > ul >li>a:hover{
+		color: white !important;
+	}
+	/* this piece of code was determining the black color of header initially . this has been overridden here */
+.navbar-inverse{
+background-color: aqua;
+border-style: none;
+} 

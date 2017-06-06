@@ -4,18 +4,44 @@
 <% end %>
 <%= render :partial=>'layouts/header' %>
 
-<%=	render(:partial=>'common/profile_pic_loader',:object=> @user,:as=>:entity) %>
+<div class = "row image_row">
+	<div class = "image_column col-md-4 col-md-offset-4 col-xs-12 col-sm-12">
+		<%=	render(:partial=>'common/profile_pic_loader',:object=> @user,:as=>:entity) %>
 		<% if @user==current_user %>
 		<br>
-			<%= link_to 'Edit', edit_image_user_path(current_user) %>
-			<%= link_to 'Edit credentials',edit_user_path(current_user) %>
+			<%= link_to 'Edit image', edit_image_user_path(current_user) %>
+			<%= link_to 'Edit name and password',edit_user_path(current_user) %>
 	<% end %>
+<h4><%= @user.name %></h4>
+</br>
+<div class = "row">
+<div class = "col-md-3 col-xs-3 col-sm-3">
+Followers
+</div>
+<div class = "col-md-3 col-xs-3 col-sm-3">
+	Following
+</div>
+
+<div class = "col-md-3 col-xs-3 col-sm-3">
+fol/unfol
+<%# here either follow/unfollow command or bookmarks option will be there %>
+</div>
+<div class = "col-md-3 col-xs-3 col-sm-3">
+dropdown 
+
+</div>
+</div>
+	</div>
+</div>
 
 
-<h1><%= @user.name %></h1>
 </br>
-<h2><%= @user.email %></h2>
-</br>
+
+
+<div class = "row">
+<div class = "col-md-3 hidden-xs">
+
+
 <% if logged_in? &&  current_user != @user %>
 	<div id = "follow_form">
 	<% if current_user.following?(@user) %>
@@ -25,7 +51,7 @@
 	<% end %>
 	</div>
 <% end %>
-
+<ul id = "user_interest">
 <h4>Interests</h4>
 <% if @user==current_user %>
 <%# link_to "Edit",interest_user_path(@user),{remote: true,'data-toggle'=> "modal", 'data-target'=> '#interestmodal-window'} %>
@@ -33,10 +59,11 @@
 <% end  %>
 </br>
 <% @user.relations.each do |relation| %>
-<%= relation.name %>
+<li><%= relation.name %></li>
 <% end %>
+</ul>
 
-
+<ul id = "user_education">
 <h4>Education</h4>
 <%if @user==current_user %>
 <%# link_to 'Edit',academic_user_path(current_user),{remote: true, 'data-toggle'=>"modal",'data-target'=>'#academicmodal-window'} %>
@@ -44,10 +71,11 @@
 <% end %>
 </br>
 <% @user.institutes.each do |institute| %>
-	<%= label(:academic,"#{institute.name}") %>
+	<li><%= institute.name %></li>
 <% end %>
-<div class = "row">
-	<div class = "col-md-8 col-md-offset-2" id = "feed-posts">
+</ul>
+</div>
+	<div class = "col-md-6" id = "feed-posts">
 	<%= render @feed %>
 	</div>
 	<div id = "infinite-scrolling">

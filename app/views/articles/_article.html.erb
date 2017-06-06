@@ -81,7 +81,7 @@
 		<%= form_for([article,article.articlereplies.build],remote: true) do |f| %>
 			<%= f.cktext_area :body,id: "articlefield_#{article.id}",rows: 3,:ckeditor =>{:toolbar=>'body'} %>
 			<div>
-				<%= f.submit 'Reply',id: "button_articlefield_#{article.id}" %>
+				<%= f.submit 'Reply',class: 'reply_button',id: "button_articlefield_#{article.id}" %>
 			</div>
 		<% end %>
 		</section>

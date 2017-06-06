@@ -3,34 +3,32 @@
 * make questions/show in the same way as in the feed              X
 * adding headers in above two files                               X
 * changing the color of article  so that it appears separated from the body or appears to on top of it                               X
-* making font of time shown smaller
-* making border around replies
-* changing color of reply button
-* making header options a bit separate(reverting the previous change)
-* making drop down around search bar of same height that of search bar
-* making drop down around search bar seeming to attached to search bar
+* making font of time shown smaller                               X
+* making border around replies                                   	X
+* changing color of reply button                                  X
+* making drop down around search bar of same height that of search bar                                                               X
+* making drop down around search bar seeming to attached to search bar                                                               X
 * changing the color of drop down around search bar
 * making on hover color of article and question title a bit lighter
-* making on hover color of domains a bit lighter
-* making color on click of account on header nice
-* making search results inside border
-* increasing the search results size
-* removing the small black line segments at both end of header
-* increasing the size of search button equal to search bar and also increase width
-* attach search button to search bar
-* making interests appear inside border and each interest on different line and background color to be different
-* applying the same thing as above for education
+* making on hover color of domains a bit lighter                  X
+* making color on click of account on header nice                 X
+* making search results inside border                             X
+* increasing the search results size                              X
+* removing the small black line segments at both end of header    X
+* increasing the size of search button equal to search bar and also increase width                                                    X
+* attach search button to search bar                              X
+* making interests appear inside border and each interest on different line and background color to be different               X
+* applying the same thing as above for education                  X
 * change edit to 'edit image' and edit credentials to 'edit name and password'
- making the row of profile pic in a border with a dark color
+* making the row of profile pic in a border with a dark color     X
 * making a row of border just down of profile pic andd options like 
-	edit, edit credentials, followers, following etc.
-* making profile pic in the middle
-* removing email address from user/show
-* creating space between each feed
-* making bigger picture appear in edit image section
-* making choose file appear in same horizontal level centrally aligned
-* changing the background-color of no file chosen
-* changing the button color in edit image
+	edit, edit credentials, followers, following etc.               X
+* making profile pic in the middle                                X
+* removing email address from user/show                           X
+* creating space between each feed                                X
+* making choose file appear in same horizontal level centrally aligned                                                           X
+* changing the background-color of no file chosen                 X
+* changing the button color in edit image                         X
 * making update password and update name appear in same column
 making both lines appear inside border
 * making name change form appear inside border
@@ -84,3 +82,6 @@ making both lines appear inside border
 * making bullet disappear from "no new notifications"
 * adding number of member option to group/show and link to show group members
 * changing the ckeditor image dialogue color
+* making social share button a bit separate from each other
+* making the search bar button disabled until length of val inside search field is less than 3
+* limiting the dropdown of searchbar to 5

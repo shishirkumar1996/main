@@ -61,7 +61,7 @@
 			<%= f.cktext_area :body,class: "reply_field",id: "field_#{answer.id}",rows: 1,:ckeditor =>{:toolbar => 'body'}%>
 			<div><%# hidden_field_tag :answer_id, answer.id %></div>
 			<div>
-			<%= f.submit 'Reply',id: "button_field_#{answer.id}"  %>
+			<%= f.submit 'Reply',class: 'reply_button',id: "button_field_#{answer.id}"  %>
 	<% end %>
 	</div>
 	</section>
