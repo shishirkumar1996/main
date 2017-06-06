@@ -7,7 +7,7 @@ class SearchProductsController < ApplicationController
 	@option = params[:options];
 	@value;
 	if(@option == "users")
-	@value = User.search(params[:term],fields: [{name: :word_start}]).to_a.map{|x| {id: x.slug,text: x.name,type: 'user',:image_address => x.image? ? x.image.mini.url : '/assets/dummies/mini.png'}}
+	@value = User.search(params[:term],fields: [{name: :word_start}]).to_a.map{|x| {id: x.id,text: x.name,type: 'user',:image_address => x.image? ? x.image.mini.url : '/assets/dummies/mini.png'}}
 	elsif(@option == "domains")
 	@value = Domain.search(params[:term],fields: [{name: :word_start}]).to_a.map{|x| {id: x.id,text: x.name , type: 'domain',:image_address => x.image? ? x.image.mini.url : '/assets/dummies/mini.png'}}
 	elsif(@option == "articles")

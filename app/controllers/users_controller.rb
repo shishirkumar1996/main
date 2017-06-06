@@ -14,7 +14,7 @@ class UsersController < ApplicationController
 	end
 	
 	def academic
-		@user = User.find_by(slug: params[:id])
+		@user = User.find(params[:id])
 		respond_to do |format|
 #			format.js{render :layout=>false,content_type: 'text/javascript'}
 			format.html
@@ -65,7 +65,7 @@ class UsersController < ApplicationController
 	
 	
 	def interest
-		@user = User.find_by(slug: params[:id])
+		@user = User.find(params[:id])
 		respond_to do |format|
 #			format.js{render :layout=>false,content_type: 'text/javascript'}
 			format.html
@@ -135,7 +135,7 @@ class UsersController < ApplicationController
 	end
 	
 	def edit
-		@user = User.find(params[:id])
+		@user = User.friendly.find(params[:id])
 	end	
 	
 	def edit_name
@@ -192,7 +192,7 @@ class UsersController < ApplicationController
 	
 	def show
 		require 'will_paginate/array'
-		@user = User.find_by(slug: params[:id])
+		@user = User.find(params[:id])
 		@useranswer = []
 		@user.answers.each do |answer|
 			@useranswer << answer.question

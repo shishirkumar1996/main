@@ -1,19 +1,5 @@
 class User < ApplicationRecord
 
-	extend FriendlyId
-	friendly_id :slug_candidates,use: :slugged
-	
-	def slug_candidates
-		[
-			:name,
-			[:name,:id]
-		]
-	end
-	
-	def to_param
-		slug
-	end
-	
 	searchkick word_start: [:name]
 	has_secure_password
 	mount_uploader :image,ImageUploader

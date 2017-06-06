@@ -1,6 +1,6 @@
 <li class = 'individual_reply_<%= @answer.id %>' data-id= '<%= reply.id %>'>
 	<%= render(:partial=> 'common/mini_pic_loader',:object=>reply.user ,:as => :entity) %>
-	<strong><%= reply.user.name %></strong>
+	<%= link_to reply.user.name,user_path(reply.user) %>
 	</br>
 	<%= reply.body.html_safe %><br>
 	<%= reply.created_at.strftime("%d %b,%Y  %H:%M") %>
