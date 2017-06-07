@@ -1,5 +1,44 @@
 Rails.application.routes.draw do
 
+  namespace :admin do
+    resources :academics
+    resources :answers
+    resources :answer_bookmark_relations
+    resources :answerrelations
+    resources :articles
+    resources :article_bookmark_relations
+    resources :articlerelations
+    resources :articlereplies
+    resources :associated_sets
+    resources :badanswerrelations
+    resources :badarticlerelations
+    resources :badgroupanswerrelations
+    resources :badgrouparticlerelations
+    resources :domains
+    resources :domains_articles
+    resources :domains_questions
+    resources :groups
+    resources :group_articles
+    resources :group_questions
+    resources :groupanswers
+    resources :groupanswerrelations
+    resources :grouparticlerelations
+    resources :grouparticlereplies
+    resources :groupquestionreplies
+    resources :groups_users
+    resources :institutes
+    resources :interests
+    resources :notifications
+    resources :questions
+    resources :question_bookmark_relations
+    resources :relationships
+    resources :replies
+    resources :search_products
+    resources :users
+
+    root to: "users#index"
+  end
+
   resources :institutes,only: [:index,:create,:destroy]
   resources :answer_bookmark_relations
   resources :question_bookmark_relations ,only: [:create,:destroy]
@@ -12,7 +51,7 @@ Rails.application.routes.draw do
   resources :groupanswerrelations ,only: [:create,:destroy]
   resources :badarticlerelations ,only: [:create,:destroy]
   resources :articlerelations ,only: [:create,:destroy]
-  #resources :notifications
+
   resources :relationships , only: [:create,:destroy]
   resources :interests, only: [:create,:destroy]
   #resources :domains_articles
@@ -33,7 +72,8 @@ Rails.application.routes.draw do
   		resources :grouparticlereplies
   	end
 
-resources	:group_questions,only: [:new,:create] do
+  	
+ resources	:group_questions,only: [:new,:create,:show] do
 	 resources :groupanswers do
 	 		member do
 	 			get :collection
@@ -48,6 +88,7 @@ resources	:group_questions,only: [:new,:create] do
  root 'static_pages#home'
  get '/check_existing_question', to: 'static_pages#check_existing'
  get '/search_question',to: 'static_pages#search_question'
+ get '/nowhere', to: 'static_pages#dummy'
  get '/your_groups', to: 'users#index_group'
  get '/login', to: 'sessions#new'
  post '/login', to: 'sessions#create'
@@ -83,7 +124,17 @@ resources :domains do
 end
 
  resources :users do
+	resources :notifications do
+	 	collection do
+	 		get :mark
+	 		get :old_notifications
+	 	end
+	 	end
 	member do
+		get :edit_password
+		get :edit_name
+		post :update_password
+		post :update_name
 		get :edit_image
 		post :image
 		get :prepopulateinterest
@@ -98,7 +149,7 @@ end
 	end
  end
 
- get 'users/:user_id/questions', to: 'questions#user_questions' 
+ get 'users/:user_id/questions', to: 'questions#user_questions'
 
  resources :articles do
  	member do

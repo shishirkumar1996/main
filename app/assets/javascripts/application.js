@@ -15,6 +15,7 @@
 //= require jquery_ujs
 //= require jquery-migrate
 //= require bootstrap
+//= require turbolinks
 //= require select2
 //= require ckeditor/init
 //= require social-share-button

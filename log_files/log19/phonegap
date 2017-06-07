@@ -1,0 +1,11 @@
+sudo npm install -g phonegap@latest
+
+then inside /project/
+
+$phonegap create mainappandroid com.yourname.mainappandroid mainappandroid
+
+go inside app directoy and run these commands
+
+phonegap platforms add android
+phonegap plugin add org.apache.cordova.console
+phonegap plugin add org.apache.cordova.device

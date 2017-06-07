@@ -1,4 +1,6 @@
-<li>
+<li class = 'individual_reply individual_groupanswerreply_<%= @groupanswer.id %>' data-id='<%= groupquestionreply.id %>' >
+		<%= render(:partial=> 'common/mini_pic_loader',:object=>groupquestionreply.user ,:as => :entity) %>	
+	<strong><%= groupquestionreply.user.name %></strong>
 	<%= groupquestionreply.body.html_safe %><br>
 	<%= groupquestionreply.created_at.strftime("%d %b,%Y") %>
 </li>

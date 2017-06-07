@@ -14,8 +14,9 @@ class DomainsController < ApplicationController
   end
 
   def show
+  	require 'will_paginate/array'
    @domain = Domain.find(params[:id])
-   @feed = (@domain.articles+@domain.questions).sort_by(&:created_at).reverse
+   @feed = (@domain.articles+@domain.questions).sort_by(&:created_at).reverse.paginate(page: params[:page],per_page: 2)
   end
 
   # GET /domains/new

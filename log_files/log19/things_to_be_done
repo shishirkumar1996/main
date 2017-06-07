@@ -1,0 +1,18 @@
+* installing rpsec gem                             X
+* writing tests with rspec       
+* solving precompiling issue for dev environment(assets.precompile)
+* loading more option for replies(all replies)     X
+* seeing read notifications options              	 X
+* check on the issue of load more answers      		 X
+* giving update name option to user                X
+* learning to read request_profiler analysis reports
+* solve overlapping select2 search bar and header issue  X
+* adding user profile pic to notifications         X
+* adding user profile pic to search results        X
+* time and date issue for replies,answers,questions etc.  X
+* moving the sign in field on header to rightmost     X
+* checking into issue of profile pic on header(again) X
+* removing the link on title on question and articles when opened in
+	new tab                           X
+* turbolinks issue with ckeditor
+* turbolinks issue with cached page

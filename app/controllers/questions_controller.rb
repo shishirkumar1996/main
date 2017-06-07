@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
   before_action :logged_in_user, except: [:show]
-
+	before_action :admin_user,only: [:index]
   def index
     @questions = Question.all
   end
@@ -11,6 +11,9 @@ class QuestionsController < ApplicationController
 
   def show
   	set_question
+  	require 'will_paginate/array'
+  	@question = Question.find(params[:id])
+ 		@answers = @question.answers.sort_by(&:created_at).reverse.paginate(page: params[:page],per_page: 2)
   end
 
   def new
@@ -21,6 +24,7 @@ class QuestionsController < ApplicationController
 
   def edit
   end
+
 
   def create
 		@question = current_user.questions.build(question_params)

@@ -1,3 +1,8 @@
+<% flash.each do |message_type, message| %>
+	<div class = "alert alert-<%= message_type %>"><%= message %>
+	</div>
+<% end %>
+
 <%= render :partial=>'layouts/header' %>
 <div class = "row">
 <div class = "col-md-8 col-md-offset-2">
@@ -19,8 +24,15 @@
 <%= link_to 'Ask Question',new_group_group_question_path(@group) %>
 <%= link_to 'Write Article',new_group_group_article_path(@group) %>
 </br>
+<div id = "feed-posts"
+<%= render  @feed %>
+</div>
 
-<%= render :partial=> 'layouts/groupfeed' %>
+<div id = "infinite-scrolling">
+	<%= will_paginate @feed %>
+</div>
+
+
 </div>
 </div>
 

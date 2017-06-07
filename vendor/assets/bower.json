@@ -3,6 +3,11 @@
   "dependencies": {
     "bootstrap-sass-official": "latest",
     "select2": "~>3.5.2",
-    "jquery-migrate": "latest"
+    "jquery-migrate": "latest",
+    "ckeditor": "latest",
+    "font-awesome": "latest",
+    "ruby-prof": "latest"
+  },
+  "resolutions": {
   }
 }

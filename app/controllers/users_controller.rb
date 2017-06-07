@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
 
-	before_action :logged_in_user,except: [:show,:index]
+	before_action :logged_in_user,except: [:show,:index,:new,:create]
+	before_action :same_user, only: [:edit_image,:edit_password,:edit_name,:update_name,:update_password,
+	:edit]
 	def index
 	@users = User.where("name ILIKE ?","%#{params[:term]}%").map{|user| {:id=>user.id,:text =>user.name}}
 	
@@ -133,8 +135,46 @@ class UsersController < ApplicationController
 	end
 	
 	def edit
-		@user = User.find(params[:id])
+		@user = User.friendly.find(params[:id])
 	end	
+	
+	def edit_name
+		@user= User.find(params[:id])
+			respond_to do |format|
+				format.js { render :layout=>false,content_type: 'text/javascript' }
+				format.html
+			end
+	end
+	
+	def edit_password
+		@user = User.find(params[:id])
+	end
+	
+	def update_name
+		@user = User.find(params[:id])	
+		
+		 if @user.update_attributes(user_params)
+		 	flash[:success] = "name updated"
+			redirect_to user_path(@user)
+		else
+			flash[:danger] = "some error occured"
+				redirect_to edit_user_path(@user)
+		end
+	
+	end
+	
+	def update_password
+		@user = User.find(params[:id])
+		if @user.authenticate(params[:user][:old_password]) &&
+ @user.update_attributes(user_params) && !params[:user][:password].empty?
+				flash[:success] = "password updated"
+				redirect_to user_path(@user)
+			else
+		flash[:danger] = "some error occured"
+		redirect_to edit_password_user_path(@user)
+		end
+	end
+	
 	
 	def new
 		@user = User.new
@@ -144,16 +184,25 @@ class UsersController < ApplicationController
 		@user = User.new(user_params)
 		if @user.save
 			log_in @user
-			redirect_to user_path(@user)
+			redirect_to root_url
 			else
 			render 'new'
 		end
 	end
 	
 	def show
-		@user = User.find(params[:id])   
+		require 'will_paginate/array'
+		@user = User.find(params[:id])
+		@useranswer = []
+		@user.answers.each do |answer|
+			@useranswer << answer.question
+		end   
 		#answers of different questions to be added in the feed
-		@feed = (@user.articles).sort_by(&:created_at).reverse
+		@feed = (@user.articles+@useranswer).sort_by(&:created_at).reverse.paginate(page: params[:page],per_page: 2)
+		respond_to do |format|
+			format.html
+			format.js
+		end
 	end
 	
 	def update
@@ -172,5 +221,12 @@ private
 	def user_params
 		params.require(:user).permit(:name,:email,:password,:password_confirmation,:remote_image_url)
 	end
-
+	
+	def same_user
+		unless(current_user == User.find(params[:id]))
+			redirect_to root_url
+		end
+	end
+	
+	
 end

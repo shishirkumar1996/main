@@ -2,14 +2,23 @@ creation of new application 'main' with the following command
 
 rails new -d postgresql main
 
-create new account 'postgres' through this command
+create new database 'postgres' through this command
 
 psql postgres
+
+Use following command :-
+	1) \l or \list to list all the databases
+	2) \dt to list all tables
+
+to switch between databases use :-
+		\connect <database_name>
 
 
 create new user and password through this command 
 
 CREATE USER <username> PASSWORD '<password>';
+
+note: createuser --createdb --login -P <username> can be used directly to ease.--createdb will allow user to create database, --login will allow user to login to the database and -P will allow user to set new user's password right now.(Note - this command might not be present in some installations so this command can be ignored)
 
 for now let the username be main
 password be main
@@ -29,6 +38,12 @@ alter role main  with createdb;
 run this command to create databases for all the environment
 
 rails db:create
+
+after creating the databases you can access the database through mainly three ways
+1) rails c
+2) rails dbconsole
+3) psql <database_name>  for eg -  psql main_development
+
 
 install bower by adding this gem
 

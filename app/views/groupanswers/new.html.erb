@@ -10,10 +10,10 @@
 	<div>
 		<%= f.label "write your answer here" %>
 		</br>
-		<%= f.cktext_area :body, rows: 5,:ckeditor=>{:toolbar =>'body' }%>
+		<%= f.cktext_area :body,id: "answer_field", rows: 5,:ckeditor=>{:toolbar =>'body' }%>
 		</div>
 		<div>
-			<%= f.submit "answer" %>
+			<%= f.submit "answer",id: "button_answer_field" %>
 		</div>
 	<% end %>
 </div>

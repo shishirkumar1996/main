@@ -1,3 +1,39 @@
-<%= form_for(@user) do |f| %>
+<%= render :partial=>'layouts/header' %>
 
+<% flash.each do |message_type, message| %>
+	<div class = "alert alert-<%= message_type %>"><%= message %>
+	</div>
+	<% end %>
+
+<div class = "row">
+<div class = "col-md-offset-4 col-md-4">
+<div class = "shown_field">
+Name: <%= @user.name %><%= link_to 'Edit',edit_name_user_path(@user),remote: true %>
+</div>
+</br>
+<div class = "name_field" style="visibility:hidden">
+<%= form_for(@user,url: update_name_user_path(@user),method: :post) do |f| %>
+	<%= f.label :name %>
+	<%= f.text_field :name,id: 'text_field' %>
+	<%= f.submit "Update",id: "submit_button" %>
 <% end %>
+</div>
+</div>
+
+<div id =  "password_edit_field">
+Password:
+<%= link_to 'Edit Password',edit_password_user_path(@user) %>
+</div>
+
+
+</div>
+</div>
+
+<script>
+	$(document).on('keyup',function(evt){
+		if($('#text_field').val()=='')
+		$('#submit_button').attr('disabled',true);
+		else
+		$('#submit_button').attr('disabled',false);
+	});
+</script>

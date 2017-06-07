@@ -2,6 +2,8 @@ class GrouparticlerepliesController < ApplicationController
   before_action :set_grouparticlereply, only: [:show, :edit, :update, :destroy]
 	
 	before_action :logged_in_user
+	before_action :same_group_user
+	
   def index
     @grouparticlereplies = Grouparticlereply.all
   end
@@ -22,10 +24,13 @@ class GrouparticlerepliesController < ApplicationController
   	@grouparticlereply.user = current_user
   	@id = "grouparticlereplies_#{params[:group_article_id]}"
   	@field = "grouparticlefield_#{params[:group_article_id]}"
-  	@grouparticlereply.save!
   		respond_to do |format|
-  			format.html
-  			format.js
+  			if @grouparticlereply.save!
+  				format.html
+  				format.js {render :layout=>false,content_type: 'text/javascript' }
+  			else
+  				format.json {render :json=> @grouparticlereply.errors,:status => unprocessable_entity}
+  			end
   		end
   end
 
@@ -59,4 +64,14 @@ class GrouparticlerepliesController < ApplicationController
     def grouparticlereply_params
      params.require(:grouparticlereply).permit(:body)
     end
+
+		def same_group_user
+    	if logged_in?
+				unless Group.find(params[:group_id]).members.exists?(current_user)
+			redirect_to root_url
+				end
+			end
+		end
+
+
 end

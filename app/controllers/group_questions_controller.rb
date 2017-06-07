@@ -1,5 +1,6 @@
 class GroupQuestionsController < ApplicationController
  before_action :logged_in_user
+ before_action  :same_group_user
 
   def index
   end
@@ -59,4 +60,13 @@ class GroupQuestionsController < ApplicationController
     def group_question_params
       params.require(:group_question).permit(:title,:description)
     end
+
+		def same_group_user
+    	if logged_in?
+				unless Group.find(params[:group_id]).members.exists?(current_user)
+			redirect_to root_url
+				end
+			end
+		end
+		
 end

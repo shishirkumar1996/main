@@ -1,37 +1,69 @@
+
+<div class = "feed_container">
+		<div class = "category">
+			Category: <%= group_article.class %>
+		</div>
+	
+	<div class = "title_container">
+		</br>
+	<strong><%= link_to group_article.title.html_safe,group_group_article_path(group_article),target: '_blank' %></strong>
+	<div class = "feed_created_at">
+	</br>
+	<%= group_article.created_at.strftime("%d %b. %Y  %H:%M") %>
+	</div>
+	<br>
+	</div>
+
+<% if group_article.user.image? %>
+		<%= link_to(image_tag(group_article.user.image.mini.url),user_path(group_article.user),:class => "profile_pic" )%>
+		<% else %>
+		<%= link_to(image_tag('dummies/mini.png'),user_path(group_article.user)) %>
+<% end %>
+
+<%= link_to group_article.user.name,user_path(group_article.user) %>
+<br>
+
+
+
 <li class = 'list-group-item'>
 
-<p><%= group_article.body.html_safe %></p>
+<div class = "article_body_container">
+	<%= group_article.body.html_safe %>
+</div>
 	</br>
 	<% if current_user!=group_article.user %>
-		<div id = "upvotearticle_<%= group_article.id %>" > 
+		<div class = "row">
+		<div id = "upvotearticle_<%= group_article.id %>" class = "col-md-2" > 
 		<% if current_user.like_grouparticle?(group_article) %>
 			<%= render :partial=>'group_articles/upvoted',:locals=>{:group_article => group_article} %>
 		<% else %>
 			<%= render :partial=>'group_articles/upvote',:locals=>{:group_article => group_article} %>
 		<% end %>
 		</div>
-		<div id = "downvotearticle_<%= group_article.id %>" >
+		<div id = "downvotearticle_<%= group_article.id %>" class = "col-md-2">
 			<% if current_user.dislike_grouparticle?(group_article) %>
 				<%= render :partial=>'group_articles/downvoted',:locals=>{:group_article => group_article} %>
 			<% else %>
 				<%= render :partial=>'group_articles/downvote',:locals=>{:group_article => group_article} %>
 			<% end %>
 		</div>
+	</div>
 	<% else %>
 		<%= link_to 'Edit', edit_group_group_article_path(group_article.group,group_article) %>
 	<% end %>
 	<br>			
-		<%= link_to 'Replies','#',class: 'grouparticlereply_button',id: "grouparticle_#{group_article.id}",remote: true,'data-groupid'=>group_article.group.id %>
+		<%= link_to 'Replies',nowhere_path,class: 'grouparticlereply_button',id: "grouparticle_#{group_article.id}",remote: true,'data-groupid'=>group_article.group.id %>
 		</br>
 		<section class = 'grouparticlereply' id = 'grouparticlereply_<%= group_article.id %>'>
 				<ul class = "replies_area grouparticlereplies list-group" id = "grouparticlereplies_<%= group_article.id %>" >
-					<%= render group_article.grouparticlereplies %>
+					<%# render group_article.grouparticlereplies %>
 				</ul>
+				<%= link_to "load more",nowhere_path,class: "grouparticlereply_loadmore",id: "grouparticlereply_loadmore_#{group_article}",remote: true,'data-groupid'=>group_article.group.id %>
 			<%= form_for([group_article.group,group_article,
 			group_article.grouparticlereplies.build],remote: true) do |f| %>
 				<%= f.cktext_area :body, id: "grouparticlefield_#{group_article.id}",rows: 3,:ckeditor => {:toolbar =>'body'} %>
 				<div>
-					<%= f.submit 'Reply' %>
+					<%= f.submit 'Reply',class: 'reply_button',id: "button_grouparticlefield_#{group_article.id}" %>
 				</div>
 			<% end %>
 		</section>
@@ -40,3 +72,5 @@
 	
 		
 </li>		
+<br>
+</div>

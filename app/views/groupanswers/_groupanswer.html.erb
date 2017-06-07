@@ -1,43 +1,57 @@
-<li class = 'list-group-item'>
+<div class = "list-group-item answer_container">
+	<div class = "answer_user_name ">
+			<%= render(:partial => 'common/mini_pic_loader',:object=> groupanswer.user,:as => :entity )%>
+		<%= groupanswer.user.name %>	
+	</div>
+	
+	<div class = "answer_created_at">
+	<%= groupanswer.created_at.strftime("%d %b,%Y %H:%M") %>
+	</div>
+	</br>
+	
 	<%=  groupanswer.body.html_safe %>
 	</br>
 	<% if(current_user!=groupanswer.user) %>
-	<div id = "upvoteanswer_<%= groupanswer.id %>" > 
+		<div class = "row">
+	<div id = "upvoteanswer_<%= groupanswer.id %>" class = "col-md-2 upvote_answer" > 
 		<% if current_user.like_groupanswer?(groupanswer) %>
 			<%= render :partial=>'groupanswers/upvoted',:locals=>{:groupanswer => groupanswer} %>
 		<% else %>
 			<%= render :partial=>'groupanswers/upvote',:locals=>{:groupanswer => groupanswer} %>
 		<% end %>
 		</div>
-		<div id = "downvoteanswer_<%= groupanswer.id %>" >
+		<div id = "downvoteanswer_<%= groupanswer.id %>" class = "col-md-2 downvote_answer" >
 			<% if current_user.dislike_groupanswer?(groupanswer) %>
 				<%= render :partial=>'groupanswers/downvoted',:locals=>{:groupanswer => groupanswer} %>
 			<% else %>
 				<%= render :partial=>'groupanswers/downvote',:locals=>{:groupanswer => groupanswer} %>
 			<% end %>
 		</div>
+	</div>
 	<% else %>
 		<%= link_to 'Edit', edit_group_group_question_groupanswer_path(groupanswer.group_question.group,groupanswer.group_question,
 		groupanswer) %>
 	<% end %>		
 	
-	<%= link_to "Replies", '#', class: 'groupanswerreply_button', id: "groupanswer_#{groupanswer.id}",remote: true, 'data-questionid'=> groupanswer.group_question.id,'data-groupid'=>groupanswer.group_question.group.id %>
+	<%= link_to "Replies", nowhere_path, class: 'groupanswerreply_button', id: "groupanswer_#{groupanswer.id}",remote: true, 'data-questionid'=> groupanswer.group_question.id,'data-groupid'=>groupanswer.group_question.group.id %>
 		<br>
 		<section class = 'groupanswerreply' id = 'groupanswerreply_<%= groupanswer.id %>'>
 			<ul class= "replies_area groupanswerreplies list-group" id = "groupanswerreplies_<%= groupanswer.id %>">
 			</ul>
 		</br>
 		
+		<%= link_to "load more",nowhere_path,class: "groupanswerreply_loadmore",id: "groupanswerreply_loadmore_#{article.id}",remote: true,'data-questionid'=> groupanswer.group_question.id,'data-groupid'=>groupanswer.group_question.group.id  %>
+		
 		<%= form_for([groupanswer.group_question.group,groupanswer.group_question,
 		groupanswer,
 		groupanswer.groupquestionreplies.build],remote: true) do |f| %>
 			<%= f.cktext_area :body, id: "groupanswerfield_#{groupanswer.id}", rows: 3, :ckeditor => {:toolbar => 'body'}%>
 			<div>
-				<%= f.submit 'Reply' %>
+				<%= f.submit 'Reply',class: 'reply_button',id: "button_groupanswerfield_#{groupanswer.id}" %>
 			</div>
 		<% end %>
 	</section>
 	</br>
 	
 	
-</li>
+</div>

@@ -3,13 +3,24 @@ class StaticPagesController < ApplicationController
 	
 	
 	def home
+	
 		if logged_in?
+			require 'will_paginate/array'
 			@articles = Article.all
 			@questions = Question.all
-			@feed = (@articles+@questions).sort_by(&:created_at).reverse
+			@feed = (@articles+@questions).sort_by(&:created_at).reverse.paginate(page: params[:page],per_page: 2)
+			respond_to do |format|
+				format.js
+				format.html
+			end
 		end
 	end
-	
+
+	def dummy
+	respond_to do |format|
+	format.js
+	end	
+	end
 	def check_existing
 		respond_to do |format|
 		#format.js {render :layout=> false,content_type: 'text/javascript'}

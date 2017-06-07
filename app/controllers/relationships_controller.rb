@@ -9,6 +9,7 @@ class RelationshipsController < ApplicationController
 		#@path = user_path(current_user)
 		@notification.message = "#{current_user.name} follows you now"
 		@notification.link = "#{user_path(current_user)}"
+		@notification.actor = current_user
 		@user.notifications << @notification
 		@notification.save!
 		respond_to do |format|

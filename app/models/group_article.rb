@@ -11,6 +11,8 @@ class GroupArticle < ApplicationRecord
 	dependent: :destroy
 	has_many :dislikes,through: :badgrouparticlerelations,source: :user
 	
-	
+	VALID_BODY_REGEX = /\A(?!(&nbsp;|<p>|<\/p>|\s)*\z).+/
+
+validates :body,presence: true,format: {with: VALID_BODY_REGEX}
 	validates :title,presence: true
 end

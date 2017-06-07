@@ -15,10 +15,10 @@
 			<div>
 				<%= f.check_box :anonymous %> Anonymous
 			</div>
-			<%= f.cktext_area :body, rows: 5,:ckeditor =>{:toolbar => 'body'}%>
+			<%= f.cktext_area :body,id: "answerfield", rows: 5,:ckeditor =>{:toolbar => 'body'}%>
 		</div>
 		<div>
-			<%= f.submit 'Answer' %>
+			<%= f.submit 'Answer',id: "button_answerfield" %>
 		</div>
 	<% end %>
 </div>

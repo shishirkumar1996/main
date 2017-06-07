@@ -7,13 +7,13 @@ class SearchProductsController < ApplicationController
 	@option = params[:options];
 	@value;
 	if(@option == "users")
-	@value = User.search(params[:term]).to_a.map{|x| {id: x.id,text: x.name,type: 'user'}}
+	@value = User.search(params[:term],fields: [{name: :word_start}]).to_a.map{|x| {id: x.id,text: x.name,type: 'user',:image_address => x.image? ? x.image.mini.url : '/assets/dummies/mini.png'}}
 	elsif(@option == "domains")
-	@value = Domain.search(params[:term]).to_a.map{|x| {id: x.id,text: x.name , type: 'domain'}}
+	@value = Domain.search(params[:term],fields: [{name: :word_start}]).to_a.map{|x| {id: x.id,text: x.name , type: 'domain',:image_address => x.image? ? x.image.mini.url : '/assets/dummies/mini.png'}}
 	elsif(@option == "articles")
-	@value = Article.search(params[:term]).to_a.map{|x| {id: x.id,text: x.title,type: 'article'}}
+	@value = Article.search(params[:term],fields: [{title: :word_start}]).to_a.map{|x| {id: x.id,text: x.title,type: 'article'}}
 	elsif(@option== "questions")
-	@value = Question.search(params[:term]).to_a.map{|x| {id: x.id,text: x.title,type: 'question'}}
+	@value = Question.search(params[:term],fields: [{title: :word_start}]).to_a.map{|x| {id: x.id,text: x.title,type: 'question'}}
 	end	
 #	@article = Article.order(:title)
 #	@question = Question.order(:title)

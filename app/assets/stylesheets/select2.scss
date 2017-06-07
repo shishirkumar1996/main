@@ -44,6 +44,9 @@ border: 1px lightgrey solid;
 /*width: 100% !important; */
 outline: none !important;
 border-color: transparent !important;
+border-style: none !important;
+padding-right: 0 !important;
+width: 95% !important;
 }
 
 .select2-offscreen{
@@ -90,7 +93,7 @@ online: none;
     position: relative;
 		margin-top: 0 !important; 
     font-size: 2px;
-    background: url('select2.png') right top no-repeat;
+    background: image-url('select2.png') right top no-repeat;
 }
 
 .select2-container{

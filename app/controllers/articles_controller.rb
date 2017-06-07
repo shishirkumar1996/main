@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
-  before_action :logged_in_user, except: [:show]
-
+  before_action :logged_in_user, except: [:show,:collection]
+	before_action :admin_user,only: [:index]
   # GET /articles
   # GET /articles.json
   def index
@@ -27,6 +27,7 @@ class ArticlesController < ApplicationController
   def create
   	
     @article = current_user.articles.build(article_params)
+    if @article.save
     @tokens = params[:domain_tokens]
     @tokens = @tokens.split(',')
     @tokens.each do |token|
@@ -40,7 +41,6 @@ class ArticlesController < ApplicationController
     	d.articles << @article
     	end
     	
-    if @article.save
 		flash[:success] = "article created!"
 		redirect_to root_url
 		else
@@ -75,12 +75,20 @@ class ArticlesController < ApplicationController
   
   def collection
   	@article = Article.find(params[:id])
-  	@articlereplies = @article.articlereplies.map{|reply| {:id => reply.id,
-  	:body=>reply.body,:created_at=>reply.created_at.strftime("%d %b,%Y"),:image_address => reply.user.image? ? reply.user.image.mini.url : 'dummies/mini.png',:username => reply.user.name,:redirect_address => user_path(reply.user)}}
+  	@replies_id = params[:replies_id]
+  	@replies
+  		if(params[:last])
+  			@lastreply = Articlereply.find(params[:last])
+  			@replies = @article.articlereplies.order(created_at: :desc).where('created_at < ?',@lastreply.created_at).limit(5)
+  		else
+  			@replies = @article.articlereplies.order(created_at: :desc).limit(5)
+  		end
+  	#.map{|reply| {:id => reply.id,
+  #	:body=>reply.body,:created_at=>reply.created_at.strftime("%d %b,%Y"),:image_address => reply.user.image? ? reply.user.image.mini.url : '/assets/dummies/mini.png',:username => reply.user.name,:redirect_address => user_path(reply.user)}}
   		respond_to do |format|
-  			format.json{
-  				render :json => @articlereplies }
-  			format.html
+ 				format.html
+  			format.js {render :layout=>false,content_type: 'text/javascript'}
+  			
   		end
   end
 

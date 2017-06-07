@@ -1,0 +1,8 @@
+$('#<%= @replies_id %>').append('<%=escape_javascript(render @replies) %>');
+if(<%= @replies.count  %> > 0)
+{
+	$('#groupanswerreply_loadmore_<%= @groupanswer.id %>').show();
+	}
+else
+	$('#groupanswerreply_loadmore_<%= @groupanswer.id %>').hide();
+

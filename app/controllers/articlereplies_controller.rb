@@ -23,13 +23,18 @@ class ArticlerepliesController < ApplicationController
 		@articlereply.user = current_user
   	@id = "articlereplies_#{params[:article_id]}"
   	@field =  "articlefield_#{params[:article_id]}"
-  	@articlereply.save!
-  		respond_to do |format|
+  	
+  	respond_to do |format|
+  	if @articlereply.save
+  		
   			format.html
-  			format.js
-  		end
+  			format.js {render :layout=>false, content_type: 'text/javascript' }
+  		
+  	else
+  			format.json {render :json=> @articlereply.errors,:status=> :unprocessable_entity}
+  	end
   end
-
+	end
   def update
     respond_to do |format|
       if @articlereply.update(articlereply_params)

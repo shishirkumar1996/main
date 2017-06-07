@@ -1,12 +1,15 @@
 <%= render :partial=> 'layouts/header' %>
-
+<div class = "row image_row">
 <div class="col-md-4">
 <%= link_to 'Back',user_path(current_user) %>
 </div>
-<div class = "col-md-4">
+<div class = "col-md-4 image_column">
 	<%=	render(:partial=>'common/profile_pic_loader',:object=> current_user,:as=>:entity) %>
+	<br>
+	<br>
 <%= form_tag image_user_path(current_user), multipart: true do %>
 <%= file_field_tag :image, accept: 'image/jpeg , image/gif, image/png' %>
-<%= submit_tag %>
+<%= submit_tag "Upload this file",class: 'btn btn-primary btn-xs' %>
 <% end %>
+</div>
 </div>

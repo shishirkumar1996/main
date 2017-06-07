@@ -1,2 +1,2 @@
-$('#<%= @id %>').append("<%= escape_javascript(render @reply) %>");
+$('#<%= @id %>').prepend("<%= escape_javascript(render @reply) %>");
 CKEDITOR.instances['<%= @field %>'].setData('');

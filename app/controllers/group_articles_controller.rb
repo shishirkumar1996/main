@@ -1,5 +1,6 @@
 class GroupArticlesController < ApplicationController
 before_action :logged_in_user
+before_action :same_group_user
 
 	def index
 		@grouparticles = GroupArticle.all
@@ -19,8 +20,9 @@ before_action :logged_in_user
 	def create
 		@group = Group.find(params[:group_id])
 		@grouparticle = @group.group_articles.build(group_article_params)
-		@grouparticle.user = current_user
+		
 		if @grouparticle.save
+			@grouparticle.user = current_user
 			flash[:success] = "article created"
 			redirect_to @group
 		else
@@ -48,9 +50,16 @@ before_action :logged_in_user
 			
 		def collection
 			@grouparticle = GroupArticle.find(params[:id])
-			@grouparticlereplies = @grouparticle.grouparticlereplies.map{|reply| {:id => reply.id,
-  	:body=>reply.body,:created_at=>reply.created_at.strftime("%d %b,%Y"),:image_address => reply.user.image? ? reply.user.image.mini.url : 'dummies/mini.png',:username => reply.user.name,:redirect_address => user_path(reply.user)}}
+			@replies
+			@replies_id = params[:replies_id]
+			if(params[:last])
+				@lastreply = Grouparticlereply.find(params[:last])
+				@replies = @grouparticle.grouparticlereplies.order(created_at: :desc).where('created_at < ?',@lastreply.created_at).limit(5)
+			else
+				@replies = @grouparticle.grouparticlereplies.order(created_at: :desc).limit(5)
+			end
 			respond_to do |format|
+				format.js {render :layout=>false,content_type: 'text/javascript' }
 				format.json{
 					render :json => @grouparticlereplies }
 				format.html
@@ -66,6 +75,14 @@ before_action :logged_in_user
 		def group_article_params
 			params.require(:group_article).permit(:title,:body)
 		end		
+		
+		def same_group_user
+    	if logged_in?
+				unless Group.find(params[:group_id]).members.exists?(current_user)
+			redirect_to root_url
+				end
+			end
+		end
 			
 		
 end
