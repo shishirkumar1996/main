@@ -5,8 +5,12 @@ class QuestionsController < ApplicationController
     @questions = Question.all
   end
 
+  def user_questions
+    @questions = User.find(params[:user_id]).questions
+  end
+
   def show
-  	@question = Question.find(params[:id])
+  	set_question
   end
 
   def new
@@ -33,8 +37,8 @@ class QuestionsController < ApplicationController
 			d = Domain.find(token);
 			d.questions << @question
 		end
-			
-		
+
+
 		if @question.save
 			flash[:success] = "question submitted"
 			redirect_to root_url
@@ -42,7 +46,7 @@ class QuestionsController < ApplicationController
 			flash[:danger] = "some error occured"
 			render 'new'
 		end
-   
+
   end
 
   def update

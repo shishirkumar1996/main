@@ -27,13 +27,13 @@ Rails.application.routes.draw do
   		get :member
   	end
   	resources :group_articles do
-  		member do 
+  		member do
   			get :collection
   		end
   		resources :grouparticlereplies
   	end
-  	
-  	resources	:group_questions,only: [:new,:create] do
+
+resources	:group_questions,only: [:new,:create] do
 	 resources :groupanswers do
 	 		member do
 	 			get :collection
@@ -45,7 +45,7 @@ Rails.application.routes.draw do
   resources :search_products,only: [:index]
   resources :replies
   mount Ckeditor::Engine => '/ckeditor'
- root 'static_pages#home' 
+ root 'static_pages#home'
  get '/check_existing_question', to: 'static_pages#check_existing'
  get '/search_question',to: 'static_pages#search_question'
  get '/your_groups', to: 'users#index_group'
@@ -53,18 +53,18 @@ Rails.application.routes.draw do
  post '/login', to: 'sessions#create'
  #get 'groups/:id/invite', to: 'groups#invite'
  #post 'groups/:id/invite', to: 'groups#add'
- 
+
  get '/signup', to: 'users#new'
  post '/signup', to: 'users#create'
  delete '/logout', to: 'sessions#destroy'
- 
+
  get 'auth/facebook/callback', to: 'sessions#create_facebook'
  get 'auth/google_oauth2/callback',to: 'sessions#create_google'
  get 'auth/failure', to: redirect('/')
- 
+
  get '/write', to: "users#write"
- 
- 	
+
+
 resources :domains do
 	member do
 		get :edit_image
@@ -81,7 +81,7 @@ resources :domains do
 		get :move
 	end
 end
- 
+
  resources :users do
 	member do
 		get :edit_image
@@ -96,15 +96,18 @@ end
 		get :academic
 		get :following,:followers
 	end
- end 	
+ end
+
+ get 'users/:user_id/questions', to: 'questions#user_questions' 
+
  resources :articles do
  	member do
  		get :collection
  		end
  		resource :articlereplies
  	end
- 
- 		
+
+
  resources :questions do
 	 resources :answers do
 	 		member do
