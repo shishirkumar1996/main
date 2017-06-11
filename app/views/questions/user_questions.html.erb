@@ -1,0 +1,9 @@
+  <% @questions.each do |question| %>
+    <div class="question-box">
+      <span class="question-date">
+        Asked on <%= question.created_at.strftime("%b %d, %Y") %>
+      </span>
+      <%= link_to question.title, question, class: "question-title" %>
+      <br />
+    </div>
+  <% end %>

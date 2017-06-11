@@ -5,7 +5,12 @@ class QuestionsController < ApplicationController
     @questions = Question.all
   end
 
+  def user_questions
+    @questions = User.find(params[:user_id]).questions
+  end
+
   def show
+  	set_question
   	require 'will_paginate/array'
   	@question = Question.find(params[:id])
  		@answers = @question.answers.sort_by(&:created_at).reverse.paginate(page: params[:page],per_page: 2)
@@ -19,7 +24,7 @@ class QuestionsController < ApplicationController
 
   def edit
   end
-  
+
 
   def create
 		@question = current_user.questions.build(question_params)
@@ -36,8 +41,8 @@ class QuestionsController < ApplicationController
 			d = Domain.find(token);
 			d.questions << @question
 		end
-			
-		
+
+
 		if @question.save
 			flash[:success] = "question submitted"
 			redirect_to root_url
@@ -45,7 +50,7 @@ class QuestionsController < ApplicationController
 			flash[:danger] = "some error occured"
 			render 'new'
 		end
-   
+
   end
 
   def update
