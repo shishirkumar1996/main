@@ -1,24 +1,22 @@
-<div>
+<%= render :partial => 'layouts/header' %>
 
+<div>
 	<%= form_for @question do |f| %>
 		<%= render 'common/error_messages', object: f.object %>
 	<div>
 		<%# select_tag 'domain',options_for_select( @domains.collect{|g| [g.name, g.id]}) %>
 		<%# f.collection_select :domain, Domain.order(:name),:id,:name %>
-		<%= hidden_field_tag :domain_tokens,nil,data: {:url =>domains_path(:format=>:json)}, :style=>"width: 100%" %>
+		<%= hidden_field_tag :domain_tokens,nil,data: {:url =>domains_path(:format=>:json)}, :style=>"width: 80%" %>
 	</div>
 		<div class="select2_test">
 		<br><br><br><br>
 	<%= f.label :title %>
 	<div>
-	<%= f.text_field :title,:value => @questionterm, :readonly => true %>
+	<%= f.text_field :title,:value => @questionterm, :readonly => true ,:style=> "width: 80%;height: 8vh"%>
 	</div>
 	<%= f.label :description %>
 	<div>
 		<%= f.cktext_area :description,id: 'question_field',  rows: 5,:ckeditor =>{:toolbar =>'body'}%>
-	</div>
-	<div>
-		<%= f.check_box :anonymous %> Anonymous
 	</div>
 	
 	<div>

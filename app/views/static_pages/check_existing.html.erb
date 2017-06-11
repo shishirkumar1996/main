@@ -1,7 +1,8 @@
 <%= render :partial=>'layouts/header' %>
 
-<button onclick = "goback()">Back</button>
-<div class = "col-md-6 col-md-offset-2">
+<%= link_to 'back',:back %>
+<div class = "row">
+<div class = "col-md-4 col-md-offset-4 existing_question_check">
 	Search whether your question is already present or not	
 	</br>
 	<%= form_tag new_question_path,method: :get do %>
@@ -9,7 +10,7 @@
 	<%= submit_tag 'Ask', id: 'ask_button',class: 'btn btn-primary' %>
 	<% end %>
 </div>
-
+</div>
 <script>
 
 	$('#ask_button').attr('disabled',true);

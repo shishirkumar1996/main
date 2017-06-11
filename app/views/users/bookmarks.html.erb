@@ -1,0 +1,18 @@
+<%= render :partial => 'layouts/header' %>
+
+<%= link_to 'Back',:back %>
+<div class = "row" >
+		<div class = "col-md-6 col-md-offset-3">
+		<ul style = "padding-left: 0%;list-style: none">
+			<% if @bookmarks.count > 0 %>
+				<% @bookmarks.each do |bookmark| %>
+					<li style = "border: 1px solid; box-shadow: 5px 5px 5px #888888;"><h4><%= link_to bookmark.title,bookmark.class==Article ?article_path(bookmark) : question_path(bookmark) %></h4></li>
+				<% end %>
+			<% else %>
+				No bookmarks
+			<% end %>
+		
+		
+		</ul>
+	</div>
+</div>

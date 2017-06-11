@@ -7,27 +7,44 @@
 <div class = "row image_row">
 	<div class = "image_column col-md-4 col-md-offset-4 col-xs-12 col-sm-12">
 		<%=	render(:partial=>'common/profile_pic_loader',:object=> @user,:as=>:entity) %>
-		<% if @user==current_user %>
 		<br>
-			<%= link_to 'Edit image', edit_image_user_path(current_user) %>
-			<%= link_to 'Edit name and password',edit_user_path(current_user) %>
-	<% end %>
+		
 <h4><%= @user.name %></h4>
 </br>
 <div class = "row">
-<div class = "col-md-3 col-xs-3 col-sm-3">
-Followers
+<div class = "col-md-3 col-xs-3 col-sm-3 image_col_bt">
+<%=  link_to "Followers",followers_user_path(@user) %>
 </div>
-<div class = "col-md-3 col-xs-3 col-sm-3">
-	Following
+<div class = "col-md-3 col-xs-3 col-sm-3 image_col_bt">
+	<%= link_to "Following",following_user_path(@user) %>
 </div>
 
 <div class = "col-md-3 col-xs-3 col-sm-3">
-fol/unfol
-<%# here either follow/unfollow command or bookmarks option will be there %>
+	<% if logged_in? &&  current_user != @user %>
+	<div id = "follow_form">
+	<% if current_user.following?(@user) %>
+		<%= render 'unfollow' %>
+	<% else %>
+		<%= render 'follow' %>
+	<% end %>
+	</div>
+	<% else %>
+		<%= link_to 'Bookmarks',bookmarks_user_path(@user) %>
+<% end %>
+
 </div>
-<div class = "col-md-3 col-xs-3 col-sm-3">
-dropdown 
+<div class = "col-md-3 col-xs-3 col-sm-3 user_dropdown">
+		<a class = "dropdown">
+	<a href = "#" class = "dropdown-toggle" data-toggle = "dropdown">Options</a>
+<ul class = "dropdown-menu dropdown-menu-right">
+	<% if @user==current_user %>
+	
+		<li><%= link_to 'Edit image', edit_image_user_path(current_user) %></li>
+		<li><%= link_to 'Edit credentials',edit_user_path(current_user) %></li>
+	<% end %>
+	<li><%= link_to 'About',about_user_path(@user) %></li>
+</ul>	
+</a>
 
 </div>
 </div>
@@ -41,16 +58,6 @@ dropdown
 <div class = "row">
 <div class = "col-md-3 hidden-xs">
 
-
-<% if logged_in? &&  current_user != @user %>
-	<div id = "follow_form">
-	<% if current_user.following?(@user) %>
-		<%= render 'unfollow' %>
-	<% else %>
-		<%= render 'follow' %>
-	<% end %>
-	</div>
-<% end %>
 <ul id = "user_interest">
 <h4>Interests</h4>
 <% if @user==current_user %>

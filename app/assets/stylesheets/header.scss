@@ -11,10 +11,10 @@ border: 0px;
 height: 100%;
 padding-left: 1% !important;
 padding-right: 0% !important;
-@media(max-width: 500px)
+@media(max-width: 800px)
 {
-	padding-left: 5% !important;
-	padding-right: 1% !important;
+	padding-left: 2% !important;
+	padding-right: 0% !important;
 }
 }
 
@@ -38,6 +38,21 @@ padding-right: 0% !important;
 	color: #ff0000;
 	
 }
+.navbar-collapse{
+@media(max-width: 767px){
+	width: 100%;
+	padding-right: 0%;
+	padding-left: 0%;
+ul{
+width: 100%;
+li{
+border: 1px solid;
+	padding-left: 1%;
+}
+}
+}
+}
+
 
 #headerright > ul >li>a:hover{
 		color: white !important;

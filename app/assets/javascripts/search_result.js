@@ -1,7 +1,18 @@
 //$(function() {
 $(document).on('turbolinks:load',function(){
+	$('#searchbar_button').attr('disabled',true);
 
 $("#term").on("focus", function() {
+
+$(document).on('keyup',function(){
+if($("#term").val().length < 4)
+	$('#searchbar_button').attr('disabled',true);
+else
+	$('#searchbar_button').attr('disabled',false);
+
+});
+
+
 var e = document.getElementById("options");
 	
 	$("#term").autocomplete({

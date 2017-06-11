@@ -1,5 +1,23 @@
 <%= render :partial=>'layouts/header' %>
-<% @group.members.each do |user| %>
-<h1><%= link_to user.name,user_path(user) %><h1>
-</br>
+<% flash.each do |message_type, message| %>
+	<div class = "alert alert-<%= message_type %>"><%= message %>
+	</div>
 <% end %>
+
+<%= link_to 'back',:back %>
+
+<div class ="row">
+<div class = 'col-md-4 col-md-offset-4 col-xs-12 col-sm-12'>
+<ul class = "user_members_index">
+Members
+<% @group.members.each do |user| %>
+	<li class = "individual_user_member">
+	<%= render(:partial=> 'common/mini_pic_loader',:object=>user ,:as => :entity) %>	
+	<%= link_to user.name,user_path(user) %>
+	
+</li>
+	</br>
+<% end %>
+</ul>
+</div>
+</div>

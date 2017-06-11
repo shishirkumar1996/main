@@ -1,0 +1,32 @@
+<%= render :partial => 'layouts/header' %>
+
+<%= link_to 'Back',:back %>
+
+<div class = "row">
+	<div class = "col-md-4 col-md-offset-4 hidden-xs">
+
+<ul id = "user_interest">
+<h4>Interests</h4>
+<% if @user==current_user %>
+<%# link_to "Edit",interest_user_path(@user),{remote: true,'data-toggle'=> "modal", 'data-target'=> '#interestmodal-window'} %>
+<%= link_to "Edit",interest_user_path(@user) %>
+<% end  %>
+</br>
+<% @user.relations.each do |relation| %>
+<li><%= relation.name %></li>
+<% end %>
+</ul>
+
+<ul id = "user_education">
+<h4>Education</h4>
+<%if @user==current_user %>
+<%# link_to 'Edit',academic_user_path(current_user),{remote: true, 'data-toggle'=>"modal",'data-target'=>'#academicmodal-window'} %>
+<%= link_to 'Edit',academic_user_path(current_user) %>
+<% end %>
+</br>
+<% @user.institutes.each do |institute| %>
+	<li><%= institute.name %></li>
+<% end %>
+</ul>
+</div>
+</div>

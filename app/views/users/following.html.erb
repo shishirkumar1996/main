@@ -1,0 +1,21 @@
+<%= render :partial => 'layouts/header' %>
+
+<%= link_to 'Back',:back %>
+
+<div class = "row">
+	<div class = "col-md-4 col-md-offset-4">
+		<h4>Following</h4>
+	<br>
+	<ul style = "list-style: none;padding-left: 0;">
+		<% if @users.count > 0 %>
+		<% @users.each do |user| %>
+			<li "style: border 1px"><%= link_to user.title,user_path(user) %>
+			</li>
+		<% end %>
+		<% else %>
+		No following
+		<% end %>
+	</ul>
+	</div>
+</div>
+

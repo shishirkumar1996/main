@@ -1,6 +1,6 @@
 <%= render :partial => 'layouts/header' %>
-
-<div class= "col-md-8 col-md-offset-2">
+<div class = "row">
+<div class= "col-md-6 col-md-offset-3 col-sm-12 col-xs-12">
 	<div class = "feed_container">
 		<div class = "category">
 			Category: <%= @article.class %>
@@ -90,5 +90,24 @@
 	
 </li>
 	<br>
-</div>	
 </div>
+</br>	
+</div>
+
+<div class = 'col-md-3 col-sm-12 col-xs-12'>
+<ul class = 'related_post' style = "list-style: none;padding-left: 0%;">
+	Similiar posts
+	<% @article.domains.each do |domain| %>
+		<% (domain.questions+domain.articles).sort_by(&:created_at).each do |post| %>
+		<% if(post!=@article) %>
+		<li style="border: 1px solid">	<%= link_to post.title,post.class==Article ?article_path(post) : question_path(post) %>
+		<% end %>
+		</li>
+		<br>
+		<% end %>
+		
+	<% end %>
+</ul>
+</div>
+</div>
+
