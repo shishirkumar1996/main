@@ -131,6 +131,10 @@ end
 	 	end
 	 	end
 	member do
+		get :about
+		get :bookmarks
+		get :followers
+		get :following
 		get :edit_password
 		get :edit_name
 		post :update_password

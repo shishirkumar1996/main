@@ -5,7 +5,7 @@ if(notification_container > 0)
 	if(<%= @notifications.count %> > 0)
 	$('#notification-container').html('<%= escape_javascript(render @notifications) %>');
 	else
-	$('#notification-container').html('<a>No new Notifications</a>');
+	$('#notification-container').html('<li class = "individual_notification">No new Notifications</a>');
 }
 //	alert(<%= @notifications.count %> > 0);
 	

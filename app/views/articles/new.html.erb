@@ -9,14 +9,14 @@
 				<%# @domains.each do |g| %>
 					<%# radio_button_tag :domain, "#{g.name}" %><%# g.name %>
 				<%# end %>
-			<%= hidden_field_tag :domain_tokens,nil,data: {:url=> domains_path(:format=>:json)}, :style => "width: 100%" %>	
+			<%= hidden_field_tag :domain_tokens,nil,data: {:url=> domains_path(:format=>:json)}, :style => "width: 80%" %>	
 	<div class = "select2_test">
 		 <br><br><br><br>
 		 <div>
     <%= f.label :title %>
   </div>
   <div>
-    <%= f.text_field :title %>
+    <%= f.text_field :title,:style=> "width: 80%;height: 8vh" %>
   </div>
   <div>
     <%= f.label :body %>

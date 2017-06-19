@@ -1,6 +1,8 @@
 <%= render :partial=>'layouts/header' %>
 
-<% if @domain.image? %>
+<div class = "row image_row">
+<div class = "image_column col-md-4 col-md-offset-4 col-xs-12 col-sm-12">
+	<% if @domain.image? %>
 		<%= link_to(image_tag(@domain.image.profile.url),group_path(@domain),:class => "profile_pic" )%>
 <% else %>
 		<%= link_to(image_tag('dummies/medium.png'),domain_path(@domain)) %>
@@ -16,24 +18,35 @@
 	<strong id = "followers">
 		<%= @domain.followers.count %>
 	</strong> Followers
-	
-	<% if logged_in? %>
-<div id = "follow_form">
+	<div class = "row">
+		<% if logged_in? %>
+		<div class = "col-md-6 col-xs-6 col-sm-6">	
+<a id = "follow_form">
 	<% if current_user.has_relations(@domain) %>
 		<%= render 'unfollow' %>
 	<% else %>
 		<%= render 'follow' %>
 	<% end %>
-</div>
-<div class = "dropdown">
+</a>
+		</div>
+		<div class = "col-md-6 col-xs-6 col-sm-6">
+			<a class = "dropdown">
 	<a href = "#" class = "dropdown-toggle" data-toggle = "dropdown">Options</a>
-<ul class = "dropdown-menu">
+<ul class = "dropdown-menu dropdown-menu-right">
 	<li><%= link_to "Manage", manage_domain_path(@domain) %></li>
 </ul>	
-</div>
-<% end %>
+</a>
+		</div>
+	<% end %>
+	</div>
+	
 
-<div class = "col-md-8 col-md-offset-2">
+
+</div>
+</div>
+<br>
+<div class = "row">
+<div class = "col-md-6 col-md-offset-3">
 	
 	<div id = "feed-posts">
 		<%= render @feed %>
@@ -43,6 +56,19 @@
 		<%= will_paginate @feed %>
 	</div>
 	
+</div>
+
+<div class = "col-md-3 hidden-xs">
+	<ul class = 'related_domain'style = "list-style: none;padding-left: 0%;">
+	Related domains
+	<% @related_domain.each do |dom| %>
+		<li style="border: 1px solid">	<%= link_to dom.name, domain_path(dom) %>
+		</li>
+	<% end %>
+		<br>
+</ul>
+
+</div>
 </div>
 
 <script type = "text/javascript">

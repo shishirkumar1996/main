@@ -7,11 +7,17 @@
 
 <div class = "row">
 <div class = "col-md-offset-4 col-md-4">
+<div class = "name_change">
+	<div class = "head_name_change">
+		Name change
+	</div>
 <div class = "shown_field">
 Name: <%= @user.name %><%= link_to 'Edit',edit_name_user_path(@user),remote: true %>
 </div>
 </br>
 <div class = "name_field" style="visibility:hidden">
+<%= link_to 'cancel', '#',remote: true,id: 'cancel_id' %>
+
 <%= form_for(@user,url: update_name_user_path(@user),method: :post) do |f| %>
 	<%= f.label :name %>
 	<%= f.text_field :name,id: 'text_field' %>
@@ -19,17 +25,35 @@ Name: <%= @user.name %><%= link_to 'Edit',edit_name_user_path(@user),remote: tru
 <% end %>
 </div>
 </div>
+<br>
+<div id =  "password_edit_field" class = "password_change">
+	<div class = "head_password_change">
+		password change
+	</div>
 
-<div id =  "password_edit_field">
 Password:
 <%= link_to 'Edit Password',edit_password_user_path(@user) %>
 </div>
 
 
 </div>
+
+
+</div>
+
+
 </div>
 
 <script>
+		$('#submit_button').attr('disabled',true);
+		$(document).on('click','#cancel_id',function(){
+		
+			$('.shown_field').css('visibility','visible');
+			$('.name_field').css('visibility','hidden');
+		
+		});
+
+
 	$(document).on('keyup',function(evt){
 		if($('#text_field').val()=='')
 		$('#submit_button').attr('disabled',true);

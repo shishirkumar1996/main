@@ -30,58 +30,60 @@
 * changing the background-color of no file chosen                 X
 * changing the button color in edit image                         X
 * making update password and update name appear in same column
-making both lines appear inside border
-* making name change form appear inside border
-* change the button color for password change
-* changing the text field for title for article and question wider
-* making check existing question form wider, in center and inside border
-* making back button on this page to be in right top
+making both lines appear inside border                            X
+* making name change form appear inside border                    X
+* changing the text field for title for article and question widerX
+* making check existing question form wider, in center and inside border                                                            X
+* making back button on this page to be in right top							X
 * searching for suitable glyhicons for ask
 * making upvote,downvote and bookmark closer,without any buttons around them
 * making share option appear in far right
-* making load old notifications page same as notifications page
-* adding header to groups/new page
-* making add new group form inside border and add description field for groups
-* making group/show page same as user/show page with add members, members,ask question,write column in the row just under the image
-* apply the same thing for domain
-* apply the same thing as user edit image for group and domain edit image
+* making load old notifications page same as notifications page   X
+* adding header to groups/new page                                X
+* adding border to new group form                                 X
+* adding description field to group                                                              	
+* making group/show page same as user/show page with add members, members,ask question,write column in the row just under the image X
+* apply the same thing for domain                                 X
+* apply the same thing as user edit image for group and domain edit image                                                             X
 * checking for image adding on select2 results
 * trying to customize add group members page
-* making the group/members page similiar as group/show page but instead of feed, the users name will be down the image with user images and inside border
-* making 'your groups' in the same as user/show but with group names down the column with group names inside a border along with group image,number of group members
-* making 'your groups' appear in the user/show row below the image
-* deleting your groups appearing on root_path
+* making the group/members page similiar as group/show page but instead of feed, the users name will be down the image with user images and inside border                                        X
+* making 'your groups' in the same as user/show but with group names down the column with group names inside a border along with group image,number of group members                                   X
+* making 'your groups' appear in the user/show row below the image in dropdown
+* deleting your groups appearing on root_path                   X
 * seeing different color buttons in bootstrap and try to incorporate
-* decreasing select2 width in articles/new and questions/new
-* making borders in dropdown header
-* trying to decrease ckeditor image dialog height for smartphones view
-* making header options like home,ask,write appear more bright
+* decreasing select2 width in articles/new and questions/new    X
+* making borders in dropdown header                             X
+* making header options like home,ask,write appear more bright  X
 * for no feed in new group, write no feed present
-* for question/show and article/show , fill on right side with similar questions and articles respectively with simliar domain questions and articles
-* for domain fill with similar domains with supersets and subsets
-* making superset as parent and subset as children,make them inside border on middle of page like user/show with domain image on top
-* giving back option on above html file
+* for question/show and article/show , fill on right side with similar questions and articles respectively with simliar domain questions and articles                                          X
+* for domain fill with similar domains with supersets and subsets X
+* making superset as parent and subset as children,make them inside border on middle of page like user/show with domain image on top X
+* giving back option on above html file                          X
 * making manage_subset and superset html files better by adding customization
-* making same customization on just one field forms like check existing , change password,change name,add superset,subset etc
-* making dropdown for user/show domain/show and group/show in the column below image for edit image, edit credentials, bookmarked questions and articles,interests and educations
-* making interests and education appear in new page
-* checking the dropdown above created in smartphone view also
-* hide interests and education column in smartphone view
-* making starting pointer in search bar text field appear left than present
-* making update name button disabled until a single key is not pressed when text field is in focus
-* making header compatible for iphone5 view( about 300 px width)
+* making same customization on just one field forms like check existing , change password,change name,add superset,subset etc   
+* making dropdown for user/show domain/show and group/show in the column below image for edit image, edit credentials, bookmarked  questions and articles,interests and educations                  X
+* making interests and education appear in new page              X
+* checking the dropdown above created in smartphone view also    X
+* hide interests and education column in smartphone view         X
+* making starting pointer in search bar text field appear left than present                                                         X
+* making update name button disabled until a single key is not pressed when text field is in focus                             
+* making header compatible for iphone5 view( about 300 px width) X
 * checking into slug for user again
-* adding back option in editing user name
+* adding back option in editing user name                        X
 * see into decreasing the time for execution notifications/index everytime
-* making border around dropdown element near searchbar
 * changing the background color of number of notifications  in header
 * changing the title for each page(title that appears on tab)
-* making dropdown of account option in header rounded
 * changing the color of ckeditor
 * making =_= disappear from name on url when logged in through facebook
-* making bullet disappear from "no new notifications"
+* making bullet disappear from "no new notifications"         X
 * adding number of member option to group/show and link to show group members
 * changing the ckeditor image dialogue color
 * making social share button a bit separate from each other
-* making the search bar button disabled until length of val inside search field is less than 3
+* making the search bar button disabled until length of val inside search field is less than 3                                   X
 * limiting the dropdown of searchbar to 5
+* applying the adding of members in group to those users who are followers of current user
+* see the solution of overlapping borders of li
+* check into hash equivalent of inserting values into array with "<<"
+* see how to hide col-md in xs screen
+* check out dropdown menu on user/show domain/show and group/show

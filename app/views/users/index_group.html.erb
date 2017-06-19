@@ -1,10 +1,17 @@
 <%= render :partial=>'layouts/header' %>
-<div row='col-md-5 col-md-offset-2'>
+<div class = 'row'>
+<div class='col-md-6 col-md-offset-3 col-xs-12 col-sm-12'>
+<ul class = 'group_index'>
+	Your groups
 	<% @groups.each do |group| %>
-		<h1><%= link_to group.name ,group_path(group.id) %></h1>
+	<li class = 'individual_group'>
+			<%= render(:partial=> 'common/mini_pic_loader',:object=>group ,:as => :entity) %>	
+		<%= link_to group.name ,group_path(group.id) %>
 		</br>
 		<h6><%= group.members.count %> Members</h6>
-		<br>
+		</li>
+		</br>
 	<% end %>
-
+</ul>
+</div>
 </div>

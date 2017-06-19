@@ -1,13 +1,12 @@
+<%= render :partial=>'layouts/header' %>
 <% flash.each do |message_type, message| %>
 	<div class = "alert alert-<%= message_type %>"><%= message %>
 	</div>
 <% end %>
 
-<%= render :partial=>'layouts/header' %>
-<div class = "row">
-<div class = "col-md-8 col-md-offset-2">
-
-<% if @group.image? %>
+<div class = "row image_row">
+<div class = "image_column col-md-4 col-md-offset-4 col-xs-12 col-sm-12">
+	<% if @group.image? %>
 		<%= link_to(image_tag(@group.image.profile.url),group_path(@group),:class => "profile_pic" )%>
 <% else %>
 		<%= link_to(image_tag('dummies/medium.png'),group_path(@group)) %>
@@ -17,12 +16,35 @@
 
 
 <h1><%= @group.name %></h1>
-<h4><%= link_to 'Add members', invite_group_path(@group) %></h4>
-</br>
 <%= link_to 'Members', member_group_path(@group) %>
 </br>
-<%= link_to 'Ask Question',new_group_group_question_path(@group) %>
-<%= link_to 'Write Article',new_group_group_article_path(@group) %>
+
+
+
+<div class = "row">
+	<div class = "col-md-3 col-xs-3 col-sm-3 image_col_bt">
+		<%= link_to 'Add members', invite_group_path(@group) %>
+	</div>
+	<div class = "col-md-3 col-xs-3 col-sm-3 image_col_bt">
+		<%= link_to 'Ask Question',new_group_group_question_path(@group) %>
+	</div>
+	<div class = "col-md-3 col-xs-3 col-sm-3 image_col_bt">
+		<%= link_to 'Write Article',new_group_group_article_path(@group) %>
+	</div>
+	<div class = "col-md-3 col-xs-3 col-sm-3 image_col_bt">
+		Options
+	</div>
+</div>
+
+
+</div>
+</div>
+
+
+<div class = "row">
+<div class = "col-md-8 col-md-offset-2">
+
+
 </br>
 <div id = "feed-posts"
 <%= render  @feed %>

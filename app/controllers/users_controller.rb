@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
 
-	before_action :logged_in_user,except: [:show,:index,:new,:create]
+	before_action :logged_in_user,except: [:show,:index,:new,:create,:bookmarks]
 	before_action :same_user, only: [:edit_image,:edit_password,:edit_name,:update_name,:update_password,
-	:edit]
+	:edit,:bookmarks]
 	def index
 	@users = User.where("name ILIKE ?","%#{params[:term]}%").map{|user| {:id=>user.id,:text =>user.name}}
 	
@@ -101,6 +101,7 @@ class UsersController < ApplicationController
 		end
 	end
 	
+	
 	def removeinterest
 		@interest = Domain.find(params[:interest])
 		current_user.relations.delete(@interest)
@@ -117,25 +118,33 @@ class UsersController < ApplicationController
 	end
 	
 	def following
-		@title = "Following"
+#		@title = "Following"
 		@user = User.find(params[:id])
 		@users = @user.following.all
-		render 'show_follow'
 	end
 	
 	def followers
-		@title = "Followers"
+#		@title = "Followers"
 		@user = User.find(params[:id])
 		@users = @user.followers.all
-		render 'show_follow'
 	end
+	
+	def bookmarks
+		@user = User.find(params[:id])
+		@bookmarks = (@user.bookmarked_questions+@user.bookmarked_articles)
+	end
+	
+	def about
+		@user = User.find(params[:id])
+	end
+	
 	
 	def index_group
 		@groups = current_user.groups
 	end
 	
 	def edit
-		@user = User.friendly.find(params[:id])
+		@user = User.find(params[:id])
 	end	
 	
 	def edit_name
