@@ -1,45 +1,45 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "font-awesome";
-
+/*
 header{
 position: relative;
 }
-
+*/
 body{
 	position: relative;
-	padding-top: 60px;	
+	padding-top: 60px;
 	}
-	
+
 	#modal-window{
 		position: relative;
 	}
-	
+
 	#interestmodal-window{
 		position: relative;
 	}
-	
+
 	#academicmodal-window{
 		position: relative;
 	}
-	
+
 	.modal{
 	/*	display: block;   */
 		}
-		
+
 	.modal-dialog{
 		overflow-y: initial;
 		}
-		
+
 	.modal-body{
 		height: 250px;
 		overflow-y: auto;
 	}
-	
+
 	.modal-fade
 	{
-	
+
 	}
 	.modal-backdrop{
-		/* data-backdrop: none; */  
+		/* data-backdrop: none; */
 	}
