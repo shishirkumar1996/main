@@ -86,14 +86,28 @@
 }
 
 @media only screen and (max-width: 1023px) {
-  .nav-header .nav-row h1 { font-size: 30px; }
-  .nav-header .main-nav li a:link, a:hover, a:active, a:visited { font-size: 16px; }
+  .nav-header {
+    .nav-row h1 { font-size: 30px; }
+
+    .main-nav {
+      display: block; 
+
+      li a:link, a:hover, a:active, a:visited { font-size: 16px; }
+    }
+
+  }
 }
 
 @media only screen and (max-width: 767px) {
-  .nav-header .nav-row h1 { font-size: 28px; }
-  .nav-header .nav-row { width: 100%; }
   .nav-header {
+
+    .nav-row {
+      width: 100%;
+      h1 {
+        font-size: 28px;
+      }
+    }
+
     .main-nav {
       float: left;
       margin-top: 25px;
