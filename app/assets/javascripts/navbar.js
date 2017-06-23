@@ -16,4 +16,21 @@ $(document).on('turbolinks:load',function() {
         icon.removeClass('fa-times-circle');
     }
   });
+  var accountDropDown = $('#account-drop-down');
+  console.log(accountDropDown);
+  $('#account').on('click', function() {
+    accountDropDown.toggleClass('hide-it');
+    accountDropDown.toggleClass('show-it');
+  });
+/*
+  window.onClick = function(event) {
+    if (!event.target.matches('#account')) {
+      var dropDownList = $('#account-drop-down');
+      if(dropDownList.classList.contains('show')) {
+        dropDownList.classList.remove('show');
+      }
+    }
+  };
+*/
+
 });
