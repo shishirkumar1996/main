@@ -18,19 +18,19 @@ $(document).on('turbolinks:load',function() {
   });
   var accountDropDown = $('#account-drop-down');
   console.log(accountDropDown);
-  $('#account').on('click', function() {
+  $('#account').on('click', function(event) {
+    event.stopPropagation();
     accountDropDown.toggleClass('hide-it');
     accountDropDown.toggleClass('show-it');
   });
-/*
-  window.onClick = function(event) {
-    if (!event.target.matches('#account')) {
-      var dropDownList = $('#account-drop-down');
-      if(dropDownList.classList.contains('show')) {
-        dropDownList.classList.remove('show');
-      }
+
+  $(document).on('click', function(event) {
+    if(accountDropDown.hasClass('show-it')) {
+      accountDropDown.removeClass('show-it');
+      accountDropDown.addClass('hide-it');
     }
-  };
-*/
+
+  });
+
 
 });
