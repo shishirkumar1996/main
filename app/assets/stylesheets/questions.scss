@@ -40,19 +40,32 @@ body.questions-user_questions {
       color: #000;
     }
 
-    .question-date {
+    .question-date, .question-author, .question-answers-number {
       font-size: 15px;
       font-weight: 100;
       font-family: Arial, Helvetica, sans-serif;
+      width: 96%;
+      margin: 4px auto 0 auto;
+    }
+
+    .question-author {
+      text-transform: capitalize;
+      position: relative;
+      .question-author-title {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+      }
     }
 
     .question-title {
       font-family: Georgia, "Times New Roman", Times, serif;
       display: block;
-      margin-top: 12px;
-      font-size: 30px;
-      line-height: 150%;
+      margin: 12px auto 0 auto;
+      font-size: 22px;
+      line-height: 120%;
       font-weight: 200;
+      width: 96%;
     }
   }
 /*

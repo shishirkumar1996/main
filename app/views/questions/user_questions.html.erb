@@ -4,10 +4,18 @@
 
 <% @questions.each do |question| %>
   <div class="question-box">
-    <span class="question-date">
+    <div class="question-author">
+      <%= render(:partial => 'common/mini_pic_loader', object: question.user, as: :entity )%>
+      &nbsp;
+      <span class="question-author-title"><%= question.user.name %></span>
+    </div>
+    <div class="question-date">
       Asked on <%= question.created_at.strftime("%b %d, %Y") %>
-    </span>
+    </div>
     <%= link_to question.title, question, class: "question-title" %>
     <br />
+    <div class="question-answers-number">
+      <%= question.answers.count %> Answers
+    </div>
   </div>
 <% end %>

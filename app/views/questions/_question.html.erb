@@ -1,4 +1,4 @@
-<br>	
+<br>
 	<div class = "feed_container">
 		<div class = "category">
 			Category: <%= question.class %>
@@ -12,7 +12,7 @@
 	</div>
 	<div class = "title_container">
 		</br>
-	<strong><%= link_to question.title.to_s.html_safe,question_path(question),target: '_blank' %></strong>
+	<strong><%= link_to question.title.to_s.html_safe, question_path(question),target: '_blank' %></strong>
 	<div class = "feed_created_at">
 	</br>
 	<%= question.created_at.strftime("%d %b. %Y %H:%M") %>
@@ -20,8 +20,8 @@
 	<br>
 	</div>
 			Description:<br>
-		<div class = "description_container"> 
-			
+		<div class = "description_container">
+
 	<%= question.description.to_s.html_safe %>
 	</div>
 	</br>
@@ -34,9 +34,9 @@
 					<% else %>
 						<%= render(:partial=>'questions/bookmark',:locals=>
 						{:question=> question}) %>
-					<% end %>				
+					<% end %>
 				</div>
-				
+
 		<% end %>
 		<%if current_user?(question.user)||current_user.answered?(question) %>
 		<a class = "answer_tag">Answer</a>
@@ -53,7 +53,7 @@
 		<ul class = "answers list-group">
 			<%= render question.answers.first %>
 		</ul>
-				
+
 		<% end %>
-	</br>	
+	</br>
 	</div>
