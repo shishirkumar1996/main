@@ -1,0 +1,21 @@
+.btn-common {
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  padding: 6px 10px !important; // !important is not good, change it later
+  cursor: pointer;
+}
+
+.btn-bookmark {
+  background-color: #548be5;
+  color: #fff;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  min-width: 112.48px;
+  -webkit-transition-duration: 0.4s;
+          transition-duration: 0.4s;
+}
+
+.btn-bookmark:hover {
+  background-color: #265cb5;
+}
+// tick-mark &#10003
