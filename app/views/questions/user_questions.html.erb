@@ -9,13 +9,26 @@
       &nbsp;
       <span class="question-author-title"><%= question.user.name %></span>
     </div>
-    <div class="question-date">
-      Asked on <%= question.created_at.strftime("%b %d, %Y") %>
+    <div class="containing-div clearfloat">
+      <div class="question-date">
+        Asked on <%= question.created_at.strftime("%b %d, %Y") %>
+      </div>
+      <div class="question-answers-number">
+        <%= question.answers.count %> Answers
+      </div>
     </div>
     <%= link_to question.title, question, class: "question-title" %>
     <br />
-    <div class="question-answers-number">
-      <%= question.answers.count %> Answers
-    </div>
+    <% unless current_user?(question.user) %>
+      <div class="containing-div clearfloat">
+        <div class="answer-question">
+          <%= link_to "Answer", new_question_answer_path(question),
+              class: "btn-common btn-question" unless current_user.answered?(question) %>
+        </div>
+        <div id = "question_bookmark_<%= question.id %>" class = "question_bookmark">
+          <%= question_bookmark_helper(question) %>
+        </div>
+      </div>
+    <% end %>
   </div>
 <% end %>

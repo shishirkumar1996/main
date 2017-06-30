@@ -1,0 +1,10 @@
+// used clearfloat cuz clearfix was taken by Bootstrap
+.clearfloat:before,
+.clearfloat:after {
+  content: "";
+  display: table;
+}
+
+.clearfloat::after {
+  clear: both;
+}

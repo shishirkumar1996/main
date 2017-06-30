@@ -5,17 +5,24 @@
   padding: 6px 10px !important; // !important is not good, change it later
   cursor: pointer;
 }
+/* The !important below is cuz of the link for Answer in the user_questions page.
+   It is to ovrride the default styles for links on that page.
+   The way to remove !important is to directly style that a tag in questions.scss(around line no. 71)
+*/
 
-.btn-bookmark {
+.btn-question {
+  text-align: center;
+  display: inline-block;
+  height: 35px;
   background-color: #548be5;
-  color: #fff;
+  color: #fff !important;
   box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
   min-width: 112.48px;
   -webkit-transition-duration: 0.4s;
           transition-duration: 0.4s;
 }
 
-.btn-bookmark:hover {
-  background-color: #265cb5;
+.btn-question:hover {
+  background-color: #265cb5 !important;
 }
 // tick-mark &#10003
