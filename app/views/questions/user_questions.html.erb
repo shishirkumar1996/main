@@ -14,7 +14,7 @@
         Asked on <%= question.created_at.strftime("%b %d, %Y") %>
       </div>
       <div class="question-answers-number">
-        <%= question.answers.count %> Answers
+        <%= question.answers_count %> Answers
       </div>
     </div>
     <%= link_to question.title, question, class: "question-title" %>

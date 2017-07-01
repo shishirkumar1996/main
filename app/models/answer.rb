@@ -3,7 +3,7 @@ class Answer < ApplicationRecord
 
 
 belongs_to :user
-belongs_to :question
+belongs_to :question, counter_cache: true
 has_many :replies , dependent: :destroy
 
 has_many :answer_bookmark_relations,foreign_key: :answer_id,
