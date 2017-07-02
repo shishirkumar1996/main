@@ -1,5 +1,5 @@
 body.questions-user_questions {
-  height: 100vh;
+  height: 100%;
   position: static;
   padding: 0;
   margin: 0;
@@ -51,20 +51,7 @@ body.questions-user_questions {
       width: 96%;
       margin: 4px auto 0 auto;
     }
-/*
-    .containing-div {
-      position: relative;
-    }
 
-    .question-date,
-    .answer-question,
-    .question-answers-number,
-    .question_bookmark {
-      position: relative;
-      top: 50%;
-      transform: translateY(-50%);
-    }
-*/
     .question-date, .answer-question {
       float: left;
       a {
@@ -96,16 +83,5 @@ body.questions-user_questions {
       width: 96%;
     }
   }
-/*
-  .navigation {
-    background-color: #16a085;
-  }
 
-  #navigation-text {
-    color: #fff;
-    font-weight: 500;
-    font-size: 14px;
-    margin: 0 10px;
-  }
-*/
 }
