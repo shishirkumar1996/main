@@ -1,6 +1,7 @@
 html, body {
-  min-width: 100%;
-  min-height: 100%;
+  // take care of browser support for vh and vw
+  min-width: 100vw;
+  min-height: 100vh;
   margin: 0;
   overflow: auto;
 }
@@ -16,7 +17,7 @@ body {
 }
 
 
-// used clearfloat cuz clearfix was taken by Bootstrap
+// used clearfloat because clearfix was taken by Bootstrap
 .clearfloat:before,
 .clearfloat:after {
   content: "";
