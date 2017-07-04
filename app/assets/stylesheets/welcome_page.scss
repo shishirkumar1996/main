@@ -18,14 +18,15 @@ background: linear-gradient(right,#FFFF66,#A9A9A9);
 background-color: aqua;
 	}
 
-
+/*
 html{
 background-color: white;
 }
-	
+*/
+
 .facebook_sign_in{
 background-color: blue;
-}	
+}
 
 .google_sign_in
 {
@@ -49,8 +50,75 @@ background: -moz-linear-gradient(right,#FFFF66,#A9A9A9);
 background: linear-gradient(right,#FFFF66,#A9A9A9);
 }
 
+/*
+Sign Up
+ */
+
+.main-login {
+	margin-top: 70px;
+}
+
+h1.sign-up-title {
+	font-size: 50px;
+	font-weight: 400;
+}
+
+.panel-title hr {
+	border: 0;
+	display: block;
+	clear: both;
+	width: 10%;
+	background-color: #000;
+	height: 1px;
+}
+
+.form-group{
+	margin-bottom: 15px;
+}
+
+.control-label {
+	margin-bottom: 15px;
+}
+
+.sign-up-center{
+ 	margin-top: 30px;
+ 	margin: 0 auto;
+ 	max-width: 330px;
+  padding: 40px 40px;
+}
+
+.sign-up-button {
+	margin-top: 5px;
+}
+
+.main-login{
+ 	background-color: #fff;
+    /* shadows and rounded borders */
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+// check out vendor prefixes for placeholder
+input.sign-up-input::-webkit-input-placeholder {
+	font-size: 11px;
+  padding-top: 3px;
+}
+
+.login-sign-up {
+	font-size: 11px;
+	text-align: center;
+	a {
+		cursor: pointer;
+	}
+}
+
+/*
 .sign_up_form
-	{	
+	{
 		border: 1px solid;
 
 text-align: center;
@@ -66,3 +134,4 @@ background: -o-linear-gradient(right,#FFFF66,#A9A9A9);
 background: -moz-linear-gradient(right,#FFFF66,#A9A9A9);
 background: linear-gradient(right,#FFFF66,#A9A9A9);
 	}
+*/

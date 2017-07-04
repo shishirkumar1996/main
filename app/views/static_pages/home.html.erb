@@ -6,7 +6,7 @@
 <% if logged_in? %>
 
 	<%= render :partial=>'layouts/header' %>
-	<%= render :partial=>'layouts/body' %>		
+	<%= render :partial=>'layouts/body' %>
 <% else %>
 
 
@@ -14,9 +14,9 @@
 	<div class = "col-md-3">
 	</div>
 	<div class = "col-md-6">
-<div class = "welcome" >	
+<div class = "welcome" >
 		<h1> Welcome to this app</h1>
-		
+
 		</br>
 		<%= link_to "Sign in through email", login_path,class: 'btn btn-primary btn-lg  btn-social sign_in' %>
 		</br>
@@ -31,9 +31,9 @@
     <span class="fa fa-google"></span> Continue through google
   </a>
 		<br><strong>Or</strong><br>
-		<%= link_to "sign up by creating account", signup_path, class: 'btn btn-primary btn-lg  btn-social sign_in' %>	
+		<%= link_to "sign up by creating account", signup_path, class: 'btn btn-primary btn-lg  btn-social sign_in' %>
 	</p>
 	</div>
-</div>		
-			
+</div>
+
 <% end %>
