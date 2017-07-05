@@ -7,7 +7,7 @@
 	</div>
 	<div class="containing-div clearfloat">
 		<div class="content-date">
-			Asked on <%= question.created_at.strftime("%b %d, %Y") %>
+			Asked&nbsp;<%= date_time_helper question.created_at %>
 		</div>
 		<div class="question-answers-number">
 			<%= question.answers_count %> Answers
