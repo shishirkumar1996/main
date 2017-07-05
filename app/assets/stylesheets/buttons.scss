@@ -10,7 +10,7 @@
    The way to remove !important is to directly style that a tag in questions.scss(around line no. 71)
 */
 
-.btn-question {
+.btn-action {
   text-align: center;
   display: inline-block;
   height: 35px;
@@ -22,7 +22,7 @@
           transition-duration: 0.4s;
 }
 
-.btn-question:hover {
+.btn-action:hover {
   background-color: #265cb5 !important;
 }
 // tick-mark &#10003

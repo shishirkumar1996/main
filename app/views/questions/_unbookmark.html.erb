@@ -1,3 +1,3 @@
 <%= form_for(current_user.question_bookmark_relations.find_by(question_id: question.id),html: {method: :delete},remote: true) do |f| %>
-	<%= f.submit "Unbookmark",class: 'btn-common btn-question' %>
+	<%= f.submit "Unbookmark",class: 'btn-common btn-action' %>
 <% end %>

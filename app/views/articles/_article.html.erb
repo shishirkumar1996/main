@@ -1,3 +1,38 @@
+
+<div class="content-container">
+	<div class="content-author">
+		<%= render(:partial => 'common/mini_pic_loader', object: article.user, as: :entity )%>
+		&nbsp;
+		<span class="content-author-title"><%= article.user.name %></span>
+	</div>
+	<div class="containing-div clearfloat">
+		<div class="content-date">
+			Written&nbsp;<%= date_time_helper article.created_at %>
+		</div>
+	</div>
+	<%= link_to article.title, article, class: "content-title" %>
+	<br />
+	<% unless current_user?(article.user) %>
+		<div class="containing-div clearfloat">
+			<div id = "article_bookmark_<%= article.id %>" class = "content-bookmark">
+				<%= article_bookmark_helper(article) %>
+			</div>
+		</div>
+	<% end %>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
 <br>
 <div class = "feed_container">
 		<div class = "category">
@@ -90,3 +125,4 @@
 </li>
 	<br>
 </div>
+-->
