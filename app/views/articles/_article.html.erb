@@ -37,7 +37,7 @@
 	<% if logged_in? %>
 	<% if current_user != article.user %>
 	<div class= "row">
-		<div id = "upvotearticle_<%= article.id %>" class = "col-md-2" > 
+		<div id = "upvotearticle_<%= article.id %>" class = "col-md-2" >
 		<% if(current_user.like_article?(article)) %>
 			<%= render :partial=>'articles/upvoted',:locals=>{:article => article} %>
 		<% else %>
@@ -64,7 +64,7 @@
 					<% end %>
 		</div>
 		</div>
-	<% else %>			
+	<% else %>
 	<%= link_to "Edit", edit_article_path(article) %>
 	<% end %>
 	<% end %>
@@ -86,7 +86,7 @@
 		<% end %>
 		</section>
 	</br>
-	
+
 </li>
 	<br>
-</div>	
+</div>

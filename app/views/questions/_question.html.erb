@@ -1,19 +1,19 @@
 
-<div class="question-box">
-	<div class="question-author">
+<div class="content-container">
+	<div class="content-author">
 		<%= render(:partial => 'common/mini_pic_loader', object: question.user, as: :entity )%>
 		&nbsp;
-		<span class="question-author-title"><%= question.user.name %></span>
+		<span class="content-author-title"><%= question.user.name %></span>
 	</div>
 	<div class="containing-div clearfloat">
-		<div class="question-date">
+		<div class="content-date">
 			Asked on <%= question.created_at.strftime("%b %d, %Y") %>
 		</div>
 		<div class="question-answers-number">
 			<%= question.answers_count %> Answers
 		</div>
 	</div>
-	<%= link_to question.title, question, class: "question-title" %>
+	<%= link_to question.title, question, class: "content-title" %>
 	<br />
 	<% unless current_user?(question.user) %>
 		<div class="containing-div clearfloat">
@@ -21,7 +21,7 @@
 				<%= link_to "Answer", new_question_answer_path(question),
 						class: "btn-common btn-question" unless current_user.answered?(question) %>
 			</div>
-			<div id = "question_bookmark_<%= question.id %>" class = "question_bookmark">
+			<div id = "question_bookmark_<%= question.id %>" class = "content-bookmark">
 				<%= question_bookmark_helper(question) %>
 			</div>
 		</div>
