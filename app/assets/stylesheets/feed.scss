@@ -51,12 +51,12 @@ font-weight: lighter;
 
 .title_container_show, .title_container>strong{
 	font-size: 20px;
-	
+
 	:hover{
 		background: grey;
 		text-decoration: none;
 	}
-	
+
 	@media(max-width: 400px)
 	{
 		font-size: 15px;
@@ -66,7 +66,7 @@ font-weight: lighter;
 
 .title_container{
 	font-size: 24px;
-	padding: 0%;				
+	padding: 0%;
 }
 
 .description_container{
@@ -75,7 +75,7 @@ font-weight: lighter;
 	{
 		font-size: 12px;
 	}
-	
+
 	width: 100%;
 	border-bottom: 1px groove;
 	color: grey;
@@ -142,10 +142,11 @@ font-size: 14px;
 .upvote_answer{
 }
 
-
+/*
 .social_share_tag{
 padding-top: 1%;
 }
+*/
 .category{
 padding-bottom: 1%;
 }

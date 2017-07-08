@@ -1,0 +1,42 @@
+.article-heading,
+.article-content {
+  font-family: Georgia, Times, "Times New Roman", serif;
+  color: #000;
+  word-wrap: break-word;
+  -moz-tab-size: 4;
+       tab-size: 4;
+}
+
+.article-heading {
+  font-size: 36px;
+  font-weight: bold;
+  line-height: 1.33em;
+}
+
+.article-content {
+  font-size: 16px;
+  line-height: 150%;
+  font-weight: normal;
+  p {
+    margin-bottom: 1.5em;
+  }
+}
+
+.article-info {
+  position: relative;
+}
+
+.article-user-name,
+.article-date {
+  display: inline-block;
+  position: absolute;
+}
+
+.article-user-name {
+  text-transform: capitalize;
+  top: 0;
+}
+
+.article-date {
+  bottom: 0;
+}
