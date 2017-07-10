@@ -1,0 +1,3 @@
+//alert(CKEDITOR.instances['<%= @field %>'].getData().length);
+$('#<%= @id %>').prepend("<%= escape_javascript(render @articlereply) %>");
+CKEDITOR.instances['<%= @field %>'].setData('');

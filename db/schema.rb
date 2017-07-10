@@ -66,6 +66,16 @@ ActiveRecord::Schema.define(version: 20170701075208) do
     t.index ["user_id"], name: "index_article_bookmark_relations_on_user_id", using: :btree
   end
 
+  create_table "article_replies", force: :cascade do |t|
+    t.text     "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "user_id"
+    t.integer  "article_id"
+    t.index ["article_id"], name: "index_article_replies_on_article_id", using: :btree
+    t.index ["user_id"], name: "index_article_replies_on_user_id", using: :btree
+  end
+
   create_table "articlerelations", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "article_id"
@@ -74,16 +84,6 @@ ActiveRecord::Schema.define(version: 20170701075208) do
     t.index ["article_id", "user_id"], name: "index_articlerelations_on_article_id_and_user_id", unique: true, using: :btree
     t.index ["article_id"], name: "index_articlerelations_on_article_id", using: :btree
     t.index ["user_id"], name: "index_articlerelations_on_user_id", using: :btree
-  end
-
-  create_table "articlereplies", force: :cascade do |t|
-    t.text     "body"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer  "user_id"
-    t.integer  "article_id"
-    t.index ["article_id"], name: "index_articlereplies_on_article_id", using: :btree
-    t.index ["user_id"], name: "index_articlereplies_on_user_id", using: :btree
   end
 
   create_table "articles", force: :cascade do |t|
@@ -363,8 +363,8 @@ ActiveRecord::Schema.define(version: 20170701075208) do
 
   add_foreign_key "answers", "questions"
   add_foreign_key "answers", "users"
-  add_foreign_key "articlereplies", "articles"
-  add_foreign_key "articlereplies", "users"
+  add_foreign_key "article_replies", "articles"
+  add_foreign_key "article_replies", "users"
   add_foreign_key "articles", "users"
   add_foreign_key "group_articles", "groups"
   add_foreign_key "group_articles", "users"

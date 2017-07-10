@@ -159,7 +159,7 @@ end
  	member do
  		get :collection
  	end
- 	resource :article_replies
+ 	resource :article_replies, only: [:create, :update, :edit, :destroy]
  end
 
 

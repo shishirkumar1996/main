@@ -1,18 +1,7 @@
 class ArticleRepliesController < ApplicationController
-  before_action :set_article_reply, only: [:show, :edit, :update, :destroy]
+  before_action :set_article_reply, only: [:edit, :update, :destroy]
 
   before_action :logged_in_user
-
-  def index
-    @articlereplies = ArticleReply.all
-  end
-
-  def show
-  end
-
-  def new
-    @articlereply = ArticleReply.new
-  end
 
   def edit
   end
