@@ -29,14 +29,15 @@
 
 // social-share-button
 
-/*
-$size: 24px;
+
+$social-size: 16px;
 
 .social-share-button {
+  float: right;
   .ssb-icon {
-    background-size: $size $size;
-    height: $size;
-    width: $size;
+    margin-left: 6px;
+    background-size: $social-size $social-size;
+    height: $social-size;
+    width: $social-size;
   }
 }
-*/

@@ -14,7 +14,10 @@
 	<div class="containing-div article-content">
 		<%= @article.body.html_safe %>
 	</div>
-<!--	<%= social_share_button_tag(@article.title) %> -->
+	<div class="containing-div clearfloat">
+		<%# modify the 'by author' below if the person has an account on google/fb/twitter %>
+		<%= social_share_button_tag("#{@article.title} by #{@article.user.name}") %>
+	</div>
 </div>
 
 
