@@ -4,12 +4,7 @@
 	<div class="containing-div">
 		<h2 class="article-heading"><%= @article.title %></h2>
 	</div>
-	<div class="containing-div article-content article-info">
-		<%= render(:partial => 'common/thumb_pic_loader', object: @article.user, as: :entity )%>
-		&nbsp;
-		<div class="article-user-name"><%= @article.user.name %></div>
-		<div class="article-date">Written&nbsp;<%= date_time_helper @article.created_at %></div>
-	</div>
+	<%= render partial: 'common/author_info', locals: { content: @article }  %>
 	<br />
 	<div class="containing-div article-content">
 		<%= @article.body.html_safe %>

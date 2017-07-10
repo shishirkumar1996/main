@@ -1,0 +1,6 @@
+<div class="containing-div author-info">
+  <%= render(:partial => 'common/thumb_pic_loader', object: content.user, as: :entity )%>
+  &nbsp;
+  <div class="author-name"><%= link_to "#{content.user.name}", content.user %></div>
+  <div class="date-info"><%= date_time_helper content.created_at %></div>
+</div>
