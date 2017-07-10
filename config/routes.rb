@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     resources :articles
     resources :article_bookmark_relations
     resources :articlerelations
-    resources :articlereplies
+    resources :article_replies
     resources :associated_sets
     resources :badanswerrelations
     resources :badarticlerelations
@@ -72,7 +72,7 @@ Rails.application.routes.draw do
   		resources :grouparticlereplies
   	end
 
-  	
+
  resources	:group_questions,only: [:new,:create,:show] do
 	 resources :groupanswers do
 	 		member do
@@ -158,9 +158,9 @@ end
  resources :articles do
  	member do
  		get :collection
- 		end
- 		resource :articlereplies
  	end
+ 	resource :article_replies
+ end
 
 
  resources :questions do

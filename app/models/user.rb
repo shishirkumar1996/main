@@ -74,7 +74,7 @@ source: :groupanswer
 	has_many :questions, dependent: :destroy
 	has_many :answers, dependent: :destroy
 	has_many :replies ,dependent: :destroy
-	has_many :articlereplies, dependent: :destroy
+	has_many :article_replies, dependent: :destroy
 	has_many :interests, foreign_key: :person_id,dependent: :destroy
 
 	has_many :relations, through: :interests,source: :domain
@@ -210,8 +210,8 @@ source: :groupanswer
 		end
 		return false
 	end
-	
-	
+
+
 	def group_answered?(question)
 		question.groupanswers.each do |answer|
 			if(groupanswers.include?(answer))
