@@ -14,6 +14,12 @@ body {
   color: #000;
   text-rendering: optimizeLegibility;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: normal;
+}
+
+h3 {
+  font-size: 24px;
 }
 
 
@@ -142,6 +148,11 @@ em {
     a:visited {
       color: #2b6dad;
     }
+  }
+
+  .author-name-without-date {
+    top: 50%;
+    transform: translateY(-50%);
   }
 
   .date-info {

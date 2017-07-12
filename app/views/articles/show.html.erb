@@ -4,7 +4,7 @@
 	<div class="containing-div">
 		<h2 class="article-heading"><%= @article.title %></h2>
 	</div>
-	<%= render partial: 'common/author_info', locals: { content: @article }  %>
+	<%= render partial: 'common/author_info', locals: { user: @article.user, date_time: @article.created_at }  %>
 	<br />
 	<div class="containing-div article-content">
 		<%= @article.body.html_safe %>
@@ -13,11 +13,11 @@
 		<%# modify the 'by author' below if the person has an account on google/fb/twitter %>
 		<%= social_share_button_tag("#{@article.title} by #{@article.user.name}") %>
 	</div>
+
 </div>
-
-
-
-
+<br />
+<h3 class="article-reply-header">Replies:</h3>
+<%= render partial: 'common/author_info', locals: { user: current_user, date_time: false }  %>
 
 
 
@@ -106,7 +106,7 @@
 				<%# render @article.articlereplies %>
 			</ul>
 		<%= link_to "load more",nowhere_path,class: "articlereply_loadmore",id: "articlereply_loadmore_#{@article.id}",remote: true %>
-		<%= form_for([@article,@article.articlereplies.build],remote: true) do |f| %>
+		<%= form_for([@article,@article.article_replies.build],remote: true) do |f| %>
 			<%= f.cktext_area :body,id: "articlefield_#{@article.id}",rows: 3,:ckeditor =>{:toolbar=>'body'} %>
 			<div>
 				<%= f.submit 'Reply',id: "button_articlefield_#{@article.id}" %>

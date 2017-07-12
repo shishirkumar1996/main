@@ -1,1 +1,0 @@
-json.partial! "articlereplies/articlereply", articlereply: @articlereply
