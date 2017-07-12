@@ -1,7 +1,8 @@
-<li class = 'individual_reply individual_articlereply_<%= @article.id %>' data-id= '<%= articlereply.id %>'>
-	<%= render(:partial=> 'common/mini_pic_loader',:object=>articlereply.user ,:as => :entity) %>	
-	<%= link_to articlereply.user.name,user_path(articlereply.user) %>
-	<br>
-	<%= articlereply.body.html_safe %><br>
-	<%= articlereply.created_at.strftime("%d %b,%Y %H:%M") %>
-</li>
+<div class="content-container">
+	<%= render partial: 'common/author_info', locals: { user: article_reply.user, date_time: article_reply.created_at }  %>
+	<br />
+	<div class="containing-div article-content">
+		<%# if necessary, add html_safe below %>
+		<%= article_reply.body %>
+	</div>
+</div>

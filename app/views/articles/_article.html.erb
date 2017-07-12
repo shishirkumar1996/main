@@ -113,7 +113,7 @@
 				<%# render article.articlereplies %>
 			</ul>
 		<%= link_to "load more",nowhere_path,class: "articlereply_loadmore",id: "articlereply_loadmore_#{article.id}",remote: true %>
-		<%= form_for([article,article.articlereplies.build],remote: true) do |f| %>
+		<%= form_for([article,article.article_replies.build],remote: true) do |f| %>
 			<%= f.cktext_area :body,id: "articlefield_#{article.id}",rows: 3,:ckeditor =>{:toolbar=>'body'} %>
 			<div>
 				<%= f.submit 'Reply',class: 'reply_button',id: "button_articlefield_#{article.id}" %>

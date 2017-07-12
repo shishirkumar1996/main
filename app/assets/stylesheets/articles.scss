@@ -21,3 +21,37 @@
     margin-bottom: 1.5em;
   }
 }
+
+.article-reply-header {
+  text-decoration: underline;
+  margin-left: 22.5%;
+}
+
+.submit-article-reply {
+  width: 55%;
+  margin: 0 auto;
+}
+
+textarea.article-reply-textarea {
+  outline: none;
+  resize: none;
+  height: auto;
+  width: 100%;
+  border: 1px solid #9b9b9b;
+  border-radius: 5px;
+}
+
+textarea.article-reply-textarea:focus {
+  outline: none;
+  border-color: #62d5ff;
+  box-shadow: 0 0 5px;
+}
+
+.reply-button-container {
+  margin-top: 8px;
+  text-align: right;
+}
+
+#new-reply-container {
+  display: none;
+}

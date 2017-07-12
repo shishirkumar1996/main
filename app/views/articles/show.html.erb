@@ -15,126 +15,15 @@
 	</div>
 
 </div>
+
 <br />
 <h3 class="article-reply-header">Replies:</h3>
-<%= render partial: 'common/author_info', locals: { user: current_user, date_time: false }  %>
-
-
-
-
-
-
-
-<!--
-<div class = "row">
-<div class= "col-md-6 col-md-offset-3 col-sm-12 col-xs-12">
-	<div class = "feed_container">
-		<div class = "category">
-			Category: <%= @article.class %>
-		</div>
-	<div class = "domain_container">
-		Related domains:
-	<% @article.domains.each do |domain| %>
-		<em><%= link_to domain.name,domain_path(domain.id) %></em>
-	<% end %>
-	</div>
-	<div class = "title_container_show">
-		</br>
-	<strong><%=  @article.title.html_safe %></strong>
-	<div class = "feed_created_at">
-	</br>
-	<%= @article.created_at.strftime("%d %b. %Y %H:%M") %>
-	</div>
-	<br>
-	</div>
-
-<% if @article.user.image? %>
-		<%= link_to(image_tag(@article.user.image.mini.url),user_path(@article.user),:class => "profile_pic" )%>
-		<% else %>
-		<%= link_to(image_tag('dummies/mini.png'),user_path(@article.user)) %>
-<% end %>
-
-<%= link_to @article.user.name,user_path(@article.user) %>
-<br>
-<li class = 'list-group-item'>
-
-<div class = "article_body_container">
-<%= @article.body.html_safe %>
+<br /><br />
+<div class="submit-article-reply">
+	<%= render partial: 'common/author_info', locals: { user: current_user, date_time: false }  %>
+	<br />
+	<%= render partial: 'article_replies/form', locals: { article: @article } %>
 </div>
-<br>
-	<% if logged_in? %>
-	<% if current_user != @article.user %>
-	<div class= "row">
-		<div id = "upvotearticle_<%= @article.id %>" class = "col-md-2" >
-		<% if(current_user.like_article?(@article)) %>
-			<%= render :partial=>'articles/upvoted',:locals=>{:article => @article} %>
-		<% else %>
-			<%= render :partial=>'articles/upvote',:locals=>{:article => @article} %>
-		<% end %>
-		</div>
-		<div id = "downvotearticle_<%= @article.id %>" class = "col-md-2" >
-			<% if(current_user.dislike_article?(@article)) %>
-				<%= render :partial=>'articles/downvoted',:locals=>{:article => @article} %>
-			<% else %>
-				<%= render :partial=>'articles/downvote',:locals=>{:article => @article} %>
-			<% end %>
-		</div>
-		<div class = "col-md-4 social_share_tag">
-			<%= social_share_button_tag(@article.title) %>
-		</div>
-		<div id = "article_bookmark_<%= @article.id %>" class = "col-md-2">
-					<% if current_user.bookmark_article?(@article) %>
-						<%= render(:partial=>'articles/unbookmark',:locals=>{
-						:article => @article}) %>
-					<% else %>
-						<%= render(:partial=>'articles/bookmark',:locals=>
-						{:article => @article}) %>
-					<% end %>
-		</div>
-		</div>
-	<% else %>
-	<%= link_to "Edit", edit_article_path(@article) %>
-	<% end %>
-	<% end %>
-	<br>
-
-		<%= link_to "Replies", nowhere_path, class: 'articlereply_button',id: "article_#{@article.id}",remote: true,
-		data: {disable_with: 'Replies'} %>
-		</br>
-		<section class = 'articlereply' id = "articlereply_<%= @article.id %>">
-			<ul class = "replies_area articlereplies list-group" id = "articlereplies_<%= @article.id %>">
-				<%# render @article.articlereplies %>
-			</ul>
-		<%= link_to "load more",nowhere_path,class: "articlereply_loadmore",id: "articlereply_loadmore_#{@article.id}",remote: true %>
-		<%= form_for([@article,@article.article_replies.build],remote: true) do |f| %>
-			<%= f.cktext_area :body,id: "articlefield_#{@article.id}",rows: 3,:ckeditor =>{:toolbar=>'body'} %>
-			<div>
-				<%= f.submit 'Reply',id: "button_articlefield_#{@article.id}" %>
-			</div>
-		<% end %>
-		</section>
-	</br>
-
-</li>
-	<br>
-</div>
-</br>
-</div>
-
-<div class = 'col-md-3 col-sm-12 col-xs-12'>
-<ul class = 'related_post' style = "list-style: none;padding-left: 0%;">
-	Similiar posts
-	<% @article.domains.each do |domain| %>
-		<% (domain.questions+domain.articles).sort_by(&:created_at).each do |post| %>
-		<% if(post!=@article) %>
-		<li style="border: 1px solid">	<%= link_to post.title,post.class==Article ?article_path(post) : question_path(post) %>
-		<% end %>
-		</li>
-		<br>
-		<% end %>
-
-	<% end %>
-</ul>
-</div>
-</div>
--->
+<div id="new-reply-container"></div>
+<%# display_article_replies(@article) if @article.has_any_replies? %>
+<br /><br /><br /><br /><br /><br /><br />

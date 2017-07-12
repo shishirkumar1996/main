@@ -7,37 +7,37 @@ class ArticleRepliesController < ApplicationController
   end
 
   def create
-		@article = Article.find(params[:article_id])
-		@articlereply = @article.article_replies.build(article_reply_params)
-		@articlereply.user = current_user
-  	@id = "articlereplies_#{params[:article_id]}"
-  	@field =  "articlefield_#{params[:article_id]}"
+		article = Article.find(params[:article_id])
+		@article_reply = article.article_replies.build(article_reply_params)
+		@article_reply.user = current_user
+  	#@id = "articlereplies_#{params[:article_id]}"
+  	#@field =  "articlefield_#{params[:article_id]}"
 
   	respond_to do |format|
-  	if @articlereply.save
 
-  			format.html
+  	   if @article_reply.save
   			format.js {render :layout=>false, content_type: 'text/javascript' }
+  	   else
+  			format.json {render :json=> @article_reply.errors,:status=> :unprocessable_entity}
+  	   end
 
-  	else
-  			format.json {render :json=> @articlereply.errors,:status=> :unprocessable_entity}
-  	end
-  end
+     end
 	end
+
   def update
     respond_to do |format|
-      if @articlereply.update(article_reply_params)
-        format.html { redirect_to @articlereply, notice: 'Articlereply was successfully updated.' }
-        format.json { render :show, status: :ok, location: @articlereply }
+      if @article_reply.update(article_reply_params)
+        format.html { redirect_to @article_reply, notice: 'Articlereply was successfully updated.' }
+        format.json { render :show, status: :ok, location: @article_reply }
       else
         format.html { render :edit }
-        format.json { render json: @articlereply.errors, status: :unprocessable_entity }
+        format.json { render json: @article_reply.errors, status: :unprocessable_entity }
       end
     end
   end
 
   def destroy
-    @articlereply.destroy
+    @article_reply.destroy
     respond_to do |format|
       format.html { redirect_to article_replies_url, notice: 'Articlereply was successfully destroyed.' }
       format.json { head :no_content }
@@ -45,8 +45,9 @@ class ArticleRepliesController < ApplicationController
   end
 
   private
+
     def set_article_reply
-      @articlereply = ArticleReply.find(params[:id])
+      @article_reply = ArticleReply.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

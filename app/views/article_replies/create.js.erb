@@ -1,3 +1,6 @@
-//alert(CKEDITOR.instances['<%= @field %>'].getData().length);
-$('#<%= @id %>').prepend("<%= escape_javascript(render @articlereply) %>");
-CKEDITOR.instances['<%= @field %>'].setData('');
+var replyContainer = $('#new-reply-container');
+replyContainer.html("<%=j render(@article_reply) %>").promise().done(function(){
+  $('.submit-article-reply').slideUp(400, function () {
+    replyContainer.slideDown(400);
+  });
+});
