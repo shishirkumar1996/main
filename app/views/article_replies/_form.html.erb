@@ -1,4 +1,4 @@
 <%= form_for([article, article.article_replies.build], remote: true) do |f| %>
-  <%= f.text_area :body, class: 'article-reply-textarea', rows: 4 %>
+  <%= f.text_area :body, class: 'article-reply-textarea', rows: 4, spellcheck: 'true' %>
   <div class="reply-button-container"><%= f.submit 'Reply', class: 'btn-common btn-action' %></div>
 <% end %>

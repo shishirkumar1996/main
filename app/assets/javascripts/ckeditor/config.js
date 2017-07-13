@@ -8,6 +8,7 @@ CKEDITOR.editorConfig = function( config ) {
 	config.filebrowserImageUploadUrl = '/ckeditor/pictures';
 	//config.image_previewText = 'preview will be shown here';
 	config.image_previewText = '     ';
+	config.disableNativeSpellChecker = false;
 	};
 
 CKEDITOR.on( 'dialogDefinition', function( ev )
