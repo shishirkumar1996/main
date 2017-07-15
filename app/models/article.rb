@@ -32,8 +32,7 @@ class Article < ApplicationRecord
 	end
 
 	def has_any_replies?
-		# make this more efficient if possible
-		#self.article_replies.any?
+		article_replies_count > 0
 	end
 
 end

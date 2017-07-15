@@ -1,6 +1,1 @@
-var replyContainer = $('#new-reply-container');
-replyContainer.html("<%=j render(@article_reply) %>").promise().done(function(){
-  $('.submit-article-reply').slideUp(400, function () {
-    replyContainer.slideDown(400);
-  });
-});
+$("<%=j render(@current_article_reply) %>").insertAfter($('.submit-article-reply')).slideDown(400);

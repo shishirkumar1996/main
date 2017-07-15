@@ -1,4 +1,8 @@
+<% if @current_article_reply %>
+<div class="content-container" style="display:none;">
+<% else %>
 <div class="content-container">
+<% end %>
 	<%= render partial: 'common/author_info', locals: { user: article_reply.user, date_time: article_reply.created_at }  %>
 	<br />
 	<div class="containing-div article-content">

@@ -8,17 +8,17 @@ class ArticleRepliesController < ApplicationController
 
   def create
 		article = Article.find(params[:article_id])
-		@article_reply = article.article_replies.build(article_reply_params)
-		@article_reply.user = current_user
+		@current_article_reply = article.article_replies.build(article_reply_params)
+		@current_article_reply.user = current_user
   	#@id = "articlereplies_#{params[:article_id]}"
   	#@field =  "articlefield_#{params[:article_id]}"
 
   	respond_to do |format|
 
-  	   if @article_reply.save
+  	   if @current_article_reply.save
   			format.js {render :layout=>false, content_type: 'text/javascript' }
   	   else
-  			format.json {render :json=> @article_reply.errors,:status=> :unprocessable_entity}
+  			format.json {render :json=> @current_article_reply.errors,:status=> :unprocessable_entity}
   	   end
 
      end

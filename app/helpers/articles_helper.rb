@@ -8,10 +8,4 @@ module ArticlesHelper
     end
   end
 
-  def display_article_replies(article)
-    article.article_replies.each do |article_reply|
-      render article_reply
-    end
-  end
-
 end
