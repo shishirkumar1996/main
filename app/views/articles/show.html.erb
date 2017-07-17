@@ -24,7 +24,6 @@
 	<br />
 	<%= render partial: 'article_replies/form', locals: { article: @article } %>
 </div>
-<% byebug %>
 <%= render @article.reload.article_replies if @article.has_any_replies? %>
 
 <br /><br /><br /><br /><br /><br /><br />
