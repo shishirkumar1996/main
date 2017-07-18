@@ -1,0 +1,10 @@
+setTimeout(function() {
+  $('.spinner').hide();
+  $('.article-replies-box').append("<%= j render @article_replies %>");
+  var loadMoreBtn = $('.load-more-button');
+  <% if @article_replies.current_page == @article_replies.total_pages %>
+    loadMoreBtn.hide();
+  <% else %>
+    loadMoreBtn.attr("href", "<%= article_path(@article, page: (@article_replies.current_page + 1)) %>").show();
+  <% end %>
+}, 500);

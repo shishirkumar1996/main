@@ -24,6 +24,15 @@
 	<br />
 	<%= render partial: 'article_replies/form', locals: { article: @article } %>
 </div>
-<%= render @article.reload.article_replies if @article.has_any_replies? %>
+
+<div class="article-replies-box">
+	<%= render @article_replies %>
+</div>
+
+<% unless @article_replies.total_pages < 2 %>
+	<div class="load-more-block">
+		<%= link_to 'Load More', article_path(@article, page: 2), class: 'btn-common btn-action load-more-button', remote: true %>
+	</div>
+<% end %>
 
 <br /><br /><br /><br /><br /><br /><br />

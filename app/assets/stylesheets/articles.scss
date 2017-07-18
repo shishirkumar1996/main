@@ -53,6 +53,12 @@ textarea.article-reply-textarea:focus {
   text-align: right;
 }
 
-#new-reply-container {
-  display: none;
+.load-more-block {
+  position: relative;
+  text-align: center;
+  margin-top: 25px;
+  height: 80px;
+  .spinner {
+    display: none;
+  }
 }

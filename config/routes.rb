@@ -156,10 +156,7 @@ end
  get 'users/:user_id/questions', to: 'questions#user_questions'
 
  resources :articles do
- 	member do
- 		get :collection
- 	end
- 	resource :article_replies, only: [:create, :update, :edit, :destroy]
+   resource :article_replies, only: [:create, :update, :edit, :destroy]
  end
 
 
