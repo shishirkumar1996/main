@@ -1,31 +1,49 @@
-<% flash.each do |message_type, message| %>
-	<div class = "alert alert-<%= message_type %>"><%= message %>
-	</div>
-	<% end %>
-<div class = "row">
-	<div class = "col-md-4 col-md-offset-4">
-		<div class = "log_in_form">
-		<h1>Log in</h1>
-		
-		<%= form_for(:session ,url: login_path) do |f| %>
-			
-			<%= f.label :email %>
-			<%= f.email_field :email, class: 'form-control', placeholder: 'enter your email' %>
-			
-			<%= f.label :password %>
-			<%= f.password_field :password, class: 'form-control' %>
-			
-			<%= f.label :remember_me,class: 'checkbox inline' do %>
-				<%= f.check_box :remember_me %>
-				<span>Remember me on this computer</span>
-			<% end %>
-		<%= f.submit "Log in", class: 'btn btn-primary' %>
-		<% end %>
-		<%= link_to 'Back',root_url %>
-		</div>		
-	</div>
-</div>	
-		
-		
-		
 
+<div class="main-login-register register-login-center">
+	<h1 class="register-login-title">Log In</h1>
+	<hr class="sign-line">
+	
+	<%= form_for(:session, url: login_path, html: { class: "register-login-form" }) do |f| %>
+
+		<% flash.each do |message_type, message| %>
+			<div class = "alert alert-<%= message_type %>"><%= message %></div>
+		<% end %>
+
+		<div class="input-icon"><i class="fa fa-envelope fa-2x"></i></div>
+		<%= f.text_field :email, class: "register-login-input", placeholder: "Enter your Email" %>
+
+		<div class="input-icon"><i class="fa fa-lock fa-2x"></i></div>
+		<%= f.password_field :password, class: "register-login-input", placeholder: "Enter your Password" %>
+
+		<div class="additional-container clearfloat">
+			<div class="remember-container">
+				<%= f.check_box :remember_me, class: "remember-check-box" %>
+				<span class="form-text">Remember me</span>
+			</div>
+
+			<div class="forgot-container">
+				<%= link_to "Forgot Password", "#" %>
+			</div>
+		</div>
+
+		<%= f.submit "Log In", class: "btn-register-login" %>
+
+
+	<% end %>
+
+	<div class="login-sign-up">
+		Don&rsquo;t have an account ?
+		<br />
+		<%= link_to "Sign Up", signup_path %>
+	</div>
+
+	<hr class="sign-line">
+	<div class="or-text">OR</div>
+	<a href="#" class="btn-register-login btn-fb">
+		<i class="fa fa-facebook"></i>&nbsp;&nbsp;Continue with Facebook
+	</a>
+
+	<a href="#" class="btn-register-login btn-google">
+		<i class="fa fa-google"></i>&nbsp;&nbsp;Continue with Google
+	</a>
+</div>

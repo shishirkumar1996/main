@@ -27,6 +27,45 @@
   background-color: #265cb5 !important;
 }
 
+.btn-register-login {
+  display: inline-block;
+  border: none;
+  font-size: 18px;
+  padding: 10px 0;
+  background-color: #548be5;
+  border-radius: 5px;
+  height: auto;
+  width: 100%;
+  text-align: center;
+  text-decoration: none;
+  color: #fff;
+  margin-bottom: 15px;
+  &:hover {
+    background-color: #265cb5;
+    color: #fff;
+    text-decoration: none;
+  }
+}
+
+.btn-fb,
+.btn-google {
+  border-radius: 0;
+}
+
+.btn-fb {
+  background-color: #3b5998;
+  &:hover {
+    background-color: #344e86;
+  }
+}
+
+.btn-google {
+  background-color: #db4437;
+  &:hover {
+    background-color: #cc3e32;
+  }
+}
+
 // tick-mark &#10003
 
 // social-share-button
