@@ -160,3 +160,16 @@ em {
   }
 
 }
+
+.notice-wrapper {
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #0f0;
+  color: #fff;
+  z-index: 999;
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30%;
+}

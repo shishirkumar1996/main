@@ -12,6 +12,7 @@
   </head>
 
   <body class="<%= controller.controller_name %>-<%= controller.action_name %>">
+    <%= render partial: "common/notice_banner" %>
     <%= yield %>
 
   </body>
