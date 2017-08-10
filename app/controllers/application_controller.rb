@@ -1,29 +1,10 @@
-
 class ApplicationController < ActionController::Base
-	
-	include SessionsHelper
   protect_from_forgery with: :exception
+	include SessionsHelper
+	include CurrentUserConcern
+	include ProfilerConcern
+
  # before_action :set_cache_headers
-	before_action do
-		if Rails.env.profile?
-			Rack::MiniProfiler.authorize_request
-		end
-	end  
-  
-  def logged_in_user
-  	unless logged_in?
-  		store_location
-  		flash[:danger] = "Please log in."
-  		redirect_to root_url
-  	end
-  end
- 
- def admin_user
- 	unless current_user.admin?
- 		redirect_to root_url
- 	end
- end
-  
   private
   # not removing it because it might be fruitful in future
  # 	def set_cache_headers
