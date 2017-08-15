@@ -1,6 +1,8 @@
 .nav-header {
+  height: auto;
 
   nav {
+    height: 59px;
     position: fixed;
     top: 0;
     left: 0;
@@ -11,9 +13,9 @@
   }
 
   .nav-row {
-    max-width: 1140px;
+    height: 100%;
+    max-width: 1240px;
     margin: 0 auto;
-    padding: 10px 0;
     zoom: 1;
 
     h1 {
@@ -22,46 +24,40 @@
     }
 
   }
-  .nav-row:before,
-  .nav-row:after {
-    content: "";
-    display: table;
-  }
-
-  .nav-row:after {
-    clear: both;
-  }
 
   .main-nav {
+    display: table;
+    height: 100%;
     float: right;
-    list-style: none;
-    margin-top: 8px;
+  //  position: relative;
+  //  width: auto;
 
-    li {
-      display: inline-block;
-      margin-left: 40px;
-
-      a:link,
-      a:visited,
-      span {
+    .nav-item {
+      text-align: center;
+      height: 100%;
+      padding: 0 15px;
+      display: table-cell;
+      vertical-align: middle;
+      &:link,
+      &:visited {
         color: #fff;
-        text-transform: uppercase;
         font-size: 18px;
+        font-weight: bold;
         text-decoration: none;
-        padding-bottom: 6px;
-        border-bottom: 2px solid transparent;
+        border-bottom: 3px solid transparent;
         -webkit-transition: border-bottom 0.2s;
                 transition: border-bottom 0.2s;
+        -webkit-transition: color 0.2s;
+                transition: color 0.2s;
       }
 
-      span {
-        cursor: pointer;
+      &:hover,
+      &:active {
+        color: #db7272;//#cc6666;
+        border-bottom: 3px solid #db7272;
+        text-decoration: none;
       }
-
-      a:hover,
-      a:active {
-        border-bottom: 2px solid #fff;
-      }
+//      margin-left: 40px;
 
     }
 
