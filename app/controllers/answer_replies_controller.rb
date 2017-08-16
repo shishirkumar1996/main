@@ -1,54 +1,45 @@
-class RepliesController < ApplicationController
+class AnswerRepliesController < ApplicationController
 
 	before_action :logged_in_user
+	before_action :set_reply, only: [:update, :destroy]
 
-  # GET /replies
-  # GET /replies.json
   def index
-    @replies = Reply.all
+    @answer_replies = AnswerReply.all
   end
 
-  # GET /replies/1
-  # GET /replies/1.json
   def show
   end
 
-  # GET /replies/new
   def new
-    @reply = Reply.new
+    @answer_reply = AnswerReply.new
     respond_to do |format|
     	format.html
     	format.js
     end
   end
 
-  # GET /replies/1/edit
   def edit
   end
 
-  # POST /replies
-  # POST /replies.json
   def create
 		@answer = Answer.find(params[:answer_id])
-		@reply = @answer.replies.build(reply_params)
+		@reply = @answer.answer_replies.build(reply_params)
 		@reply.user = current_user
 		@id = "replies_#{params[:answer_id]}"
 		@field = "field_#{params[:answer_id]}"
-		
+
 		respond_to do |format|
 			if @reply.save!
-			
+
 				format.html
 				format.js { render :layout=>false,content_type: 'text/javascript'}
 			else
 				format.json {render :json=> @reply.errors,:status=> :unprocessable_entity}
 			end
 		end
-    
+
   end
 
-  # PATCH/PUT /replies/1
-  # PATCH/PUT /replies/1.json
   def update
     respond_to do |format|
       if @reply.update(reply_params)
@@ -61,8 +52,6 @@ class RepliesController < ApplicationController
     end
   end
 
-  # DELETE /replies/1
-  # DELETE /replies/1.json
   def destroy
     @reply.destroy
     respond_to do |format|
@@ -74,7 +63,7 @@ class RepliesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_reply
-      @reply = Reply.find(params[:id])
+      @reply = AnswerReply.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

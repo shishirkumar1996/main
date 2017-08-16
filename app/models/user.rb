@@ -73,7 +73,7 @@ source: :groupanswer
 	has_many :articles,dependent: :destroy
 	has_many :questions, dependent: :destroy
 	has_many :answers, dependent: :destroy
-	has_many :replies ,dependent: :destroy
+	has_many :answer_replies ,dependent: :destroy
 	has_many :article_replies, dependent: :destroy
 	has_many :interests, foreign_key: :person_id,dependent: :destroy
 

@@ -165,7 +165,7 @@ end
 	 		member do
 	 			get :collection
 	 		end
-	 		resources :replies
+	 		resources :answer_replies
 	 end
  end
 end
