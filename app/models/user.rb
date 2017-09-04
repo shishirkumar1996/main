@@ -11,8 +11,6 @@ class User < ApplicationRecord
  validates :password,presence: true, length: { minimum: 6 },allow_nil: true
 
   attr_accessor :remember_token
-  before_save :downcase_email
-
 
 has_many :created_notifications,class_name: "Notification"
 
