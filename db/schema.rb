@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170816160054) do
+ActiveRecord::Schema.define(version: 20170831161744) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,8 +26,8 @@ ActiveRecord::Schema.define(version: 20170816160054) do
   end
 
   create_table "answer_bookmark_relations", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "answer_id"
+    t.integer  "user_id",    null: false
+    t.integer  "answer_id",  null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["answer_id"], name: "index_answer_bookmark_relations_on_answer_id", using: :btree
@@ -67,8 +67,8 @@ ActiveRecord::Schema.define(version: 20170816160054) do
   end
 
   create_table "article_bookmark_relations", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "article_id"
+    t.integer  "user_id",    null: false
+    t.integer  "article_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["article_id"], name: "index_article_bookmark_relations_on_article_id", using: :btree
@@ -310,8 +310,8 @@ ActiveRecord::Schema.define(version: 20170816160054) do
   end
 
   create_table "question_bookmark_relations", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "question_id"
+    t.integer  "user_id",     null: false
+    t.integer  "question_id", null: false
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.index ["user_id", "question_id"], name: "index_question_bookmark_relations_on_user_id_and_question_id", unique: true, using: :btree
