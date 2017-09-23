@@ -6,7 +6,6 @@
 	<%= render partial: 'common/author_info', locals: { user: article_reply.user, date_time: article_reply.created_at }  %>
 	<br />
 	<div class="containing-div article-content">
-		<%# if necessary, add html_safe below %>
-		<%= article_reply.body %>
+		<%= sanitize article_reply.body, tags: %w(p) %>
 	</div>
 </div>
