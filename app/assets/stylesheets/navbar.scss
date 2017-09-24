@@ -18,8 +18,16 @@
     margin: 0 auto;
     zoom: 1;
 
+  }
+
+  .search-nav {
+    height: 100%;
+    display: table;
+    float: left;
     h1 {
-      float: left;
+      display: table-cell;
+      height: inherit;
+      vertical-align: middle;
       font-size: 36px;
     }
 
