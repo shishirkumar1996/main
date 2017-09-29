@@ -20,16 +20,64 @@
 
   }
 
-  .search-nav {
+  .logo-and-search {
     height: 100%;
     display: table;
     float: left;
-    h1 {
+    h1, .search-container {
       display: table-cell;
       height: inherit;
       vertical-align: middle;
+    }
+
+    h1 {
       font-size: 36px;
     }
+
+    .search-container {
+      padding-left: 40px;
+
+      .search-row {
+        height: 60%;
+        display: table;
+        border-collapse: collapse;
+
+        /* Very Important : Below code MUST be modified as it doesn't work on Safari */
+
+        select.search-select,
+        input.search-box {
+          height: 100%;
+          line-height: 100%;
+          display: table-cell;
+          vertical-align: top;
+        }
+
+        select.search-select {
+          border: 1px solid;
+          &:focus {
+            outline: none;
+          }
+        }
+
+        input.search-box {
+          padding: 5px 10px;
+          width: 350px;
+          background-color: #fff;
+          border-radius: 0 4px 4px 0;
+          font-size: 16px;
+          border: none;
+          transition: width 0.1s ease-in-out;
+          &:focus {
+            outline: none;
+            width: 600px
+          }
+        }
+
+
+      }
+
+    }
+
 
   }
 
