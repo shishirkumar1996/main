@@ -5,31 +5,6 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-	gem 'impressionist'	
-	gem 'friendly_id'
-	gem 'administrate'
-	gem 'rails-controller-testing'
-	gem 'non-stupid-digest-assets'
-group :profile do
-	gem 'ruby-prof'
-	gem 'request_profiler'
-end
-gem 'font-awesome-rails'
-gem 'social-share-button'
-gem 'searchkick'
-gem 'bower-rails'
-gem 'bcrypt'
-gem 'bootstrap-will_paginate'
-gem 'bootstrap-sass'
-gem 'will_paginate'
-gem 'omniauth'
-gem 'omniauth-facebook'
-gem 'omniauth-google-oauth2'
-gem 'ckeditor'
-gem 'carrierwave'
-gem 'jquery-turbolinks'
-gem 'mini_magick'
-gem 'select2-rails','~>3.5.2'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.1'
 # Use postgresql as the database for Active Record
@@ -71,12 +46,57 @@ end
 
 group :development,:profile do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
-  
+
   gem 'listen', '~> 3.0.5'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
+group :profile do
+	gem 'ruby-prof'
+	gem 'request_profiler'
+end
+
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+gem 'impressionist'
+
+gem 'friendly_id'
+
+gem 'administrate'
+
+gem 'rails-controller-testing'
+
+gem 'non-stupid-digest-assets'
+
+gem 'font-awesome-rails'
+
+gem 'social-share-button'
+
+gem 'searchkick'
+
+gem 'bower-rails'
+
+gem 'bcrypt'
+
+gem 'bootstrap-sass'
+
+gem 'will_paginate'
+
+gem 'omniauth'
+
+gem 'omniauth-facebook'
+
+gem 'omniauth-google-oauth2'
+
+gem 'ckeditor'
+
+gem 'carrierwave'
+
+gem 'jquery-turbolinks'
+
+gem 'mini_magick'
+
+gem 'select2-rails','~>3.5.2'
