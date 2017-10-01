@@ -1,0 +1,12 @@
+these two links are needed to install elasticsearch. the port number will be localhost:9200
+
+
+
+https://www.elastic.co/guide/en/elasticsearch/reference/current/deb.html
+
+
+
+
+https://discuss.elastic.co/t/cant-start-elasticsearch-with-ubuntu-16-04/48730/9
+
+the command "sed" is the important part in the above link
