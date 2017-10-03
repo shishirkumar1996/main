@@ -45,7 +45,8 @@
         /* Very Important : Below code MUST be modified as it doesn't work on Safari */
 
         .select-container,
-        input.search-box {
+        input.search-box,
+        button.search-submit {
           height: 100%;
           line-height: 100%;
           display: table-cell;
@@ -79,13 +80,27 @@
           padding: 5px 10px;
           width: 350px;
           background-color: #fff;
-          border-radius: 0 4px 4px 0;
           font-size: 16px;
           border: none;
           transition: width 0.1s ease-in-out;
           &:focus {
             outline: none;
-            width: 600px
+            width: 560px;
+          }
+        }
+
+        button.search-submit {
+          width: 40px;
+          background-color: #e8e8e8;
+          border-radius: 0 4px 4px 0;
+          border: none;
+          &:hover {
+            background-color: #d8d8d8;
+            cursor: pointer;
+            cursor: hand;
+          }
+          &:focus {
+            outline: none;
           }
         }
 
