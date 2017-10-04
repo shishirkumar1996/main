@@ -24,13 +24,35 @@ $(document).on('turbolinks:load',function() {
     accountDropDown.toggleClass('show-it');
   });
 
-  $(document).on('click', function(event) {
+  var searchBar = $('input.search-box');
+  $(searchBar).on('focus', function() {
+    $(this).css("width", "560px");
+  });
+
+  var navEle = $("nav");
+  var insideNav = false;
+  navEle.hover(function() {
+    insideNav = true;
+  },
+  function() {
+    insideNav = false;
+  }
+  );
+
+  $("body").on('click', function(event) {
+    if(!insideNav) {
+      searchBar.css("width", "350px");
+    }
+
+    /*
+    if(event.target !== navEle && !(navEle.find(event.target).length > 0) && document.activeElement == searchBar) {
+      searchBar.css("width", "350px");
+    }*/
     if(accountDropDown.hasClass('show-it')) {
       accountDropDown.removeClass('show-it');
       accountDropDown.addClass('hide-it');
     }
 
   });
-
 
 });
