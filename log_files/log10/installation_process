@@ -6,6 +6,10 @@ create new database 'postgres' through this commands
 1. CREATE DATABASE <database_name>
 2. createdb <database_name> -U <username>
 
+run any db command directly on bash using 
+
+sudo -u postgres <command>
+
 
 
 open up postgres in cli through this command
