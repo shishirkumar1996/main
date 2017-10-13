@@ -5,7 +5,7 @@ before_action :logged_in_user
 		@question = Question.find(params[:question_id])
 		current_user.bookmarked_questions << @question
 		respond_to do |format|
-			format.js { flash.now[:notice] = 'Question bookmark successfully created.' }
+			format.js
 		end
 
 	end
@@ -14,7 +14,7 @@ before_action :logged_in_user
 		@question = QuestionBookmarkRelation.find(params[:id]).question
 		current_user.bookmarked_questions.delete(@question)
 		respond_to do |format|
-			format.js { flash.now[:notice] = 'Question bookmark successfully deleted.' }
+			format.js
 		end
 
 	end

@@ -10,3 +10,27 @@
 	padding-left: 1%;
 	box-shadow: 2px 2px 2px #888888;
 }
+
+.notice-wrapper {
+	font-size: 14px;
+	font-weight: bold;
+	.notice-wrapper-close {
+		text-align: right;
+	}
+	i {
+		&:hover {
+			cursor: pointer;
+			cursor: hand;
+		}
+	}
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #1abc9c;
+  color: #fff;
+  z-index: 999;
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30%;
+}

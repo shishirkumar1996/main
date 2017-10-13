@@ -1,0 +1,12 @@
+var noticeWrapper = $('.notice-wrapper');
+if(noticeWrapper.length > 0) {
+  $('.notice-wrapper p').text("<%= message %>");
+  noticeWrapper.show();
+}
+else {
+  noticeWrapper = $("<%= j(render 'common/notice_banner', message: message) %>");
+  noticeWrapper.prependTo("body");
+}
+setTimeout(function() {
+  noticeWrapper.fadeOut();
+}, 3000);

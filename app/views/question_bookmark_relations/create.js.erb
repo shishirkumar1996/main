@@ -1,7 +1,3 @@
 $('#question_bookmark_<%= @question.id %>').html('<%= escape_javascript(render(:partial=>'questions/unbookmark',:object=> @question,:as=>:question)) %>').promise().done(function() {
-  var noticeBanner = $("<%= j render partial: 'common/notice_banner' %>");
-  noticeBanner.prependTo("body");
-  setTimeout(function() {
-    noticeBanner.fadeOut();
-  }, 3000);
+  <%= render 'bookmark_notice_banner', message: 'Question bookmark successfully created.' %>
 });

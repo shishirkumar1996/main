@@ -12,7 +12,10 @@
   </head>
 
   <body class="<%= controller.controller_name %>-<%= controller.action_name %>">
-    <%= render partial: "common/notice_banner" %>
+    <% if notice %>
+      <%= render 'common/notice_banner', message: notice %>
+    <% end %>
+
     <%= yield %>
 
   </body>
