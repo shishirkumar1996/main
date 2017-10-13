@@ -1,8 +1,7 @@
-
 <div class="main-login-register register-login-center">
 	<h1 class="register-login-title">Log In</h1>
 	<hr class="sign-line">
-	
+
 	<%= form_for(:session, url: login_path, html: { class: "register-login-form" }) do |f| %>
 
 		<% flash.each do |message_type, message| %>
@@ -27,7 +26,6 @@
 		</div>
 
 		<%= f.submit "Log In", class: "btn-register-login" %>
-
 
 	<% end %>
 

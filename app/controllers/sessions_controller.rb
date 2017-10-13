@@ -1,9 +1,7 @@
 class SessionsController < ApplicationController
 
 	def new
-		if logged_in?
-			redirect_to root_url
-		end
+		redirect_to root_url
 	end
 
 	def create
@@ -17,7 +15,7 @@ class SessionsController < ApplicationController
 			render 'new'
 		end
 	end
-	
+
 	def create_google
 		auth = request.env["omniauth.auth"]
 		user = User.from_google_omniauth(request.env["omniauth.auth"])
@@ -30,7 +28,7 @@ class SessionsController < ApplicationController
 			redirect_to root_url
 		end
 	end
-	
+
 	def create_facebook
 		auth = request.env["omniauth.auth"]
 		user= User.from_omniauth(request.env["omniauth.auth"])
@@ -49,5 +47,5 @@ class SessionsController < ApplicationController
 		log_out if logged_in?
 		redirect_to root_url
 	end
-		
+
 end
