@@ -2,14 +2,28 @@ creation of new application 'main' with the following command
 
 rails new -d postgresql main
 
-create new database 'postgres' through this command
+create new database 'postgres' through this commands
+1. CREATE DATABASE <database_name>
+2. createdb <database_name> -U <username>
 
-psql postgres
+run any db command directly on bash using 
+
+sudo -u postgres <command>
+
+
+
+open up postgres in cli through this command
+
+sudo -u postgres psql
+or 
+psql postgres ( in some systems)
+
 
 Use following command :-
 	1) \l or \list to list all the databases
-	2) \dt to list all tables
-
+	2) \dt to list all tables of that particular database
+  3) \du to list all users
+  
 to switch between databases use :-
 		\connect <database_name>
 
@@ -17,6 +31,12 @@ to switch between databases use :-
 create new user and password through this command 
 
 CREATE USER <username> PASSWORD '<password>';
+or 
+createuser <username>
+
+user ALTER ROLE <username> <list of roles> 
+to alter the roles of a user
+
 
 note: createuser --createdb --login -P <username> can be used directly to ease.--createdb will allow user to create database, --login will allow user to login to the database and -P will allow user to set new user's password right now.(Note - this command might not be present in some installations so this command can be ignored)
 
