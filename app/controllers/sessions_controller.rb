@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
 			redirect_back_or(root_url)
 		else
 			flash.now[:danger] = 'Invalid email/password combination'
-			render 'new'
+			render 'static_pages/home'
 		end
 	end
 

@@ -122,7 +122,7 @@ Rails.application.routes.draw do
   end
 
 
-  resources :users do
+  resources :users, except: :new do
 	  resources :notifications do
 	 	  collection do
 	 		  get :mark

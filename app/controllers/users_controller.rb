@@ -4,13 +4,11 @@ class UsersController < ApplicationController
 	before_action :same_user, only: [:edit_image,:edit_password,:edit_name,:update_name,:update_password,
 	:edit,:bookmarks]
 	def index
-		@users = User.where("name ILIKE ?","%#{params[:term]}%").map{|user| {:id=>user.id,:text =>user.name}}
-
-		respond_to do |format|
-			format.json {
-				render :json =>@users
-			}
-			format.html
+		#@users = User.where("name ILIKE ?","%#{params[:term]}%").map{|user| {:id=>user.id,:text =>user.name}}
+		if logged_in?
+			redirect_to root_url unless current_user.admin?
+		else
+			redirect_to signup_url
 		end
 	end
 
@@ -195,7 +193,7 @@ class UsersController < ApplicationController
 		if @user.save
 			log_in @user
 			redirect_to root_url
-			else
+		else
 			render 'new'
 		end
 	end
