@@ -1,12 +1,12 @@
 class GroupsController < ApplicationController
   before_action :set_group, only: [:show, :edit, :update, :destroy]
 	before_action :logged_in_user
-	before_action :same_group_user,except: [:new,:create]
-		
+	before_action :same_group_user, except: [:new, :create, :index]
+
   # GET /groups
   # GET /groups.json
   def index
-    @groups = Group.all
+    @groups = current_user.groups
   end
 
   # GET /groups/1
@@ -24,7 +24,7 @@ class GroupsController < ApplicationController
 	def prepopulate
 		@group = Group.find(params[:id])
 		@users = @group.users.map{|user| {:id=>user.id,:text =>user.name}}
-		
+
 		respond_to do |format|
 			format.json{
 			render :json => @users
@@ -47,17 +47,17 @@ class GroupsController < ApplicationController
     @user  = current_user
     @user.groups << @group
     @group.save!
-   	redirect_to @group 
+   	redirect_to @group
   end
 
 	def invite
 		@group = Group.find(params[:id])
 	end
 
-	def member	
+	def member
 		@group = Group.find(params[:id])
 	end
-		
+
 	def add
 	@tokens = params[:user_tokens]
 	@tokens = @tokens.split(',')
@@ -71,7 +71,7 @@ class GroupsController < ApplicationController
 		@notification.actor = current_user
 		@notification.link = "#{group_path(@group)}"
 		@user.notifications<< @notification
-		@notification.save!	
+		@notification.save!
 		end
 	end
 	redirect_to @group
@@ -99,8 +99,8 @@ class GroupsController < ApplicationController
 	def edit_image
 		@group = Group.find(params[:id])
 	end
-	
-	
+
+
 	def image
 		@group = Group.find(params[:id])
 		@group.image = params[:image]
@@ -119,13 +119,13 @@ class GroupsController < ApplicationController
     def group_params
       params.require(:group).permit(:name,:user_tokens)
     end
-    
+
     def same_group_user
     	if logged_in?
 				unless Group.find(params[:id]).members.exists?(current_user)
-			redirect_to root_url
+          redirect_to root_url
 				end
 			end
 		end
-    
+
 end

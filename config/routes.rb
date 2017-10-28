@@ -56,7 +56,7 @@ Rails.application.routes.draw do
   resources :interests, only: [:create,:destroy]
   #resources :domains_articles
   #resources :domains_questions
-  resources :groups,only: [:show,:new,:create] do
+  resources :groups, only: [:show, :new, :create, :index] do
   	member do
   		get :edit_image
 			post :image
@@ -88,7 +88,6 @@ Rails.application.routes.draw do
   get '/check_existing_question', to: 'static_pages#check_existing'
   get '/search_question',to: 'static_pages#search_question'
   get '/nowhere', to: 'static_pages#dummy'
-  get '/your_groups', to: 'users#index_group'
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   #get 'groups/:id/invite', to: 'groups#invite'
