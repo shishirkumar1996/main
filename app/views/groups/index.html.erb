@@ -4,7 +4,7 @@
 	<div class="content-container">
 		<div class="containing-div clearfloat">
 			<div class="content-date">
-				<%= render partial: 'common/mini_pic_loader', object: group, as: :entity %>
+				<%= img_helper group, 'mini' %>
 			</div>
 			<div class="question-answers-number">
 				<%= pluralize group.members.count, 'Member' %>

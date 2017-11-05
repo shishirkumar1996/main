@@ -10,4 +10,21 @@ module ApplicationHelper
     end
   end
 
+  def img_helper(obj, size)
+    img = obj.image
+    if img.file
+      img = case size
+      when 'mini' then img.mini
+      when 'large' then img.big
+      when 'small' then img.thumb
+      when 'medium' then img.profile
+      end
+      img_url = img.url
+    else
+      img_url = 'dummies/'
+      img_url << size << '.png'
+    end
+    link_to image_tag(img_url), obj, class: 'profile_pic'
+  end
+
 end
