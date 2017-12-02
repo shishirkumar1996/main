@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170831161744) do
+ActiveRecord::Schema.define(version: 20171201045445) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,14 +25,14 @@ ActiveRecord::Schema.define(version: 20170831161744) do
     t.index ["student_id"], name: "index_academics_on_student_id", using: :btree
   end
 
-  create_table "answer_bookmark_relations", force: :cascade do |t|
+  create_table "answer_bookmarks", force: :cascade do |t|
     t.integer  "user_id",    null: false
     t.integer  "answer_id",  null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["answer_id"], name: "index_answer_bookmark_relations_on_answer_id", using: :btree
-    t.index ["user_id", "answer_id"], name: "index_answer_bookmark_relations_on_user_id_and_answer_id", unique: true, using: :btree
-    t.index ["user_id"], name: "index_answer_bookmark_relations_on_user_id", using: :btree
+    t.index ["answer_id"], name: "index_answer_bookmarks_on_answer_id", using: :btree
+    t.index ["user_id", "answer_id"], name: "index_answer_bookmarks_on_user_id_and_answer_id", unique: true, using: :btree
+    t.index ["user_id"], name: "index_answer_bookmarks_on_user_id", using: :btree
   end
 
   create_table "answer_replies", force: :cascade do |t|
@@ -66,14 +66,14 @@ ActiveRecord::Schema.define(version: 20170831161744) do
     t.index ["user_id"], name: "index_answers_on_user_id", using: :btree
   end
 
-  create_table "article_bookmark_relations", force: :cascade do |t|
+  create_table "article_bookmarks", force: :cascade do |t|
     t.integer  "user_id",    null: false
     t.integer  "article_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["article_id"], name: "index_article_bookmark_relations_on_article_id", using: :btree
-    t.index ["user_id", "article_id"], name: "index_article_bookmark_relations_on_user_id_and_article_id", unique: true, using: :btree
-    t.index ["user_id"], name: "index_article_bookmark_relations_on_user_id", using: :btree
+    t.index ["article_id"], name: "index_article_bookmarks_on_article_id", using: :btree
+    t.index ["user_id", "article_id"], name: "index_article_bookmarks_on_user_id_and_article_id", unique: true, using: :btree
+    t.index ["user_id"], name: "index_article_bookmarks_on_user_id", using: :btree
   end
 
   create_table "article_replies", force: :cascade do |t|
@@ -309,12 +309,12 @@ ActiveRecord::Schema.define(version: 20170831161744) do
     t.index ["user_id"], name: "index_notifications_on_user_id", using: :btree
   end
 
-  create_table "question_bookmark_relations", force: :cascade do |t|
+  create_table "question_bookmarks", force: :cascade do |t|
     t.integer  "user_id",     null: false
     t.integer  "question_id", null: false
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.index ["user_id", "question_id"], name: "index_question_bookmark_relations_on_user_id_and_question_id", unique: true, using: :btree
+    t.index ["user_id", "question_id"], name: "index_question_bookmarks_on_user_id_and_question_id", unique: true, using: :btree
   end
 
   create_table "questions", force: :cascade do |t|
