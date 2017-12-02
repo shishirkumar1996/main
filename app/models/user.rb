@@ -20,7 +20,7 @@ class User < ApplicationRecord
 	has_many :created_notifications,class_name: "Notification"
 
 	has_many :answer_bookmarks, class_name: 'Answers::Bookmark'
-	has_many :bookmarked_answers, through: :answer_bookmark_relations,
+	has_many :bookmarked_answers, through: :answer_bookmarks,
 	source: :answer
 
 	has_many :question_bookmarks, class_name: 'Questions::Bookmark'
