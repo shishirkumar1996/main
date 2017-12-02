@@ -1,15 +1,9 @@
 class Answer < ApplicationRecord
-
+  include Bookmarkable
+  include Writable
   belongs_to :user
   belongs_to :question, counter_cache: true
   has_many :answer_replies , dependent: :destroy
-
-  has_many :answer_bookmark_relations,foreign_key: :answer_id,
-  dependent: :destroy
-  has_many :following_user,through: :answer_bookmark_relations,
-  source: :user
-
-
   has_many :answerrelations,foreign_key: :answer_id,dependent: :destroy
   has_many :likes, through: :answerrelations, source: :user
 

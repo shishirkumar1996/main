@@ -1,13 +1,8 @@
 class Article < ApplicationRecord
-
-
+	include Bookmarkable
+	include Writable
 	searchkick word_start: [:title]
 	belongs_to :user
-
-	has_many :article_bookmark_relations,foreign_key: :article_id,
-	dependent: :destroy
-	has_many :following_users,through: :article_bookmark_relations,
-	source: :user
 
 	has_many :article_replies, dependent: :destroy
 	has_many :domains_articles, foreign_key: "article_id",dependent: :destroy
@@ -20,7 +15,6 @@ class Article < ApplicationRecord
 	has_many :badarticlerelations,foreign_key: :article_id,
 	dependent: :destroy
 	has_many :dislikes, through: :badarticlerelations,source: :user
-
 
 	validates :title,presence: true
 	VALID_BODY_REGEX = /\A(?!(&nbsp;|<p>|<\/p>|\s)*\z).+/

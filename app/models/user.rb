@@ -19,19 +19,16 @@ class User < ApplicationRecord
 
 	has_many :created_notifications,class_name: "Notification"
 
-	has_many :answer_bookmark_relations,foreign_key: :user_id,
-	dependent: :destroy
-	has_many :bookmarked_answers,through: :answer_bookmark_relations,
+	has_many :answer_bookmarks, class_name: 'Answers::Bookmark'
+	has_many :bookmarked_answers, through: :answer_bookmark_relations,
 	source: :answer
 
-	has_many :question_bookmark_relations,foreign_key: :user_id,
-	dependent: :destroy
-	has_many :bookmarked_questions,through: :question_bookmark_relations,
+	has_many :question_bookmarks, class_name: 'Questions::Bookmark'
+	has_many :bookmarked_questions, through: :question_bookmarks,
 	source: :question
 
-	has_many :article_bookmark_relations,foreign_key: :user_id,
-	dependent: :destroy
-	has_many :bookmarked_articles,through: :article_bookmark_relations,
+	has_many :article_bookmarks, class_name: 'Articles::Bookmark'
+	has_many :bookmarked_articles, through: :article_bookmarks,
 	source: :article
 
 	has_many :articlerelations,foreign_key: :user_id,dependent: :destroy
