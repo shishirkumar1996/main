@@ -1,1 +1,6 @@
 $("#<%= @entity.type_name %>_bookmark_<%= @entity.id %>").html("<%= j(display_bookmark(@entity, @bookmarked)) %>");
+<% if @bookmarked %>
+  <%= render 'common/notice_banner', message: "#{@entity.class.name} bookmark was successfully created" %>
+<% else %>
+  <%= render 'common/notice_banner', message: "#{@entity.class.name} bookmark was successfully deleted" %>
+<% end %>

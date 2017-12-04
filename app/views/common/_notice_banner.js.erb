@@ -1,0 +1,15 @@
+var noticeWrapper = $('.notice-wrapper');
+if(noticeWrapper.length > 0) {
+  $('.notice-wrapper p').text("<%= message %>");
+  noticeWrapper.show();
+}
+else {
+  var html_string = '<div class="notice-wrapper"><div class="notice-wrapper-close">' +
+                    '<i class="fa fa-times-circle fa-lg notice-wrapper-close-icon" aria-hidden="true"></i>' +
+                    '</div><p><%= message %></p></div>';
+  noticeWrapper = $(html_string);
+  noticeWrapper.prependTo("body");
+}
+setTimeout(function() {
+  noticeWrapper.fadeOut();
+}, 3000);
