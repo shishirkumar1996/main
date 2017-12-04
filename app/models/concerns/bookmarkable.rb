@@ -1,13 +1,16 @@
 module Bookmarkable
   extend ActiveSupport::Concern
   included do
-    BOOKMARKED_ENTITY = "bookmarked_#{self.name.downcase.pluralize}".to_sym
-    has_many :bookmarks, class_name: "#{self.name.pluralize}::Bookmark"
-  end
-  def bookmarked?(current_user)
-    current_user.public_send(BOOKMARKED_ENTITY).include? self
-  end
-  def destroy_bookmark(current_user)
-    current_user.public_send(BOOKMARKED_ENTITY).destroy self
+    self.class_eval do
+      class_plural = self.name.pluralize
+      has_many :bookmarks, class_name: "#{class_plural}::Bookmark"
+      bookmarked_entities = "bookmarked_#{class_plural.downcase!}".to_sym
+      define_method(:bookmarked?) do |current_user|
+        current_user.public_send(bookmarked_entities).include? self
+      end
+      define_method(:destroy_bookmark) do |current_user|
+        current_user.public_send(bookmarked_entities).destroy self
+      end
+    end
   end
 end
