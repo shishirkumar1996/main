@@ -1,3 +1,0 @@
-$('#question_bookmark_<%= @question.id %>').html('<%= escape_javascript(render(:partial=>'questions/unbookmark',:object=> @question,:as=>:question)) %>').promise().done(function() {
-  <%= render 'bookmark_notice_banner', message: 'Question bookmark successfully created.' %>
-});
