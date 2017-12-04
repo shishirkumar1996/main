@@ -1,3 +1,0 @@
-<%= form_for(current_user.answer_bookmark_relations.find_by(answer_id: answer.id),html: {method: :delete},remote: true) do |f| %>
-	<%= f.submit "Unbookmark",class: 'btn' %>
-<% end %>

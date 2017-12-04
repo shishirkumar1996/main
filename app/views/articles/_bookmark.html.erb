@@ -1,4 +1,0 @@
-<%= form_for(current_user.article_bookmark_relations.build,remote: true) do |f| %>
-	<div><%= hidden_field_tag :article_id, article.id %></div>
-	<%= f.submit "Bookmark", class: "btn-common btn-action" %>
-<% end %>
