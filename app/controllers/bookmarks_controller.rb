@@ -1,44 +1,29 @@
 class BookmarksController < ApplicationController
+  include Finder
   before_action :logged_in_user
+  before_action :set_entity
 
   def create
-    bookmark = bookmark_factory params[:type], params[:type_id]
-    bookmark.user_id = current_user.id
-    bookmark.save
-    respond_to do |format|
-      format.js
-    end
+    @entity.bookmarks.create! user_id: current_user.id
+    @bookmarked = true
+    respond
   end
 
   def destroy
-    bookmark_find(params[:type], params[:type_id]).destroy
-    respond_to do |format|
-      format.js
-    end
+    @entity.destroy_bookmark current_user
+    @bookmarked = false
+    respond
   end
 
   private
 
-    def bookmark_factory(type, id)
-      case type
-      when 'question'
-        QuestionBookmarkRelation.new(question_id: id)
-      when 'answer'
-        AnswerBookmarkRelation.new(answer_id: id)
-      when 'article'
-        ArticleBookmarkRelation.new(article_id: id)
-      end
+    def set_entity
+      @entity = find_by_type params[:id], params[:type]
     end
 
-    def bookmark_find(type, id)
-      user = current_user.id
-      case type
-      when 'question'
-        QuestionBookmarkRelation.find_by user_id: user, question_id: id
-      when 'answer'
-        AnswerBookmarkRelation.find_by user_id: user, answer_id: id
-      when 'article'
-        ArticleBookmarkRelation.find_by user_id: user, article_id: id
+    def respond
+      respond_to do |format|
+        format.js { render "change" }
       end
     end
 
