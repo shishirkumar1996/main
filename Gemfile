@@ -65,8 +65,6 @@ gem 'impressionist'
 
 gem 'friendly_id'
 
-gem 'administrate'
-
 gem 'rails-controller-testing'
 
 gem 'non-stupid-digest-assets'

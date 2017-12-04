@@ -1,44 +1,5 @@
 Rails.application.routes.draw do
-
-  namespace :admin do
-    resources :academics
-    resources :answers
-    resources :answer_bookmark_relations
-    resources :answerrelations
-    resources :articles
-    resources :article_bookmark_relations
-    resources :articlerelations
-    resources :article_replies
-    resources :associated_sets
-    resources :badanswerrelations
-    resources :badarticlerelations
-    resources :badgroupanswerrelations
-    resources :badgrouparticlerelations
-    resources :domains
-    resources :domains_articles
-    resources :domains_questions
-    resources :groups
-    resources :group_articles
-    resources :group_questions
-    resources :groupanswers
-    resources :groupanswerrelations
-    resources :grouparticlerelations
-    resources :grouparticlereplies
-    resources :groupquestionreplies
-    resources :groups_users
-    resources :institutes
-    resources :interests
-    resources :notifications
-    resources :questions
-    resources :question_bookmark_relations
-    resources :relationships
-    resources :replies
-    resources :search_products
-    resources :users
-
-    root to: "users#index"
-  end
-
+  
   resources :bookmarks, only: [:create]
   delete '/bookmarks', to: 'bookmarks#destroy'
 
