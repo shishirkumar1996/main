@@ -1,6 +1,6 @@
 class Question < ApplicationRecord
-	include Bookmarkable
 	include Writable
+	include Bookmarkable
 	searchkick word_start: [:title], highlight: [:title], suggest: [:title]
 	belongs_to :user
 	has_many :domains_questions, foreign_key: "question_id", dependent: :destroy

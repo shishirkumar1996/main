@@ -1,6 +1,6 @@
 class Answer < ApplicationRecord
-  include Bookmarkable
   include Writable
+  include Bookmarkable
   belongs_to :user
   belongs_to :question, counter_cache: true
   has_many :answer_replies , dependent: :destroy

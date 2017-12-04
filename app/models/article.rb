@@ -1,6 +1,6 @@
 class Article < ApplicationRecord
-	include Bookmarkable
 	include Writable
+	include Bookmarkable
 	searchkick word_start: [:title]
 	belongs_to :user
 
