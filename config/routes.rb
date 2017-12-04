@@ -39,10 +39,10 @@ Rails.application.routes.draw do
     root to: "users#index"
   end
 
+  resources :bookmarks, only: [:create]
+  delete '/bookmarks', to: 'bookmarks#destroy'
+
   resources :institutes,only: [:index,:create,:destroy]
-  resources :answer_bookmark_relations
-  resources :question_bookmark_relations ,only: [:create,:destroy]
-  resources :article_bookmark_relations ,only: [:create,:destroy]
   resources :badanswerrelations  ,only: [:create,:destroy]
   resources :answerrelations ,only: [:create,:destroy]
   resources :badgrouparticlerelations  ,only: [:create,:destroy]
