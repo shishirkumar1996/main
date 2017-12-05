@@ -20,24 +20,25 @@ class User < ApplicationRecord
 	has_many :created_notifications,class_name: "Notification"
 
 	has_many :answer_bookmarks, class_name: 'Answers::Bookmark'
-	has_many :bookmarked_answers, through: :answer_bookmarks,
-	source: :answer
+	has_many :bookmarked_answers, through: :answer_bookmarks, source: :answer
 
 	has_many :question_bookmarks, class_name: 'Questions::Bookmark'
-	has_many :bookmarked_questions, through: :question_bookmarks,
-	source: :question
+	has_many :bookmarked_questions, through: :question_bookmarks, source: :question
 
 	has_many :article_bookmarks, class_name: 'Articles::Bookmark'
-	has_many :bookmarked_articles, through: :article_bookmarks,
-	source: :article
+	has_many :bookmarked_articles, through: :article_bookmarks, source: :article
 
-	has_many :articlerelations,foreign_key: :user_id,dependent: :destroy
-	has_many :likedarticles,through: :articlerelations,source: :article
+	has_many :article_upvotes, class_name: 'Articles::Upvote'
+	has_many :upvoted_articles, through: :article_upvotes, source: :article
 
-	has_many :badarticlerelations,foreign_key: :user_id,
-	dependent: :destroy
-	has_many :dislikedarticles,through: :badarticlerelations,
-	source: :article
+	has_many :article_downvotes, class_name: 'Articles::Downvote'
+	has_many :downvoted_articles, through: :article_downvotes, source: :article
+
+	has_many :answer_upvotes, class_name: 'Answers::Upvote'
+	has_many :upvoted_answers, through: :answer_upvotes, source: :answer
+
+	has_many :answer_downvotes, class_name: 'Answers::Downvote'
+	has_many :downvoted_answers, through: :answer_downvotes, source: :answer
 
 	has_many :grouparticlerelations, foreign_key: :user_id,dependent: :destroy
 	has_many :likedgrouparticles, through: :grouparticlerelations,source: :group_article
@@ -46,13 +47,6 @@ class User < ApplicationRecord
 	dependent: :destroy
 	has_many :dislikedgrouparticles,through: :badgrouparticlerelations,
 	source: :group_article
-
-	has_many :answerrelations,foreign_key: :user_id,dependent: :destroy
-	has_many :likedanswers,through: :answerrelations,source: :answer
-
-	has_many :badanswerrelations,foreign_key: :user_id,dependent: :destroy
-	has_many :dislikedanswers,through: :badanswerrelations,
-	source: :answer
 
 	has_many :groupanswerrelations, foreign_key: :user_id,dependent: :destroy
 	has_many :likedgroupanswers,through: :groupanswerrelations,
