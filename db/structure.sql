@@ -99,6 +99,38 @@ ALTER SEQUENCE answer_bookmarks_id_seq OWNED BY answer_bookmarks.id;
 
 
 --
+-- Name: answer_downvotes; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE answer_downvotes (
+    id integer NOT NULL,
+    user_id integer,
+    answer_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: answer_downvotes_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE answer_downvotes_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: answer_downvotes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE answer_downvotes_id_seq OWNED BY answer_downvotes.id;
+
+
+--
 -- Name: answer_replies; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -132,10 +164,10 @@ ALTER SEQUENCE answer_replies_id_seq OWNED BY answer_replies.id;
 
 
 --
--- Name: answerrelations; Type: TABLE; Schema: public; Owner: -
+-- Name: answer_upvotes; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE answerrelations (
+CREATE TABLE answer_upvotes (
     id integer NOT NULL,
     user_id integer,
     answer_id integer,
@@ -145,10 +177,10 @@ CREATE TABLE answerrelations (
 
 
 --
--- Name: answerrelations_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: answer_upvotes_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE answerrelations_id_seq
+CREATE SEQUENCE answer_upvotes_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -157,10 +189,10 @@ CREATE SEQUENCE answerrelations_id_seq
 
 
 --
--- Name: answerrelations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- Name: answer_upvotes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE answerrelations_id_seq OWNED BY answerrelations.id;
+ALTER SEQUENCE answer_upvotes_id_seq OWNED BY answer_upvotes.id;
 
 
 --
@@ -242,6 +274,38 @@ ALTER SEQUENCE article_bookmarks_id_seq OWNED BY article_bookmarks.id;
 
 
 --
+-- Name: article_downvotes; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE article_downvotes (
+    id integer NOT NULL,
+    user_id integer,
+    article_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: article_downvotes_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE article_downvotes_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: article_downvotes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE article_downvotes_id_seq OWNED BY article_downvotes.id;
+
+
+--
 -- Name: article_replies; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -275,10 +339,10 @@ ALTER SEQUENCE article_replies_id_seq OWNED BY article_replies.id;
 
 
 --
--- Name: articlerelations; Type: TABLE; Schema: public; Owner: -
+-- Name: article_upvotes; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE articlerelations (
+CREATE TABLE article_upvotes (
     id integer NOT NULL,
     user_id integer,
     article_id integer,
@@ -288,10 +352,10 @@ CREATE TABLE articlerelations (
 
 
 --
--- Name: articlerelations_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: article_upvotes_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE articlerelations_id_seq
+CREATE SEQUENCE article_upvotes_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -300,10 +364,10 @@ CREATE SEQUENCE articlerelations_id_seq
 
 
 --
--- Name: articlerelations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- Name: article_upvotes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE articlerelations_id_seq OWNED BY articlerelations.id;
+ALTER SEQUENCE article_upvotes_id_seq OWNED BY article_upvotes.id;
 
 
 --
@@ -370,70 +434,6 @@ CREATE SEQUENCE associated_sets_id_seq
 --
 
 ALTER SEQUENCE associated_sets_id_seq OWNED BY associated_sets.id;
-
-
---
--- Name: badanswerrelations; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE badanswerrelations (
-    id integer NOT NULL,
-    user_id integer,
-    answer_id integer,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
--- Name: badanswerrelations_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE badanswerrelations_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: badanswerrelations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE badanswerrelations_id_seq OWNED BY badanswerrelations.id;
-
-
---
--- Name: badarticlerelations; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE badarticlerelations (
-    id integer NOT NULL,
-    user_id integer,
-    article_id integer,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
--- Name: badarticlerelations_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE badarticlerelations_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: badarticlerelations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE badarticlerelations_id_seq OWNED BY badarticlerelations.id;
 
 
 --
@@ -1218,6 +1218,13 @@ ALTER TABLE ONLY answer_bookmarks ALTER COLUMN id SET DEFAULT nextval('answer_bo
 
 
 --
+-- Name: answer_downvotes id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY answer_downvotes ALTER COLUMN id SET DEFAULT nextval('answer_downvotes_id_seq'::regclass);
+
+
+--
 -- Name: answer_replies id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -1225,10 +1232,10 @@ ALTER TABLE ONLY answer_replies ALTER COLUMN id SET DEFAULT nextval('answer_repl
 
 
 --
--- Name: answerrelations id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: answer_upvotes id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY answerrelations ALTER COLUMN id SET DEFAULT nextval('answerrelations_id_seq'::regclass);
+ALTER TABLE ONLY answer_upvotes ALTER COLUMN id SET DEFAULT nextval('answer_upvotes_id_seq'::regclass);
 
 
 --
@@ -1246,6 +1253,13 @@ ALTER TABLE ONLY article_bookmarks ALTER COLUMN id SET DEFAULT nextval('article_
 
 
 --
+-- Name: article_downvotes id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY article_downvotes ALTER COLUMN id SET DEFAULT nextval('article_downvotes_id_seq'::regclass);
+
+
+--
 -- Name: article_replies id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -1253,10 +1267,10 @@ ALTER TABLE ONLY article_replies ALTER COLUMN id SET DEFAULT nextval('article_re
 
 
 --
--- Name: articlerelations id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: article_upvotes id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY articlerelations ALTER COLUMN id SET DEFAULT nextval('articlerelations_id_seq'::regclass);
+ALTER TABLE ONLY article_upvotes ALTER COLUMN id SET DEFAULT nextval('article_upvotes_id_seq'::regclass);
 
 
 --
@@ -1271,20 +1285,6 @@ ALTER TABLE ONLY articles ALTER COLUMN id SET DEFAULT nextval('articles_id_seq':
 --
 
 ALTER TABLE ONLY associated_sets ALTER COLUMN id SET DEFAULT nextval('associated_sets_id_seq'::regclass);
-
-
---
--- Name: badanswerrelations id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY badanswerrelations ALTER COLUMN id SET DEFAULT nextval('badanswerrelations_id_seq'::regclass);
-
-
---
--- Name: badarticlerelations id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY badarticlerelations ALTER COLUMN id SET DEFAULT nextval('badarticlerelations_id_seq'::regclass);
 
 
 --
@@ -1465,6 +1465,14 @@ ALTER TABLE ONLY answer_bookmarks
 
 
 --
+-- Name: answer_downvotes answer_downvotes_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY answer_downvotes
+    ADD CONSTRAINT answer_downvotes_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: answer_replies answer_replies_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1473,11 +1481,11 @@ ALTER TABLE ONLY answer_replies
 
 
 --
--- Name: answerrelations answerrelations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: answer_upvotes answer_upvotes_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY answerrelations
-    ADD CONSTRAINT answerrelations_pkey PRIMARY KEY (id);
+ALTER TABLE ONLY answer_upvotes
+    ADD CONSTRAINT answer_upvotes_pkey PRIMARY KEY (id);
 
 
 --
@@ -1505,6 +1513,14 @@ ALTER TABLE ONLY article_bookmarks
 
 
 --
+-- Name: article_downvotes article_downvotes_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY article_downvotes
+    ADD CONSTRAINT article_downvotes_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: article_replies article_replies_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1513,11 +1529,11 @@ ALTER TABLE ONLY article_replies
 
 
 --
--- Name: articlerelations articlerelations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: article_upvotes article_upvotes_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY articlerelations
-    ADD CONSTRAINT articlerelations_pkey PRIMARY KEY (id);
+ALTER TABLE ONLY article_upvotes
+    ADD CONSTRAINT article_upvotes_pkey PRIMARY KEY (id);
 
 
 --
@@ -1534,22 +1550,6 @@ ALTER TABLE ONLY articles
 
 ALTER TABLE ONLY associated_sets
     ADD CONSTRAINT associated_sets_pkey PRIMARY KEY (id);
-
-
---
--- Name: badanswerrelations badanswerrelations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY badanswerrelations
-    ADD CONSTRAINT badanswerrelations_pkey PRIMARY KEY (id);
-
-
---
--- Name: badarticlerelations badarticlerelations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY badarticlerelations
-    ADD CONSTRAINT badarticlerelations_pkey PRIMARY KEY (id);
 
 
 --
@@ -1787,6 +1787,27 @@ CREATE UNIQUE INDEX index_answer_bookmarks_on_user_id_and_answer_id ON answer_bo
 
 
 --
+-- Name: index_answer_downvotes_on_answer_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_answer_downvotes_on_answer_id ON answer_downvotes USING btree (answer_id);
+
+
+--
+-- Name: index_answer_downvotes_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_answer_downvotes_on_user_id ON answer_downvotes USING btree (user_id);
+
+
+--
+-- Name: index_answer_downvotes_on_user_id_and_answer_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_answer_downvotes_on_user_id_and_answer_id ON answer_downvotes USING btree (user_id, answer_id);
+
+
+--
 -- Name: index_answer_replies_on_answer_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1801,24 +1822,24 @@ CREATE INDEX index_answer_replies_on_user_id ON answer_replies USING btree (user
 
 
 --
--- Name: index_answerrelations_on_answer_id; Type: INDEX; Schema: public; Owner: -
+-- Name: index_answer_upvotes_on_answer_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_answerrelations_on_answer_id ON answerrelations USING btree (answer_id);
-
-
---
--- Name: index_answerrelations_on_user_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_answerrelations_on_user_id ON answerrelations USING btree (user_id);
+CREATE INDEX index_answer_upvotes_on_answer_id ON answer_upvotes USING btree (answer_id);
 
 
 --
--- Name: index_answerrelations_on_user_id_and_answer_id; Type: INDEX; Schema: public; Owner: -
+-- Name: index_answer_upvotes_on_user_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE UNIQUE INDEX index_answerrelations_on_user_id_and_answer_id ON answerrelations USING btree (user_id, answer_id);
+CREATE INDEX index_answer_upvotes_on_user_id ON answer_upvotes USING btree (user_id);
+
+
+--
+-- Name: index_answer_upvotes_on_user_id_and_answer_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_answer_upvotes_on_user_id_and_answer_id ON answer_upvotes USING btree (user_id, answer_id);
 
 
 --
@@ -1857,6 +1878,27 @@ CREATE UNIQUE INDEX index_article_bookmarks_on_user_id_and_article_id ON article
 
 
 --
+-- Name: index_article_downvotes_on_article_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_article_downvotes_on_article_id ON article_downvotes USING btree (article_id);
+
+
+--
+-- Name: index_article_downvotes_on_article_id_and_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_article_downvotes_on_article_id_and_user_id ON article_downvotes USING btree (article_id, user_id);
+
+
+--
+-- Name: index_article_downvotes_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_article_downvotes_on_user_id ON article_downvotes USING btree (user_id);
+
+
+--
 -- Name: index_article_replies_on_article_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1871,24 +1913,24 @@ CREATE INDEX index_article_replies_on_user_id ON article_replies USING btree (us
 
 
 --
--- Name: index_articlerelations_on_article_id; Type: INDEX; Schema: public; Owner: -
+-- Name: index_article_upvotes_on_article_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_articlerelations_on_article_id ON articlerelations USING btree (article_id);
-
-
---
--- Name: index_articlerelations_on_article_id_and_user_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX index_articlerelations_on_article_id_and_user_id ON articlerelations USING btree (article_id, user_id);
+CREATE INDEX index_article_upvotes_on_article_id ON article_upvotes USING btree (article_id);
 
 
 --
--- Name: index_articlerelations_on_user_id; Type: INDEX; Schema: public; Owner: -
+-- Name: index_article_upvotes_on_article_id_and_user_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_articlerelations_on_user_id ON articlerelations USING btree (user_id);
+CREATE UNIQUE INDEX index_article_upvotes_on_article_id_and_user_id ON article_upvotes USING btree (article_id, user_id);
+
+
+--
+-- Name: index_article_upvotes_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_article_upvotes_on_user_id ON article_upvotes USING btree (user_id);
 
 
 --
@@ -1917,48 +1959,6 @@ CREATE INDEX index_associated_sets_on_superset_id ON associated_sets USING btree
 --
 
 CREATE UNIQUE INDEX index_associated_sets_on_superset_id_and_subset_id ON associated_sets USING btree (superset_id, subset_id);
-
-
---
--- Name: index_badanswerrelations_on_answer_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_badanswerrelations_on_answer_id ON badanswerrelations USING btree (answer_id);
-
-
---
--- Name: index_badanswerrelations_on_user_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_badanswerrelations_on_user_id ON badanswerrelations USING btree (user_id);
-
-
---
--- Name: index_badanswerrelations_on_user_id_and_answer_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX index_badanswerrelations_on_user_id_and_answer_id ON badanswerrelations USING btree (user_id, answer_id);
-
-
---
--- Name: index_badarticlerelations_on_article_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_badarticlerelations_on_article_id ON badarticlerelations USING btree (article_id);
-
-
---
--- Name: index_badarticlerelations_on_article_id_and_user_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX index_badarticlerelations_on_article_id_and_user_id ON badarticlerelations USING btree (article_id, user_id);
-
-
---
--- Name: index_badarticlerelations_on_user_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_badarticlerelations_on_user_id ON badarticlerelations USING btree (user_id);
 
 
 --
@@ -2475,6 +2475,8 @@ INSERT INTO schema_migrations (version) VALUES
 ('20170815124530'),
 ('20170816160054'),
 ('20170831161744'),
-('20171201045445');
+('20171201045445'),
+('20171205133440'),
+('20171205133707');
 
 
