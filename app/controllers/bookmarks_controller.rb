@@ -6,13 +6,13 @@ class BookmarksController < ApplicationController
   def create
     @entity.bookmarks.create! user_id: current_user.id
     @bookmarked = true
-    respond
+    send_response
   end
 
   def destroy
     @entity.destroy_bookmark current_user
     @bookmarked = false
-    respond
+    send_response
   end
 
   private
@@ -21,7 +21,7 @@ class BookmarksController < ApplicationController
       @entity = find_by_type params[:id], params[:type]
     end
 
-    def respond
+    def send_response
       respond_to do |format|
         format.js { render "change" }
       end
