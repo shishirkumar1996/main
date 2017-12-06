@@ -167,3 +167,21 @@ em {
   }
 
 }
+
+.vote-container {
+  float: left;
+  margin-right: 10px;
+}
+
+.action-completed {
+  display: inline-block;
+  border: 1px solid #2980b9;
+  border-radius: 5px;
+  padding: 6px 10px;
+  font-size: 16px;
+  background-color: #fff;
+  color: #2980b9;
+  height: 35px;
+  min-width: 112.48px;
+  text-align: center;
+}
