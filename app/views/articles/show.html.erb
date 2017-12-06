@@ -11,6 +11,12 @@
 	</div>
 	<div class="containing-div clearfloat">
 		<%# modify the 'by author' below if the person has an account on google/fb/twitter %>
+		<div id="article_upvote_<%= @article.id %>" class="vote-container">
+			<%= display_upvote @article %>
+		</div>
+		<div id="article_downvote_<%= @article.id %>" class="vote-container">
+			<%= display_downvote @article %>
+		</div>
 		<%= social_share_button_tag("#{@article.title} by #{@article.user.name}") %>
 	</div>
 
