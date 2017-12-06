@@ -1,10 +1,8 @@
 Rails.application.routes.draw do
 
-  common_routes_resources = [:bookmarks, :upvotes, :downvotes]
-  common_routes_resources.each do |resource|
-    resources resource, only: [:create]
-  end
+  resources :bookmarks, only: [:create]
   delete '/bookmarks', to: 'bookmarks#destroy'
+  resources :votes, only: [:create]
 
   resources :institutes,only: [:index,:create,:destroy]
   resources :badgrouparticlerelations  ,only: [:create,:destroy]
