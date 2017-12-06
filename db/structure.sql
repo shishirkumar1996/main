@@ -30,6 +30,66 @@ COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
 
 SET search_path = public, pg_catalog;
 
+--
+-- Name: delete_from_answer_downvotes(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION delete_from_answer_downvotes() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+        BEGIN
+          DELETE FROM answer_downvotes AS ans_down WHERE
+          ans_down.user_id = NEW.user_id AND ans_down.answer_id = NEW.answer_id;
+          RETURN NEW;
+        END;
+      $$;
+
+
+--
+-- Name: delete_from_answer_upvotes(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION delete_from_answer_upvotes() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+        BEGIN
+          DELETE FROM answer_upvotes AS ans_up WHERE
+          ans_up.user_id = NEW.user_id AND ans_up.answer_id = NEW.answer_id;
+          RETURN NEW;
+        END;
+      $$;
+
+
+--
+-- Name: delete_from_article_downvotes(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION delete_from_article_downvotes() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+        BEGIN
+          DELETE FROM article_downvotes AS art_down WHERE
+          art_down.user_id = NEW.user_id AND art_down.article_id = NEW.article_id;
+          RETURN NEW;
+        END;
+      $$;
+
+
+--
+-- Name: delete_from_article_upvotes(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION delete_from_article_upvotes() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+        BEGIN
+          DELETE FROM article_upvotes AS art_up WHERE
+          art_up.user_id = NEW.user_id AND art_up.article_id = NEW.article_id;
+          RETURN NEW;
+        END;
+      $$;
+
+
 SET default_tablespace = '';
 
 SET default_with_oids = false;
@@ -2242,6 +2302,34 @@ CREATE UNIQUE INDEX index_users_on_email ON users USING btree (email);
 
 
 --
+-- Name: answer_downvotes answer_downvotes_changes; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE TRIGGER answer_downvotes_changes BEFORE INSERT OR UPDATE ON answer_downvotes FOR EACH ROW EXECUTE PROCEDURE delete_from_answer_upvotes();
+
+
+--
+-- Name: answer_upvotes answer_upvotes_changes; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE TRIGGER answer_upvotes_changes BEFORE INSERT OR UPDATE ON answer_upvotes FOR EACH ROW EXECUTE PROCEDURE delete_from_answer_downvotes();
+
+
+--
+-- Name: article_downvotes article_downvotes_changes; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE TRIGGER article_downvotes_changes BEFORE INSERT OR UPDATE ON article_downvotes FOR EACH ROW EXECUTE PROCEDURE delete_from_article_upvotes();
+
+
+--
+-- Name: article_upvotes article_upvotes_changes; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE TRIGGER article_upvotes_changes BEFORE INSERT OR UPDATE ON article_upvotes FOR EACH ROW EXECUTE PROCEDURE delete_from_article_downvotes();
+
+
+--
 -- Name: institutes fk_rails_00803b49d2; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -2477,6 +2565,10 @@ INSERT INTO schema_migrations (version) VALUES
 ('20170831161744'),
 ('20171201045445'),
 ('20171205133440'),
-('20171205133707');
+('20171205133707'),
+('20171205150649'),
+('20171206044217'),
+('20171206051625'),
+('20171206051905');
 
 
