@@ -4,11 +4,11 @@ module Finder
     def find_by_type(id, type)
       case type
       when 'article'
-        Article.select(:id).find(id)
+        Article.find(id)
       when 'answer'
-        Answer.select(:id).find(id)
-      end
+        Answer.find(id)
       when 'question'
-        Question.select(:id).find(id)
+        Question.find(id)
+      end
     end
 end
