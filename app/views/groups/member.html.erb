@@ -12,9 +12,9 @@
 Members
 <% @group.members.each do |user| %>
 	<li class = "individual_user_member">
-	<%= render(:partial=> 'common/mini_pic_loader',:object=>user ,:as => :entity) %>	
+	<%= display_img user, 'mini' %>	
 	<%= link_to user.name,user_path(user) %>
-	
+
 </li>
 	</br>
 <% end %>

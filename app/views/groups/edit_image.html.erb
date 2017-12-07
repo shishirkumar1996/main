@@ -6,7 +6,7 @@
 <% if @group.image? %>
 		<%= image_tag @group.image.profile.url , class: "profile_pic" %>
 		<% else %>
-		<%= image_tag 'dummies/medium.png',:class=> "profile_pic" %>
+		<%= image_tag 'dummies/profile.png',:class=> "profile_pic" %>
 <% end %>
 
 <%= form_tag image_group_path(@group), multipart: true do %>

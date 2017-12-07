@@ -1,5 +1,5 @@
-<li class = 'individual_notification'>	
-<%= render(:partial=> 'common/mini_pic_loader',:object=>notification.actor ,:as => :entity) %>
+<li class = 'individual_notification'>
+<%= display_img notification.actor, 'mini' %>
 	<a id = "<%= notification.id %>" href="<%= notification.link %>" ><%= notification.message %></a>
 	</li>
 	</br>

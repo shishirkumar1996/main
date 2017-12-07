@@ -4,10 +4,10 @@
 		<%= link_to(image_tag('dummies/mini.png'),:class => "profile_pic") %>
 		Anonymous
 	<% else %>
-		<%= render(:partial => 'common/mini_pic_loader',:object=> answer.user,:as => :entity )%>
-		<%= answer.user.name %>	
+		<%= display_img answer.user, 'mini' %>
+		<%= answer.user.name %>
 <% end %>
-	
+
 	</div>
 	<div class = "answer_created_at">
 	<%= answer.created_at.strftime("%d %b,%Y %H:%M") %>
@@ -20,7 +20,7 @@
  	<br><br><br>
 	<% if current_user!=answer.user %>
 		<div class = "row">
-		<div id = "upvoteanswer_<%= answer.id %>" class = "col-md-2 upvote_answer" > 
+		<div id = "upvoteanswer_<%= answer.id %>" class = "col-md-2 upvote_answer" >
 		<% if current_user.like_answer?(answer) %>
 			<%= render :partial=>'answers/upvoted',:locals=>{:answer => answer} %>
 		<% else %>
@@ -45,7 +45,7 @@
 			<% end %>
 		</div>
 		</div>
-	<% else %>		
+	<% else %>
 		<%= link_to "Edit", edit_question_answer_path(answer.question,answer) %>
 	<% end %>
 	<br>
@@ -54,7 +54,7 @@
  	<section class='reply' id= "reply_<%= answer.id %>">
   	<ul  class = "replies_area replies list-group" id = "replies_<%= answer.id %>">
  			<%# render answer.replies %>
-		</ul>			
+		</ul>
 		</br>
 		<%= link_to "load more",nowhere_path,class: "answerreply_loadmore",id: "answerreply_loadmore_#{answer.id}",remote: true,"data-questionid"=> answer.question.id %>
 		<%= form_for([answer.question,answer,answer.replies.build],remote: true) do |f| %>
@@ -66,7 +66,6 @@
 	</div>
 	</section>
 	</br>
-	
-	
+
+
 </div>
-	

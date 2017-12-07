@@ -1,9 +1,9 @@
 <% if @answer.anonymous? %>
-		<%= link_to(image_tag('dummies/small.png'),:class => "profile_pic") %>
+		<%= link_to(image_tag('dummies/thumb.png'),:class => "profile_pic") %>
 		Anonymous
 	<% else %>
-		<%= render(:partial => 'common/thumb_pic_loader',:object=> @answer.user,:as => :entity )%>
-		<%= @answer.user.name %>	
+		<%= display_img @answer.user, 'thumb' %>
+		<%= @answer.user.name %>
 <% end %>
 
 <%= @answer.question.title.html_safe %>
@@ -13,7 +13,7 @@
 <%= @answer.body.html_safe %>
  	<br>
 	<% if current_user!=@answer.user %>
-		<div id = "upvoteanswer_<%= @answer.id %>" > 
+		<div id = "upvoteanswer_<%= @answer.id %>" >
 		<% if current_user.like_answer?(@answer) %>
 			<%= render :partial=>'answers/upvoted',:locals=>{:answer => @answer} %>
 		<% else %>
@@ -28,7 +28,7 @@
 			<% end %>
 		</div>
 		<%= social_share_button_tag(@answer.question.title) %>
-	<% else %>		
+	<% else %>
 		<%= link_to "Edit", edit_question_answer_path(@answer.question,@answer) %>
 	<% end %>
 	<br>
@@ -38,10 +38,10 @@
 	<% if @answer.replies.any? %>
   	<ul  class = "replies list-group" id = "replies_<%= answer.id %>">
  			<%# render @answer.replies %>
-		</ul>			
+		</ul>
 	<% end %>
 		</br>
-		
+
 		<%= form_for([@answer.question,@answer,@answer.replies.build],remote: true) do |f| %>
 			<%= f.cktext_area :body,id: "field_#{@answer.id}", rows: 3,:ckeditor =>{:toolbar => 'body'}%>
 			<div><%# hidden_field_tag :answer_id, @answer.id %></div>
@@ -51,6 +51,3 @@
 	<% end %>
 	</section>
 	</br>
-	
-	
-	

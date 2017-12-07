@@ -9,7 +9,7 @@
 	<% if @group.image? %>
 		<%= link_to(image_tag(@group.image.profile.url),group_path(@group),:class => "profile_pic" )%>
 <% else %>
-		<%= link_to(image_tag('dummies/medium.png'),group_path(@group)) %>
+		<%= link_to(image_tag('dummies/profile.png'),group_path(@group)) %>
 <% end %>
 	<br>
 	<%= link_to 'Edit', edit_image_group_path(@group) %>
@@ -57,4 +57,3 @@
 
 </div>
 </div>
-

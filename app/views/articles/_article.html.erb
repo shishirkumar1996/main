@@ -1,7 +1,7 @@
 
 <div class="content-container">
 	<div class="content-author">
-		<%= render(:partial => 'common/mini_pic_loader', object: article.user, as: :entity )%>
+		<%= display_img article.user, 'mini' %>
 		&nbsp;
 		<span class="content-author-title"><%= article.user.name %></span>
 	</div>

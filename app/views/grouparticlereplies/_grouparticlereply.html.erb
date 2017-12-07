@@ -1,5 +1,5 @@
 <li class = 'individual_reply individual_grouparticlereply_<%= @group_article.id %>' data-id= '<%= grouparticlereply.id %>' >
-		<%= render(:partial=> 'common/mini_pic_loader',:object=>grouparticlereply.user ,:as => :entity) %>	
+		<%= display_img grouparticlereply.user, 'mini' %>	
 	<strong><%= grouparticlereply.user.name %></strong>
 	<%= grouparticlereply.body.html_safe %><br>
 	<%= grouparticlereply.created_at.strftime("%d %b,%Y") %>

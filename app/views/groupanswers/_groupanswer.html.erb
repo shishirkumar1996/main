@@ -1,19 +1,19 @@
 <div class = "list-group-item answer_container">
 	<div class = "answer_user_name ">
-			<%= render(:partial => 'common/mini_pic_loader',:object=> groupanswer.user,:as => :entity )%>
-		<%= groupanswer.user.name %>	
+			<%= display_img groupanswer.user, 'mini' %>
+		<%= groupanswer.user.name %>
 	</div>
-	
+
 	<div class = "answer_created_at">
 	<%= groupanswer.created_at.strftime("%d %b,%Y %H:%M") %>
 	</div>
 	</br>
-	
+
 	<%=  groupanswer.body.html_safe %>
 	</br>
 	<% if(current_user!=groupanswer.user) %>
 		<div class = "row">
-	<div id = "upvoteanswer_<%= groupanswer.id %>" class = "col-md-2 upvote_answer" > 
+	<div id = "upvoteanswer_<%= groupanswer.id %>" class = "col-md-2 upvote_answer" >
 		<% if current_user.like_groupanswer?(groupanswer) %>
 			<%= render :partial=>'groupanswers/upvoted',:locals=>{:groupanswer => groupanswer} %>
 		<% else %>
@@ -31,17 +31,17 @@
 	<% else %>
 		<%= link_to 'Edit', edit_group_group_question_groupanswer_path(groupanswer.group_question.group,groupanswer.group_question,
 		groupanswer) %>
-	<% end %>		
-	
+	<% end %>
+
 	<%= link_to "Replies", nowhere_path, class: 'groupanswerreply_button', id: "groupanswer_#{groupanswer.id}",remote: true, 'data-questionid'=> groupanswer.group_question.id,'data-groupid'=>groupanswer.group_question.group.id %>
 		<br>
 		<section class = 'groupanswerreply' id = 'groupanswerreply_<%= groupanswer.id %>'>
 			<ul class= "replies_area groupanswerreplies list-group" id = "groupanswerreplies_<%= groupanswer.id %>">
 			</ul>
 		</br>
-		
+
 		<%= link_to "load more",nowhere_path,class: "groupanswerreply_loadmore",id: "groupanswerreply_loadmore_#{article.id}",remote: true,'data-questionid'=> groupanswer.group_question.id,'data-groupid'=>groupanswer.group_question.group.id  %>
-		
+
 		<%= form_for([groupanswer.group_question.group,groupanswer.group_question,
 		groupanswer,
 		groupanswer.groupquestionreplies.build],remote: true) do |f| %>
@@ -52,6 +52,6 @@
 		<% end %>
 	</section>
 	</br>
-	
-	
+
+
 </div>

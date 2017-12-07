@@ -5,7 +5,7 @@
 	<% if @domain.image? %>
 		<%= link_to(image_tag(@domain.image.profile.url),group_path(@domain),:class => "profile_pic" )%>
 <% else %>
-		<%= link_to(image_tag('dummies/medium.png'),domain_path(@domain)) %>
+		<%= link_to(image_tag('dummies/profile.png'),domain_path(@domain)) %>
 <% end %>
 	<br>
 	<%= link_to 'Edit', edit_image_domain_path(@domain) %>
@@ -14,13 +14,13 @@
 <h1><%= @domain.name %></h1>
 	<%= @domain.questions.count %> questions
 	<%= @domain.articles.count %> articles</h3>
-	
+
 	<strong id = "followers">
 		<%= @domain.followers.count %>
 	</strong> Followers
 	<div class = "row">
 		<% if logged_in? %>
-		<div class = "col-md-6 col-xs-6 col-sm-6">	
+		<div class = "col-md-6 col-xs-6 col-sm-6">
 <a id = "follow_form">
 	<% if current_user.has_relations(@domain) %>
 		<%= render 'unfollow' %>
@@ -34,12 +34,12 @@
 	<a href = "#" class = "dropdown-toggle" data-toggle = "dropdown">Options</a>
 <ul class = "dropdown-menu dropdown-menu-right">
 	<li><%= link_to "Manage", manage_domain_path(@domain) %></li>
-</ul>	
+</ul>
 </a>
 		</div>
 	<% end %>
 	</div>
-	
+
 
 
 </div>
@@ -47,15 +47,15 @@
 <br>
 <div class = "row">
 <div class = "col-md-6 col-md-offset-3">
-	
+
 	<div id = "feed-posts">
 		<%= render @feed %>
 	</div>
-	
+
 	<div id = "infinite-scrolling">
 		<%= will_paginate @feed %>
 	</div>
-	
+
 </div>
 
 <div class = "col-md-3 hidden-xs">
