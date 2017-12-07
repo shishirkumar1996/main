@@ -1,6 +1,6 @@
 module ApplicationHelper
 
-  def date_time_helper(date_time)
+  def display_date_time(date_time)
     current_time = Time.zone.now
     days = (current_time - date_time).to_i / 1.day
     if(days > 31)

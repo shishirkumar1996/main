@@ -3,7 +3,7 @@
   &nbsp;
   <% if date_time %>
     <div class="author-name"><%= link_to "#{user.name}", user %></div>
-    <div class="date-info"><%= date_time_helper date_time %></div>
+    <div class="date-info"><%= display_date_time date_time %></div>
   <% else %>
     <div class="author-name author-name-without-date"><%= link_to "#{user.name}", user %></div>
   <% end %>
