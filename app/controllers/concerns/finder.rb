@@ -1,14 +1,10 @@
 module Finder
   extend ActiveSupport::Concern
+  TYPE_TO_MODEL = {'question' => Question, 'answer' => Answer, 'article' => Article,
+                  'article_reply' => Articles::Reply}
+  private_constant :TYPE_TO_MODEL
   private
     def find_by_type(id, type)
-      case type
-      when 'article'
-        Article.find(id)
-      when 'answer'
-        Answer.find(id)
-      when 'question'
-        Question.find(id)
-      end
+      TYPE_TO_MODEL[type].find id
     end
 end
