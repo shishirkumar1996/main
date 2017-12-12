@@ -15,4 +15,7 @@ module VotesHelper
       end
     end
   end
+  def other_vote(vote)
+    (vote[0] == 'a') ? 'downvote' : 'upvote'
+  end
 end
