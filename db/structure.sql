@@ -375,7 +375,9 @@ CREATE TABLE article_replies (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     user_id integer NOT NULL,
-    article_id integer NOT NULL
+    article_id integer,
+    parent_reply_id integer,
+    CONSTRAINT article_or_parent_reply_xor CHECK ((((article_id IS NOT NULL) OR (parent_reply_id IS NOT NULL)) AND (NOT ((article_id IS NOT NULL) AND (parent_reply_id IS NOT NULL)))))
 );
 
 
@@ -1966,6 +1968,13 @@ CREATE INDEX index_article_replies_on_article_id ON article_replies USING btree 
 
 
 --
+-- Name: index_article_replies_on_parent_reply_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_article_replies_on_parent_reply_id ON article_replies USING btree (parent_reply_id);
+
+
+--
 -- Name: index_article_replies_on_user_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -2386,6 +2395,14 @@ ALTER TABLE ONLY answers
 
 
 --
+-- Name: article_replies fk_rails_3f533e9a07; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY article_replies
+    ADD CONSTRAINT fk_rails_3f533e9a07 FOREIGN KEY (parent_reply_id) REFERENCES article_replies(id);
+
+
+--
 -- Name: group_articles fk_rails_4f015f8bba; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -2569,6 +2586,9 @@ INSERT INTO schema_migrations (version) VALUES
 ('20171205150649'),
 ('20171206044217'),
 ('20171206051625'),
-('20171206051905');
+('20171206051905'),
+('20171208052053'),
+('20171208053738'),
+('20171208070227');
 
 
