@@ -1,7 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-	include SessionsHelper
-	include CurrentUserConcern
+	include Authentication
 	include ProfilerConcern
 
  # before_action :set_cache_headers
