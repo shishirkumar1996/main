@@ -54,8 +54,7 @@ Rails.application.routes.draw do
   post '/signup', to: 'users#create'
   delete '/logout', to: 'sessions#destroy'
 
-  get 'auth/facebook/callback', to: 'sessions#create_facebook'
-  get 'auth/google_oauth2/callback',to: 'sessions#create_google'
+  get 'auth/:provider/callback', to: 'sessions#create_social'
   get 'auth/failure', to: redirect('/')
 
   get '/write', to: "users#write"

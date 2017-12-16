@@ -15,7 +15,7 @@ class User < ApplicationRecord
                     format: { with: VALID_EMAIL_REGEX },uniqueness: {case_sensitive: false}
   before_save :downcase_email
 
-	validates :password,presence: true, length: { minimum: 6 },allow_nil: true
+	validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
 
 	has_many :created_notifications,class_name: "Notification"
 
@@ -102,36 +102,17 @@ class User < ApplicationRecord
 		tokens.split(',')
 	end
 
-	def self.from_google_omniauth(auth)
-		if User.exists?(:email=>auth.info.email)
-			return User.find_by(email: auth.info.email)
-		end
-		where(provider: auth.provider,uid: auth.uid).first_or_create do |user|
+	def self.find_or_create_from_auth_hash(auth)
+		where(uid: auth.uid, provider: auth.provider).first_or_initialize.tap do |user|
+			# check if user email/phone has been validated by social site and take decision accordingly
+			# this must be incorporated
 			user.provider = auth.provider
 			user.uid = auth.uid
 			user.name = auth.info.name
+			user.email = auth.info.email
 			user.oauth_token = auth.credentials.token
 			user.oauth_expires_at = Time.at(auth.credentials.expires_at)
-			user.password = user.password_confirmation = SecureRandom.urlsafe_base64(n=8)
-			user.email = auth.info.email
-			user.save!
-		end
-	end
-
-	def self.from_omniauth(auth)
-		if User.exists?(:email=> auth.info.email)
-			return User.find_by(email: auth.info.email)
-		end
-		where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-			user.provider = auth.provider
-			user.uid = auth.uid
-			user.name = auth.info.name
-			user.remote_image_url = auth.info.image.gsub('http://','https://')
-			user.oauth_token = auth.credentials.token
-			user.oauth_expires_at = Time.at(auth.credentials.expires_at)
-			user.password = user.password_confirmation = SecureRandom.urlsafe_base64(n=8)
-			user.email = auth.info.email
-			user.save!
+			user.save!(validate: false) # skips all validations, not good, improve it
 		end
 	end
 

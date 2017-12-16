@@ -61,8 +61,6 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem 'impressionist'
-
 gem 'friendly_id'
 
 gem 'rails-controller-testing'
@@ -82,8 +80,6 @@ gem 'bcrypt'
 gem 'bootstrap-sass'
 
 gem 'will_paginate'
-
-gem 'omniauth'
 
 gem 'omniauth-facebook'
 

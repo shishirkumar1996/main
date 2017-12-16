@@ -16,31 +16,12 @@ class SessionsController < ApplicationController
 		end
 	end
 
-	def create_google
-		auth = request.env["omniauth.auth"]
-		user = User.from_google_omniauth(request.env["omniauth.auth"])
-		if(user.provider != auth.provider)
-			flash[:danger] = 'email has already been taken'
-			redirect_to root_url
-		else
-			log_in(user)
-			remember(user)
-			redirect_to root_url
-		end
-	end
-
-	def create_facebook
-		auth = request.env["omniauth.auth"]
-		user= User.from_omniauth(request.env["omniauth.auth"])
-		if(user.provider != auth.provider)
-			flash[:danger] = 'email has already been taken'
-			redirect_to root_url
-		else
-	#	session[:user_id] = user.id
-			log_in(user)
-			remember(user)
-			redirect_to root_url
-		end
+	def create_social
+		redirect_to(root_url) if logged_in?
+		user = User.find_or_create_from_auth_hash env["omniauth.auth"]
+		log_in user
+		remember user
+		redirect_to root_url
 	end
 
 	def destroy
