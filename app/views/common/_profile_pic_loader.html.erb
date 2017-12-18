@@ -1,6 +1,0 @@
-<% if entity.image? %>
-		<%= link_to(image_tag(entity.image.profile.url),user_path(entity),:class => "profile_pic" )%>
-<% else %>
-		<%= link_to(image_tag('dummies/medium.png'),
-		entity.class ==  User ? user_path(entity) : (entity.class == Domain ? domain_path(entity) : group_path(entity))) %>
-<% end %>
