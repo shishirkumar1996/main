@@ -23,22 +23,27 @@
 </div>
 
 <br />
-<h3 class="article-reply-header">Replies:</h3>
-<br /><br />
-<div class="submit-article-reply">
+<h3 class="comment-header">Comment on article</h3>
+<h3 class="reply-header" style="display: none;"></h3>
+<br />
+<div class="cancel-reply" style="display: none;">
+	<a href="#">Cancel reply</a>
+</div>
+<br />
+<div class="submit-article-reply" id='<%= "article_reply_#{@article.id}" %>'>
 	<%= render partial: 'common/author_info', locals: { user: current_user, date_time: false }  %>
 	<br />
-	<%= render partial: 'article_replies/form', locals: { article: @article } %>
+	<%= render partial: 'replies/form', locals: { entity: @article } %>
 </div>
 
 <div class="article-replies-box">
-	<%= render @article_replies %>
+	<%= render partial: 'replies/reply', collection: @article.replies_all_levels %>
 </div>
-
-<% unless @article_replies.total_pages < 2 %>
+<!--
+<%# unless @article_replies.total_pages < 2 %>
 	<div class="load-more-block">
-		<%= link_to 'Load More', article_path(@article, page: 2), class: 'btn-common btn-action load-more-button', remote: true %>
+		<%# link_to 'Load More', article_path(@article, page: 2), class: 'btn-common btn-action load-more-button', remote: true %>
 	</div>
-<% end %>
-
+<%# end %>
+-->
 <br /><br /><br /><br /><br /><br /><br />
