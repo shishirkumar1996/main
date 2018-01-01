@@ -22,7 +22,8 @@
   }
 }
 
-.article-reply-header {
+.comment-header,
+.reply-header {
   text-decoration: underline;
   margin-left: 22.5%;
 }
@@ -60,5 +61,18 @@ textarea.article-reply-textarea:focus {
   height: 80px;
   .spinner {
     display: none;
+  }
+}
+
+.article-replies-box {
+  .reply-level-1 {
+    width: 50%;
+    margin-right: 22.5%;
+    margin-left: 27.5%;
+  }
+  .reply-level-2 {
+    width: 45%;
+    margin-right: 22.5%;
+    margin-left: 32.5%;
   }
 }
