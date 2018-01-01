@@ -1,0 +1,7 @@
+resetSubmitReply();
+var parentReply = $('#<%= "#{@parent.type_name}_reply_#{@parent.id}" %>');
+var currentReply = $('<%= j render(partial: "replies/reply", object: @reply) %>');
+currentReply.addClass("reply-level-" + getLevel(parentReply));
+currentReply.insertAfter(parentReply);
+<%= render 'common/notice_banner', message: 'Reply was created successfully' %>
+currentReply.scrollView();

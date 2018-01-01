@@ -1,0 +1,8 @@
+<%= form_tag replies_path, remote: true do %>
+  <%= text_area nil, :body, class: 'article-reply-textarea', rows: 4, spellcheck: true %>
+  <%= hidden_field_tag :parent_type, entity.type_name %>
+  <%= hidden_field_tag :parent_id, entity.id %>
+  <div class="reply-button-container">
+    <%= submit_tag 'Reply', class: 'btn-common btn-action' %>
+  </div>
+<% end %>

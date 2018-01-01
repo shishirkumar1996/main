@@ -1,0 +1,11 @@
+<div id='<%= "#{reply.type_name}_reply_#{reply.id}" %>' class='content-container <%= "reply-level-#{reply.level}" if reply.level %>'>
+	<%= render partial: 'common/author_info', locals: { user: reply.user, date_time: reply.created_at }  %>
+	<br />
+	<div class="containing-div article-content">
+		<%= sanitize reply.body, tags: %w(p) %>
+	</div>
+	<div class="reply-to-reply containing-div">
+		<%= link_to 'Reply', '#' %>
+		<%= hidden_field_tag :parent_reply_id, reply.id %>
+	</div>
+</div>
