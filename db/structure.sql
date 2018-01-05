@@ -1057,13 +1057,14 @@ ALTER SEQUENCE interests_id_seq OWNED BY interests.id;
 
 CREATE TABLE notifications (
     id integer NOT NULL,
-    message character varying,
-    link character varying,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    user_id integer,
+    recipient_id integer NOT NULL,
     read_at timestamp without time zone,
-    actor_id integer
+    article_reply_id integer,
+    answer_reply_id integer,
+    answer_id integer,
+    user_following_id integer
 );
 
 
@@ -2269,10 +2270,10 @@ CREATE UNIQUE INDEX index_interests_on_person_id_and_interested_id ON interests 
 
 
 --
--- Name: index_notifications_on_user_id; Type: INDEX; Schema: public; Owner: -
+-- Name: index_notifications_on_recipient_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_notifications_on_user_id ON notifications USING btree (user_id);
+CREATE INDEX index_notifications_on_recipient_id ON notifications USING btree (recipient_id);
 
 
 --
@@ -2379,6 +2380,14 @@ ALTER TABLE ONLY answer_replies
 
 
 --
+-- Name: notifications fk_rails_35aeb594ce; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY notifications
+    ADD CONSTRAINT fk_rails_35aeb594ce FOREIGN KEY (answer_reply_id) REFERENCES answer_replies(id);
+
+
+--
 -- Name: articles fk_rails_3d31dad1cc; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -2435,6 +2444,22 @@ ALTER TABLE ONLY article_replies
 
 
 --
+-- Name: notifications fk_rails_720e1ce325; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY notifications
+    ADD CONSTRAINT fk_rails_720e1ce325 FOREIGN KEY (article_reply_id) REFERENCES article_replies(id);
+
+
+--
+-- Name: notifications fk_rails_75955a8862; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY notifications
+    ADD CONSTRAINT fk_rails_75955a8862 FOREIGN KEY (answer_id) REFERENCES answers(id);
+
+
+--
 -- Name: groupanswers fk_rails_8365e12e4d; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -2463,7 +2488,7 @@ ALTER TABLE ONLY group_questions
 --
 
 ALTER TABLE ONLY notifications
-    ADD CONSTRAINT fk_rails_b080fb4855 FOREIGN KEY (user_id) REFERENCES users(id);
+    ADD CONSTRAINT fk_rails_b080fb4855 FOREIGN KEY (recipient_id) REFERENCES users(id);
 
 
 --
@@ -2488,6 +2513,14 @@ ALTER TABLE ONLY answer_replies
 
 ALTER TABLE ONLY grouparticlereplies
     ADD CONSTRAINT fk_rails_c5a1dc6fbf FOREIGN KEY (user_id) REFERENCES users(id);
+
+
+--
+-- Name: notifications fk_rails_e0f35052fd; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY notifications
+    ADD CONSTRAINT fk_rails_e0f35052fd FOREIGN KEY (user_following_id) REFERENCES relationships(id);
 
 
 --
@@ -2589,6 +2622,9 @@ INSERT INTO schema_migrations (version) VALUES
 ('20171206051905'),
 ('20171208052053'),
 ('20171208053738'),
-('20171208070227');
+('20171208070227'),
+('20180104154508'),
+('20180104162521'),
+('20180104165419');
 
 
