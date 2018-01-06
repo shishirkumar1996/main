@@ -1,5 +1,4 @@
 class Answer < ApplicationRecord
-  include Writable
   include Bookmarkable
   include Votable
   belongs_to :user

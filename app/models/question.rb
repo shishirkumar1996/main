@@ -1,5 +1,4 @@
 class Question < ApplicationRecord
-	include Writable
 	include Bookmarkable
 	searchkick word_start: [:title], highlight: [:title], suggest: [:title]
 	belongs_to :user

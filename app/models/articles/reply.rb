@@ -1,6 +1,5 @@
 module Articles
   class Reply < ApplicationRecord
-    include Writable
     attr_accessor :level
     self.table_name = 'article_replies'
     belongs_to :user, class_name: '::User'

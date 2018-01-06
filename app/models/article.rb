@@ -1,5 +1,4 @@
 class Article < ApplicationRecord
-	include Writable
 	include Bookmarkable
 	include Votable
 	searchkick word_start: [:title]
