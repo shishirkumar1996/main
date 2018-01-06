@@ -1,5 +1,5 @@
 var voteElement = $('#<%= "#{@entity.type_name}_#{@vote_type}_#{@entity.id}" %>');
 voteElement.html('<%= j(public_send("display_#{@vote_type}", nil, true)) %>');
 var otherVote = $('#<%= "#{@entity.type_name}_#{other_vote @vote_type}_#{@entity.id}" %>');
-otherVote.html('<%= j(public_send("display_#{other_vote}", @entity, false)) %>');
+otherVote.html('<%= j(public_send("display_#{other_vote @vote_type}", @entity, false)) %>');
 <%= render 'common/notice_banner', message: "#{@entity.class.name} was #{@vote_type}d successfully" %>
