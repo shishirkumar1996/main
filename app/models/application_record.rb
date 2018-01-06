@@ -6,7 +6,7 @@ class ApplicationRecord < ActiveRecord::Base
   end
 
   def self.underscored_name
-    @lower_name ||= name.split('::').map!{|x| x.singularize.underscore}.join('_')
+    @underscored_name ||= name.split('::').map!{|x| x.singularize.underscore}.join('_')
   end
 
   def display_page_url
