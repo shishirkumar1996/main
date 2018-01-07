@@ -5,6 +5,6 @@ module Users
     belongs_to :domain, class_name: '::Domain'
     validates :user_id, presence: true
     validates :domain_id, presence: true
-    validates :user_id, uniqueness: { scope: domain_id }
+    validates :user_id, uniqueness: { scope: :domain_id }
   end
 end
