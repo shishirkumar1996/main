@@ -57,6 +57,9 @@ class User < ApplicationRecord
 	has_many :dislikedgroupanswers,through: :badgroupanswerrelations,
 	source: :groupanswer
 
+	has_many :interests, class_name: 'Users::Interest'
+	has_many :interested_domains, through: :interests, source: :domain
+
   has_many :notifications, dependent: :destroy
 
 	has_many :articles,dependent: :destroy
@@ -68,10 +71,6 @@ class User < ApplicationRecord
 	has_many :answer_replies ,dependent: :destroy
 
 	has_many :article_replies, dependent: :destroy
-
-	has_many :interests, foreign_key: :person_id,dependent: :destroy
-
-	has_many :relations, through: :interests,source: :domain
 
 	has_many :academics, foreign_key: "student_id", dependent: :destroy
 
