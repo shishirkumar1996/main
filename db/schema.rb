@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180104165419) do
+ActiveRecord::Schema.define(version: 20180107085106) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -290,16 +290,6 @@ ActiveRecord::Schema.define(version: 20180104165419) do
     t.index ["name"], name: "index_institutes_on_name", using: :btree
   end
 
-  create_table "interests", force: :cascade do |t|
-    t.integer  "person_id"
-    t.integer  "interested_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-    t.index ["interested_id"], name: "index_interests_on_interested_id", using: :btree
-    t.index ["person_id", "interested_id"], name: "index_interests_on_person_id_and_interested_id", unique: true, using: :btree
-    t.index ["person_id"], name: "index_interests_on_person_id", using: :btree
-  end
-
   create_table "notifications", force: :cascade do |t|
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
@@ -344,6 +334,15 @@ ActiveRecord::Schema.define(version: 20180104165419) do
     t.string   "term"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "user_interests", force: :cascade do |t|
+    t.integer  "user_id",    null: false
+    t.integer  "domain_id",  null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["domain_id"], name: "index_user_interests_on_domain_id", using: :btree
+    t.index ["user_id", "domain_id"], name: "index_user_interests_on_user_id_and_domain_id", unique: true, using: :btree
   end
 
   create_table "users", force: :cascade do |t|

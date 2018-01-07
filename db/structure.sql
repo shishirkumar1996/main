@@ -1020,38 +1020,6 @@ ALTER SEQUENCE institutes_id_seq OWNED BY institutes.id;
 
 
 --
--- Name: interests; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE interests (
-    id integer NOT NULL,
-    person_id integer,
-    interested_id integer,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
--- Name: interests_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE interests_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: interests_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE interests_id_seq OWNED BY interests.id;
-
-
---
 -- Name: notifications; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -1224,6 +1192,38 @@ CREATE SEQUENCE search_products_id_seq
 --
 
 ALTER SEQUENCE search_products_id_seq OWNED BY search_products.id;
+
+
+--
+-- Name: user_interests; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE user_interests (
+    id integer NOT NULL,
+    user_id integer NOT NULL,
+    domain_id integer NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: user_interests_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE user_interests_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: user_interests_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE user_interests_id_seq OWNED BY user_interests.id;
 
 
 --
@@ -1463,13 +1463,6 @@ ALTER TABLE ONLY institutes ALTER COLUMN id SET DEFAULT nextval('institutes_id_s
 
 
 --
--- Name: interests id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY interests ALTER COLUMN id SET DEFAULT nextval('interests_id_seq'::regclass);
-
-
---
 -- Name: notifications id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -1502,6 +1495,13 @@ ALTER TABLE ONLY relationships ALTER COLUMN id SET DEFAULT nextval('relationship
 --
 
 ALTER TABLE ONLY search_products ALTER COLUMN id SET DEFAULT nextval('search_products_id_seq'::regclass);
+
+
+--
+-- Name: user_interests id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY user_interests ALTER COLUMN id SET DEFAULT nextval('user_interests_id_seq'::regclass);
 
 
 --
@@ -1744,14 +1744,6 @@ ALTER TABLE ONLY institutes
 
 
 --
--- Name: interests interests_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY interests
-    ADD CONSTRAINT interests_pkey PRIMARY KEY (id);
-
-
---
 -- Name: notifications notifications_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1797,6 +1789,14 @@ ALTER TABLE ONLY schema_migrations
 
 ALTER TABLE ONLY search_products
     ADD CONSTRAINT search_products_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: user_interests user_interests_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY user_interests
+    ADD CONSTRAINT user_interests_pkey PRIMARY KEY (id);
 
 
 --
@@ -2249,27 +2249,6 @@ CREATE INDEX index_institutes_on_name ON institutes USING btree (name);
 
 
 --
--- Name: index_interests_on_interested_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_interests_on_interested_id ON interests USING btree (interested_id);
-
-
---
--- Name: index_interests_on_person_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_interests_on_person_id ON interests USING btree (person_id);
-
-
---
--- Name: index_interests_on_person_id_and_interested_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX index_interests_on_person_id_and_interested_id ON interests USING btree (person_id, interested_id);
-
-
---
 -- Name: index_notifications_on_recipient_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -2302,6 +2281,20 @@ CREATE INDEX index_relationships_on_followed_id ON relationships USING btree (fo
 --
 
 CREATE UNIQUE INDEX index_relationships_on_follower_id_and_followed_id ON relationships USING btree (follower_id, followed_id);
+
+
+--
+-- Name: index_user_interests_on_domain_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_interests_on_domain_id ON user_interests USING btree (domain_id);
+
+
+--
+-- Name: index_user_interests_on_user_id_and_domain_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_user_interests_on_user_id_and_domain_id ON user_interests USING btree (user_id, domain_id);
 
 
 --
@@ -2625,6 +2618,7 @@ INSERT INTO schema_migrations (version) VALUES
 ('20171208070227'),
 ('20180104154508'),
 ('20180104162521'),
-('20180104165419');
+('20180104165419'),
+('20180107085106');
 
 
