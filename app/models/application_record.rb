@@ -2,6 +2,7 @@ class ApplicationRecord < ActiveRecord::Base
   self.abstract_class = true
 
   def self.initialize_many_to_many(assoc_one, assoc_two)
+    assoc_one_id = assoc_two_id = nil
     [assoc_one, assoc_two].each_with_index do |assoc, index|
       klass = assoc[0]
       assoc_name = (assoc.length == 1 ? klass.underscored_name : assoc[1]).to_sym
