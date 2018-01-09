@@ -1,5 +1,7 @@
 module Questions
   class Bookmark < ApplicationRecord
-  	include ManyToManyRelatable
+  	extend ManyToManyRelatable
+    self.table_name = underscored_name
+    initialize_many_to_many [::User], [::Question]
   end
 end
