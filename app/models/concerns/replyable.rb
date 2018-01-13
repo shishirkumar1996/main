@@ -1,26 +1,20 @@
 module Replyable
   extend ActiveSupport::Concern
-
-  VALID_BODY_REGEX = /[a-zA-Z0-9]/        # /\A(?!(&nbsp;|<p>|<\/p>|\s)*\z).+/
-
-  included do
-    belongs_to :user
-    default_scope -> { order(created_at: :desc) }
-    validates :body, presence: true, format: {with: VALID_BODY_REGEX}
-    before_save :remove_whitespace
-  end
-
-  private
-
-    def remove_whitespace
-      unless body.nil?
-        body.strip!
-        unless body.empty?
-          body.prepend '<p>'
-          body << '</p>'
-          body.gsub! /\s+/, '</p><p>'
-        end
-      end
-    end
-
+  def replies_all_levels
+		all_replies = []
+		stack = []
+		replies.each do |top_reply|
+			top_reply.level = 0
+			stack << top_reply
+		end
+		until stack.empty?
+			current_reply = stack.pop
+			all_replies << current_reply
+			current_reply.replies.each do |reply|
+				reply.level = current_reply.level + 1
+				stack << reply
+			end
+		end
+		all_replies
+	end
 end
